@@ -58,6 +58,12 @@ Every template follows the same skeleton:
 | Toast | Live region (`role="status"`) | Polite; pauses on hover/focus; dismiss button; never the only source of critical info |
 | Sortable table | [APG Sortable Table](https://www.w3.org/WAI/ARIA/apg/patterns/table/examples/sortable-table/) | Header buttons; `aria-sort` on the sorted column; change announced |
 | Table chart | Data table | The table *is* the chart: values stay readable; bars are decoration |
+| SVG charts | `<figure>` + focusable `role="group"` plot + text alternatives | The SVG drawing is decorative; the figure has a caption, a generated summary (high, low, latest, change) and a "Show data table" disclosure. The plot is focusable: Arrow keys, Home and End move between points and each value is announced through a polite live region. Legend items are `aria-pressed` buttons. Series colours are ≥ 3:1 against cards, and lines also differ by dash pattern, so colour is never the only cue (1.4.1, 1.4.11) |
+| Data grid | Table + toolbar + pagination | Native `<table>` with caption and `scope`; search and filters are labelled; sort buttons set `aria-sort`; result count announced ("Showing 1–10 of 48 orders"); pagination uses buttons with `aria-current="page"`; row actions are named per row ("View order #1061") |
+| Chat / assistants | `role="log"` + labelled composer | Focusable, labelled log; hidden "You said" / "Assistant said" prefixes; a reply is announced once when complete, not token by token; tool steps are `<details>`; Enter sends, Shift+Enter adds a line, Escape stops a reply or closes the widget; the widget returns focus to its launcher; feedback buttons use `aria-pressed` |
+| Theme customizer | Drawer `<dialog>` + `<fieldset>` radio groups | Native radios for mode, brand, density and radius; the colour input is labelled; the contrast report is a `role="status"` region; custom colours are adjusted until text reaches 4.5:1 |
+| App shell sidebar | Disclosure below `64em` | The menu button has `aria-expanded`; the sidebar nav marks the current page with `aria-current="page"` and the current section with `aria-current="true"` |
+| Copy buttons | Button + announcement | Constant name ("Copy code", "Copy path for AI"); success is announced and shown as text, not only as an icon change |
 | Scrollable tables | Region | `role="region"`, label, `tabindex="0"` so keyboard users can scroll |
 | Breadcrumb / pagination | Labelled `<nav>` | `aria-current="page"`; visually hidden "Page" prefix |
 | Cards | Stretched link | One link per card; the whole card is clickable; footer controls remain separate targets |
@@ -110,9 +116,15 @@ SVGs, ARIA value types, positive `tabindex`, focusable content inside
 captions and header scope, labelled dialogs and landmarks, and the
 progressive-enhancement conventions above.
 
-The browser tests (`tests/browser/smoke.mjs`, Playwright) verify keyboard
-operation of the menu, tabs, dialog, sortable table and forms; focus
-management; the no-JavaScript baseline; and reflow at 320 px.
+The contrast suite (`tests/checks/contrast.mjs`) checks every token pair,
+the chart palette and every brand preset in light, system-dark and
+explicit-dark themes; the unit suite checks that `generateBrand()` returns
+AA-compliant palettes for arbitrary colours.
+
+The browser tests (`tests/browser/smoke.mjs`, Playwright) load every page
+and verify keyboard operation of the menu, tabs, dialog, sortable table,
+forms, charts, data grids, chat and the theme panel; focus management; the
+no-JavaScript baseline; and reflow at 320 px.
 
 ## Manual testing (required before release)
 
@@ -142,6 +154,11 @@ changed template:
 - The dashboard top bar shows the search field below the action buttons on
   small screens while it precedes them in the DOM. The items are
   independent, so the meaning of the sequence is preserved (2.4.3).
+- Streaming chat replies are not read out as they arrive; screen reader
+  users hear the full reply once it is complete, and can stop a long reply
+  with Escape. Review this if your product relies on very long replies.
+- Charts announce one point at a time; the data table is the complete
+  alternative and is one keypress away.
 - Demo forms (`data-demo-submit`) intercept successful submissions to show
   a message. Remove the attribute in production so forms post to your
   server, and always validate on the server too.

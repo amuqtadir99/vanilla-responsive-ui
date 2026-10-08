@@ -43,12 +43,39 @@ const PAIRS = [
   ['--color-focus', '--color-bg', 3, 'focus ring'],
   ['--color-focus', '--color-surface', 3, 'focus ring on surface'],
   ['--color-warning', '--color-surface-raised', 3, 'rating stars'],
+  ...[1, 2, 3, 4, 5, 6].map((n) => [`--chart-${n}`, '--color-surface-raised', 3, `chart series ${n}`]),
 ];
+
+// Pairs that depend on the brand colour, checked for every data-brand preset.
+const BRAND_PAIRS = [
+  ['--color-primary', '--color-bg', 4.5, 'primary text'],
+  ['--color-primary', '--color-primary-soft', 4.5, 'primary badge, current nav item'],
+  ['--color-on-primary', '--color-primary', 4.5, 'primary button'],
+  ['--color-on-primary', '--color-primary-hover', 4.5, 'primary button hover'],
+  ['--color-link', '--color-bg', 4.5, 'links'],
+  ['--color-link', '--color-surface', 4.5, 'links on surface'],
+  ['--color-text', '--color-primary-soft', 4.5, 'text on soft brand background'],
+  ['--color-text', '--color-selection', 4.5, 'selected text'],
+  ['--color-focus', '--color-bg', 3, 'focus ring'],
+];
+
+const THEMES_FILE = path.join(SRC, 'assets', 'css', 'themes.css');
 
 function parseBlock(body) {
   const tokens = {};
-  for (const m of body.matchAll(/(--color-[\w-]+)\s*:\s*(#[0-9a-fA-F]{3,8})\s*;/g)) tokens[m[1]] = m[2];
+  for (const m of body.matchAll(/(--(?:color|chart)-[\w-]+)\s*:\s*(#[0-9a-fA-F]{3,8})\s*;/g)) tokens[m[1]] = m[2];
   return tokens;
+}
+
+function checkPairs(report, file, label, tokens, pairs) {
+  for (const [fg, bg, min, usage] of pairs) {
+    if (!tokens[fg] || !tokens[bg]) {
+      report.error(file, null, 'contrast', `[${label}] ${fg} or ${bg} is missing or not a hex value.`);
+      continue;
+    }
+    const r = ratio(tokens[fg], tokens[bg]);
+    report.assert(r >= min, file, null, 'contrast', `[${label}] ${fg} on ${bg} is ${r.toFixed(2)}:1, needs ${min}:1 (${usage}).`);
+  }
 }
 
 function luminance(hex) {
@@ -73,14 +100,26 @@ export function run(report) {
   const themes = { light, dark: { ...light, ...(darkMatch ? parseBlock(darkMatch[1]) : {}) } };
 
   for (const [theme, tokens] of Object.entries(themes)) {
-    for (const [fg, bg, min, usage] of PAIRS) {
-      if (!tokens[fg] || !tokens[bg]) {
-        report.error(TOKENS_FILE, null, 'contrast', `[${theme}] ${fg} or ${bg} is missing or not a hex value.`);
-        continue;
-      }
-      const r = ratio(tokens[fg], tokens[bg]);
-      report.assert(r >= min, TOKENS_FILE, null, 'contrast', `[${theme}] ${fg} on ${bg} is ${r.toFixed(2)}:1, needs ${min}:1 (${usage}).`);
+    checkPairs(report, TOKENS_FILE, theme, tokens, PAIRS);
+  }
+
+  // Brand presets: every preset must define light, system-dark and explicit-dark values.
+  const themesCss = read(THEMES_FILE).replace(/\/\*[\s\S]*?\*\//g, '');
+  const brands = [...new Set([...themesCss.matchAll(/data-brand="([\w-]+)"/g)].map((m) => m[1]))];
+  report.assert(brands.length > 0, THEMES_FILE, null, 'contrast', 'No data-brand presets found.');
+  for (const brand of brands) {
+    const esc = brand.replace(/-/g, '\\-');
+    const lightBlock = themesCss.match(new RegExp(`:root\\[data-brand="${esc}"\\]\\s*\\{([^}]*)\\}`));
+    const darkBlock = themesCss.match(new RegExp(`:root\\[data-brand="${esc}"\\]\\[data-theme="dark"\\]\\s*\\{([^}]*)\\}`));
+    const systemDark = themesCss.match(new RegExp(`:root\\[data-brand="${esc}"\\]:not\\(\\[data-theme="light"\\]\\)\\s*\\{([^}]*)\\}`));
+    if (!lightBlock || !darkBlock || !systemDark) {
+      report.error(THEMES_FILE, null, 'contrast', `Preset "${brand}" needs light, system-dark and explicit-dark blocks.`);
+      continue;
     }
+    const norm = (b) => b.replace(/\s+/g, ' ').trim();
+    report.assert(norm(darkBlock[1]) === norm(systemDark[1]), THEMES_FILE, null, 'theme-parity', `Preset "${brand}": system-dark and explicit-dark blocks differ.`);
+    checkPairs(report, THEMES_FILE, `${brand} light`, { ...themes.light, ...parseBlock(lightBlock[1]) }, BRAND_PAIRS);
+    checkPairs(report, THEMES_FILE, `${brand} dark`, { ...themes.dark, ...parseBlock(darkBlock[1]) }, BRAND_PAIRS);
   }
   return PAIRS.length * 2;
 }

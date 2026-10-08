@@ -1,0 +1,226 @@
+/* ==========================================================================
+   AI templates (assistant and agent workspace)
+   ========================================================================== */
+
+/* Full-height app: the body is a flex column, the shell fills what is left
+   (below the optional demo bar), and the chat fills the main area. */
+.ai-page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  height: 100dvh;
+}
+
+.ai-page > .app-shell {
+  flex: 1;
+  min-height: 0;
+  grid-template-rows: auto auto minmax(0, 1fr);
+}
+
+@media (min-width: 64em) {
+  .ai-page > .app-shell {
+    grid-template-rows: auto minmax(0, 1fr);
+  }
+
+  .ai-page .app-shell__sidebar {
+    position: static;
+    height: auto;
+  }
+}
+
+.app-shell__main--flush {
+  gap: 0;
+  min-height: 24rem;
+  padding: 0;
+  overflow: hidden;
+}
+
+.app-shell__main--flush > .chat {
+  flex: 1;
+}
+
+/* Top bar navigation between assistant modes */
+.ai-nav {
+  order: 3;
+  flex-basis: 100%;
+  min-width: 0; /* let the link list scroll instead of widening the top bar */
+}
+
+.ai-nav__list {
+  position: relative;
+  display: flex;
+  gap: var(--spacing-3xs);
+  margin: 0;
+  padding: 0;
+  overflow-x: auto;
+  list-style: none;
+}
+
+.ai-nav__link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-3xs);
+  min-height: 2.25rem;
+  padding-inline: var(--spacing-xs);
+  border-radius: var(--radius-pill);
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.ai-nav__link:hover {
+  background-color: var(--color-surface-sunken);
+  color: var(--color-text);
+}
+
+.ai-nav__link[aria-current] {
+  background-color: var(--color-primary-soft);
+  color: var(--color-primary);
+}
+
+@media (min-width: 64em) {
+  .ai-nav {
+    order: 0;
+    flex-basis: auto;
+  }
+}
+
+/* Conversation history */
+.ai-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2xs);
+}
+
+.ai-history__item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3xs);
+}
+
+.ai-history__link {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: block;
+  line-height: var(--target-size);
+}
+
+/* ---- Agent workspace --------------------------------------------------- */
+.agent-layout {
+  display: grid;
+  flex: 1;
+  min-height: 0;
+}
+
+.agent-layout > * {
+  min-width: 0;
+}
+
+.agent-layout > .chat {
+  min-height: 28rem;
+}
+
+.agent-run {
+  display: grid;
+  align-content: start;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-md);
+  border-block-start: var(--border-width) solid var(--color-border);
+  background-color: var(--color-surface);
+  overflow-y: auto;
+}
+
+@media (min-width: 75em) {
+  .agent-layout {
+    grid-template-columns: minmax(0, 1fr) 24rem;
+  }
+
+  .agent-layout > .chat {
+    min-height: 0;
+  }
+
+  .agent-run {
+    border-block-start: 0;
+    border-inline-start: var(--border-width) solid var(--color-border);
+  }
+}
+
+.agent-run__subtitle {
+  margin-block-start: var(--spacing-sm);
+  font-size: var(--font-size-base);
+}
+
+.agent-steps {
+  display: grid;
+  gap: var(--spacing-2xs);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.agent-steps__item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2xs);
+  padding: var(--spacing-2xs) var(--spacing-xs);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-md);
+  background-color: var(--color-surface-raised);
+  font-size: var(--font-size-sm);
+}
+
+.agent-steps__title {
+  flex: 1;
+}
+
+.agent-steps__marker {
+  width: 0.75rem;
+  height: 0.75rem;
+  border: 2px solid var(--color-border-strong);
+  border-radius: 50%;
+}
+
+.agent-steps__item[data-status="running"] .agent-steps__marker {
+  border-color: var(--color-primary);
+  border-inline-end-color: transparent;
+}
+
+.agent-steps__item[data-status="running"] .agent-steps__state {
+  --badge-color: var(--color-primary);
+  --badge-bg: var(--color-primary-soft);
+}
+
+.agent-steps__item[data-status="done"] .agent-steps__marker {
+  border-color: var(--color-success);
+  background-color: var(--color-success);
+}
+
+.agent-steps__item[data-status="done"] .agent-steps__state {
+  --badge-color: var(--color-success);
+  --badge-bg: var(--color-success-soft);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .agent-steps__item[data-status="running"] .agent-steps__marker {
+    animation: agent-spin 0.9s linear infinite;
+  }
+}
+
+@keyframes agent-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.ai-sidebar .side-nav__list {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.ai-history__item {
+  min-width: 0;
+}

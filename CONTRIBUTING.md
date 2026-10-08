@@ -22,7 +22,8 @@ to people and AI agents) and [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
 
 ```bash
 python3 -m http.server 8080                    # preview at http://localhost:8080/src/
-node .claude/skills/generate-doc.js            # after editing src/components/*.html
+node .claude/skills/pages.js sync              # after editing src/layouts/partials/*.html
+node .claude/skills/generate-doc.js            # after editing components, layouts or pages (gallery, docs, catalog.json)
 bash .claude/skills/validate-w3c.sh --install  # W3C + standards
 bash .claude/skills/audit-a11y.sh              # accessibility
 node tests/run-all.mjs                         # everything static
@@ -42,6 +43,7 @@ Before opening a pull request:
    ```html
    <!--
    @component: Name
+   @category: Basics | Content | Forms | Feedback | Overlays | Data | AI | …
    @description: One sentence.
    @css: components/<file>.css
    @js: components/<name>.js   (or: none)
@@ -54,6 +56,19 @@ Before opening a pull request:
 4. Run `node .claude/skills/generate-doc.js` to update
    `docs/COMPONENTS.md` and the gallery.
 5. Cover its keyboard behaviour in `tests/browser/smoke.mjs`.
+
+## Adding a page or layout
+
+Use the pages CLI rather than copying a page by hand, so the partials,
+paths and stylesheets are right:
+
+```bash
+node .claude/skills/pages.js new --family website --layout sidebar-left --name careers --title "Careers"
+```
+
+See [docs/LAYOUTS.md](docs/LAYOUTS.md). Never edit generated files
+(`docs/COMPONENTS.md`, `src/components/index.html`, `catalog.json`) or the
+text between `@partial` markers; CI fails if they drift.
 
 ## Commit messages
 

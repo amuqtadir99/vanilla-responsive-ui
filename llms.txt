@@ -1,0 +1,45 @@
+# vanilla-responsive-ui
+
+> Dependency-free, accessible (WCAG 2.2 AA), responsive UI components, page layouts and multi-page templates in plain HTML5, CSS and native ES modules. No build step, no framework, strict Content-Security-Policy. Built to be read and assembled by AI coding agents as well as people.
+
+Start with CLAUDE.md (rules) and catalog.json (machine-readable index of every component, layout, template page, partial, data file, module and skill, with exact file paths). Never add dependencies; validate with the skills listed below.
+
+## Rules and indexes
+
+- [CLAUDE.md](CLAUDE.md): Non-negotiable rules and coding standards for agents working in this repository
+- [catalog.json](catalog.json): Generated index of components (markup/CSS/JS paths, accessibility notes), layouts, templates, partials, data and skills
+- [README.md](README.md): Overview, quick start and template list
+
+## Documentation
+
+- [docs/COMPONENTS.md](docs/COMPONENTS.md): Every component with an "AI reference" block of file paths and usage for vanilla HTML, Razor, React and Django
+- [docs/LAYOUTS.md](docs/LAYOUTS.md): The eight page layouts, shared partials and the pages.js CLI for creating pages
+- [docs/THEMING.md](docs/THEMING.md): Design tokens, brand presets, custom brand colours, density, radius and dark mode
+- [docs/DATA.md](docs/DATA.md): Connecting JSON or APIs to SVG charts and data grids
+- [docs/AI-CHAT.md](docs/AI-CHAT.md): Chat components, the streaming event protocol and backend examples (Node.js, Python)
+- [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md): File layout, CSS and JavaScript conventions, progressive enhancement
+- [docs/ACCESSIBILITY.md](docs/ACCESSIBILITY.md): Accessibility patterns and testing
+- [docs/SECURITY.md](docs/SECURITY.md): CSP, XSS prevention and server responsibilities
+- [docs/INTEGRATION_GUIDE.md](docs/INTEGRATION_GUIDE.md): Porting to ASP.NET Core, Blazor, React/Next.js, Vue, Svelte, Angular, Astro, Django, Flask, FastAPI, Laravel and Rails
+
+## Source
+
+- [src/components/](src/components/): One HTML snippet per component, each with a metadata header (@component, @category, @description, @css, @js, @a11y)
+- [src/layouts/](src/layouts/): Eight complete layout pages and src/layouts/partials/ (headers, footers, sidebars, chat widget, theme panel)
+- [src/templates/](src/templates/): Template families: website, dashboard, e-commerce, ai, landing-page, auth
+- [src/assets/css/tokens.css](src/assets/css/tokens.css): Design tokens; themes.css adds brand presets, density and radius
+- [src/assets/js/main.js](src/assets/js/main.js): Entry point; lazy-loads components found on the page
+- [src/data/](src/data/): Sample JSON (sales, orders, customers, products) behind charts, grids and the assistant
+
+## Skills (Claude Code)
+
+- [.claude/skills/validate-w3c/SKILL.md](.claude/skills/validate-w3c/SKILL.md): W3C validation of HTML, CSS and SVG plus standards checks
+- [.claude/skills/audit-a11y/SKILL.md](.claude/skills/audit-a11y/SKILL.md): Accessibility audit, contrast checks and browser keyboard tests
+- [.claude/skills/generate-doc/SKILL.md](.claude/skills/generate-doc/SKILL.md): Regenerate docs/COMPONENTS.md, the gallery and catalog.json
+- [.claude/skills/pages/SKILL.md](.claude/skills/pages/SKILL.md): Create pages from layouts and keep shared partials in sync
+- [.claude/skills/add-component/SKILL.md](.claude/skills/add-component/SKILL.md): Procedure for adding a component
+
+## Optional
+
+- [CONTRIBUTING.md](CONTRIBUTING.md): Contribution workflow
+- [tests/](tests/): Zero-dependency test suites (node tests/run-all.mjs) and optional Playwright browser tests

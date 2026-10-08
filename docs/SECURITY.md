@@ -79,6 +79,23 @@ use per-request nonces (`script-src 'self' 'nonce-…'`) rather than
   `eval`, `new Function` and `setAttribute('style' | 'on…')` are rejected by
   `tests/checks/js.mjs`.
 
+### Model output and remote data
+
+- **Chat replies** are untrusted. `core/markdown.js` renders a small
+  Markdown subset by building DOM nodes; any HTML in a reply is displayed
+  as text. Links are limited to `http(s):` and `mailto:` and external links
+  get `rel="noopener noreferrer"`. Code blocks are text inside `<pre><code>`.
+- **Data sources** (charts, grids, the analyst) are treated as data only:
+  values are formatted and written with `textContent`; SVG is built with
+  `createElementNS`. `setDataBase()` accepts only relative and `http(s)`
+  URLs. Inline data uses `<script type="application/json">`, which is
+  never executed.
+- **CSV export** prefixes cells that start with `=`, `+`, `-`, `@`, tab or
+  carriage return with `'`, so spreadsheets do not evaluate them as
+  formulas.
+- **`connect-src`** is `'self'` in the templates. Add only the API origins
+  you actually call; never widen it to `*`.
+
 If you genuinely need to render HTML from a string, parse it with the
 [Sanitizer API](https://developer.mozilla.org/en-US/docs/Web/API/HTML_Sanitizer_API)
 (`element.setHTML()`) where available, or a reviewed sanitiser on the
@@ -108,13 +125,30 @@ Demo forms use `data-demo-submit` to intercept successful submissions.
 
 ## Storage
 
-`localStorage` holds only non-sensitive preferences (theme) and demo data
-(the e-commerce cart). The theme is mirrored in a `vr_theme` cookie
+`localStorage` holds only non-sensitive preferences (theme, data source
+base URL) and demo data (the e-commerce cart, saved AI conversations). The theme is mirrored in a `vr_theme` cookie
 (`SameSite=Lax`) so servers can render it; treat it as untrusted input and
 accept only `light` or `dark`. Never put tokens, personal data or secrets in web
 storage; use `HttpOnly`, `Secure`, `SameSite` cookies for sessions. Values
-read back from storage are validated before use (`shop.js` drops anything
-that is not a string array).
+read back from storage are validated before use (`cart-store.js` drops
+malformed cart items; `core/theme.js` accepts only known presets and
+`#rrggbb` colours).
+
+Saved chat history (`data-chat-storage`) stays in the visitor's browser.
+Don't enable it where conversations may contain personal or confidential
+data; store history server-side, per authenticated user, instead.
+
+## AI endpoints
+
+The chat components never hold API keys. Your backend endpoint should:
+
+- Keep the model API key on the server and authenticate the caller.
+- Rate-limit and cap message length and history size.
+- Treat user messages and retrieved content as untrusted input to tools
+  (prompt injection): give tools the least privilege they need and confirm
+  destructive actions with the user.
+- Return only what the UI needs; tool outputs shown in the chat are
+  visible to the user.
 
 ## Links
 
@@ -126,7 +160,7 @@ that is not a string array).
 
 - [ ] No new external resource, package, CDN or font.
 - [ ] No inline script, style or event handler.
-- [ ] Dynamic text uses `textContent` / `createElement`.
+- [ ] Dynamic text uses `textContent` / `createElement` (including chat and data).
 - [ ] Forms post to `'self'`, include CSRF protection in integrations, and
       do not rely on client-side validation.
 - [ ] `node tests/run-all.mjs` and `node tests/browser/smoke.mjs` pass

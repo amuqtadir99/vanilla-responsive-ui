@@ -8,6 +8,8 @@ import { SRC, findFiles, read, rel } from '../lib/util.mjs';
 export const name = 'CSS standards';
 
 const TOKENS_FILE = path.join(SRC, 'assets', 'css', 'tokens.css');
+// Files allowed to contain literal colour values (they define tokens).
+const TOKEN_FILES = new Set([TOKENS_FILE, path.join(SRC, 'assets', 'css', 'themes.css')]);
 // Only these files may use !important (utility classes that must win).
 const IMPORTANT_ALLOWED = new Set(['src/assets/css/base.css']);
 
@@ -62,7 +64,7 @@ export function run(report) {
     }
 
     /* ---- Design tokens ------------------------------------------------ */
-    if (file !== TOKENS_FILE) {
+    if (!TOKEN_FILES.has(file)) {
       for (const m of css.matchAll(/#[0-9a-fA-F]{3,8}\b|\b(rgba?|hsla?|oklch|lab|lch)\(/g)) {
         report.error(file, lineOf(css, m.index), 'design-tokens', `Hard-coded colour "${m[0]}"; use a token from tokens.css.`);
       }

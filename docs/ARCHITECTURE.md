@@ -19,28 +19,48 @@ together and why.
 
 ```text
 src/
-├── index.html                 Home: links to every template and the gallery
+├── index.html                 Home: links to every template, the gallery and the layout builder
 ├── assets/
 │   ├── css/
-│   │   ├── tokens.css         Design tokens (colour, type, spacing, motion) + themes
+│   │   ├── tokens.css         Design tokens (colour, type, spacing, motion, chart palette) + themes
+│   │   ├── themes.css         Brand presets, density and corner presets (data-* on <html>)
 │   │   ├── base.css           Reset, typography, layout primitives, a11y helpers
-│   │   └── components/        button, header, card, accordion, tabs, dialog,
-│   │                          form, feedback, table, navigation, footer
+│   │   ├── layouts.css        data-layout layouts, app shell, page headers
+│   │   └── components/        button, header, card, accordion, tabs, dialog, form,
+│   │                          feedback, table, navigation, footer, chart, chat, code
 │   ├── js/
 │   │   ├── main.js            Entry point and component registry
-│   │   ├── core/              dom.js, announce.js, storage.js
-│   │   └── components/        disclosure, tabs, dialog, form-validation,
-│   │                          password-toggle, theme-toggle, toast,
-│   │                          table-sort, data-chart
+│   │   ├── core/              dom, announce, storage, theme, data, format,
+│   │   │                      markdown, clipboard
+│   │   ├── components/        disclosure, tabs, dialog, form-validation,
+│   │   │                      password-toggle, theme-toggle, theme-customizer,
+│   │   │                      toast, table-sort, data-chart, chart, data-grid,
+│   │   │                      chat, copy
+│   │   └── demo/              chat-mock.js (offline assistant; replace in production)
 │   ├── icons/                 SVG icon library (inlined in markup)
 │   └── images/                Placeholder SVG artwork
 ├── components/                Copy-paste snippets + generated gallery (index.html)
+├── layouts/                   Eight layout pages, builder (index.html) and partials/
+├── data/                      Sample JSON: sales, orders, customers, products
 └── templates/
-    ├── landing-page/          index.html, landing.css
-    ├── dashboard/             index.html, dashboard.css, dashboard.js
-    ├── e-commerce/            index.html, shop.css, shop.js
-    └── auth/                  index.html (sign in), register.html, auth.css
+    ├── website/               home, about, services, blog, article, contact
+    ├── dashboard/             overview, analytics, orders, customers, assistant, settings
+    ├── e-commerce/            listing, product, cart (+ cart-store.js)
+    ├── ai/                    assistant, agent workspace
+    ├── landing-page/          single-page marketing site
+    └── auth/                  sign in, create account, reset password
+catalog.json                   Generated index of everything above (for tools and AI agents)
 ```
+
+## Pages and partials
+
+Shared chrome (headers, footers, sidebars, the chat widget, the theme panel
+and the demo template switcher) is written once in
+`src/layouts/partials/` and stamped into every page between
+`<!-- @partial name -->` and `<!-- @end name -->` markers by
+`.claude/skills/pages.js`. Pages stay plain static HTML: no runtime includes,
+no build step to view them. The CI suite runs `pages.js sync --check`, so a
+page whose partial is out of date fails. Details in [LAYOUTS.md](LAYOUTS.md).
 
 ## CSS architecture
 
@@ -51,12 +71,15 @@ without relying on `@layer` (browsers that do not understand `@layer`
 discard the whole block):
 
 1. **`tokens.css`** – custom properties only. No selectors other than `:root`.
-2. **`base.css`** – element defaults, the `.icon`, `.visually-hidden` and
+2. **`themes.css`** – optional presets: token overrides keyed on
+   `data-brand`, `data-density` and `data-radius`.
+3. **`base.css`** – element defaults, the `.icon`, `.visually-hidden` and
    `.skip-link` helpers, and layout primitives (`.container`, `.stack`,
    `.cluster`, `.grid-auto`, `.section`).
-3. **`components/*.css`** – one file per component family. Each page links
+4. **`layouts.css`** – page layouts (`data-layout`) and the app shell.
+5. **`components/*.css`** – one file per component family. Each page links
    only the files it uses.
-4. **Template CSS** (`landing.css`, `dashboard.css`, …) – page layout only.
+6. **Template CSS** (`landing.css`, `dashboard.css`, …) – page layout only.
 
 ### Design tokens
 
@@ -84,8 +107,10 @@ test suite.
 - Light is the default (`:root`).
 - Dark applies automatically via `prefers-color-scheme: dark` unless the
   user explicitly chose light.
-- `theme-toggle.js` stores an explicit choice and sets
-  `<html data-theme="light|dark">`.
+- `core/theme.js` stores an explicit choice and sets
+  `<html data-theme="light|dark">`; `main.js` calls `initTheme()` before
+  anything else. The same module applies brand presets and generates
+  contrast-safe palettes from any custom colour (see [THEMING.md](THEMING.md)).
 - The system-dark and explicit-dark token blocks must stay identical; the
   CSS suite enforces this.
 
@@ -166,6 +191,11 @@ export function init(root = document) {
 | `core/dom.js` | `qs`, `qsa`, `on`, `createElement`, `uniqueId`, `ensureId`, `claim` | Query helpers, XSS-safe element creation (text via `textContent`, refuses `on*` attributes), idempotent init. |
 | `core/announce.js` | `announce(message, politeness)` | Screen-reader announcements through a shared visually hidden live region. |
 | `core/storage.js` | `getItem`, `setItem`, `removeItem` | `localStorage` that never throws (private mode, quota, sandboxed iframes). |
+| `core/theme.js` | `initTheme`, `getSettings`, `applySettings`, `getMode`, `setMode`, `generateBrand`, `toCss`, `contrast`, `mix` | Mode, presets, custom brand colours (applied through the CSSOM), contrast maths. |
+| `core/data.js` | `loadData`, `resolveSource`, `getPath`, `setDataBase`, `getDataBase` | Resolves `data-source` names, URLs and inline JSON; caches responses; `vr:datachange`. |
+| `core/format.js` | `formatValue`, `percentChange` | `Intl`-based number, currency, percent and date formatting. |
+| `core/markdown.js` | `renderMarkdown`, `renderInline`, `toPlainText` | Safe Markdown subset to DOM nodes (no `innerHTML`) for chat replies. |
+| `core/clipboard.js` | `copyText` | Clipboard API with a selection fallback. |
 
 ### Components
 
@@ -173,16 +203,25 @@ export function init(root = document) {
 | --- | --- | --- |
 | `disclosure.js` | `[data-disclosure]` | Show/hide region (mobile menu, sidebar); Escape to close; optional light dismiss. |
 | `tabs.js` | `[data-tabs]` | APG tabs with automatic activation, roving tabindex, arrow/Home/End keys. |
-| `dialog.js` | `button[commandfor]`, `dialog[closedby]` | Polyfills Invoker Commands and `closedby="any"` for native `<dialog>`. |
+| `dialog.js` | `button[commandfor]`, `dialog[closedby]` | Polyfills Invoker Commands and `closedby="any"` for native `<dialog>` (also drawers). |
 | `form-validation.js` | `form[data-validate]` | Constraint Validation API with inline errors, `aria-invalid`, focus to first error. |
 | `password-toggle.js` | `[data-password-toggle]` | Show/hide password with `aria-pressed`; always resubmits as `type="password"`. |
-| `theme-toggle.js` | `[data-theme-toggle]` | Light/dark toggle with persisted choice. |
+| `theme-toggle.js` | `[data-theme-toggle]` | Light/dark toggle backed by `core/theme.js`. |
+| `theme-customizer.js` | `[data-theme-customizer]` | Mode, brand, custom colour, density and radius controls; live contrast report; Copy CSS. |
 | `toast.js` | `[data-toast]`, `showToast()` | Polite live-region notifications that pause on hover/focus. |
 | `table-sort.js` | `table[data-sortable]` | Sortable columns with `aria-sort` and announcements. |
 | `data-chart.js` | `table[data-chart]` | Draws proportional bars behind table values via the CSSOM. |
+| `chart.js` | `[data-viz]` | Responsive SVG line, area, bar, hbar, donut and sparkline charts with keyboard exploration, legend toggles, summary and data table. |
+| `data-grid.js` | `[data-grid]` | Search, filters, sorting, pagination, CSV export and row actions over JSON data. |
+| `chat.js` | `[data-chat]`, `[data-chat-widget]` | Streaming chat (NDJSON, SSE, text or custom transports) with tools, charts, sources and suggestions. |
+| `copy.js` | `[data-copy]` | Copy-to-clipboard buttons (text, or the text of a target element) with announcements. |
+
+`demo/chat-mock.js` is not a component: it is the offline assistant the
+chat falls back to when no endpoint or transport is configured.
 
 Template-specific behaviour lives next to the template (`dashboard.js`,
-`shop.js`) and imports from the shared modules.
+`shop.js`, `cart-store.js`, `ai.js`, `builder.js`) and imports from the
+shared modules.
 
 ## Progressive enhancement
 
@@ -197,20 +236,26 @@ Every page is fully usable without JavaScript:
 | Forms | Native browser validation; server must validate | Inline accessible errors |
 | Filters (shop) | Submits a GET request with the selected filters | Instant client-side filtering |
 | Table chart | Plain data table | Bars drawn behind values |
-| Theme | Follows the OS setting | User-selectable, persisted |
+| Theme | Follows the OS setting (or server-rendered `data-*` presets) | User-selectable, persisted; theme panel |
+| Charts | Fallback paragraph with the key figure | Interactive SVG chart, summary and data table |
+| Data grid | Server-rendered first page; toolbar submits as GET | Instant search, filters, sorting, pagination, CSV |
+| Chat | Composer posts to the form `action` | Streaming replies in place |
+| Cart | Links to product pages | Persistent cart with quantities and promo codes |
 
 The one known trade-off: a user who explicitly chose the opposite of their
-OS theme may see a brief flash before `theme-toggle.js` applies it, because
+OS theme may see a brief flash before `core/theme.js` applies it, because
 an inline `<head>` script would violate the CSP. Set `data-theme` on
 `<html>` server-side (from a cookie) to avoid it.
 
 ## Performance budget
 
-- The entire design system (all tokens, base and component CSS) is under
-  45 KB uncompressed, comments included (~10 KB gzipped); each page links
-  only the files it uses.
-- All shared JavaScript is about 33 KB uncompressed with full JSDoc
-  (~10 KB gzipped), loaded as deferred modules only when the page needs them.
+- The entire design system (all tokens, themes, layouts, base and component
+  CSS) is about 87 KB uncompressed, comments included (~17 KB gzipped); each
+  page links only the files it uses.
+- All shared JavaScript is about 128 KB uncompressed with full JSDoc
+  (~36 KB gzipped), but `main.js` imports a component only when its markup
+  is on the page, so a typical page loads a fraction of it. Charts, grids
+  and chat cost nothing on pages that do not use them.
 - No web fonts (system font stack), no icon fonts (inline SVG).
 - Images carry `width`/`height` (no layout shift), `loading="lazy"` below
   the fold and `fetchpriority="high"` for the hero.
@@ -238,7 +283,7 @@ mobile). Newer features are used as enhancements:
 | --- | --- |
 | `bash .claude/skills/validate-w3c.sh` | Nu HTML Checker on all HTML, snippets, CSS and SVG; HTML/CSS/JS standards |
 | `bash .claude/skills/audit-a11y.sh` | Static accessibility audit, token contrast, browser keyboard tests |
-| `node tests/run-all.mjs` | All static suites including documentation sync |
+| `node tests/run-all.mjs` | All static suites: HTML, CSS, JS, contrast (every preset), unit tests, documentation and partial sync |
 | `node tests/browser/smoke.mjs` | Playwright: console/CSP errors, reflow, keyboard, focus, no-JS baseline |
 
 The test suite itself has no dependencies; Playwright is optional and only

@@ -1,0 +1,202 @@
+/* ==========================================================================
+   Website template styles (multi-page site)
+   Page structure comes from the layouts in src/assets/css/layouts.css.
+   ========================================================================== */
+
+/* ---- Home hero --------------------------------------------------------- */
+.site-hero {
+  padding-block: var(--spacing-section);
+  overflow: hidden;
+}
+
+.site-hero .layout {
+  align-items: center;
+  padding-block: 0;
+}
+
+.site-hero__title {
+  font-size: var(--font-size-4xl);
+  letter-spacing: -0.02em;
+}
+
+.site-hero__image,
+.rounded-media {
+  width: 100%;
+  border-radius: var(--radius-xl);
+}
+
+.site-hero__image {
+  box-shadow: var(--shadow-lg);
+}
+
+/* ---- Stats ------------------------------------------------------------- */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(12rem, 100%), 1fr));
+  gap: var(--spacing-lg);
+  margin: 0;
+  text-align: center;
+}
+
+.stats dt {
+  order: 2;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+}
+
+.stats div {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3xs);
+}
+
+.stats dd {
+  order: 1;
+  margin: 0;
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+  line-height: 1;
+}
+
+/* ---- Testimonials ------------------------------------------------------ */
+.quote {
+  height: 100%;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md);
+}
+
+.quote__text {
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-snug);
+}
+
+.quote__author {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  margin-block-start: auto;
+}
+
+.cta-band {
+  background-color: var(--color-primary-soft);
+}
+
+/* ---- About ------------------------------------------------------------- */
+.milestones {
+  display: grid;
+  gap: var(--spacing-sm);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.milestones li {
+  display: grid;
+  gap: var(--spacing-3xs);
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-inline-start: 4px solid var(--color-primary);
+  border-radius: var(--radius-md);
+  background-color: var(--color-surface);
+}
+
+.team-card .card__body {
+  align-items: center;
+  text-align: center;
+}
+
+/* ---- Services ---------------------------------------------------------- */
+.service {
+  display: grid;
+  gap: var(--spacing-xs);
+  padding-block-end: var(--spacing-xl);
+  border-block-end: var(--border-width) solid var(--color-border);
+  scroll-margin-top: calc(var(--header-height) + var(--spacing-md));
+}
+
+/* ---- Blog -------------------------------------------------------------- */
+.post-list {
+  display: grid;
+  gap: var(--spacing-md);
+}
+
+.post-card .card__title {
+  font-size: var(--font-size-xl);
+}
+
+/* ---- Article ----------------------------------------------------------- */
+.article {
+  display: grid;
+  gap: var(--spacing-sm);
+}
+
+.article > * + * {
+  margin-block-start: 0;
+}
+
+.article h1 {
+  font-size: var(--font-size-3xl);
+}
+
+.article h2 {
+  margin-block-start: var(--spacing-lg);
+  font-size: var(--font-size-xl);
+  scroll-margin-top: calc(var(--header-height) + var(--spacing-md));
+}
+
+.article ul,
+.article ol {
+  display: grid;
+  gap: var(--spacing-2xs);
+  padding-inline-start: var(--spacing-md);
+}
+
+.article blockquote {
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-inline-start: 4px solid var(--color-primary);
+  background-color: var(--color-surface);
+  font-size: var(--font-size-lg);
+}
+
+.article figure {
+  display: grid;
+  gap: var(--spacing-2xs);
+}
+
+.article figcaption {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+}
+
+.article__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--spacing-2xs);
+  font-size: var(--font-size-sm);
+}
+
+.author-box {
+  display: flex;
+  gap: var(--spacing-sm);
+  align-items: flex-start;
+  margin-block-start: var(--spacing-lg);
+  padding: var(--spacing-md);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-lg);
+}
+
+/* ---- Contact ----------------------------------------------------------- */
+.contact-list {
+  display: grid;
+  gap: var(--spacing-xs);
+}
+
+.contact-list li {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+
+.contact-list .icon {
+  color: var(--color-primary);
+}

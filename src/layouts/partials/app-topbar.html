@@ -1,0 +1,32 @@
+<header class="app-shell__topbar">
+  <a class="brand" href="{{root}}templates/dashboard/index.html">
+    <span class="brand__mark"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 2 7l10 5 10-5z"/><path d="m2 17 10 5 10-5M2 12l10 5 10-5"/></svg></span>
+    Acme
+  </a>
+
+  <button type="button" class="btn btn--ghost btn--icon app-shell__menu-toggle" data-disclosure aria-expanded="false" aria-controls="app-nav" hidden>
+    <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    <span class="visually-hidden">Dashboard menu</span>
+  </button>
+
+  <form class="app-search" role="search" action="{{root}}templates/dashboard/orders.html" method="get">
+    <label class="visually-hidden" for="app-search-input">Search orders and customers</label>
+    <span class="app-search__icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/></svg></span>
+    <input class="input" id="app-search-input" name="q" type="search" placeholder="Search…" autocomplete="off">
+  </form>
+
+  <div class="app-shell__actions">
+    <button type="button" class="btn btn--ghost btn--icon theme-toggle" data-theme-toggle aria-pressed="false" hidden>
+      <svg class="icon theme-toggle__light" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="icon theme-toggle__dark" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+      <span class="visually-hidden">Dark theme</span>
+    </button>
+    <button type="button" class="btn btn--ghost btn--icon icon-badge" data-toast="You have 3 unread notifications.">
+      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+      <span class="visually-hidden">Notifications</span>
+      <span class="badge badge--count" aria-hidden="true">3</span>
+      <span class="visually-hidden">(3 unread)</span>
+    </button>
+    <a class="avatar" href="{{root}}templates/dashboard/settings.html"><span aria-hidden="true">JD</span><span class="visually-hidden">Account settings</span></a>
+  </div>
+</header>

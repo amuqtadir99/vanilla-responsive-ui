@@ -1,0 +1,44 @@
+<!--
+@component: AI chat
+@category: AI
+@description: Embeddable assistant panel with streaming replies, Markdown and code blocks, tool-call steps, inline charts, sources, follow-up suggestions, message actions (copy, regenerate, feedback) and saved history. Connect any model or agent backend with data-chat-endpoint (NDJSON, SSE or text streams) or registerTransport().
+@css: components/chat.css, components/code.css, components/chart.css, components/feedback.css, components/button.css
+@js: components/chat.js
+@a11y: The conversation is a labelled, focusable role="log" region. Replies are announced once when complete (not token by token) and tool steps are announced as they run. Enter sends, Shift+Enter adds a line, Escape stops generation. Every control has a text label; all model output is rendered with textContent, never innerHTML.
+-->
+<section class="chat" data-chat data-chat-persona="general" aria-labelledby="demo-chat-title">
+  <header class="chat__header">
+    <span class="avatar avatar--soft"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8zM5 2l.6 1.4L7 4l-1.4.6L5 6l-.6-1.4L3 4l1.4-.6z"/></svg></span>
+    <div class="chat__heading">
+      <h3 class="chat__title" id="demo-chat-title">Acme AI</h3>
+      <p class="chat__status">Demo model · streams replies</p>
+    </div>
+    <button type="button" class="btn btn--ghost btn--sm" data-chat-clear hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg> New chat</button>
+  </header>
+  <div class="chat__log" role="log" aria-label="Conversation" aria-live="off" tabindex="0" data-chat-log>
+    <div class="chat__message chat__message--assistant">
+      <div class="chat__bubble">
+        <p>Hi! Ask me to write code, explain accessibility rules or plan a project.</p>
+      </div>
+    </div>
+  </div>
+  <div class="chat__suggestions" data-chat-suggestions hidden>
+    <button type="button" class="chip" data-chat-suggestion>Write a debounce function</button>
+    <button type="button" class="chip" data-chat-suggestion>Plan a product launch</button>
+  </div>
+  <form class="chat__composer" action="/chat" method="post" data-chat-form>
+    <label class="visually-hidden" for="demo-chat-input">Message Acme AI</label>
+    <textarea class="chat__input" id="demo-chat-input" name="message" rows="1" placeholder="Message Acme AI…" required data-chat-input></textarea>
+    <div class="chat__actions">
+      <button type="submit" class="btn btn--icon btn--sm" data-chat-send>
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4z"/></svg>
+        <span class="visually-hidden">Send message</span>
+      </button>
+      <button type="button" class="btn btn--icon btn--sm btn--secondary" data-chat-stop hidden>
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="2"/></svg>
+        <span class="visually-hidden">Stop generating</span>
+      </button>
+    </div>
+  </form>
+  <p class="chat__disclaimer">Demo replies are scripted. Set data-chat-endpoint to use your model.</p>
+</section>

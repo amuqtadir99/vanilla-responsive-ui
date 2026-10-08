@@ -1,0 +1,309 @@
+/* ==========================================================================
+   Charts (components/chart.js)
+   Series colours come from --chart-1 … --chart-6 in tokens.css, so charts
+   follow the theme (light/dark) without re-rendering.
+   ========================================================================== */
+
+.chart {
+  display: grid;
+  align-content: start;
+  gap: var(--spacing-xs);
+  min-width: 0;
+  margin: 0;
+}
+
+.chart__caption {
+  display: grid;
+  gap: 0.125rem;
+}
+
+.chart__title {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-snug);
+}
+
+.chart__subtitle {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+}
+
+.chart__canvas {
+  position: relative;
+  min-width: 0;
+  border-radius: var(--radius-md);
+}
+
+.chart__canvas:focus-visible {
+  outline: var(--focus-ring-width) solid var(--color-focus);
+  outline-offset: var(--focus-ring-offset);
+}
+
+.chart__svg {
+  display: block;
+  overflow: visible;
+  forced-color-adjust: none;
+}
+
+.chart--enhanced .chart__fallback {
+  display: none;
+}
+
+.chart__empty {
+  display: grid;
+  justify-items: start;
+  gap: var(--spacing-2xs);
+  padding: var(--spacing-md);
+  color: var(--color-text-muted);
+}
+
+/* ---- Series colours ---------------------------------------------------- */
+.chart__series--1 { --series: var(--chart-1); }
+.chart__series--2 { --series: var(--chart-2); }
+.chart__series--3 { --series: var(--chart-3); }
+.chart__series--4 { --series: var(--chart-4); }
+.chart__series--5 { --series: var(--chart-5); }
+.chart__series--6 { --series: var(--chart-6); }
+
+/* ---- Axes -------------------------------------------------------------- */
+.chart__grid {
+  stroke: var(--chart-grid);
+  stroke-width: 1;
+}
+
+.chart__axis-label {
+  fill: var(--color-text-muted);
+  font-size: var(--font-size-xs);
+  font-variant-numeric: tabular-nums;
+}
+
+.chart__axis-label--strong {
+  fill: var(--color-text);
+  font-weight: var(--font-weight-medium);
+}
+
+/* ---- Marks ------------------------------------------------------------- */
+.chart__line {
+  fill: none;
+  stroke: var(--series);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.chart__line--dashed {
+  stroke-dasharray: 7 5;
+}
+
+.chart__area {
+  fill: var(--series);
+  fill-opacity: 0.14;
+  stroke: none;
+}
+
+.chart__point {
+  fill: var(--color-surface-raised);
+  stroke: var(--series);
+  stroke-width: 2;
+}
+
+.chart__point.is-active,
+.chart__point--end {
+  fill: var(--series);
+  stroke: var(--color-surface-raised);
+  stroke-width: 2.5;
+}
+
+.chart__bar,
+.chart__slice {
+  fill: var(--series);
+  transition: opacity var(--duration-fast) var(--ease-standard);
+}
+
+.chart__svg.has-active .chart__bar:not(.is-active),
+.chart__svg.has-active .chart__slice:not(.is-active) {
+  opacity: 0.45;
+}
+
+.chart__slice.is-active {
+  stroke: var(--color-text);
+  stroke-width: 2;
+}
+
+.chart__band {
+  fill: transparent;
+}
+
+.chart__band.is-active {
+  fill: var(--color-surface-sunken);
+}
+
+.chart__guide {
+  stroke: var(--color-border-strong);
+  stroke-dasharray: 3 3;
+  visibility: hidden;
+}
+
+.chart__guide.is-visible {
+  visibility: visible;
+}
+
+.chart__donut-value {
+  fill: var(--color-text);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+}
+
+/* ---- Tooltip ----------------------------------------------------------- */
+.chart__tooltip {
+  position: absolute;
+  z-index: var(--z-dropdown);
+  display: grid;
+  gap: 0.125rem;
+  min-width: 8rem;
+  padding: var(--spacing-2xs) var(--spacing-xs);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-md);
+  background-color: var(--color-surface-raised);
+  box-shadow: var(--shadow-md);
+  font-size: var(--font-size-sm);
+  white-space: nowrap;
+  pointer-events: none;
+  transform: translate(-50%, calc(-100% - 0.75rem));
+}
+
+.chart__tooltip-title {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+}
+
+.chart__tooltip-row {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3xs);
+}
+
+/* ---- Legend ------------------------------------------------------------ */
+.chart__legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-3xs) var(--spacing-xs);
+}
+
+.chart__legend:empty {
+  display: none;
+}
+
+.chart__legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-3xs);
+  min-height: 2rem;
+  padding: 0 var(--spacing-2xs);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-pill);
+  background: none;
+  color: var(--color-text);
+  font-size: var(--font-size-sm);
+}
+
+.chart__legend-item[aria-pressed="false"] {
+  color: var(--color-text-muted);
+  text-decoration: line-through;
+}
+
+.chart__legend-item[aria-pressed="false"] .chart__swatch {
+  opacity: 0.3;
+}
+
+.chart__legend-list {
+  display: grid;
+  gap: var(--spacing-3xs);
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.chart__legend-entry {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2xs);
+  font-size: var(--font-size-sm);
+}
+
+.chart__legend-value {
+  margin-inline-start: auto;
+  color: var(--color-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.chart__swatch {
+  display: inline-block;
+  flex-shrink: 0;
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 3px;
+  background-color: var(--series);
+  forced-color-adjust: none;
+}
+
+.chart__swatch--dashed {
+  height: 0.25rem;
+  background: repeating-linear-gradient(90deg, var(--series) 0 4px, transparent 4px 7px);
+}
+
+/* ---- Data table toggle ------------------------------------------------- */
+.chart__table > summary {
+  width: fit-content;
+  padding-block: var(--spacing-3xs);
+  color: var(--color-link);
+  font-size: var(--font-size-sm);
+  cursor: pointer;
+}
+
+.chart__table > .table-wrapper {
+  margin-block-start: var(--spacing-2xs);
+}
+
+/* Donut: legend beside the ring on wide cards */
+@container card (min-width: 30rem) {
+  .chart--donut {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: center;
+  }
+
+  .chart--donut > .chart__caption,
+  .chart--donut > .chart__table,
+  .chart--donut > p {
+    grid-column: 1 / -1;
+  }
+}
+
+/* ---- Motion ------------------------------------------------------------ */
+@media (prefers-reduced-motion: no-preference) {
+  .chart__svg--animate .chart__line:not(.chart__line--dashed) {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    animation: chart-draw 900ms var(--ease-standard) forwards;
+  }
+
+  .chart__svg--animate .chart__bar,
+  .chart__svg--animate .chart__slice,
+  .chart__svg--animate .chart__area {
+    animation: chart-fade 500ms var(--ease-standard) both;
+  }
+}
+
+@keyframes chart-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes chart-fade {
+  from {
+    opacity: 0;
+  }
+}

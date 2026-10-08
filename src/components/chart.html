@@ -1,0 +1,52 @@
+<!--
+@component: Charts
+@category: Data
+@description: Vector (SVG) line, area, bar, stacked bar, horizontal bar, donut and sparkline charts drawn from JSON — a file, your API or inline data — with tooltips, keyboard exploration, toggleable series and an automatic data table.
+@css: components/chart.css, components/table.css
+@js: components/chart.js
+@a11y: The SVG is decorative; each chart gets a generated text summary, a focusable region where arrow keys move between data points (announced through a live region), legend buttons with aria-pressed, and a full data table in a details element. Line series also differ by dash pattern, so colour is never the only cue.
+-->
+<script type="application/json" id="chart-demo-data">
+[
+  { "month": "2026-05", "revenue": 39410, "target": 41500 },
+  { "month": "2026-06", "revenue": 40680, "target": 42600 },
+  { "month": "2026-07", "revenue": 41220, "target": 43700 },
+  { "month": "2026-08", "revenue": 42960, "target": 44800 },
+  { "month": "2026-09", "revenue": 42950, "target": 46000 },
+  { "month": "2026-10", "revenue": 48290, "target": 48100 }
+]
+</script>
+
+<div class="grid-auto grid-auto--lg">
+  <figure class="chart" data-viz="area" data-source="#chart-demo-data" data-x="month" data-x-format="short-month" data-series="revenue:Revenue,target:Target" data-format="currency-compact">
+    <figcaption class="chart__caption">
+      <span class="chart__title">Revenue vs target</span>
+      <span class="chart__subtitle">Area chart from inline JSON</span>
+    </figcaption>
+    <p class="chart__fallback">Revenue grew from $39.4K in May to $48.3K in October 2026.</p>
+  </figure>
+
+  <figure class="chart" data-viz="bar" data-source="#chart-demo-data" data-x="month" data-x-format="short-month" data-series="revenue:Revenue" data-format="currency-compact">
+    <figcaption class="chart__caption">
+      <span class="chart__title">Monthly revenue</span>
+      <span class="chart__subtitle">Bar chart</span>
+    </figcaption>
+    <p class="chart__fallback">Monthly revenue, May to October 2026.</p>
+  </figure>
+
+  <figure class="chart" data-viz="donut" data-source="../data/sales.json" data-path="channels" data-x="channel" data-series="revenue:Revenue" data-format="currency-compact">
+    <figcaption class="chart__caption">
+      <span class="chart__title">Revenue by channel</span>
+      <span class="chart__subtitle">Donut chart from src/data/sales.json</span>
+    </figcaption>
+    <p class="chart__fallback">Organic search is the largest channel at $18.5K.</p>
+  </figure>
+
+  <figure class="chart" data-viz="hbar" data-source="../data/sales.json" data-path="regions" data-x="region" data-series="revenue:Revenue:2" data-format="currency-compact">
+    <figcaption class="chart__caption">
+      <span class="chart__title">Revenue by region</span>
+      <span class="chart__subtitle">Horizontal bar chart</span>
+    </figcaption>
+    <p class="chart__fallback">North America leads with $19.8K.</p>
+  </figure>
+</div>

@@ -82,9 +82,12 @@
 }
 
 .btn--lg {
+  max-width: 100%;
   min-height: 3.25rem;
   padding: var(--spacing-xs) var(--spacing-lg);
   font-size: var(--font-size-lg);
+  /* Long labels wrap rather than overflow narrow screens (WCAG 1.4.10). */
+  white-space: normal;
 }
 
 .btn--block {

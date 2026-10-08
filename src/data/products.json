@@ -1,0 +1,74 @@
+[
+  {
+    "id": "headphones",
+    "name": "Studio wireless headphones",
+    "category": "Audio",
+    "price": 179,
+    "compareAt": 229,
+    "rating": 4.7,
+    "reviews": 128,
+    "image": "product-headphones.svg",
+    "badge": "Sale",
+    "stock": 34
+  },
+  {
+    "id": "watch",
+    "name": "Field smartwatch",
+    "category": "Wearables",
+    "price": 249,
+    "compareAt": null,
+    "rating": 4.5,
+    "reviews": 86,
+    "image": "product-watch.svg",
+    "badge": "New",
+    "stock": 12
+  },
+  {
+    "id": "backpack",
+    "name": "Commuter backpack 22 L",
+    "category": "Bags",
+    "price": 98,
+    "compareAt": null,
+    "rating": 4.8,
+    "reviews": 342,
+    "image": "product-backpack.svg",
+    "badge": null,
+    "stock": 58
+  },
+  {
+    "id": "camera",
+    "name": "Compact mirrorless camera",
+    "category": "Photography",
+    "price": 649,
+    "compareAt": null,
+    "rating": 4.6,
+    "reviews": 57,
+    "image": "product-camera.svg",
+    "badge": null,
+    "stock": 5
+  },
+  {
+    "id": "lamp",
+    "name": "Arc desk lamp",
+    "category": "Home",
+    "price": 72,
+    "compareAt": null,
+    "rating": 4.3,
+    "reviews": 41,
+    "image": "product-lamp.svg",
+    "badge": null,
+    "stock": 0
+  },
+  {
+    "id": "sneaker",
+    "name": "Everyday running shoe",
+    "category": "Footwear",
+    "price": 129,
+    "compareAt": null,
+    "rating": 4.4,
+    "reviews": 203,
+    "image": "product-sneaker.svg",
+    "badge": null,
+    "stock": 21
+  }
+]

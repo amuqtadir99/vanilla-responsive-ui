@@ -25,5 +25,8 @@ as `star`).
 ## Attribution
 
 Most icon geometry is based on [Feather Icons](https://feathericons.com)
-by Cole Bemis, released under the MIT License. `favicon.svg` and
+by Cole Bemis, released under the MIT License. Icons added for the
+dashboard, AI and layout templates (for example `bot`, `sparkles`,
+`database`, `layout`) follow [Lucide](https://lucide.dev), the community
+fork of Feather, released under the ISC License. `favicon.svg` and
 `accessibility.svg` are original to this project.

@@ -9,6 +9,10 @@
  *
  * @module main
  */
+import { initTheme } from './core/theme.js';
+
+// Apply stored colour mode, brand, density and radius before anything else.
+initTheme();
 
 const registry = [
   ['[data-theme-toggle]', () => import('./components/theme-toggle.js')],
@@ -20,6 +24,11 @@ const registry = [
   ['[data-toast]', () => import('./components/toast.js')],
   ['table[data-sortable]', () => import('./components/table-sort.js')],
   ['table[data-chart]', () => import('./components/data-chart.js')],
+  ['[data-copy]', () => import('./components/copy.js')],
+  ['[data-viz]', () => import('./components/chart.js')],
+  ['[data-grid]', () => import('./components/data-grid.js')],
+  ['[data-chat], [data-chat-widget]', () => import('./components/chat.js')],
+  ['[data-theme-customizer], [data-theme-panel-trigger]', () => import('./components/theme-customizer.js')],
 ];
 
 /**

@@ -1,0 +1,400 @@
+{
+  "currency": "USD",
+  "updated": "2026-10-08",
+  "monthly": [
+    {
+      "month": "2025-11",
+      "revenue": 38240,
+      "target": 36000,
+      "orders": 1017,
+      "newCustomers": 315,
+      "visitors": 29737,
+      "conversionRate": 3.42,
+      "refundRate": 2.5
+    },
+    {
+      "month": "2025-12",
+      "revenue": 44110,
+      "target": 37100,
+      "orders": 1173,
+      "newCustomers": 364,
+      "visitors": 33042,
+      "conversionRate": 3.55,
+      "refundRate": 2.5
+    },
+    {
+      "month": "2026-01",
+      "revenue": 31180,
+      "target": 38200,
+      "orders": 829,
+      "newCustomers": 257,
+      "visitors": 25045,
+      "conversionRate": 3.31,
+      "refundRate": 2.4
+    },
+    {
+      "month": "2026-02",
+      "revenue": 33920,
+      "target": 39300,
+      "orders": 902,
+      "newCustomers": 280,
+      "visitors": 25920,
+      "conversionRate": 3.48,
+      "refundRate": 2.4
+    },
+    {
+      "month": "2026-03",
+      "revenue": 36870,
+      "target": 40400,
+      "orders": 981,
+      "newCustomers": 304,
+      "visitors": 27099,
+      "conversionRate": 3.62,
+      "refundRate": 2.2
+    },
+    {
+      "month": "2026-04",
+      "revenue": 37950,
+      "target": 41500,
+      "orders": 1009,
+      "newCustomers": 313,
+      "visitors": 27197,
+      "conversionRate": 3.71,
+      "refundRate": 2.1
+    },
+    {
+      "month": "2026-05",
+      "revenue": 39410,
+      "target": 42600,
+      "orders": 1048,
+      "newCustomers": 325,
+      "visitors": 28401,
+      "conversionRate": 3.69,
+      "refundRate": 2.1
+    },
+    {
+      "month": "2026-06",
+      "revenue": 40680,
+      "target": 43700,
+      "orders": 1082,
+      "newCustomers": 335,
+      "visitors": 28177,
+      "conversionRate": 3.84,
+      "refundRate": 2.1
+    },
+    {
+      "month": "2026-07",
+      "revenue": 41220,
+      "target": 44800,
+      "orders": 1096,
+      "newCustomers": 340,
+      "visitors": 28918,
+      "conversionRate": 3.79,
+      "refundRate": 1.9
+    },
+    {
+      "month": "2026-08",
+      "revenue": 42960,
+      "target": 45900,
+      "orders": 1143,
+      "newCustomers": 354,
+      "visitors": 29084,
+      "conversionRate": 3.93,
+      "refundRate": 2.0
+    },
+    {
+      "month": "2026-09",
+      "revenue": 42950,
+      "target": 47000,
+      "orders": 1188,
+      "newCustomers": 405,
+      "visitors": 30619,
+      "conversionRate": 3.88,
+      "refundRate": 2.2
+    },
+    {
+      "month": "2026-10",
+      "revenue": 48290,
+      "target": 48100,
+      "orders": 1284,
+      "newCustomers": 392,
+      "visitors": 31471,
+      "conversionRate": 4.08,
+      "refundRate": 1.8
+    }
+  ],
+  "daily": [
+    {
+      "date": "2026-09-09",
+      "visitors": 2132,
+      "signups": 60
+    },
+    {
+      "date": "2026-09-10",
+      "visitors": 2130,
+      "signups": 64
+    },
+    {
+      "date": "2026-09-11",
+      "visitors": 2046,
+      "signups": 67
+    },
+    {
+      "date": "2026-09-12",
+      "visitors": 1351,
+      "signups": 42
+    },
+    {
+      "date": "2026-09-13",
+      "visitors": 1521,
+      "signups": 50
+    },
+    {
+      "date": "2026-09-14",
+      "visitors": 2003,
+      "signups": 67
+    },
+    {
+      "date": "2026-09-15",
+      "visitors": 2085,
+      "signups": 83
+    },
+    {
+      "date": "2026-09-16",
+      "visitors": 2162,
+      "signups": 69
+    },
+    {
+      "date": "2026-09-17",
+      "visitors": 2033,
+      "signups": 78
+    },
+    {
+      "date": "2026-09-18",
+      "visitors": 2173,
+      "signups": 65
+    },
+    {
+      "date": "2026-09-19",
+      "visitors": 1646,
+      "signups": 55
+    },
+    {
+      "date": "2026-09-20",
+      "visitors": 1565,
+      "signups": 50
+    },
+    {
+      "date": "2026-09-21",
+      "visitors": 2238,
+      "signups": 82
+    },
+    {
+      "date": "2026-09-22",
+      "visitors": 2312,
+      "signups": 76
+    },
+    {
+      "date": "2026-09-23",
+      "visitors": 2155,
+      "signups": 82
+    },
+    {
+      "date": "2026-09-24",
+      "visitors": 2131,
+      "signups": 79
+    },
+    {
+      "date": "2026-09-25",
+      "visitors": 2331,
+      "signups": 75
+    },
+    {
+      "date": "2026-09-26",
+      "visitors": 1528,
+      "signups": 61
+    },
+    {
+      "date": "2026-09-27",
+      "visitors": 1743,
+      "signups": 51
+    },
+    {
+      "date": "2026-09-28",
+      "visitors": 2247,
+      "signups": 77
+    },
+    {
+      "date": "2026-09-29",
+      "visitors": 2403,
+      "signups": 80
+    },
+    {
+      "date": "2026-09-30",
+      "visitors": 2298,
+      "signups": 76
+    },
+    {
+      "date": "2026-10-01",
+      "visitors": 2389,
+      "signups": 76
+    },
+    {
+      "date": "2026-10-02",
+      "visitors": 2471,
+      "signups": 93
+    },
+    {
+      "date": "2026-10-03",
+      "visitors": 1624,
+      "signups": 59
+    },
+    {
+      "date": "2026-10-04",
+      "visitors": 1663,
+      "signups": 59
+    },
+    {
+      "date": "2026-10-05",
+      "visitors": 2336,
+      "signups": 71
+    },
+    {
+      "date": "2026-10-06",
+      "visitors": 2385,
+      "signups": 76
+    },
+    {
+      "date": "2026-10-07",
+      "visitors": 2538,
+      "signups": 94
+    },
+    {
+      "date": "2026-10-08",
+      "visitors": 2458,
+      "signups": 76
+    }
+  ],
+  "channels": [
+    {
+      "channel": "Organic search",
+      "revenue": 18450,
+      "orders": 491
+    },
+    {
+      "channel": "Direct",
+      "revenue": 12120,
+      "orders": 322
+    },
+    {
+      "channel": "Email",
+      "revenue": 8930,
+      "orders": 238
+    },
+    {
+      "channel": "Social",
+      "revenue": 5260,
+      "orders": 140
+    },
+    {
+      "channel": "Referral",
+      "revenue": 3530,
+      "orders": 93
+    }
+  ],
+  "regions": [
+    {
+      "region": "North America",
+      "revenue": 19840
+    },
+    {
+      "region": "Europe",
+      "revenue": 14320
+    },
+    {
+      "region": "Asia Pacific",
+      "revenue": 8960
+    },
+    {
+      "region": "Latin America",
+      "revenue": 3150
+    },
+    {
+      "region": "Middle East & Africa",
+      "revenue": 2020
+    }
+  ],
+  "categories": [
+    {
+      "category": "Audio",
+      "revenue": 14210,
+      "units": 412
+    },
+    {
+      "category": "Wearables",
+      "revenue": 11380,
+      "units": 298
+    },
+    {
+      "category": "Photography",
+      "revenue": 9120,
+      "units": 96
+    },
+    {
+      "category": "Bags",
+      "revenue": 6240,
+      "units": 318
+    },
+    {
+      "category": "Home",
+      "revenue": 4110,
+      "units": 287
+    },
+    {
+      "category": "Footwear",
+      "revenue": 3230,
+      "units": 154
+    }
+  ],
+  "devices": [
+    {
+      "device": "Mobile",
+      "sessions": 61200
+    },
+    {
+      "device": "Desktop",
+      "sessions": 34800
+    },
+    {
+      "device": "Tablet",
+      "sessions": 9100
+    }
+  ],
+  "segments": [
+    {
+      "segment": "VIP",
+      "customers": 5,
+      "spent": 15234.65
+    },
+    {
+      "segment": "Active",
+      "customers": 18,
+      "spent": 16031.17
+    },
+    {
+      "segment": "New",
+      "customers": 8,
+      "spent": 1106.22
+    },
+    {
+      "segment": "At risk",
+      "customers": 6,
+      "spent": 3095.83
+    },
+    {
+      "segment": "Churned",
+      "customers": 3,
+      "spent": 912.0
+    }
+  ]
+}

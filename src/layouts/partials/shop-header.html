@@ -1,0 +1,41 @@
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a class="brand" href="{{root}}templates/e-commerce/index.html">
+      <span class="brand__mark"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 8 12 3 3 8v8l9 5 9-5z"/><path d="m3 8 9 5 9-5M12 13v8"/></svg></span>
+      Acme Store
+    </a>
+
+    <button type="button" class="btn btn--ghost btn--icon site-header__toggle" data-disclosure="dismissible" aria-expanded="false" aria-controls="site-menu" hidden>
+      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      <span class="visually-hidden">Menu</span>
+    </button>
+
+    <div class="site-header__menu" id="site-menu">
+      <nav class="site-nav" aria-label="Primary">
+        <ul class="site-nav__list">
+          <li><a class="site-nav__link" href="{{root}}templates/e-commerce/index.html">Shop all</a></li>
+          <li><a class="site-nav__link" href="{{root}}templates/e-commerce/product.html">Featured</a></li>
+          <li><a class="site-nav__link" href="{{root}}templates/e-commerce/cart.html">Cart</a></li>
+          <li><a class="site-nav__link" href="{{root}}templates/website/about.html">About</a></li>
+        </ul>
+      </nav>
+      <div class="site-header__actions">
+        <button type="button" class="btn btn--ghost btn--icon theme-toggle" data-theme-toggle aria-pressed="false" hidden>
+          <svg class="icon theme-toggle__light" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="icon theme-toggle__dark" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+          <span class="visually-hidden">Dark theme</span>
+        </button>
+        <a class="btn btn--ghost btn--icon" href="{{root}}templates/auth/index.html">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          <span class="visually-hidden">Account</span>
+        </a>
+        <a class="btn btn--ghost btn--icon cart-link" href="{{root}}templates/e-commerce/cart.html">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 3h3l2.4 12.2a2 2 0 0 0 2 1.6h8.2a2 2 0 0 0 2-1.6L21 7H6"/></svg>
+          <span class="visually-hidden">Cart,</span>
+          <span class="badge badge--count" data-cart-count>0</span>
+          <span class="visually-hidden">items</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
