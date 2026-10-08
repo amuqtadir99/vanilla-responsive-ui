@@ -43,6 +43,7 @@
 .ai-nav {
   order: 3;
   flex-basis: 100%;
+  min-width: 0; /* let the link list scroll instead of widening the top bar */
 }
 
 .ai-nav__list {
