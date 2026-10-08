@@ -5,6 +5,9 @@
    ========================================================================== */
 
 .table-wrapper {
+  /* Containing block for visually hidden text inside cells, so it is
+     clipped by the scroll area instead of widening the page. */
+  position: relative;
   max-width: 100%;
   overflow-x: auto;
   border: var(--border-width) solid var(--color-border);
@@ -95,4 +98,77 @@
   background-size: calc(100% - 2 * var(--spacing-md)) 70%;
   background-position: var(--spacing-md) center;
   font-weight: var(--font-weight-semibold);
+}
+
+/* ---- Data grid (data-grid.js) ----------------------------------------- */
+.data-grid {
+  display: grid;
+  gap: var(--spacing-sm);
+  min-width: 0;
+}
+
+.data-grid__toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: var(--spacing-xs);
+}
+
+.data-grid__toolbar .field {
+  flex: 1 1 12rem;
+}
+
+.data-grid__toolbar .field--narrow {
+  flex: 0 1 11rem;
+}
+
+.data-grid__footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-sm);
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+}
+
+.data-grid__empty {
+  padding: var(--spacing-xl) var(--spacing-md);
+  color: var(--color-text-muted);
+  text-align: center;
+}
+
+.data-grid[aria-busy="true"] tbody {
+  opacity: 0.6;
+}
+
+.pagination__link:disabled {
+  color: var(--color-text-muted);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+button.pagination__link {
+  background: none;
+}
+
+/* Person cell: avatar + name + email */
+.person {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-2xs);
+}
+
+.person__text {
+  display: grid;
+  line-height: var(--line-height-snug);
+}
+
+.person__name {
+  font-weight: var(--font-weight-medium);
+}
+
+.person__meta {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-xs);
 }

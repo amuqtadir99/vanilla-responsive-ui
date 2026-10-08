@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; form-action 'self'; base-uri 'self'; object-src 'none'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>Strategy, design and engineering — Acme Studio</title>
+  <meta name="description" content="Multi-page website template: home page with hero, services, results, case study, testimonials, latest articles and a call to action.">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0e1116" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="../../assets/icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../../assets/css/tokens.css">
+  <link rel="stylesheet" href="../../assets/css/themes.css">
+  <link rel="stylesheet" href="../../assets/css/base.css">
+  <link rel="stylesheet" href="../../assets/css/layouts.css">
+  <link rel="stylesheet" href="../../assets/css/components/button.css">
+  <link rel="stylesheet" href="../../assets/css/components/header.css">
+  <link rel="stylesheet" href="../../assets/css/components/navigation.css">
+  <link rel="stylesheet" href="../../assets/css/components/card.css">
+  <link rel="stylesheet" href="../../assets/css/components/form.css">
+  <link rel="stylesheet" href="../../assets/css/components/dialog.css">
+  <link rel="stylesheet" href="../../assets/css/components/feedback.css">
+  <link rel="stylesheet" href="../../assets/css/components/footer.css">
+  <link rel="stylesheet" href="../../assets/css/components/accordion.css">
+  <link rel="stylesheet" href="../../assets/css/components/code.css">
+  <link rel="stylesheet" href="../../assets/css/components/chat.css">
+  <link rel="stylesheet" href="./website.css">
+  <script type="module" src="../../assets/js/main.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- @partial template-switcher -->
+  <!-- Demo navigation between templates. Remove this partial in production. -->
+  <nav class="demo-bar" aria-label="Template gallery">
+    <div class="container demo-bar__inner">
+      <a class="demo-bar__home" href="../../index.html">vanilla-responsive-ui</a>
+      <ul class="demo-bar__list">
+        <li><a href="../../templates/landing-page/index.html" data-section>Landing</a></li>
+        <li><a href="../../templates/website/index.html" data-section aria-current="page">Website</a></li>
+        <li><a href="../../templates/dashboard/index.html" data-section>Dashboard</a></li>
+        <li><a href="../../templates/e-commerce/index.html" data-section>Shop</a></li>
+        <li><a href="../../templates/ai/index.html" data-section>AI assistant</a></li>
+        <li><a href="../../templates/auth/index.html" data-section>Auth</a></li>
+        <li><a href="../../components/index.html" data-section>Components</a></li>
+        <li><a href="../../layouts/index.html" data-section>Layouts</a></li>
+      </ul>
+      <div class="demo-bar__actions">
+        <button type="button" class="btn btn--ghost btn--sm" commandfor="theme-panel" command="show-modal" data-theme-panel-trigger hidden>
+          <svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></svg> Theme
+        </button>
+      </div>
+    </div>
+  </nav>
+  <!-- @end template-switcher -->
+  <!-- @partial site-header -->
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="brand" href="../../templates/website/index.html" aria-current="page">
+        <span class="brand__mark"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span>
+        Acme Studio
+      </a>
+
+      <button type="button" class="btn btn--ghost btn--icon site-header__toggle" data-disclosure="dismissible" aria-expanded="false" aria-controls="site-menu" hidden>
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        <span class="visually-hidden">Menu</span>
+      </button>
+
+      <div class="site-header__menu" id="site-menu">
+        <nav class="site-nav" aria-label="Primary">
+          <ul class="site-nav__list">
+            <li><a class="site-nav__link" href="../../templates/website/index.html" aria-current="page">Home</a></li>
+            <li><a class="site-nav__link" href="../../templates/website/about.html">About</a></li>
+            <li><a class="site-nav__link" href="../../templates/website/services.html">Services</a></li>
+            <li><a class="site-nav__link" href="../../templates/website/blog.html" data-section-prefix="blog">Blog</a></li>
+            <li><a class="site-nav__link" href="../../templates/website/contact.html">Contact</a></li>
+          </ul>
+        </nav>
+        <div class="site-header__actions">
+          <button type="button" class="btn btn--ghost btn--icon theme-toggle" data-theme-toggle aria-pressed="false" hidden>
+            <svg class="icon theme-toggle__light" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+            <svg class="icon theme-toggle__dark" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+            <span class="visually-hidden">Dark theme</span>
+          </button>
+          <a class="btn" href="../../templates/website/contact.html">Get a quote</a>
+        </div>
+      </div>
+    </div>
+  </header>
+  <!-- @end site-header -->
+
+  <main id="main" tabindex="-1">
+    <section class="site-hero" aria-labelledby="hero-title">
+      <div class="container layout" data-layout="split">
+        <div class="stack stack--lg site-hero__content">
+          <p class="eyebrow">Digital product studio</p>
+          <h1 id="hero-title" class="site-hero__title">We build accessible products people love to use.</h1>
+          <p class="lead">Acme Studio partners with teams to research, design and engineer web apps, dashboards and AI experiences that work for everyone.</p>
+          <div class="cluster">
+            <a class="btn btn--lg" href="contact.html">Start a project <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+            <a class="btn btn--lg btn--secondary" href="services.html">Our services</a>
+          </div>
+        </div>
+        <img class="site-hero__image" src="../../assets/images/hero.svg" width="960" height="720" alt="Illustration of a dashboard with charts and statistic cards" fetchpriority="high" decoding="async">
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="services-title">
+      <div class="container">
+        <header class="section__header section__header--center stack">
+          <p class="eyebrow">What we do</p>
+          <h2 id="services-title">End-to-end product delivery</h2>
+          <p class="lead">From discovery workshops to production code, with accessibility built in at every step.</p>
+        </header>
+        <ul class="grid-auto list-reset" role="list">
+          <li class="card">
+            <div class="card__body">
+              <span class="card__icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span>
+              <h3 class="card__title"><a href="services.html#strategy">Product strategy</a></h3>
+              <p class="card__text">Research, roadmaps and measurable goals that align your team.</p>
+            </div>
+          </li>
+          <li class="card">
+            <div class="card__body">
+              <span class="card__icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 19 7-7 3 3-7 7zM18 13l-1.5-7.5L2 2l3.5 14.5L13 18z"/><path d="m2 2 7.59 7.59"/><circle cx="11" cy="11" r="2"/></svg></span>
+              <h3 class="card__title"><a href="services.html#design">Design systems</a></h3>
+              <p class="card__text">Token-driven design systems that scale across products and brands.</p>
+            </div>
+          </li>
+          <li class="card">
+            <div class="card__body">
+              <span class="card__icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m16 18 6-6-6-6M8 6l-6 6 6 6"/></svg></span>
+              <h3 class="card__title"><a href="services.html#engineering">Engineering</a></h3>
+              <p class="card__text">Fast, standards-based front ends for any stack: .NET, React, Django and more.</p>
+            </div>
+          </li>
+          <li class="card">
+            <div class="card__body">
+              <span class="card__icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8zM5 2l.6 1.4L7 4l-1.4.6L5 6l-.6-1.4L3 4l1.4-.6z"/></svg></span>
+              <h3 class="card__title"><a href="services.html#ai">AI experiences</a></h3>
+              <p class="card__text">Chat assistants and agent workflows with interfaces people can trust.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section section--alt" aria-labelledby="results-title">
+      <div class="container">
+        <h2 class="visually-hidden" id="results-title">Results</h2>
+        <dl class="stats">
+          <div><dt>Products launched</dt><dd>120+</dd></div>
+          <div><dt>Average Lighthouse score</dt><dd>98</dd></div>
+          <div><dt>WCAG audits passed</dt><dd>100%</dd></div>
+          <div><dt>Client satisfaction</dt><dd>4.9/5</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="case-title">
+      <div class="container layout" data-layout="split">
+        <img class="rounded-media" src="../../assets/images/case-study.svg" width="800" height="420" alt="Bar and line chart showing conversion rising after the redesign" loading="lazy" decoding="async">
+        <div class="stack">
+          <p class="eyebrow">Case study</p>
+          <h2 id="case-title">Northwind doubled checkout conversion</h2>
+          <p>We rebuilt Northwind's storefront on accessible, dependency-free templates. Pages got three times faster on mid-range phones and checkout conversion rose from 1.9% to 4.1%.</p>
+          <ul class="check-list">
+                <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> 3× faster Largest Contentful Paint</li>
+                <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Zero critical accessibility issues</li>
+                <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Ported to their Razor Pages stack in two weeks</li>
+          </ul>
+          <p><a class="btn btn--secondary" href="blog-post.html">Read how we did it</a></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--alt" aria-labelledby="quotes-title">
+      <div class="container">
+        <header class="section__header section__header--center">
+          <h2 id="quotes-title">What clients say</h2>
+        </header>
+        <ul class="grid-auto grid-auto--lg list-reset" role="list">
+          <li>
+            <figure class="card card--flat quote">
+              <blockquote class="quote__text"><p>The team shipped an accessible dashboard our customers actually enjoy. Support tickets dropped by a third.</p></blockquote>
+              <figcaption class="quote__author"><span class="avatar avatar--soft" aria-hidden="true">PR</span><span><strong>Priya Raman</strong><br><span class="text-sm text-muted">VP Product, Northwind</span></span></figcaption>
+            </figure>
+          </li>
+          <li>
+            <figure class="card card--flat quote">
+              <blockquote class="quote__text"><p>Their AI assistant prototype went from workshop to pilot in four weeks, with UX that earned our users' trust.</p></blockquote>
+              <figcaption class="quote__author"><span class="avatar avatar--soft" aria-hidden="true">MO</span><span><strong>Mateo Ortiz</strong><br><span class="text-sm text-muted">CTO, Contoso</span></span></figcaption>
+            </figure>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="latest-title">
+      <div class="container">
+        <div class="cluster cluster--between section__header">
+          <h2 id="latest-title">Latest articles</h2>
+          <a href="blog.html">All articles</a>
+        </div>
+        <ul class="grid-auto list-reset" role="list">
+          <li class="card">
+            <div class="card__inner">
+              <img class="card__media" src="../../assets/images/blog-accessibility.svg" width="800" height="420" alt="" loading="lazy" decoding="async">
+              <div class="card__body">
+                <p class="text-sm text-muted"><time datetime="2026-10-02">2 Oct 2026</time> · Accessibility</p>
+                <h3 class="card__title"><a href="blog-post.html">A practical guide to WCAG 2.2 for product teams</a></h3>
+              </div>
+            </div>
+          </li>
+          <li class="card">
+            <div class="card__inner">
+              <img class="card__media" src="../../assets/images/blog-design-tokens.svg" width="800" height="420" alt="" loading="lazy" decoding="async">
+              <div class="card__body">
+                <p class="text-sm text-muted"><time datetime="2026-09-18">18 Sep 2026</time> · Design systems</p>
+                <h3 class="card__title"><a href="blog.html#post-tokens">Design tokens that survive a rebrand</a></h3>
+              </div>
+            </div>
+          </li>
+          <li class="card">
+            <div class="card__inner">
+              <img class="card__media" src="../../assets/images/blog-ai-ux.svg" width="800" height="420" alt="" loading="lazy" decoding="async">
+              <div class="card__body">
+                <p class="text-sm text-muted"><time datetime="2026-09-04">4 Sep 2026</time> · AI</p>
+                <h3 class="card__title"><a href="blog.html#post-ai">Designing chat interfaces for AI agents</a></h3>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section cta-band" aria-labelledby="cta-title">
+      <div class="container container--narrow stack text-center">
+        <h2 id="cta-title">Have a project in mind?</h2>
+        <p class="lead">Tell us about it. We reply within one business day.</p>
+        <p class="cluster cluster--center"><a class="btn btn--lg" href="contact.html">Get a quote</a><a class="btn btn--lg btn--secondary" href="about.html">Meet the team</a></p>
+      </div>
+    </section>
+  </main>
+
+  <!-- @partial site-footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="site-footer__grid">
+        <div class="site-footer__about stack">
+          <a class="brand" href="../../templates/website/index.html" aria-current="page">
+            <span class="brand__mark"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span>
+            Acme Studio
+          </a>
+          <p class="text-muted">Strategy, design and engineering for accessible digital products.</p>
+        </div>
+        <nav aria-labelledby="site-footer-company">
+          <h2 class="site-footer__heading" id="site-footer-company">Company</h2>
+          <ul class="site-footer__links">
+            <li><a href="../../templates/website/about.html">About us</a></li>
+            <li><a href="../../templates/website/services.html">Services</a></li>
+            <li><a href="../../templates/website/contact.html">Contact</a></li>
+          </ul>
+        </nav>
+        <nav aria-labelledby="site-footer-resources">
+          <h2 class="site-footer__heading" id="site-footer-resources">Resources</h2>
+          <ul class="site-footer__links">
+            <li><a href="../../templates/website/blog.html">Blog</a></li>
+            <li><a href="../../templates/website/blog-post.html">Accessibility guide</a></li>
+            <li><a href="../../templates/ai/index.html">AI assistant demo</a></li>
+          </ul>
+        </nav>
+        <nav aria-labelledby="site-footer-legal">
+          <h2 class="site-footer__heading" id="site-footer-legal">Legal</h2>
+          <ul class="site-footer__links">
+            <li><a href="../../templates/website/about.html#values">Accessibility statement</a></li>
+            <li><a href="../../templates/website/contact.html#privacy">Privacy</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="site-footer__bottom">
+        <p>© 2026 Acme Studio. MIT licensed template.</p>
+        <p><a href="#main">Back to top</a></p>
+      </div>
+    </div>
+  </footer>
+  <!-- @end site-footer -->
+
+  <!-- @partial chat-widget -->
+  <!-- Floating support assistant. Needs components/chat.css + main.js. -->
+  <div class="chat-widget" data-chat-widget>
+    <button type="button" class="btn chat-widget__launcher" aria-expanded="false" aria-controls="chat-widget-panel" data-chat-launcher hidden>
+      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      <span>Ask Acme AI</span>
+    </button>
+    <div class="chat-widget__panel" id="chat-widget-panel" role="dialog" aria-labelledby="chat-widget-title" hidden>
+      <section class="chat chat--widget" data-chat data-chat-persona="support" data-chat-storage="vr-chat-support">
+        <header class="chat__header">
+          <span class="avatar avatar--soft"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="8" width="18" height="12" rx="3"/><path d="M12 8V4M8 2h8M9 13v2M15 13v2"/></svg></span>
+          <div class="chat__heading">
+            <h2 class="chat__title" id="chat-widget-title">Acme AI support</h2>
+            <p class="chat__status">Usually replies instantly</p>
+          </div>
+          <button type="button" class="btn btn--ghost btn--icon btn--sm" data-chat-clear hidden>
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M23 4v6h-6M1 20v-6h6"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+            <span class="visually-hidden">Start a new conversation</span>
+          </button>
+          <button type="button" class="btn btn--ghost btn--icon btn--sm" data-chat-close>
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/></svg>
+            <span class="visually-hidden">Minimise chat</span>
+          </button>
+        </header>
+        <div class="chat__log" role="log" aria-label="Conversation with Acme AI support" aria-live="off" tabindex="0" data-chat-log>
+          <div class="chat__message chat__message--assistant">
+            <div class="chat__bubble">
+              <p>Hi! I can track orders, explain returns and shipping, or connect you with a person. What can I help with?</p>
+            </div>
+          </div>
+        </div>
+        <div class="chat__suggestions" data-chat-suggestions hidden>
+          <button type="button" class="chip" data-chat-suggestion>Where is my order #1061?</button>
+          <button type="button" class="chip" data-chat-suggestion>What is your return policy?</button>
+          <button type="button" class="chip" data-chat-suggestion>Talk to a person</button>
+        </div>
+        <form class="chat__composer" action="../../templates/website/contact.html" method="get" data-chat-form>
+          <label class="visually-hidden" for="chat-widget-input">Message Acme AI support</label>
+          <textarea class="chat__input" id="chat-widget-input" name="message" rows="1" placeholder="Ask a question…" required data-chat-input></textarea>
+          <div class="chat__actions">
+            <button type="submit" class="btn btn--icon btn--sm" data-chat-send>
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4z"/></svg>
+              <span class="visually-hidden">Send message</span>
+            </button>
+            <button type="button" class="btn btn--icon btn--sm btn--secondary" data-chat-stop hidden>
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="2"/></svg>
+              <span class="visually-hidden">Stop generating</span>
+            </button>
+          </div>
+        </form>
+        <p class="chat__disclaimer">Demo assistant with sample data. Answers may be inaccurate.</p>
+      </section>
+    </div>
+  </div>
+  <!-- @end chat-widget -->
+  <!-- @partial theme-panel -->
+  <dialog class="dialog drawer" id="theme-panel" aria-labelledby="theme-panel-title" closedby="any">
+    <div class="dialog__header">
+      <h2 class="dialog__title" id="theme-panel-title">Customize theme</h2>
+      <button type="button" class="btn btn--ghost btn--icon" commandfor="theme-panel" command="close">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+        <span class="visually-hidden">Close theme panel</span>
+      </button>
+    </div>
+    <form class="dialog__body form" data-theme-customizer>
+      <fieldset class="fieldset">
+        <legend class="fieldset__legend">Mode</legend>
+        <div class="segmented">
+          <label class="segmented__option"><input type="radio" name="mode" value="system"><span class="segmented__label">System</span></label>
+          <label class="segmented__option"><input type="radio" name="mode" value="light"><span class="segmented__label"><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg> Light</span></label>
+          <label class="segmented__option"><input type="radio" name="mode" value="dark"><span class="segmented__label"><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg> Dark</span></label>
+        </div>
+      </fieldset>
+
+      <fieldset class="fieldset">
+        <legend class="fieldset__legend">Brand colour</legend>
+        <div class="swatches">
+          <label class="swatch"><input type="radio" name="brand" value="indigo"><span class="swatch__chip swatch__chip--indigo"></span> Indigo</label>
+          <label class="swatch"><input type="radio" name="brand" value="teal"><span class="swatch__chip swatch__chip--teal"></span> Teal</label>
+          <label class="swatch"><input type="radio" name="brand" value="violet"><span class="swatch__chip swatch__chip--violet"></span> Violet</label>
+          <label class="swatch"><input type="radio" name="brand" value="rose"><span class="swatch__chip swatch__chip--rose"></span> Rose</label>
+          <label class="swatch"><input type="radio" name="brand" value="amber"><span class="swatch__chip swatch__chip--amber"></span> Amber</label>
+          <label class="swatch"><input type="radio" name="brand" value="slate"><span class="swatch__chip swatch__chip--slate"></span> Slate</label>
+        </div>
+      </fieldset>
+
+      <div class="field">
+        <label class="field__label" for="theme-custom-color">Or pick any brand colour</label>
+        <p class="field__hint" id="theme-custom-hint">Shades are adjusted automatically to keep text readable in both themes.</p>
+        <input class="color-input" id="theme-custom-color" name="custom" type="color" value="#2a4fcf" aria-describedby="theme-custom-hint">
+      </div>
+
+      <p class="text-sm text-muted" role="status" data-theme-contrast></p>
+
+      <fieldset class="fieldset">
+        <legend class="fieldset__legend">Density</legend>
+        <div class="segmented">
+          <label class="segmented__option"><input type="radio" name="density" value="compact"><span class="segmented__label">Compact</span></label>
+          <label class="segmented__option"><input type="radio" name="density" value="default"><span class="segmented__label">Default</span></label>
+          <label class="segmented__option"><input type="radio" name="density" value="comfortable"><span class="segmented__label">Comfortable</span></label>
+        </div>
+      </fieldset>
+
+      <fieldset class="fieldset">
+        <legend class="fieldset__legend">Corners</legend>
+        <div class="segmented">
+          <label class="segmented__option"><input type="radio" name="radius" value="sharp"><span class="segmented__label">Sharp</span></label>
+          <label class="segmented__option"><input type="radio" name="radius" value="default"><span class="segmented__label">Default</span></label>
+          <label class="segmented__option"><input type="radio" name="radius" value="round"><span class="segmented__label">Round</span></label>
+        </div>
+      </fieldset>
+
+      <div class="field">
+        <label class="field__label" for="theme-css-output">CSS for your project</label>
+        <textarea class="textarea textarea--code" id="theme-css-output" readonly rows="8" data-theme-output></textarea>
+      </div>
+
+      <div class="form-actions">
+        <button type="button" class="btn btn--sm" data-copy data-copy-target="#theme-css-output" hidden><span data-copy-label>Copy CSS</span></button>
+        <button type="button" class="btn btn--sm btn--ghost" data-theme-reset>Reset to defaults</button>
+      </div>
+    </form>
+  </dialog>
+  <!-- @end theme-panel -->
+</body>
+</html>

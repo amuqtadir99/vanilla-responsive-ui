@@ -45,6 +45,15 @@
   --color-overlay: rgb(10 12 16 / 0.55);
   --color-selection: #c9d6fb;
 
+  /* Categorical chart palette (marks need 3:1 against surfaces) */
+  --chart-1: #2a4fcf;
+  --chart-2: #0d7d72;
+  --chart-3: #c2410c;
+  --chart-4: #8b3fd1;
+  --chart-5: #996000;
+  --chart-6: #c8236f;
+  --chart-grid: #e3e7ee;
+
   /* ---- Typography ------------------------------------------------------ */
   --font-main: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
     "Noto Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
@@ -157,6 +166,14 @@
     --color-overlay: rgb(0 0 0 / 0.7);
     --color-selection: #2c3f7a;
 
+    --chart-1: #86a3ff;
+    --chart-2: #2dd4bf;
+    --chart-3: #fb923c;
+    --chart-4: #c084fc;
+    --chart-5: #facc15;
+    --chart-6: #f472b6;
+    --chart-grid: #2a303a;
+
     --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4);
     --shadow-md: 0 4px 10px -2px rgb(0 0 0 / 0.5);
     --shadow-lg: 0 12px 28px -4px rgb(0 0 0 / 0.6);
@@ -194,6 +211,14 @@
   --color-focus: #a8bdff;
   --color-overlay: rgb(0 0 0 / 0.7);
   --color-selection: #2c3f7a;
+
+  --chart-1: #86a3ff;
+  --chart-2: #2dd4bf;
+  --chart-3: #fb923c;
+  --chart-4: #c084fc;
+  --chart-5: #facc15;
+  --chart-6: #f472b6;
+  --chart-grid: #2a303a;
 
   --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4);
   --shadow-md: 0 4px 10px -2px rgb(0 0 0 / 0.5);

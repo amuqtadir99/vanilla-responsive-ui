@@ -6,7 +6,7 @@
  *   node tests/run-all.mjs --only html,css    run selected suites
  *   node tests/run-all.mjs --strict           treat warnings as errors
  *
- * Suites: html, a11y, css, js, contrast, docs
+ * Suites: html, a11y, css, js, contrast, units, docs
  * Browser tests (Playwright, optional) live in tests/browser/smoke.mjs.
  */
 import * as html from './checks/html.mjs';
@@ -15,9 +15,10 @@ import * as css from './checks/css.mjs';
 import * as js from './checks/js.mjs';
 import * as contrast from './checks/contrast.mjs';
 import * as docs from './checks/docs.mjs';
+import * as units from './checks/units.mjs';
 import { Reporter } from './lib/util.mjs';
 
-const SUITES = { html, a11y, css, js, contrast, docs };
+const SUITES = { html, a11y, css, js, contrast, units, docs };
 
 const args = process.argv.slice(2);
 const onlyIndex = args.indexOf('--only');
@@ -36,7 +37,7 @@ for (const key of only) {
   const suite = SUITES[key];
   const report = new Reporter();
   try {
-    suite.run(report);
+    await suite.run(report);
   } catch (error) {
     report.error('tests/run-all.mjs', null, 'crash', `${key} suite crashed: ${error.stack || error}`);
   }

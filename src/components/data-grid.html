@@ -1,0 +1,53 @@
+<!--
+@component: Data grid
+@category: Data
+@description: Table rendered from JSON with search, filters, sortable columns, pagination, CSV export and row actions. Server-rendered rows show until data loads, and the toolbar submits as a normal form without JavaScript.
+@css: components/table.css, components/form.css, components/navigation.css, components/feedback.css, components/button.css
+@js: components/data-grid.js
+@a11y: Sortable headers are buttons with aria-sort; result counts, sorting and paging are announced; action buttons include the row id in their accessible name; the scroll wrapper is a labelled, focusable region. Status is shown as text badges, not colour alone.
+-->
+<div class="data-grid" data-grid data-source="../data/orders.json" data-page-size="5" data-label="orders">
+  <form class="data-grid__toolbar" action="/orders" method="get">
+    <div class="field">
+      <label class="field__label" for="grid-demo-search">Search orders</label>
+      <input class="input" id="grid-demo-search" name="q" type="search" autocomplete="off" data-grid-search>
+    </div>
+    <div class="field field--narrow">
+      <label class="field__label" for="grid-demo-status">Status</label>
+      <select class="select" id="grid-demo-status" name="status" data-grid-filter="status">
+        <option value="">All statuses</option>
+        <option>Paid</option>
+        <option>Shipped</option>
+        <option>Delivered</option>
+        <option>Pending</option>
+        <option>Refunded</option>
+        <option>Failed</option>
+      </select>
+    </div>
+    <button type="button" class="btn btn--secondary" data-grid-export hidden>Export CSV</button>
+  </form>
+
+  <div class="table-wrapper" role="region" aria-labelledby="grid-demo-caption" tabindex="0">
+    <table class="table">
+      <caption id="grid-demo-caption" class="visually-hidden">Orders</caption>
+      <thead>
+        <tr>
+          <th scope="col" data-key="id" data-sort="text">Order</th>
+          <th scope="col" data-key="customer" data-sort="text" data-render="person">Customer</th>
+          <th scope="col" data-key="date" data-sort="date" data-format="date">Date</th>
+          <th scope="col" data-key="status" data-sort="text" data-render="badge">Status</th>
+          <th scope="col" data-key="total" data-sort="number" data-format="currency" class="num">Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>#1064</td><td>Isla Murray</td><td>8 Oct 2026</td><td><span class="badge badge--success">Delivered</span></td><td class="num">$277.00</td></tr>
+        <tr><td>#1063</td><td>Leila Haddad</td><td>8 Oct 2026</td><td><span class="badge badge--primary">Shipped</span></td><td class="num">$251.00</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="data-grid__footer">
+    <p data-grid-status>Showing 2 orders</p>
+    <nav class="pagination" aria-label="Orders pages" data-grid-pagination></nav>
+  </div>
+</div>

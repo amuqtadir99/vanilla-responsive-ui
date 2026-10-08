@@ -1,130 +1,8 @@
 /* ==========================================================================
-   Dashboard template styles
-   Mobile: top bar, collapsible nav, content (single column).
-   Desktop (>= 64em): sticky sidebar column next to the content.
+   Dashboard template styles (page content only).
+   The shell (top bar, sidebar, main) is the .app-shell layout in
+   src/assets/css/layouts.css.
    ========================================================================== */
-
-.dashboard {
-  display: grid;
-  grid-template-areas:
-    "topbar"
-    "sidebar"
-    "main";
-  grid-template-columns: minmax(0, 1fr);
-  min-height: 100vh;
-  min-height: 100dvh;
-  background-color: var(--color-bg);
-}
-
-/* ---- Top bar ----------------------------------------------------------- */
-.dashboard__topbar {
-  grid-area: topbar;
-  position: sticky;
-  inset-block-start: 0;
-  z-index: var(--z-sticky);
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: var(--spacing-2xs) var(--spacing-sm);
-  min-height: var(--header-height);
-  padding: var(--spacing-2xs) var(--container-padding);
-  border-block-end: var(--border-width) solid var(--color-border);
-  background-color: var(--color-bg);
-}
-
-.dashboard__topbar .brand {
-  margin-inline-end: 0;
-}
-
-.dashboard__search {
-  position: relative;
-  flex: 1 1 12rem;
-  order: 3;
-  max-width: 28rem;
-}
-
-.dashboard__search .input {
-  padding-inline-start: 2.5rem;
-}
-
-.dashboard__search-icon {
-  position: absolute;
-  inset-block: 0;
-  inset-inline-start: var(--spacing-xs);
-  display: flex;
-  align-items: center;
-  color: var(--color-text-muted);
-  pointer-events: none;
-}
-
-.dashboard__actions {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-3xs);
-  margin-inline-start: auto;
-}
-
-.dashboard__notify {
-  position: relative;
-}
-
-.dashboard__avatar {
-  display: grid;
-  place-items: center;
-  width: 2.25rem;
-  height: 2.25rem;
-  border-radius: 50%;
-  background-color: var(--color-primary);
-  color: var(--color-on-primary);
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-bold);
-}
-
-/* ---- Sidebar ----------------------------------------------------------- */
-.dashboard__sidebar {
-  grid-area: sidebar;
-  padding: var(--spacing-sm) var(--container-padding);
-  border-block-end: var(--border-width) solid var(--color-border);
-  background-color: var(--color-bg);
-}
-
-@media (max-width: 63.99em) {
-  .dashboard__sidebar[data-state="closed"] {
-    display: none;
-  }
-
-  .dashboard__search {
-    flex-basis: 100%;
-    max-width: none;
-  }
-}
-
-/* ---- Main -------------------------------------------------------------- */
-.dashboard__main {
-  grid-area: main;
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-lg);
-  min-width: 0;
-  padding: var(--spacing-lg) var(--container-padding) var(--spacing-2xl);
-  background-color: var(--color-surface);
-}
-
-.dashboard__page-header {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: var(--spacing-sm);
-}
-
-.dashboard__title {
-  font-size: var(--font-size-2xl);
-}
-
-.dashboard__section-title {
-  font-size: var(--font-size-xl);
-}
 
 .kpis {
   display: grid;
@@ -136,7 +14,7 @@
   gap: var(--spacing-2xs);
 }
 
-.dashboard__grid {
+.dashboard-grid {
   display: grid;
   gap: var(--spacing-lg);
   grid-template-columns: repeat(auto-fit, minmax(min(24rem, 100%), 1fr));
@@ -162,45 +40,40 @@
   margin-inline-start: auto;
 }
 
-/* ---- Desktop layout ---------------------------------------------------- */
-@media (min-width: 64em) {
-  .dashboard {
-    grid-template-areas:
-      "topbar topbar"
-      "sidebar main";
-    grid-template-columns: var(--sidebar-width) minmax(0, 1fr);
-    grid-template-rows: auto 1fr;
-  }
+/* KPI cards with sparklines */
+.kpi__spark {
+  margin-block-start: var(--spacing-2xs);
+}
 
-  .dashboard__topbar {
-    flex-wrap: nowrap;
+/* Overview: wide chart beside a narrower one */
+@media (min-width: 75em) {
+  .dashboard-grid--wide {
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
   }
+}
 
-  .dashboard__topbar .brand {
-    width: calc(var(--sidebar-width) - var(--container-padding) - var(--spacing-sm));
-  }
+/* Settings forms keep a readable width */
+.settings-form {
+  max-width: 44rem;
+}
 
-  .dashboard__search {
-    order: 0;
-  }
+.range-picker .fieldset {
+  display: block;
+}
 
-  .dashboard__menu-toggle {
-    display: none;
-  }
+/* AI assistant page: chat beside a help column */
+.assistant-layout {
+  display: grid;
+  gap: var(--spacing-lg);
+  align-items: start;
+}
 
-  .dashboard__sidebar {
-    position: sticky;
-    inset-block-start: var(--header-height);
-    align-self: start;
-    height: calc(100vh - var(--header-height));
-    height: calc(100dvh - var(--header-height));
-    overflow-y: auto;
-    padding: var(--spacing-md) var(--spacing-sm);
-    border-block-end: 0;
-  }
+.assistant-layout > .chat {
+  --chat-height: min(44rem, calc(100dvh - 16rem));
+}
 
-  /* The border lives on main so it spans the full page height. */
-  .dashboard__main {
-    border-inline-start: var(--border-width) solid var(--color-border);
+@media (min-width: 75em) {
+  .assistant-layout {
+    grid-template-columns: minmax(0, 1fr) 20rem;
   }
 }

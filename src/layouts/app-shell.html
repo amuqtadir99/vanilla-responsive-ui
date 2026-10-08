@@ -1,0 +1,200 @@
+<!--
+@layout: App shell
+@description: Top bar, collapsible sidebar navigation and a scrolling content area. Best for dashboards, admin panels and AI apps.
+@regions: topbar, sidebar, main
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; form-action 'self'; base-uri 'self'; object-src 'none'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>App shell layout — vanilla-responsive-ui</title>
+  <meta name="description" content="App shell page layout: Top bar, collapsible sidebar navigation and a scrolling content area. Best for dashboards, admin panels and AI apps.">
+  <meta name="color-scheme" content="light dark">
+  <link rel="icon" href="../assets/icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../assets/css/tokens.css">
+  <link rel="stylesheet" href="../assets/css/themes.css">
+  <link rel="stylesheet" href="../assets/css/base.css">
+  <link rel="stylesheet" href="../assets/css/layouts.css">
+  <link rel="stylesheet" href="../assets/css/components/button.css">
+  <link rel="stylesheet" href="../assets/css/components/header.css">
+  <link rel="stylesheet" href="../assets/css/components/navigation.css">
+  <link rel="stylesheet" href="../assets/css/components/card.css">
+  <link rel="stylesheet" href="../assets/css/components/form.css">
+  <link rel="stylesheet" href="../assets/css/components/dialog.css">
+  <link rel="stylesheet" href="../assets/css/components/feedback.css">
+  <link rel="stylesheet" href="../assets/css/components/footer.css">
+  <script type="module" src="../assets/js/main.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- @partial template-switcher -->
+  <!-- Demo navigation between templates. Remove this partial in production. -->
+  <nav class="demo-bar" aria-label="Template gallery">
+    <div class="container demo-bar__inner">
+      <a class="demo-bar__home" href="../index.html">vanilla-responsive-ui</a>
+      <ul class="demo-bar__list">
+        <li><a href="../templates/landing-page/index.html" data-section>Landing</a></li>
+        <li><a href="../templates/website/index.html" data-section>Website</a></li>
+        <li><a href="../templates/dashboard/index.html" data-section>Dashboard</a></li>
+        <li><a href="../templates/e-commerce/index.html" data-section>Shop</a></li>
+        <li><a href="../templates/ai/index.html" data-section>AI assistant</a></li>
+        <li><a href="../templates/auth/index.html" data-section>Auth</a></li>
+        <li><a href="../components/index.html" data-section>Components</a></li>
+        <li><a href="../layouts/index.html" data-section aria-current="true">Layouts</a></li>
+      </ul>
+      <div class="demo-bar__actions">
+        <button type="button" class="btn btn--ghost btn--sm" commandfor="theme-panel" command="show-modal" data-theme-panel-trigger hidden>
+          <svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></svg> Theme
+        </button>
+      </div>
+    </div>
+  </nav>
+  <!-- @end template-switcher -->
+
+  <div class="app-shell">
+    <!-- @partial app-topbar -->
+    <header class="app-shell__topbar">
+      <a class="brand" href="../templates/dashboard/index.html">
+        <span class="brand__mark"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 2 7l10 5 10-5z"/><path d="m2 17 10 5 10-5M2 12l10 5 10-5"/></svg></span>
+        Acme
+      </a>
+
+      <button type="button" class="btn btn--ghost btn--icon app-shell__menu-toggle" data-disclosure aria-expanded="false" aria-controls="app-nav" hidden>
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        <span class="visually-hidden">Dashboard menu</span>
+      </button>
+
+      <form class="app-search" role="search" action="../templates/dashboard/orders.html" method="get">
+        <label class="visually-hidden" for="app-search-input">Search orders and customers</label>
+        <span class="app-search__icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/></svg></span>
+        <input class="input" id="app-search-input" name="q" type="search" placeholder="Search…" autocomplete="off">
+      </form>
+
+      <div class="app-shell__actions">
+        <button type="button" class="btn btn--ghost btn--icon theme-toggle" data-theme-toggle aria-pressed="false" hidden>
+          <svg class="icon theme-toggle__light" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="icon theme-toggle__dark" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+          <span class="visually-hidden">Dark theme</span>
+        </button>
+        <button type="button" class="btn btn--ghost btn--icon icon-badge" data-toast="You have 3 unread notifications.">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+          <span class="visually-hidden">Notifications</span>
+          <span class="badge badge--count" aria-hidden="true">3</span>
+          <span class="visually-hidden">(3 unread)</span>
+        </button>
+        <a class="avatar" href="../templates/dashboard/settings.html"><span aria-hidden="true">JD</span><span class="visually-hidden">Account settings</span></a>
+      </div>
+    </header>
+    <!-- @end app-topbar -->
+
+    <!-- @partial app-sidebar -->
+    <nav class="app-shell__sidebar" id="app-nav" aria-label="Dashboard">
+      <ul class="side-nav__list">
+        <li><a class="side-nav__link" href="../templates/dashboard/index.html"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg> Overview</a></li>
+        <li><a class="side-nav__link" href="../templates/dashboard/analytics.html"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20V10M18 20V4M6 20v-4"/></svg> Analytics</a></li>
+        <li><a class="side-nav__link" href="../templates/dashboard/orders.html"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 8 12 3 3 8v8l9 5 9-5z"/><path d="m3 8 9 5 9-5M12 13v8"/></svg> Orders <span class="badge badge--primary">12<span class="visually-hidden"> new</span></span></a></li>
+        <li><a class="side-nav__link" href="../templates/dashboard/customers.html"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg> Customers</a></li>
+        <li><a class="side-nav__link" href="../templates/dashboard/assistant.html"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8zM5 2l.6 1.4L7 4l-1.4.6L5 6l-.6-1.4L3 4l1.4-.6z"/></svg> AI assistant</a></li>
+      </ul>
+      <p class="side-nav__heading" id="app-nav-account">Account</p>
+      <ul class="side-nav__list" aria-labelledby="app-nav-account">
+        <li><a class="side-nav__link" href="../templates/dashboard/settings.html"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></svg> Settings</a></li>
+        <li><a class="side-nav__link" href="../templates/auth/index.html"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg> Sign out</a></li>
+      </ul>
+    </nav>
+    <!-- @end app-sidebar -->
+
+    <main class="app-shell__main" id="main" tabindex="-1">
+      <div class="page-header">
+        <div>
+          <h1 class="page-header__title">App shell layout</h1>
+          <p class="text-muted">Top bar, sidebar and content. The sidebar collapses behind a menu button on small screens.</p>
+        </div>
+        <div class="placeholder placeholder--short">Actions</div>
+      </div>
+      <ul class="grid-auto grid-auto--sm list-reset" role="list">
+        <li><div class="placeholder">Metric</div></li>
+        <li><div class="placeholder">Metric</div></li>
+        <li><div class="placeholder">Metric</div></li>
+        <li><div class="placeholder">Metric</div></li>
+      </ul>
+      <div class="placeholder placeholder--tall">Chart</div>
+      <div class="placeholder placeholder--tall">Data table</div>
+    </main>
+  </div>
+
+  <!-- @partial theme-panel -->
+  <dialog class="dialog drawer" id="theme-panel" aria-labelledby="theme-panel-title" closedby="any">
+    <div class="dialog__header">
+      <h2 class="dialog__title" id="theme-panel-title">Customize theme</h2>
+      <button type="button" class="btn btn--ghost btn--icon" commandfor="theme-panel" command="close">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+        <span class="visually-hidden">Close theme panel</span>
+      </button>
+    </div>
+    <form class="dialog__body form" data-theme-customizer>
+      <fieldset class="fieldset">
+        <legend class="fieldset__legend">Mode</legend>
+        <div class="segmented">
+          <label class="segmented__option"><input type="radio" name="mode" value="system"><span class="segmented__label">System</span></label>
+          <label class="segmented__option"><input type="radio" name="mode" value="light"><span class="segmented__label"><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg> Light</span></label>
+          <label class="segmented__option"><input type="radio" name="mode" value="dark"><span class="segmented__label"><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg> Dark</span></label>
+        </div>
+      </fieldset>
+
+      <fieldset class="fieldset">
+        <legend class="fieldset__legend">Brand colour</legend>
+        <div class="swatches">
+          <label class="swatch"><input type="radio" name="brand" value="indigo"><span class="swatch__chip swatch__chip--indigo"></span> Indigo</label>
+          <label class="swatch"><input type="radio" name="brand" value="teal"><span class="swatch__chip swatch__chip--teal"></span> Teal</label>
+          <label class="swatch"><input type="radio" name="brand" value="violet"><span class="swatch__chip swatch__chip--violet"></span> Violet</label>
+          <label class="swatch"><input type="radio" name="brand" value="rose"><span class="swatch__chip swatch__chip--rose"></span> Rose</label>
+          <label class="swatch"><input type="radio" name="brand" value="amber"><span class="swatch__chip swatch__chip--amber"></span> Amber</label>
+          <label class="swatch"><input type="radio" name="brand" value="slate"><span class="swatch__chip swatch__chip--slate"></span> Slate</label>
+        </div>
+      </fieldset>
+
+      <div class="field">
+        <label class="field__label" for="theme-custom-color">Or pick any brand colour</label>
+        <p class="field__hint" id="theme-custom-hint">Shades are adjusted automatically to keep text readable in both themes.</p>
+        <input class="color-input" id="theme-custom-color" name="custom" type="color" value="#2a4fcf" aria-describedby="theme-custom-hint">
+      </div>
+
+      <p class="text-sm text-muted" role="status" data-theme-contrast></p>
+
+      <fieldset class="fieldset">
+        <legend class="fieldset__legend">Density</legend>
+        <div class="segmented">
+          <label class="segmented__option"><input type="radio" name="density" value="compact"><span class="segmented__label">Compact</span></label>
+          <label class="segmented__option"><input type="radio" name="density" value="default"><span class="segmented__label">Default</span></label>
+          <label class="segmented__option"><input type="radio" name="density" value="comfortable"><span class="segmented__label">Comfortable</span></label>
+        </div>
+      </fieldset>
+
+      <fieldset class="fieldset">
+        <legend class="fieldset__legend">Corners</legend>
+        <div class="segmented">
+          <label class="segmented__option"><input type="radio" name="radius" value="sharp"><span class="segmented__label">Sharp</span></label>
+          <label class="segmented__option"><input type="radio" name="radius" value="default"><span class="segmented__label">Default</span></label>
+          <label class="segmented__option"><input type="radio" name="radius" value="round"><span class="segmented__label">Round</span></label>
+        </div>
+      </fieldset>
+
+      <div class="field">
+        <label class="field__label" for="theme-css-output">CSS for your project</label>
+        <textarea class="textarea textarea--code" id="theme-css-output" readonly rows="8" data-theme-output></textarea>
+      </div>
+
+      <div class="form-actions">
+        <button type="button" class="btn btn--sm" data-copy data-copy-target="#theme-css-output" hidden><span data-copy-label>Copy CSS</span></button>
+        <button type="button" class="btn btn--sm btn--ghost" data-theme-reset>Reset to defaults</button>
+      </div>
+    </form>
+  </dialog>
+  <!-- @end theme-panel -->
+</body>
+</html>

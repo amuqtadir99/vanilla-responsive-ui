@@ -1,7 +1,7 @@
 /**
  * Documentation synchronicity (Rule 4): generated docs are current, every
- * required document exists, and every component, module and template is
- * documented.
+ * required document exists, every page carries the current partials, sample
+ * data parses, and every component, module and template is documented.
  */
 import fs from 'node:fs';
 import path from 'node:path';
@@ -19,6 +19,13 @@ const REQUIRED_DOCS = [
   'docs/SECURITY.md',
   'docs/INTEGRATION_GUIDE.md',
   'docs/COMPONENTS.md',
+  'docs/LAYOUTS.md',
+  'docs/THEMING.md',
+  'docs/DATA.md',
+  'docs/AI-CHAT.md',
+  'CONTRIBUTING.md',
+  'llms.txt',
+  'catalog.json',
 ];
 
 export function run(report) {
@@ -29,6 +36,26 @@ export function run(report) {
   const generator = path.join(ROOT, '.claude', 'skills', 'generate-doc.js');
   const result = spawnSync(process.execPath, [generator, '--check'], { encoding: 'utf8' });
   report.assert(result.status === 0, generator, null, 'generated-docs', `Generated docs are stale or invalid: ${(result.stderr || result.stdout).trim()}`);
+
+  const pages = path.join(ROOT, '.claude', 'skills', 'pages.js');
+  const sync = spawnSync(process.execPath, [pages, 'sync', '--check'], { encoding: 'utf8' });
+  report.assert(sync.status === 0, pages, null, 'partials-sync', `Pages are out of sync with src/layouts/partials (run: node .claude/skills/pages.js sync): ${(sync.stderr || sync.stdout).trim()}`);
+
+  // Sample data must be valid JSON (charts, grids and assistants load it).
+  for (const file of findFiles(path.join(SRC, 'data'), (n) => n.endsWith('.json'))) {
+    let ok = true;
+    try { JSON.parse(read(file)); } catch { ok = false; }
+    report.assert(ok, file, null, 'data-json', `${rel(file)} is not valid JSON.`);
+  }
+
+  // Every doc linked from llms.txt exists.
+  const llms = path.join(ROOT, 'llms.txt');
+  if (fs.existsSync(llms)) {
+    for (const [, target] of read(llms).matchAll(/\]\(([^)#\s]+)[^)]*\)/g)) {
+      if (/^[a-z]+:/i.test(target)) continue;
+      report.assert(fs.existsSync(path.join(ROOT, target)), llms, null, 'llms-link', `llms.txt links to missing ${target}.`);
+    }
+  }
 
   const allDocs = ['README.md', 'docs/ARCHITECTURE.md', 'docs/INTEGRATION_GUIDE.md', 'docs/COMPONENTS.md']
     .filter((d) => fs.existsSync(path.join(ROOT, d)))

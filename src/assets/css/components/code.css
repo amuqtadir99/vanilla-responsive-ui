@@ -1,0 +1,66 @@
+/* ==========================================================================
+   Code blocks with a header (language label + copy button)
+   ========================================================================== */
+
+.code-block {
+  overflow: hidden;
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-surface-sunken);
+}
+
+.code-block__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-3xs) var(--spacing-3xs) var(--spacing-3xs) var(--spacing-sm);
+  border-block-end: var(--border-width) solid var(--color-border);
+  color: var(--color-text-muted);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.code-block pre {
+  position: relative;
+  max-height: 28rem;
+  margin: 0;
+  padding: var(--spacing-sm);
+  overflow: auto;
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-snug);
+  tab-size: 2;
+}
+
+.code-block pre:focus-visible {
+  outline-offset: calc(var(--focus-ring-width) * -1);
+}
+
+.code-block code {
+  font-family: var(--font-mono);
+  white-space: pre;
+}
+
+/* Inline path chip, e.g. src/components/tabs.html */
+.path-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-3xs);
+  max-width: 100%;
+  padding: 0.125rem var(--spacing-2xs);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-surface);
+  font-family: var(--font-mono);
+  font-size: var(--font-size-xs);
+  overflow-wrap: anywhere;
+}
+
+/* Inline code inside running text */
+:not(pre) > code {
+  padding: 0.1em 0.3em;
+  border-radius: var(--radius-sm);
+  background-color: var(--color-surface-sunken);
+}

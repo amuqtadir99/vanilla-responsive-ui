@@ -6,14 +6,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; form-action 'self'; base-uri 'self'; object-src 'none'">
   <title>Component gallery — vanilla-responsive-ui</title>
-  <meta name="description" content="Live gallery of every vanilla-responsive-ui component.">
+  <meta name="description" content="Live gallery of every vanilla-responsive-ui component, with copyable file paths for AI agents and copyable code.">
   <meta name="color-scheme" content="light dark">
+  <meta name="vr-data-base" content="../data/">
   <link rel="icon" href="../assets/icons/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="../assets/css/tokens.css">
+  <link rel="stylesheet" href="../assets/css/themes.css">
   <link rel="stylesheet" href="../assets/css/base.css">
+  <link rel="stylesheet" href="../assets/css/layouts.css">
   <link rel="stylesheet" href="../assets/css/components/accordion.css">
   <link rel="stylesheet" href="../assets/css/components/button.css">
   <link rel="stylesheet" href="../assets/css/components/card.css">
+  <link rel="stylesheet" href="../assets/css/components/chart.css">
+  <link rel="stylesheet" href="../assets/css/components/chat.css">
+  <link rel="stylesheet" href="../assets/css/components/code.css">
   <link rel="stylesheet" href="../assets/css/components/dialog.css">
   <link rel="stylesheet" href="../assets/css/components/feedback.css">
   <link rel="stylesheet" href="../assets/css/components/footer.css">
@@ -28,40 +34,412 @@
 <body>
   <a class="skip-link" href="#main">Skip to main content</a>
 
+  <!-- @partial template-switcher -->
+  <!-- Demo navigation between templates. Remove this partial in production. -->
+  <nav class="demo-bar" aria-label="Template gallery">
+    <div class="container demo-bar__inner">
+      <a class="demo-bar__home" href="../index.html">vanilla-responsive-ui</a>
+      <ul class="demo-bar__list">
+        <li><a href="../templates/landing-page/index.html" data-section>Landing</a></li>
+        <li><a href="../templates/website/index.html" data-section>Website</a></li>
+        <li><a href="../templates/dashboard/index.html" data-section>Dashboard</a></li>
+        <li><a href="../templates/e-commerce/index.html" data-section>Shop</a></li>
+        <li><a href="../templates/ai/index.html" data-section>AI assistant</a></li>
+        <li><a href="../templates/auth/index.html" data-section>Auth</a></li>
+        <li><a href="../components/index.html" data-section aria-current="page">Components</a></li>
+        <li><a href="../layouts/index.html" data-section>Layouts</a></li>
+      </ul>
+      <div class="demo-bar__actions">
+        <button type="button" class="btn btn--ghost btn--sm" commandfor="theme-panel" command="show-modal" data-theme-panel-trigger hidden>
+          <svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></svg> Theme
+        </button>
+      </div>
+    </div>
+  </nav>
+  <!-- @end template-switcher -->
+
   <main id="main" tabindex="-1">
     <div class="container gallery">
       <div class="gallery__header stack">
-        <p><a href="../index.html">← All templates</a></p>
         <h1>Component gallery</h1>
-        <p class="lead">14 accessible, dependency-free components. Each one is a copy-paste snippet in <code>src/components/</code>.</p>
+        <p class="lead">20 accessible, dependency-free components. Each is a copy-paste snippet in <code>src/components/</code>. Use <strong>Copy path for AI</strong> to give a coding agent the exact files to read, or <strong>Copy code</strong> to grab the markup.</p>
+        <p class="text-sm text-muted">Tools can read the same information from <a href="../../catalog.json">catalog.json</a>.</p>
       </div>
 
       <div class="gallery__layout">
         <nav class="gallery__toc" aria-label="Components">
-          <ul class="side-nav__list">
-            <li><a href="#button">Button</a></li>
-            <li><a href="#alert">Alert and badge</a></li>
-            <li><a href="#card">Card</a></li>
-            <li><a href="#accordion">Accordion</a></li>
-            <li><a href="#tabs">Tabs</a></li>
-            <li><a href="#dialog">Dialog</a></li>
-            <li><a href="#form-field">Form fields</a></li>
-            <li><a href="#toast">Toast</a></li>
-            <li><a href="#data-table">Data table</a></li>
-            <li><a href="#breadcrumb">Breadcrumb</a></li>
-            <li><a href="#pagination">Pagination</a></li>
-            <li><a href="#theme-toggle">Theme toggle</a></li>
-            <li><a href="#site-header">Site header</a></li>
-            <li><a href="#site-footer">Site footer</a></li>
+          <p class="side-nav__heading" id="toc-layout">Layout</p>
+          <ul class="side-nav__list" aria-labelledby="toc-layout">
+              <li><a class="side-nav__link" href="#site-footer">Site footer</a></li>
+              <li><a class="side-nav__link" href="#site-header">Site header</a></li>
+          </ul>
+          <p class="side-nav__heading" id="toc-navigation">Navigation</p>
+          <ul class="side-nav__list" aria-labelledby="toc-navigation">
+              <li><a class="side-nav__link" href="#breadcrumb">Breadcrumb</a></li>
+              <li><a class="side-nav__link" href="#pagination">Pagination</a></li>
+              <li><a class="side-nav__link" href="#tabs">Tabs</a></li>
+          </ul>
+          <p class="side-nav__heading" id="toc-basics">Basics</p>
+          <ul class="side-nav__list" aria-labelledby="toc-basics">
+              <li><a class="side-nav__link" href="#button">Button</a></li>
+          </ul>
+          <p class="side-nav__heading" id="toc-content">Content</p>
+          <ul class="side-nav__list" aria-labelledby="toc-content">
+              <li><a class="side-nav__link" href="#accordion">Accordion</a></li>
+              <li><a class="side-nav__link" href="#card">Card</a></li>
+          </ul>
+          <p class="side-nav__heading" id="toc-forms">Forms</p>
+          <ul class="side-nav__list" aria-labelledby="toc-forms">
+              <li><a class="side-nav__link" href="#form-field">Form fields</a></li>
+          </ul>
+          <p class="side-nav__heading" id="toc-feedback">Feedback</p>
+          <ul class="side-nav__list" aria-labelledby="toc-feedback">
+              <li><a class="side-nav__link" href="#alert">Alert and badge</a></li>
+              <li><a class="side-nav__link" href="#toast">Toast</a></li>
+          </ul>
+          <p class="side-nav__heading" id="toc-overlays">Overlays</p>
+          <ul class="side-nav__list" aria-labelledby="toc-overlays">
+              <li><a class="side-nav__link" href="#dialog">Dialog</a></li>
+          </ul>
+          <p class="side-nav__heading" id="toc-data">Data</p>
+          <ul class="side-nav__list" aria-labelledby="toc-data">
+              <li><a class="side-nav__link" href="#chart">Charts</a></li>
+              <li><a class="side-nav__link" href="#data-grid">Data grid</a></li>
+              <li><a class="side-nav__link" href="#data-table">Data table</a></li>
+          </ul>
+          <p class="side-nav__heading" id="toc-ai">AI</p>
+          <ul class="side-nav__list" aria-labelledby="toc-ai">
+              <li><a class="side-nav__link" href="#chat">AI chat</a></li>
+              <li><a class="side-nav__link" href="#chat-message">Chat messages</a></li>
+              <li><a class="side-nav__link" href="#chat-widget">Chat widget</a></li>
+          </ul>
+          <p class="side-nav__heading" id="toc-theming">Theming</p>
+          <ul class="side-nav__list" aria-labelledby="toc-theming">
+              <li><a class="side-nav__link" href="#theme-customizer">Theme customizer</a></li>
+              <li><a class="side-nav__link" href="#theme-toggle">Theme toggle</a></li>
           </ul>
         </nav>
 
         <div class="gallery__sections">
+        <section class="gallery__section" id="site-footer" aria-labelledby="site-footer-title">
+          <div class="gallery__intro">
+            <p class="eyebrow">Layout</p>
+            <h2 id="site-footer-title">Site footer</h2>
+            <p class="text-muted">Footer with brand blurb, grouped link columns and a bottom bar.</p>
+            <p class="path-chip">src/components/site-footer.html</p>
+            <div class="cluster">
+              <button type="button" class="btn btn--sm" data-copy data-copy-text="Component: Site footer (vanilla-responsive-ui)&#10;Markup: src/components/site-footer.html&#10;CSS: src/assets/css/tokens.css, src/assets/css/themes.css, src/assets/css/base.css, src/assets/css/components/footer.css, src/assets/css/components/header.css&#10;JS: none&#10;Docs: docs/COMPONENTS.md#site-footer&#10;Rules: CLAUDE.md (no dependencies, no inline scripts/styles, WCAG 2.2 AA)" data-copy-success="Copied paths" hidden><span data-copy-label>Copy path for AI</span></button>
+              <button type="button" class="btn btn--sm btn--secondary" data-copy data-copy-target="#code-site-footer" hidden><span data-copy-label>Copy code</span></button>
+              <a class="btn btn--sm btn--ghost" href="../../docs/COMPONENTS.md#site-footer">Docs</a>
+            </div>
+          </div>
+          <div class="gallery__demo stack">
+            <footer class="site-footer">
+              <div class="container">
+                <div class="site-footer__grid">
+                  <div class="site-footer__about stack">
+                    <a class="brand" href="/">
+                      <span class="brand__mark"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 2 7l10 5 10-5z"/><path d="m2 17 10 5 10-5M2 12l10 5 10-5"/></svg></span>
+                      Acme
+                    </a>
+                    <p class="text-muted">Dependency-free, accessible UI templates.</p>
+                  </div>
+                  <nav aria-labelledby="example-footer-product">
+                    <h2 class="site-footer__heading" id="example-footer-product">Product</h2>
+                    <ul class="site-footer__links">
+                      <li><a href="/features">Features</a></li>
+                      <li><a href="/pricing">Pricing</a></li>
+                    </ul>
+                  </nav>
+                  <nav aria-labelledby="example-footer-company">
+                    <h2 class="site-footer__heading" id="example-footer-company">Company</h2>
+                    <ul class="site-footer__links">
+                      <li><a href="/about">About</a></li>
+                      <li><a href="/contact">Contact</a></li>
+                    </ul>
+                  </nav>
+                  <nav aria-labelledby="example-footer-legal">
+                    <h2 class="site-footer__heading" id="example-footer-legal">Legal</h2>
+                    <ul class="site-footer__links">
+                      <li><a href="/privacy">Privacy</a></li>
+                      <li><a href="/terms">Terms</a></li>
+                    </ul>
+                  </nav>
+                </div>
+                <div class="site-footer__bottom">
+                  <p>© 2026 Acme. All rights reserved.</p>
+                </div>
+              </div>
+            </footer>
+          </div>
+          <details class="gallery__code">
+            <summary>View code</summary>
+            <div class="code-block">
+              <div class="code-block__header"><span>HTML</span></div>
+              <pre tabindex="0" role="region" aria-label="Site footer markup"><code id="code-site-footer">&lt;footer class=&quot;site-footer&quot;&gt;
+  &lt;div class=&quot;container&quot;&gt;
+    &lt;div class=&quot;site-footer__grid&quot;&gt;
+      &lt;div class=&quot;site-footer__about stack&quot;&gt;
+        &lt;a class=&quot;brand&quot; href=&quot;/&quot;&gt;
+          &lt;span class=&quot;brand__mark&quot;&gt;&lt;svg class=&quot;icon&quot; viewBox=&quot;0 0 24 24&quot; aria-hidden=&quot;true&quot;&gt;&lt;path d=&quot;M12 2 2 7l10 5 10-5z&quot;/&gt;&lt;path d=&quot;m2 17 10 5 10-5M2 12l10 5 10-5&quot;/&gt;&lt;/svg&gt;&lt;/span&gt;
+          Acme
+        &lt;/a&gt;
+        &lt;p class=&quot;text-muted&quot;&gt;Dependency-free, accessible UI templates.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;nav aria-labelledby=&quot;example-footer-product&quot;&gt;
+        &lt;h2 class=&quot;site-footer__heading&quot; id=&quot;example-footer-product&quot;&gt;Product&lt;/h2&gt;
+        &lt;ul class=&quot;site-footer__links&quot;&gt;
+          &lt;li&gt;&lt;a href=&quot;/features&quot;&gt;Features&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;/pricing&quot;&gt;Pricing&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/nav&gt;
+      &lt;nav aria-labelledby=&quot;example-footer-company&quot;&gt;
+        &lt;h2 class=&quot;site-footer__heading&quot; id=&quot;example-footer-company&quot;&gt;Company&lt;/h2&gt;
+        &lt;ul class=&quot;site-footer__links&quot;&gt;
+          &lt;li&gt;&lt;a href=&quot;/about&quot;&gt;About&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;/contact&quot;&gt;Contact&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/nav&gt;
+      &lt;nav aria-labelledby=&quot;example-footer-legal&quot;&gt;
+        &lt;h2 class=&quot;site-footer__heading&quot; id=&quot;example-footer-legal&quot;&gt;Legal&lt;/h2&gt;
+        &lt;ul class=&quot;site-footer__links&quot;&gt;
+          &lt;li&gt;&lt;a href=&quot;/privacy&quot;&gt;Privacy&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;/terms&quot;&gt;Terms&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/nav&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;site-footer__bottom&quot;&gt;
+      &lt;p&gt;© 2026 Acme. All rights reserved.&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/footer&gt;</code></pre>
+            </div>
+          </details>
+        </section>
+
+        <section class="gallery__section" id="site-header" aria-labelledby="site-header-title">
+          <div class="gallery__intro">
+            <p class="eyebrow">Layout</p>
+            <h2 id="site-header-title">Site header</h2>
+            <p class="text-muted">Sticky header with brand, primary navigation and actions. On small screens the menu collapses behind a disclosure button.</p>
+            <p class="path-chip">src/components/site-header.html</p>
+            <div class="cluster">
+              <button type="button" class="btn btn--sm" data-copy data-copy-text="Component: Site header (vanilla-responsive-ui)&#10;Markup: src/components/site-header.html&#10;CSS: src/assets/css/tokens.css, src/assets/css/themes.css, src/assets/css/base.css, src/assets/css/components/button.css, src/assets/css/components/header.css&#10;JS: src/assets/js/components/disclosure.js, src/assets/js/components/theme-toggle.js (auto-initialised by src/assets/js/main.js)&#10;Docs: docs/COMPONENTS.md#site-header&#10;Rules: CLAUDE.md (no dependencies, no inline scripts/styles, WCAG 2.2 AA)" data-copy-success="Copied paths" hidden><span data-copy-label>Copy path for AI</span></button>
+              <button type="button" class="btn btn--sm btn--secondary" data-copy data-copy-target="#code-site-header" hidden><span data-copy-label>Copy code</span></button>
+              <a class="btn btn--sm btn--ghost" href="../../docs/COMPONENTS.md#site-header">Docs</a>
+            </div>
+          </div>
+          <div class="gallery__demo stack">
+            <header class="site-header">
+              <div class="container site-header__inner">
+                <a class="brand" href="/">
+                  <span class="brand__mark"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 2 7l10 5 10-5z"/><path d="m2 17 10 5 10-5M2 12l10 5 10-5"/></svg></span>
+                  Acme
+                </a>
+
+                <button type="button" class="btn btn--ghost btn--icon site-header__toggle" data-disclosure="dismissible" aria-expanded="false" aria-controls="site-menu" hidden>
+                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+                  <span class="visually-hidden">Menu</span>
+                </button>
+
+                <div class="site-header__menu" id="site-menu">
+                  <nav class="site-nav" aria-label="Primary">
+                    <ul class="site-nav__list">
+                      <li><a class="site-nav__link" href="/" aria-current="page">Home</a></li>
+                      <li><a class="site-nav__link" href="/features">Features</a></li>
+                      <li><a class="site-nav__link" href="/pricing">Pricing</a></li>
+                    </ul>
+                  </nav>
+                  <div class="site-header__actions">
+                    <a class="btn btn--ghost" href="/sign-in">Sign in</a>
+                    <a class="btn" href="/register">Get started</a>
+                  </div>
+                </div>
+              </div>
+            </header>
+          </div>
+          <details class="gallery__code">
+            <summary>View code</summary>
+            <div class="code-block">
+              <div class="code-block__header"><span>HTML</span></div>
+              <pre tabindex="0" role="region" aria-label="Site header markup"><code id="code-site-header">&lt;header class=&quot;site-header&quot;&gt;
+  &lt;div class=&quot;container site-header__inner&quot;&gt;
+    &lt;a class=&quot;brand&quot; href=&quot;/&quot;&gt;
+      &lt;span class=&quot;brand__mark&quot;&gt;&lt;svg class=&quot;icon&quot; viewBox=&quot;0 0 24 24&quot; aria-hidden=&quot;true&quot;&gt;&lt;path d=&quot;M12 2 2 7l10 5 10-5z&quot;/&gt;&lt;path d=&quot;m2 17 10 5 10-5M2 12l10 5 10-5&quot;/&gt;&lt;/svg&gt;&lt;/span&gt;
+      Acme
+    &lt;/a&gt;
+
+    &lt;button type=&quot;button&quot; class=&quot;btn btn--ghost btn--icon site-header__toggle&quot; data-disclosure=&quot;dismissible&quot; aria-expanded=&quot;false&quot; aria-controls=&quot;site-menu&quot; hidden&gt;
+      &lt;svg class=&quot;icon&quot; viewBox=&quot;0 0 24 24&quot; aria-hidden=&quot;true&quot;&gt;&lt;path d=&quot;M3 6h18M3 12h18M3 18h18&quot;/&gt;&lt;/svg&gt;
+      &lt;span class=&quot;visually-hidden&quot;&gt;Menu&lt;/span&gt;
+    &lt;/button&gt;
+
+    &lt;div class=&quot;site-header__menu&quot; id=&quot;site-menu&quot;&gt;
+      &lt;nav class=&quot;site-nav&quot; aria-label=&quot;Primary&quot;&gt;
+        &lt;ul class=&quot;site-nav__list&quot;&gt;
+          &lt;li&gt;&lt;a class=&quot;site-nav__link&quot; href=&quot;/&quot; aria-current=&quot;page&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a class=&quot;site-nav__link&quot; href=&quot;/features&quot;&gt;Features&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a class=&quot;site-nav__link&quot; href=&quot;/pricing&quot;&gt;Pricing&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/nav&gt;
+      &lt;div class=&quot;site-header__actions&quot;&gt;
+        &lt;a class=&quot;btn btn--ghost&quot; href=&quot;/sign-in&quot;&gt;Sign in&lt;/a&gt;
+        &lt;a class=&quot;btn&quot; href=&quot;/register&quot;&gt;Get started&lt;/a&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/header&gt;</code></pre>
+            </div>
+          </details>
+        </section>
+
+        <section class="gallery__section" id="breadcrumb" aria-labelledby="breadcrumb-title">
+          <div class="gallery__intro">
+            <p class="eyebrow">Navigation</p>
+            <h2 id="breadcrumb-title">Breadcrumb</h2>
+            <p class="text-muted">Hierarchical trail of links to the current page.</p>
+            <p class="path-chip">src/components/breadcrumb.html</p>
+            <div class="cluster">
+              <button type="button" class="btn btn--sm" data-copy data-copy-text="Component: Breadcrumb (vanilla-responsive-ui)&#10;Markup: src/components/breadcrumb.html&#10;CSS: src/assets/css/tokens.css, src/assets/css/themes.css, src/assets/css/base.css, src/assets/css/components/navigation.css&#10;JS: none&#10;Docs: docs/COMPONENTS.md#breadcrumb&#10;Rules: CLAUDE.md (no dependencies, no inline scripts/styles, WCAG 2.2 AA)" data-copy-success="Copied paths" hidden><span data-copy-label>Copy path for AI</span></button>
+              <button type="button" class="btn btn--sm btn--secondary" data-copy data-copy-target="#code-breadcrumb" hidden><span data-copy-label>Copy code</span></button>
+              <a class="btn btn--sm btn--ghost" href="../../docs/COMPONENTS.md#breadcrumb">Docs</a>
+            </div>
+          </div>
+          <div class="gallery__demo stack">
+            <nav class="breadcrumb" aria-label="Breadcrumb">
+              <ol class="breadcrumb__list">
+                <li class="breadcrumb__item"><a href="/">Home</a></li>
+                <li class="breadcrumb__item"><a href="/shop">Shop</a></li>
+                <li class="breadcrumb__item"><span aria-current="page">Headphones</span></li>
+              </ol>
+            </nav>
+          </div>
+          <details class="gallery__code">
+            <summary>View code</summary>
+            <div class="code-block">
+              <div class="code-block__header"><span>HTML</span></div>
+              <pre tabindex="0" role="region" aria-label="Breadcrumb markup"><code id="code-breadcrumb">&lt;nav class=&quot;breadcrumb&quot; aria-label=&quot;Breadcrumb&quot;&gt;
+  &lt;ol class=&quot;breadcrumb__list&quot;&gt;
+    &lt;li class=&quot;breadcrumb__item&quot;&gt;&lt;a href=&quot;/&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;
+    &lt;li class=&quot;breadcrumb__item&quot;&gt;&lt;a href=&quot;/shop&quot;&gt;Shop&lt;/a&gt;&lt;/li&gt;
+    &lt;li class=&quot;breadcrumb__item&quot;&gt;&lt;span aria-current=&quot;page&quot;&gt;Headphones&lt;/span&gt;&lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/nav&gt;</code></pre>
+            </div>
+          </details>
+        </section>
+
+        <section class="gallery__section" id="pagination" aria-labelledby="pagination-title">
+          <div class="gallery__intro">
+            <p class="eyebrow">Navigation</p>
+            <h2 id="pagination-title">Pagination</h2>
+            <p class="text-muted">Page links with previous/next controls.</p>
+            <p class="path-chip">src/components/pagination.html</p>
+            <div class="cluster">
+              <button type="button" class="btn btn--sm" data-copy data-copy-text="Component: Pagination (vanilla-responsive-ui)&#10;Markup: src/components/pagination.html&#10;CSS: src/assets/css/tokens.css, src/assets/css/themes.css, src/assets/css/base.css, src/assets/css/components/navigation.css&#10;JS: none&#10;Docs: docs/COMPONENTS.md#pagination&#10;Rules: CLAUDE.md (no dependencies, no inline scripts/styles, WCAG 2.2 AA)" data-copy-success="Copied paths" hidden><span data-copy-label>Copy path for AI</span></button>
+              <button type="button" class="btn btn--sm btn--secondary" data-copy data-copy-target="#code-pagination" hidden><span data-copy-label>Copy code</span></button>
+              <a class="btn btn--sm btn--ghost" href="../../docs/COMPONENTS.md#pagination">Docs</a>
+            </div>
+          </div>
+          <div class="gallery__demo stack">
+            <nav class="pagination" aria-label="Pagination">
+              <ul class="pagination__list">
+                <li><a class="pagination__link"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg><span class="visually-hidden">Previous page</span></a></li>
+                <li><a class="pagination__link" href="?page=1" aria-current="page"><span class="visually-hidden">Page </span>1</a></li>
+                <li><a class="pagination__link" href="?page=2"><span class="visually-hidden">Page </span>2</a></li>
+                <li><a class="pagination__link" href="?page=3"><span class="visually-hidden">Page </span>3</a></li>
+                <li><a class="pagination__link" href="?page=2"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg><span class="visually-hidden">Next page</span></a></li>
+              </ul>
+            </nav>
+          </div>
+          <details class="gallery__code">
+            <summary>View code</summary>
+            <div class="code-block">
+              <div class="code-block__header"><span>HTML</span></div>
+              <pre tabindex="0" role="region" aria-label="Pagination markup"><code id="code-pagination">&lt;nav class=&quot;pagination&quot; aria-label=&quot;Pagination&quot;&gt;
+  &lt;ul class=&quot;pagination__list&quot;&gt;
+    &lt;li&gt;&lt;a class=&quot;pagination__link&quot;&gt;&lt;svg class=&quot;icon&quot; viewBox=&quot;0 0 24 24&quot; aria-hidden=&quot;true&quot;&gt;&lt;path d=&quot;m15 18-6-6 6-6&quot;/&gt;&lt;/svg&gt;&lt;span class=&quot;visually-hidden&quot;&gt;Previous page&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a class=&quot;pagination__link&quot; href=&quot;?page=1&quot; aria-current=&quot;page&quot;&gt;&lt;span class=&quot;visually-hidden&quot;&gt;Page &lt;/span&gt;1&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a class=&quot;pagination__link&quot; href=&quot;?page=2&quot;&gt;&lt;span class=&quot;visually-hidden&quot;&gt;Page &lt;/span&gt;2&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a class=&quot;pagination__link&quot; href=&quot;?page=3&quot;&gt;&lt;span class=&quot;visually-hidden&quot;&gt;Page &lt;/span&gt;3&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a class=&quot;pagination__link&quot; href=&quot;?page=2&quot;&gt;&lt;svg class=&quot;icon&quot; viewBox=&quot;0 0 24 24&quot; aria-hidden=&quot;true&quot;&gt;&lt;path d=&quot;m9 18 6-6-6-6&quot;/&gt;&lt;/svg&gt;&lt;span class=&quot;visually-hidden&quot;&gt;Next page&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/nav&gt;</code></pre>
+            </div>
+          </details>
+        </section>
+
+        <section class="gallery__section" id="tabs" aria-labelledby="tabs-title">
+          <div class="gallery__intro">
+            <p class="eyebrow">Navigation</p>
+            <h2 id="tabs-title">Tabs</h2>
+            <p class="text-muted">WAI-ARIA tabs with automatic activation. Without JavaScript every panel is shown in sequence with its own heading.</p>
+            <p class="path-chip">src/components/tabs.html</p>
+            <div class="cluster">
+              <button type="button" class="btn btn--sm" data-copy data-copy-text="Component: Tabs (vanilla-responsive-ui)&#10;Markup: src/components/tabs.html&#10;CSS: src/assets/css/tokens.css, src/assets/css/themes.css, src/assets/css/base.css, src/assets/css/components/tabs.css&#10;JS: src/assets/js/components/tabs.js (auto-initialised by src/assets/js/main.js)&#10;Docs: docs/COMPONENTS.md#tabs&#10;Rules: CLAUDE.md (no dependencies, no inline scripts/styles, WCAG 2.2 AA)" data-copy-success="Copied paths" hidden><span data-copy-label>Copy path for AI</span></button>
+              <button type="button" class="btn btn--sm btn--secondary" data-copy data-copy-target="#code-tabs" hidden><span data-copy-label>Copy code</span></button>
+              <a class="btn btn--sm btn--ghost" href="../../docs/COMPONENTS.md#tabs">Docs</a>
+            </div>
+          </div>
+          <div class="gallery__demo stack">
+            <div class="tabs" data-tabs>
+              <div class="tabs__list" data-tabs-list data-label="Account settings" hidden>
+                <button type="button" class="tabs__tab" data-tab="tab-panel-profile">Profile</button>
+                <button type="button" class="tabs__tab" data-tab="tab-panel-billing">Billing</button>
+                <button type="button" class="tabs__tab" data-tab="tab-panel-team">Team</button>
+              </div>
+              <section class="tabs__panel" id="tab-panel-profile" aria-labelledby="tab-panel-profile-heading">
+                <h3 class="tabs__heading" id="tab-panel-profile-heading">Profile</h3>
+                <p>Update your name, photo and contact details.</p>
+              </section>
+              <section class="tabs__panel" id="tab-panel-billing" aria-labelledby="tab-panel-billing-heading">
+                <h3 class="tabs__heading" id="tab-panel-billing-heading">Billing</h3>
+                <p>Manage your plan, payment method and invoices.</p>
+              </section>
+              <section class="tabs__panel" id="tab-panel-team" aria-labelledby="tab-panel-team-heading">
+                <h3 class="tabs__heading" id="tab-panel-team-heading">Team</h3>
+                <p>Invite teammates and manage roles.</p>
+              </section>
+            </div>
+          </div>
+          <details class="gallery__code">
+            <summary>View code</summary>
+            <div class="code-block">
+              <div class="code-block__header"><span>HTML</span></div>
+              <pre tabindex="0" role="region" aria-label="Tabs markup"><code id="code-tabs">&lt;div class=&quot;tabs&quot; data-tabs&gt;
+  &lt;div class=&quot;tabs__list&quot; data-tabs-list data-label=&quot;Account settings&quot; hidden&gt;
+    &lt;button type=&quot;button&quot; class=&quot;tabs__tab&quot; data-tab=&quot;tab-panel-profile&quot;&gt;Profile&lt;/button&gt;
+    &lt;button type=&quot;button&quot; class=&quot;tabs__tab&quot; data-tab=&quot;tab-panel-billing&quot;&gt;Billing&lt;/button&gt;
+    &lt;button type=&quot;button&quot; class=&quot;tabs__tab&quot; data-tab=&quot;tab-panel-team&quot;&gt;Team&lt;/button&gt;
+  &lt;/div&gt;
+  &lt;section class=&quot;tabs__panel&quot; id=&quot;tab-panel-profile&quot; aria-labelledby=&quot;tab-panel-profile-heading&quot;&gt;
+    &lt;h3 class=&quot;tabs__heading&quot; id=&quot;tab-panel-profile-heading&quot;&gt;Profile&lt;/h3&gt;
+    &lt;p&gt;Update your name, photo and contact details.&lt;/p&gt;
+  &lt;/section&gt;
+  &lt;section class=&quot;tabs__panel&quot; id=&quot;tab-panel-billing&quot; aria-labelledby=&quot;tab-panel-billing-heading&quot;&gt;
+    &lt;h3 class=&quot;tabs__heading&quot; id=&quot;tab-panel-billing-heading&quot;&gt;Billing&lt;/h3&gt;
+    &lt;p&gt;Manage your plan, payment method and invoices.&lt;/p&gt;
+  &lt;/section&gt;
+  &lt;section class=&quot;tabs__panel&quot; id=&quot;tab-panel-team&quot; aria-labelledby=&quot;tab-panel-team-heading&quot;&gt;
+    &lt;h3 class=&quot;tabs__heading&quot; id=&quot;tab-panel-team-heading&quot;&gt;Team&lt;/h3&gt;
+    &lt;p&gt;Invite teammates and manage roles.&lt;/p&gt;
+  &lt;/section&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </details>
+        </section>
+
         <section class="gallery__section" id="button" aria-labelledby="button-title">
           <div class="gallery__intro">
+            <p class="eyebrow">Basics</p>
             <h2 id="button-title">Button</h2>
             <p class="text-muted">Primary, secondary, ghost and danger buttons in three sizes, plus icon-only buttons. The same classes style &lt;button&gt; and &lt;a&gt;.</p>
-            <p class="text-sm"><a href="button.html">View snippet source</a> · <a href="../../docs/COMPONENTS.md#button">Documentation</a></p>
+            <p class="path-chip">src/components/button.html</p>
+            <div class="cluster">
+              <button type="button" class="btn btn--sm" data-copy data-copy-text="Component: Button (vanilla-responsive-ui)&#10;Markup: src/components/button.html&#10;CSS: src/assets/css/tokens.css, src/assets/css/themes.css, src/assets/css/base.css, src/assets/css/components/button.css&#10;JS: none&#10;Docs: docs/COMPONENTS.md#button&#10;Rules: CLAUDE.md (no dependencies, no inline scripts/styles, WCAG 2.2 AA)" data-copy-success="Copied paths" hidden><span data-copy-label>Copy path for AI</span></button>
+              <button type="button" class="btn btn--sm btn--secondary" data-copy data-copy-target="#code-button" hidden><span data-copy-label>Copy code</span></button>
+              <a class="btn btn--sm btn--ghost" href="../../docs/COMPONENTS.md#button">Docs</a>
+            </div>
           </div>
           <div class="gallery__demo stack">
             <div class="cluster">
@@ -81,48 +459,91 @@
               </button>
             </div>
           </div>
+          <details class="gallery__code">
+            <summary>View code</summary>
+            <div class="code-block">
+              <div class="code-block__header"><span>HTML</span></div>
+              <pre tabindex="0" role="region" aria-label="Button markup"><code id="code-button">&lt;div class=&quot;cluster&quot;&gt;
+  &lt;button type=&quot;button&quot; class=&quot;btn&quot;&gt;Primary&lt;/button&gt;
+  &lt;button type=&quot;button&quot; class=&quot;btn btn--secondary&quot;&gt;Secondary&lt;/button&gt;
+  &lt;button type=&quot;button&quot; class=&quot;btn btn--ghost&quot;&gt;Ghost&lt;/button&gt;
+  &lt;button type=&quot;button&quot; class=&quot;btn btn--danger&quot;&gt;Delete&lt;/button&gt;
+  &lt;button type=&quot;button&quot; class=&quot;btn&quot; disabled&gt;Disabled&lt;/button&gt;
+&lt;/div&gt;
+&lt;div class=&quot;cluster&quot;&gt;
+  &lt;button type=&quot;button&quot; class=&quot;btn btn--sm&quot;&gt;Small&lt;/button&gt;
+  &lt;button type=&quot;button&quot; class=&quot;btn btn--lg&quot;&gt;Large&lt;/button&gt;
+  &lt;a class=&quot;btn btn--secondary&quot; href=&quot;/docs&quot;&gt;Link styled as button &lt;svg class=&quot;icon&quot; viewBox=&quot;0 0 24 24&quot; aria-hidden=&quot;true&quot;&gt;&lt;path d=&quot;M5 12h14M12 5l7 7-7 7&quot;/&gt;&lt;/svg&gt;&lt;/a&gt;
+  &lt;button type=&quot;button&quot; class=&quot;btn btn--ghost btn--icon&quot;&gt;
+    &lt;svg class=&quot;icon&quot; viewBox=&quot;0 0 24 24&quot; aria-hidden=&quot;true&quot;&gt;&lt;circle cx=&quot;11&quot; cy=&quot;11&quot; r=&quot;7&quot;/&gt;&lt;path d=&quot;m21 21-4.35-4.35&quot;/&gt;&lt;/svg&gt;
+    &lt;span class=&quot;visually-hidden&quot;&gt;Search&lt;/span&gt;
+  &lt;/button&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </details>
         </section>
 
-        <section class="gallery__section" id="alert" aria-labelledby="alert-title">
+        <section class="gallery__section" id="accordion" aria-labelledby="accordion-title">
           <div class="gallery__intro">
-            <h2 id="alert-title">Alert and badge</h2>
-            <p class="text-muted">Inline status messages in four variants, and compact badges for labels and counts.</p>
-            <p class="text-sm"><a href="alert.html">View snippet source</a> · <a href="../../docs/COMPONENTS.md#alert">Documentation</a></p>
-          </div>
-          <div class="gallery__demo stack">
-            <div class="stack">
-              <div class="alert">
-                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
-                <div><p class="alert__title">Information</p><p>Your trial ends in 7 days.</p></div>
-              </div>
-              <div class="alert alert--success">
-                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg>
-                <div><p class="alert__title">Success</p><p>Your changes have been saved.</p></div>
-              </div>
-              <div class="alert alert--warning">
-                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4M12 17h.01"/></svg>
-                <div><p class="alert__title">Warning</p><p>Your storage is 90% full.</p></div>
-              </div>
-              <div class="alert alert--danger">
-                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
-                <div><p class="alert__title">Error</p><p>We couldn’t process your payment.</p></div>
-              </div>
-              <p class="cluster">
-                <span class="badge">Draft</span>
-                <span class="badge badge--primary">New</span>
-                <span class="badge badge--success">Paid</span>
-                <span class="badge badge--warning">Pending</span>
-                <span class="badge badge--danger">Failed</span>
-              </p>
+            <p class="eyebrow">Content</p>
+            <h2 id="accordion-title">Accordion</h2>
+            <p class="text-muted">Collapsible sections built on native &lt;details&gt; and &lt;summary&gt;. Siblings that share a name attribute behave exclusively (one open at a time) in supporting browsers.</p>
+            <p class="path-chip">src/components/accordion.html</p>
+            <div class="cluster">
+              <button type="button" class="btn btn--sm" data-copy data-copy-text="Component: Accordion (vanilla-responsive-ui)&#10;Markup: src/components/accordion.html&#10;CSS: src/assets/css/tokens.css, src/assets/css/themes.css, src/assets/css/base.css, src/assets/css/components/accordion.css&#10;JS: none&#10;Docs: docs/COMPONENTS.md#accordion&#10;Rules: CLAUDE.md (no dependencies, no inline scripts/styles, WCAG 2.2 AA)" data-copy-success="Copied paths" hidden><span data-copy-label>Copy path for AI</span></button>
+              <button type="button" class="btn btn--sm btn--secondary" data-copy data-copy-target="#code-accordion" hidden><span data-copy-label>Copy code</span></button>
+              <a class="btn btn--sm btn--ghost" href="../../docs/COMPONENTS.md#accordion">Docs</a>
             </div>
           </div>
+          <div class="gallery__demo stack">
+            <div class="accordion">
+              <details class="accordion__item" name="example-faq" open>
+                <summary class="accordion__summary">What is included? <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+                <div class="accordion__panel">
+                  <p>Templates, components, design tokens, documentation and validation scripts.</p>
+                </div>
+              </details>
+              <details class="accordion__item" name="example-faq">
+                <summary class="accordion__summary">Is JavaScript required? <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+                <div class="accordion__panel">
+                  <p>No. The accordion works entirely with HTML and CSS.</p>
+                </div>
+              </details>
+            </div>
+          </div>
+          <details class="gallery__code">
+            <summary>View code</summary>
+            <div class="code-block">
+              <div class="code-block__header"><span>HTML</span></div>
+              <pre tabindex="0" role="region" aria-label="Accordion markup"><code id="code-accordion">&lt;div class=&quot;accordion&quot;&gt;
+  &lt;details class=&quot;accordion__item&quot; name=&quot;example-faq&quot; open&gt;
+    &lt;summary class=&quot;accordion__summary&quot;&gt;What is included? &lt;svg class=&quot;icon&quot; viewBox=&quot;0 0 24 24&quot; aria-hidden=&quot;true&quot;&gt;&lt;path d=&quot;m6 9 6 6 6-6&quot;/&gt;&lt;/svg&gt;&lt;/summary&gt;
+    &lt;div class=&quot;accordion__panel&quot;&gt;
+      &lt;p&gt;Templates, components, design tokens, documentation and validation scripts.&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/details&gt;
+  &lt;details class=&quot;accordion__item&quot; name=&quot;example-faq&quot;&gt;
+    &lt;summary class=&quot;accordion__summary&quot;&gt;Is JavaScript required? &lt;svg class=&quot;icon&quot; viewBox=&quot;0 0 24 24&quot; aria-hidden=&quot;true&quot;&gt;&lt;path d=&quot;m6 9 6 6 6-6&quot;/&gt;&lt;/svg&gt;&lt;/summary&gt;
+    &lt;div class=&quot;accordion__panel&quot;&gt;
+      &lt;p&gt;No. The accordion works entirely with HTML and CSS.&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/details&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </details>
         </section>
 
         <section class="gallery__section" id="card" aria-labelledby="card-title">
           <div class="gallery__intro">
+            <p class="eyebrow">Content</p>
             <h2 id="card-title">Card</h2>
             <p class="text-muted">Content card with optional media, stretched link and footer actions. Each card is a size container, so its layout switches to side-by-side when the card itself is wide (container query), wherever it is placed.</p>
-            <p class="text-sm"><a href="card.html">View snippet source</a> · <a href="../../docs/COMPONENTS.md#card">Documentation</a></p>
+            <p class="path-chip">src/components/card.html</p>
+            <div class="cluster">
+              <button type="button" class="btn btn--sm" data-copy data-copy-text="Component: Card (vanilla-responsive-ui)&#10;Markup: src/components/card.html&#10;CSS: src/assets/css/tokens.css, src/assets/css/themes.css, src/assets/css/base.css, src/assets/css/components/card.css&#10;JS: none&#10;Docs: docs/COMPONENTS.md#card&#10;Rules: CLAUDE.md (no dependencies, no inline scripts/styles, WCAG 2.2 AA)" data-copy-success="Copied paths" hidden><span data-copy-label>Copy path for AI</span></button>
+              <button type="button" class="btn btn--sm btn--secondary" data-copy data-copy-target="#code-card" hidden><span data-copy-label>Copy code</span></button>
+              <a class="btn btn--sm btn--ghost" href="../../docs/COMPONENTS.md#card">Docs</a>
+            </div>
           </div>
           <div class="gallery__demo stack">
             <ul class="grid-auto list-reset" role="list">
@@ -155,94 +576,54 @@
               </div>
             </article>
           </div>
-        </section>
-
-        <section class="gallery__section" id="accordion" aria-labelledby="accordion-title">
-          <div class="gallery__intro">
-            <h2 id="accordion-title">Accordion</h2>
-            <p class="text-muted">Collapsible sections built on native &lt;details&gt; and &lt;summary&gt;. Siblings that share a name attribute behave exclusively (one open at a time) in supporting browsers.</p>
-            <p class="text-sm"><a href="accordion.html">View snippet source</a> · <a href="../../docs/COMPONENTS.md#accordion">Documentation</a></p>
-          </div>
-          <div class="gallery__demo stack">
-            <div class="accordion">
-              <details class="accordion__item" name="example-faq" open>
-                <summary class="accordion__summary">What is included? <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
-                <div class="accordion__panel">
-                  <p>Templates, components, design tokens, documentation and validation scripts.</p>
-                </div>
-              </details>
-              <details class="accordion__item" name="example-faq">
-                <summary class="accordion__summary">Is JavaScript required? <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
-                <div class="accordion__panel">
-                  <p>No. The accordion works entirely with HTML and CSS.</p>
-                </div>
-              </details>
+          <details class="gallery__code">
+            <summary>View code</summary>
+            <div class="code-block">
+              <div class="code-block__header"><span>HTML</span></div>
+              <pre tabindex="0" role="region" aria-label="Card markup"><code id="code-card">&lt;ul class=&quot;grid-auto list-reset&quot; role=&quot;list&quot;&gt;
+  &lt;li&gt;
+    &lt;article class=&quot;card&quot;&gt;
+      &lt;div class=&quot;card__inner&quot;&gt;
+        &lt;img class=&quot;card__media&quot; src=&quot;../assets/images/product-lamp.svg&quot; width=&quot;400&quot; height=&quot;300&quot; alt=&quot;&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot;&gt;
+        &lt;div class=&quot;card__body&quot;&gt;
+          &lt;h3 class=&quot;card__title&quot;&gt;&lt;a href=&quot;/articles/design-tokens&quot;&gt;Designing with tokens&lt;/a&gt;&lt;/h3&gt;
+          &lt;p class=&quot;card__text&quot;&gt;How a single file of custom properties keeps a whole product on brand.&lt;/p&gt;
+          &lt;div class=&quot;card__footer&quot;&gt;
+            &lt;span class=&quot;badge badge--primary&quot;&gt;Guide&lt;/span&gt;
+            &lt;span class=&quot;text-sm text-muted&quot;&gt;6 min read&lt;/span&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/article&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;article class=&quot;card&quot;&gt;
+  &lt;div class=&quot;card__inner card__inner--split&quot;&gt;
+    &lt;img class=&quot;card__media&quot; src=&quot;../assets/images/product-camera.svg&quot; width=&quot;400&quot; height=&quot;300&quot; alt=&quot;&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot;&gt;
+    &lt;div class=&quot;card__body&quot;&gt;
+      &lt;h3 class=&quot;card__title&quot;&gt;&lt;a href=&quot;/articles/container-queries&quot;&gt;Container queries in practice&lt;/a&gt;&lt;/h3&gt;
+      &lt;p class=&quot;card__text&quot;&gt;This card turns horizontal when it is at least 34rem wide, independent of the viewport.&lt;/p&gt;
+      &lt;div class=&quot;card__footer&quot;&gt;
+        &lt;button type=&quot;button&quot; class=&quot;btn btn--sm btn--secondary&quot;&gt;Save&lt;span class=&quot;visually-hidden&quot;&gt; article&lt;/span&gt;&lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/article&gt;</code></pre>
             </div>
-          </div>
-        </section>
-
-        <section class="gallery__section" id="tabs" aria-labelledby="tabs-title">
-          <div class="gallery__intro">
-            <h2 id="tabs-title">Tabs</h2>
-            <p class="text-muted">WAI-ARIA tabs with automatic activation. Without JavaScript every panel is shown in sequence with its own heading.</p>
-            <p class="text-sm"><a href="tabs.html">View snippet source</a> · <a href="../../docs/COMPONENTS.md#tabs">Documentation</a></p>
-          </div>
-          <div class="gallery__demo stack">
-            <div class="tabs" data-tabs>
-              <div class="tabs__list" data-tabs-list data-label="Account settings" hidden>
-                <button type="button" class="tabs__tab" data-tab="tab-panel-profile">Profile</button>
-                <button type="button" class="tabs__tab" data-tab="tab-panel-billing">Billing</button>
-                <button type="button" class="tabs__tab" data-tab="tab-panel-team">Team</button>
-              </div>
-              <section class="tabs__panel" id="tab-panel-profile" aria-labelledby="tab-panel-profile-heading">
-                <h3 class="tabs__heading" id="tab-panel-profile-heading">Profile</h3>
-                <p>Update your name, photo and contact details.</p>
-              </section>
-              <section class="tabs__panel" id="tab-panel-billing" aria-labelledby="tab-panel-billing-heading">
-                <h3 class="tabs__heading" id="tab-panel-billing-heading">Billing</h3>
-                <p>Manage your plan, payment method and invoices.</p>
-              </section>
-              <section class="tabs__panel" id="tab-panel-team" aria-labelledby="tab-panel-team-heading">
-                <h3 class="tabs__heading" id="tab-panel-team-heading">Team</h3>
-                <p>Invite teammates and manage roles.</p>
-              </section>
-            </div>
-          </div>
-        </section>
-
-        <section class="gallery__section" id="dialog" aria-labelledby="dialog-title">
-          <div class="gallery__intro">
-            <h2 id="dialog-title">Dialog</h2>
-            <p class="text-muted">Modal dialog on the native &lt;dialog&gt; element, opened and closed declaratively with HTML Invoker Commands (commandfor / command). closedby=&quot;any&quot; enables light dismiss.</p>
-            <p class="text-sm"><a href="dialog.html">View snippet source</a> · <a href="../../docs/COMPONENTS.md#dialog">Documentation</a></p>
-          </div>
-          <div class="gallery__demo stack">
-            <button type="button" class="btn" commandfor="example-dialog" command="show-modal">Open dialog</button>
-
-            <dialog class="dialog" id="example-dialog" aria-labelledby="example-dialog-title" closedby="any">
-              <div class="dialog__header">
-                <h2 class="dialog__title" id="example-dialog-title">Delete project?</h2>
-                <button type="button" class="btn btn--ghost btn--icon" commandfor="example-dialog" command="close">
-                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
-                  <span class="visually-hidden">Close dialog</span>
-                </button>
-              </div>
-              <div class="dialog__body">
-                <p>This permanently deletes the project and its 24 files. This cannot be undone.</p>
-              </div>
-              <div class="dialog__footer">
-                <button type="button" class="btn btn--secondary" commandfor="example-dialog" command="close">Cancel</button>
-                <button type="button" class="btn btn--danger" commandfor="example-dialog" command="close" value="delete">Delete project</button>
-              </div>
-            </dialog>
-          </div>
+          </details>
         </section>
 
         <section class="gallery__section" id="form-field" aria-labelledby="form-field-title">
           <div class="gallery__intro">
+            <p class="eyebrow">Forms</p>
             <h2 id="form-field-title">Form fields</h2>
             <p class="text-muted">Labelled text input, select, textarea, checkbox and radio group with hints and inline errors. Add data-validate to the form for accessible client-side validation.</p>
-            <p class="text-sm"><a href="form-field.html">View snippet source</a> · <a href="../../docs/COMPONENTS.md#form-field">Documentation</a></p>
+            <p class="path-chip">src/components/form-field.html</p>
+            <div class="cluster">
+              <button type="button" class="btn btn--sm" data-copy data-copy-text="Component: Form fields (vanilla-responsive-ui)&#10;Markup: src/components/form-field.html&#10;CSS: src/assets/css/tokens.css, src/assets/css/themes.css, src/assets/css/base.css, src/assets/css/components/form.css, src/assets/css/components/button.css&#10;JS: src/assets/js/components/form-validation.js, src/assets/js/components/password-toggle.js (auto-initialised by src/assets/js/main.js)&#10;Docs: docs/COMPONENTS.md#form-field&#10;Rules: CLAUDE.md (no dependencies, no inline scripts/styles, WCAG 2.2 AA)" data-copy-success="Copied paths" hidden><span data-copy-label>Copy path for AI</span></button>
+              <button type="button" class="btn btn--sm btn--secondary" data-copy data-copy-target="#code-form-field" hidden><span data-copy-label>Copy code</span></button>
+              <a class="btn btn--sm btn--ghost" href="../../docs/COMPONENTS.md#form-field">Docs</a>
+            </div>
           </div>
           <div class="gallery__demo stack">
             <form class="form" action="/contact" method="post" data-validate data-demo-submit="Thanks, your message has been sent.">
@@ -306,13 +687,157 @@
               <p class="alert alert--success" data-form-status hidden></p>
             </form>
           </div>
+          <details class="gallery__code">
+            <summary>View code</summary>
+            <div class="code-block">
+              <div class="code-block__header"><span>HTML</span></div>
+              <pre tabindex="0" role="region" aria-label="Form fields markup"><code id="code-form-field">&lt;form class=&quot;form&quot; action=&quot;/contact&quot; method=&quot;post&quot; data-validate data-demo-submit=&quot;Thanks, your message has been sent.&quot;&gt;
+  &lt;div class=&quot;form-row&quot;&gt;
+    &lt;div class=&quot;field&quot;&gt;
+      &lt;label class=&quot;field__label&quot; for=&quot;example-name&quot;&gt;Full name &lt;span class=&quot;field__required&quot; aria-hidden=&quot;true&quot;&gt;*&lt;/span&gt;&lt;/label&gt;
+      &lt;input class=&quot;input&quot; id=&quot;example-name&quot; name=&quot;name&quot; type=&quot;text&quot; autocomplete=&quot;name&quot; required aria-describedby=&quot;example-name-error&quot; data-error-required=&quot;Enter your full name.&quot;&gt;
+      &lt;p class=&quot;field__error&quot; id=&quot;example-name-error&quot;&gt;&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;field&quot;&gt;
+      &lt;label class=&quot;field__label&quot; for=&quot;example-email&quot;&gt;Email &lt;span class=&quot;field__required&quot; aria-hidden=&quot;true&quot;&gt;*&lt;/span&gt;&lt;/label&gt;
+      &lt;input class=&quot;input&quot; id=&quot;example-email&quot; name=&quot;email&quot; type=&quot;email&quot; autocomplete=&quot;email&quot; required aria-describedby=&quot;example-email-error&quot;&gt;
+      &lt;p class=&quot;field__error&quot; id=&quot;example-email-error&quot;&gt;&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;field&quot;&gt;
+    &lt;label class=&quot;field__label&quot; for=&quot;example-password&quot;&gt;Password &lt;span class=&quot;field__required&quot; aria-hidden=&quot;true&quot;&gt;*&lt;/span&gt;&lt;/label&gt;
+    &lt;p class=&quot;field__hint&quot; id=&quot;example-password-hint&quot;&gt;At least 12 characters.&lt;/p&gt;
+    &lt;div class=&quot;input-group&quot;&gt;
+      &lt;input class=&quot;input&quot; id=&quot;example-password&quot; name=&quot;password&quot; type=&quot;password&quot; autocomplete=&quot;new-password&quot; minlength=&quot;12&quot; required aria-describedby=&quot;example-password-hint example-password-error&quot;&gt;
+      &lt;button type=&quot;button&quot; class=&quot;btn btn--secondary&quot; data-password-toggle aria-controls=&quot;example-password&quot; aria-pressed=&quot;false&quot; hidden&gt;
+        &lt;svg class=&quot;icon&quot; viewBox=&quot;0 0 24 24&quot; aria-hidden=&quot;true&quot;&gt;&lt;path d=&quot;M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z&quot;/&gt;&lt;circle cx=&quot;12&quot; cy=&quot;12&quot; r=&quot;3&quot;/&gt;&lt;/svg&gt; Show&lt;span class=&quot;visually-hidden&quot;&gt; password&lt;/span&gt;
+      &lt;/button&gt;
+    &lt;/div&gt;
+    &lt;p class=&quot;field__error&quot; id=&quot;example-password-error&quot;&gt;&lt;/p&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;field&quot;&gt;
+    &lt;label class=&quot;field__label&quot; for=&quot;example-topic&quot;&gt;Topic&lt;/label&gt;
+    &lt;select class=&quot;select&quot; id=&quot;example-topic&quot; name=&quot;topic&quot;&gt;
+      &lt;option&gt;General question&lt;/option&gt;
+      &lt;option&gt;Billing&lt;/option&gt;
+      &lt;option&gt;Technical support&lt;/option&gt;
+    &lt;/select&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;field&quot;&gt;
+    &lt;label class=&quot;field__label&quot; for=&quot;example-message&quot;&gt;Message&lt;/label&gt;
+    &lt;textarea class=&quot;textarea&quot; id=&quot;example-message&quot; name=&quot;message&quot; rows=&quot;4&quot;&gt;&lt;/textarea&gt;
+  &lt;/div&gt;
+
+  &lt;fieldset class=&quot;fieldset&quot;&gt;
+    &lt;legend class=&quot;fieldset__legend&quot;&gt;Preferred contact method&lt;/legend&gt;
+    &lt;label class=&quot;choice&quot;&gt;&lt;input type=&quot;radio&quot; name=&quot;contact&quot; value=&quot;email&quot; checked&gt; Email&lt;/label&gt;
+    &lt;label class=&quot;choice&quot;&gt;&lt;input type=&quot;radio&quot; name=&quot;contact&quot; value=&quot;phone&quot;&gt; Phone&lt;/label&gt;
+  &lt;/fieldset&gt;
+
+  &lt;div class=&quot;field&quot;&gt;
+    &lt;label class=&quot;choice&quot;&gt;
+      &lt;input type=&quot;checkbox&quot; id=&quot;example-consent&quot; name=&quot;consent&quot; required aria-describedby=&quot;example-consent-error&quot; data-error-required=&quot;Please agree before sending.&quot;&gt;
+      I agree to be contacted about my request
+    &lt;/label&gt;
+    &lt;p class=&quot;field__error&quot; id=&quot;example-consent-error&quot;&gt;&lt;/p&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;form-actions&quot;&gt;
+    &lt;button type=&quot;submit&quot; class=&quot;btn&quot;&gt;Send message&lt;/button&gt;
+    &lt;button type=&quot;reset&quot; class=&quot;btn btn--ghost&quot;&gt;Reset&lt;/button&gt;
+  &lt;/div&gt;
+  &lt;p class=&quot;alert alert--success&quot; data-form-status hidden&gt;&lt;/p&gt;
+&lt;/form&gt;</code></pre>
+            </div>
+          </details>
+        </section>
+
+        <section class="gallery__section" id="alert" aria-labelledby="alert-title">
+          <div class="gallery__intro">
+            <p class="eyebrow">Feedback</p>
+            <h2 id="alert-title">Alert and badge</h2>
+            <p class="text-muted">Inline status messages in four variants, and compact badges for labels and counts.</p>
+            <p class="path-chip">src/components/alert.html</p>
+            <div class="cluster">
+              <button type="button" class="btn btn--sm" data-copy data-copy-text="Component: Alert and badge (vanilla-responsive-ui)&#10;Markup: src/components/alert.html&#10;CSS: src/assets/css/tokens.css, src/assets/css/themes.css, src/assets/css/base.css, src/assets/css/components/feedback.css&#10;JS: none&#10;Docs: docs/COMPONENTS.md#alert&#10;Rules: CLAUDE.md (no dependencies, no inline scripts/styles, WCAG 2.2 AA)" data-copy-success="Copied paths" hidden><span data-copy-label>Copy path for AI</span></button>
+              <button type="button" class="btn btn--sm btn--secondary" data-copy data-copy-target="#code-alert" hidden><span data-copy-label>Copy code</span></button>
+              <a class="btn btn--sm btn--ghost" href="../../docs/COMPONENTS.md#alert">Docs</a>
+            </div>
+          </div>
+          <div class="gallery__demo stack">
+            <div class="stack">
+              <div class="alert">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+                <div><p class="alert__title">Information</p><p>Your trial ends in 7 days.</p></div>
+              </div>
+              <div class="alert alert--success">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg>
+                <div><p class="alert__title">Success</p><p>Your changes have been saved.</p></div>
+              </div>
+              <div class="alert alert--warning">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4M12 17h.01"/></svg>
+                <div><p class="alert__title">Warning</p><p>Your storage is 90% full.</p></div>
+              </div>
+              <div class="alert alert--danger">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+                <div><p class="alert__title">Error</p><p>We couldn’t process your payment.</p></div>
+              </div>
+              <p class="cluster">
+                <span class="badge">Draft</span>
+                <span class="badge badge--primary">New</span>
+                <span class="badge badge--success">Paid</span>
+                <span class="badge badge--warning">Pending</span>
+                <span class="badge badge--danger">Failed</span>
+              </p>
+            </div>
+          </div>
+          <details class="gallery__code">
+            <summary>View code</summary>
+            <div class="code-block">
+              <div class="code-block__header"><span>HTML</span></div>
+              <pre tabindex="0" role="region" aria-label="Alert and badge markup"><code id="code-alert">&lt;div class=&quot;stack&quot;&gt;
+  &lt;div class=&quot;alert&quot;&gt;
+    &lt;svg class=&quot;icon&quot; viewBox=&quot;0 0 24 24&quot; aria-hidden=&quot;true&quot;&gt;&lt;circle cx=&quot;12&quot; cy=&quot;12&quot; r=&quot;10&quot;/&gt;&lt;path d=&quot;M12 16v-4M12 8h.01&quot;/&gt;&lt;/svg&gt;
+    &lt;div&gt;&lt;p class=&quot;alert__title&quot;&gt;Information&lt;/p&gt;&lt;p&gt;Your trial ends in 7 days.&lt;/p&gt;&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;alert alert--success&quot;&gt;
+    &lt;svg class=&quot;icon&quot; viewBox=&quot;0 0 24 24&quot; aria-hidden=&quot;true&quot;&gt;&lt;path d=&quot;M22 11.08V12a10 10 0 1 1-5.93-9.14&quot;/&gt;&lt;path d=&quot;M22 4 12 14.01l-3-3&quot;/&gt;&lt;/svg&gt;
+    &lt;div&gt;&lt;p class=&quot;alert__title&quot;&gt;Success&lt;/p&gt;&lt;p&gt;Your changes have been saved.&lt;/p&gt;&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;alert alert--warning&quot;&gt;
+    &lt;svg class=&quot;icon&quot; viewBox=&quot;0 0 24 24&quot; aria-hidden=&quot;true&quot;&gt;&lt;path d=&quot;M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z&quot;/&gt;&lt;path d=&quot;M12 9v4M12 17h.01&quot;/&gt;&lt;/svg&gt;
+    &lt;div&gt;&lt;p class=&quot;alert__title&quot;&gt;Warning&lt;/p&gt;&lt;p&gt;Your storage is 90% full.&lt;/p&gt;&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;alert alert--danger&quot;&gt;
+    &lt;svg class=&quot;icon&quot; viewBox=&quot;0 0 24 24&quot; aria-hidden=&quot;true&quot;&gt;&lt;circle cx=&quot;12&quot; cy=&quot;12&quot; r=&quot;10&quot;/&gt;&lt;path d=&quot;M12 8v4M12 16h.01&quot;/&gt;&lt;/svg&gt;
+    &lt;div&gt;&lt;p class=&quot;alert__title&quot;&gt;Error&lt;/p&gt;&lt;p&gt;We couldn’t process your payment.&lt;/p&gt;&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;p class=&quot;cluster&quot;&gt;
+    &lt;span class=&quot;badge&quot;&gt;Draft&lt;/span&gt;
+    &lt;span class=&quot;badge badge--primary&quot;&gt;New&lt;/span&gt;
+    &lt;span class=&quot;badge badge--success&quot;&gt;Paid&lt;/span&gt;
+    &lt;span class=&quot;badge badge--warning&quot;&gt;Pending&lt;/span&gt;
+    &lt;span class=&quot;badge badge--danger&quot;&gt;Failed&lt;/span&gt;
+  &lt;/p&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </details>
         </section>
 
         <section class="gallery__section" id="toast" aria-labelledby="toast-title">
           <div class="gallery__intro">
+            <p class="eyebrow">Feedback</p>
             <h2 id="toast-title">Toast</h2>
             <p class="text-muted">Transient notifications announced through a polite live region. Trigger declaratively with data-toast or call showToast() from JavaScript.</p>
-            <p class="text-sm"><a href="toast.html">View snippet source</a> · <a href="../../docs/COMPONENTS.md#toast">Documentation</a></p>
+            <p class="path-chip">src/components/toast.html</p>
+            <div class="cluster">
+              <button type="button" class="btn btn--sm" data-copy data-copy-text="Component: Toast (vanilla-responsive-ui)&#10;Markup: src/components/toast.html&#10;CSS: src/assets/css/tokens.css, src/assets/css/themes.css, src/assets/css/base.css, src/assets/css/components/feedback.css, src/assets/css/components/button.css&#10;JS: src/assets/js/components/toast.js (auto-initialised by src/assets/js/main.js)&#10;Docs: docs/COMPONENTS.md#toast&#10;Rules: CLAUDE.md (no dependencies, no inline scripts/styles, WCAG 2.2 AA)" data-copy-success="Copied paths" hidden><span data-copy-label>Copy path for AI</span></button>
+              <button type="button" class="btn btn--sm btn--secondary" data-copy data-copy-target="#code-toast" hidden><span data-copy-label>Copy code</span></button>
+              <a class="btn btn--sm btn--ghost" href="../../docs/COMPONENTS.md#toast">Docs</a>
+            </div>
           </div>
           <div class="gallery__demo stack">
             <div class="cluster">
@@ -321,13 +846,310 @@
               <button type="button" class="btn btn--secondary" data-toast="Upload failed. Please try again." data-toast-variant="danger">Show error toast</button>
             </div>
           </div>
+          <details class="gallery__code">
+            <summary>View code</summary>
+            <div class="code-block">
+              <div class="code-block__header"><span>HTML</span></div>
+              <pre tabindex="0" role="region" aria-label="Toast markup"><code id="code-toast">&lt;div class=&quot;cluster&quot;&gt;
+  &lt;button type=&quot;button&quot; class=&quot;btn btn--secondary&quot; data-toast=&quot;Link copied to clipboard.&quot;&gt;Show info toast&lt;/button&gt;
+  &lt;button type=&quot;button&quot; class=&quot;btn btn--secondary&quot; data-toast=&quot;Settings saved.&quot; data-toast-variant=&quot;success&quot;&gt;Show success toast&lt;/button&gt;
+  &lt;button type=&quot;button&quot; class=&quot;btn btn--secondary&quot; data-toast=&quot;Upload failed. Please try again.&quot; data-toast-variant=&quot;danger&quot;&gt;Show error toast&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </details>
+        </section>
+
+        <section class="gallery__section" id="dialog" aria-labelledby="dialog-title">
+          <div class="gallery__intro">
+            <p class="eyebrow">Overlays</p>
+            <h2 id="dialog-title">Dialog</h2>
+            <p class="text-muted">Modal dialog on the native &lt;dialog&gt; element, opened and closed declaratively with HTML Invoker Commands (commandfor / command). closedby=&quot;any&quot; enables light dismiss.</p>
+            <p class="path-chip">src/components/dialog.html</p>
+            <div class="cluster">
+              <button type="button" class="btn btn--sm" data-copy data-copy-text="Component: Dialog (vanilla-responsive-ui)&#10;Markup: src/components/dialog.html&#10;CSS: src/assets/css/tokens.css, src/assets/css/themes.css, src/assets/css/base.css, src/assets/css/components/dialog.css&#10;JS: src/assets/js/components/dialog.js (auto-initialised by src/assets/js/main.js)&#10;Docs: docs/COMPONENTS.md#dialog&#10;Rules: CLAUDE.md (no dependencies, no inline scripts/styles, WCAG 2.2 AA)" data-copy-success="Copied paths" hidden><span data-copy-label>Copy path for AI</span></button>
+              <button type="button" class="btn btn--sm btn--secondary" data-copy data-copy-target="#code-dialog" hidden><span data-copy-label>Copy code</span></button>
+              <a class="btn btn--sm btn--ghost" href="../../docs/COMPONENTS.md#dialog">Docs</a>
+            </div>
+          </div>
+          <div class="gallery__demo stack">
+            <button type="button" class="btn" commandfor="example-dialog" command="show-modal">Open dialog</button>
+
+            <dialog class="dialog" id="example-dialog" aria-labelledby="example-dialog-title" closedby="any">
+              <div class="dialog__header">
+                <h2 class="dialog__title" id="example-dialog-title">Delete project?</h2>
+                <button type="button" class="btn btn--ghost btn--icon" commandfor="example-dialog" command="close">
+                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+                  <span class="visually-hidden">Close dialog</span>
+                </button>
+              </div>
+              <div class="dialog__body">
+                <p>This permanently deletes the project and its 24 files. This cannot be undone.</p>
+              </div>
+              <div class="dialog__footer">
+                <button type="button" class="btn btn--secondary" commandfor="example-dialog" command="close">Cancel</button>
+                <button type="button" class="btn btn--danger" commandfor="example-dialog" command="close" value="delete">Delete project</button>
+              </div>
+            </dialog>
+          </div>
+          <details class="gallery__code">
+            <summary>View code</summary>
+            <div class="code-block">
+              <div class="code-block__header"><span>HTML</span></div>
+              <pre tabindex="0" role="region" aria-label="Dialog markup"><code id="code-dialog">&lt;button type=&quot;button&quot; class=&quot;btn&quot; commandfor=&quot;example-dialog&quot; command=&quot;show-modal&quot;&gt;Open dialog&lt;/button&gt;
+
+&lt;dialog class=&quot;dialog&quot; id=&quot;example-dialog&quot; aria-labelledby=&quot;example-dialog-title&quot; closedby=&quot;any&quot;&gt;
+  &lt;div class=&quot;dialog__header&quot;&gt;
+    &lt;h2 class=&quot;dialog__title&quot; id=&quot;example-dialog-title&quot;&gt;Delete project?&lt;/h2&gt;
+    &lt;button type=&quot;button&quot; class=&quot;btn btn--ghost btn--icon&quot; commandfor=&quot;example-dialog&quot; command=&quot;close&quot;&gt;
+      &lt;svg class=&quot;icon&quot; viewBox=&quot;0 0 24 24&quot; aria-hidden=&quot;true&quot;&gt;&lt;path d=&quot;M18 6 6 18M6 6l12 12&quot;/&gt;&lt;/svg&gt;
+      &lt;span class=&quot;visually-hidden&quot;&gt;Close dialog&lt;/span&gt;
+    &lt;/button&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;dialog__body&quot;&gt;
+    &lt;p&gt;This permanently deletes the project and its 24 files. This cannot be undone.&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;dialog__footer&quot;&gt;
+    &lt;button type=&quot;button&quot; class=&quot;btn btn--secondary&quot; commandfor=&quot;example-dialog&quot; command=&quot;close&quot;&gt;Cancel&lt;/button&gt;
+    &lt;button type=&quot;button&quot; class=&quot;btn btn--danger&quot; commandfor=&quot;example-dialog&quot; command=&quot;close&quot; value=&quot;delete&quot;&gt;Delete project&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/dialog&gt;</code></pre>
+            </div>
+          </details>
+        </section>
+
+        <section class="gallery__section" id="chart" aria-labelledby="chart-title">
+          <div class="gallery__intro">
+            <p class="eyebrow">Data</p>
+            <h2 id="chart-title">Charts</h2>
+            <p class="text-muted">Vector (SVG) line, area, bar, stacked bar, horizontal bar, donut and sparkline charts drawn from JSON — a file, your API or inline data — with tooltips, keyboard exploration, toggleable series and an automatic data table.</p>
+            <p class="path-chip">src/components/chart.html</p>
+            <div class="cluster">
+              <button type="button" class="btn btn--sm" data-copy data-copy-text="Component: Charts (vanilla-responsive-ui)&#10;Markup: src/components/chart.html&#10;CSS: src/assets/css/tokens.css, src/assets/css/themes.css, src/assets/css/base.css, src/assets/css/components/chart.css, src/assets/css/components/table.css&#10;JS: src/assets/js/components/chart.js (auto-initialised by src/assets/js/main.js)&#10;Docs: docs/COMPONENTS.md#chart&#10;Rules: CLAUDE.md (no dependencies, no inline scripts/styles, WCAG 2.2 AA)" data-copy-success="Copied paths" hidden><span data-copy-label>Copy path for AI</span></button>
+              <button type="button" class="btn btn--sm btn--secondary" data-copy data-copy-target="#code-chart" hidden><span data-copy-label>Copy code</span></button>
+              <a class="btn btn--sm btn--ghost" href="../../docs/COMPONENTS.md#chart">Docs</a>
+            </div>
+          </div>
+          <div class="gallery__demo stack">
+            <script type="application/json" id="chart-demo-data">
+            [
+              { "month": "2026-05", "revenue": 39410, "target": 41500 },
+              { "month": "2026-06", "revenue": 40680, "target": 42600 },
+              { "month": "2026-07", "revenue": 41220, "target": 43700 },
+              { "month": "2026-08", "revenue": 42960, "target": 44800 },
+              { "month": "2026-09", "revenue": 42950, "target": 46000 },
+              { "month": "2026-10", "revenue": 48290, "target": 48100 }
+            ]
+            </script>
+
+            <div class="grid-auto grid-auto--lg">
+              <figure class="chart" data-viz="area" data-source="#chart-demo-data" data-x="month" data-x-format="short-month" data-series="revenue:Revenue,target:Target" data-format="currency-compact">
+                <figcaption class="chart__caption">
+                  <span class="chart__title">Revenue vs target</span>
+                  <span class="chart__subtitle">Area chart from inline JSON</span>
+                </figcaption>
+                <p class="chart__fallback">Revenue grew from $39.4K in May to $48.3K in October 2026.</p>
+              </figure>
+
+              <figure class="chart" data-viz="bar" data-source="#chart-demo-data" data-x="month" data-x-format="short-month" data-series="revenue:Revenue" data-format="currency-compact">
+                <figcaption class="chart__caption">
+                  <span class="chart__title">Monthly revenue</span>
+                  <span class="chart__subtitle">Bar chart</span>
+                </figcaption>
+                <p class="chart__fallback">Monthly revenue, May to October 2026.</p>
+              </figure>
+
+              <figure class="chart" data-viz="donut" data-source="../data/sales.json" data-path="channels" data-x="channel" data-series="revenue:Revenue" data-format="currency-compact">
+                <figcaption class="chart__caption">
+                  <span class="chart__title">Revenue by channel</span>
+                  <span class="chart__subtitle">Donut chart from src/data/sales.json</span>
+                </figcaption>
+                <p class="chart__fallback">Organic search is the largest channel at $18.5K.</p>
+              </figure>
+
+              <figure class="chart" data-viz="hbar" data-source="../data/sales.json" data-path="regions" data-x="region" data-series="revenue:Revenue:2" data-format="currency-compact">
+                <figcaption class="chart__caption">
+                  <span class="chart__title">Revenue by region</span>
+                  <span class="chart__subtitle">Horizontal bar chart</span>
+                </figcaption>
+                <p class="chart__fallback">North America leads with $19.8K.</p>
+              </figure>
+            </div>
+          </div>
+          <details class="gallery__code">
+            <summary>View code</summary>
+            <div class="code-block">
+              <div class="code-block__header"><span>HTML</span></div>
+              <pre tabindex="0" role="region" aria-label="Charts markup"><code id="code-chart">&lt;script type=&quot;application/json&quot; id=&quot;chart-demo-data&quot;&gt;
+[
+  { &quot;month&quot;: &quot;2026-05&quot;, &quot;revenue&quot;: 39410, &quot;target&quot;: 41500 },
+  { &quot;month&quot;: &quot;2026-06&quot;, &quot;revenue&quot;: 40680, &quot;target&quot;: 42600 },
+  { &quot;month&quot;: &quot;2026-07&quot;, &quot;revenue&quot;: 41220, &quot;target&quot;: 43700 },
+  { &quot;month&quot;: &quot;2026-08&quot;, &quot;revenue&quot;: 42960, &quot;target&quot;: 44800 },
+  { &quot;month&quot;: &quot;2026-09&quot;, &quot;revenue&quot;: 42950, &quot;target&quot;: 46000 },
+  { &quot;month&quot;: &quot;2026-10&quot;, &quot;revenue&quot;: 48290, &quot;target&quot;: 48100 }
+]
+&lt;/script&gt;
+
+&lt;div class=&quot;grid-auto grid-auto--lg&quot;&gt;
+  &lt;figure class=&quot;chart&quot; data-viz=&quot;area&quot; data-source=&quot;#chart-demo-data&quot; data-x=&quot;month&quot; data-x-format=&quot;short-month&quot; data-series=&quot;revenue:Revenue,target:Target&quot; data-format=&quot;currency-compact&quot;&gt;
+    &lt;figcaption class=&quot;chart__caption&quot;&gt;
+      &lt;span class=&quot;chart__title&quot;&gt;Revenue vs target&lt;/span&gt;
+      &lt;span class=&quot;chart__subtitle&quot;&gt;Area chart from inline JSON&lt;/span&gt;
+    &lt;/figcaption&gt;
+    &lt;p class=&quot;chart__fallback&quot;&gt;Revenue grew from $39.4K in May to $48.3K in October 2026.&lt;/p&gt;
+  &lt;/figure&gt;
+
+  &lt;figure class=&quot;chart&quot; data-viz=&quot;bar&quot; data-source=&quot;#chart-demo-data&quot; data-x=&quot;month&quot; data-x-format=&quot;short-month&quot; data-series=&quot;revenue:Revenue&quot; data-format=&quot;currency-compact&quot;&gt;
+    &lt;figcaption class=&quot;chart__caption&quot;&gt;
+      &lt;span class=&quot;chart__title&quot;&gt;Monthly revenue&lt;/span&gt;
+      &lt;span class=&quot;chart__subtitle&quot;&gt;Bar chart&lt;/span&gt;
+    &lt;/figcaption&gt;
+    &lt;p class=&quot;chart__fallback&quot;&gt;Monthly revenue, May to October 2026.&lt;/p&gt;
+  &lt;/figure&gt;
+
+  &lt;figure class=&quot;chart&quot; data-viz=&quot;donut&quot; data-source=&quot;../data/sales.json&quot; data-path=&quot;channels&quot; data-x=&quot;channel&quot; data-series=&quot;revenue:Revenue&quot; data-format=&quot;currency-compact&quot;&gt;
+    &lt;figcaption class=&quot;chart__caption&quot;&gt;
+      &lt;span class=&quot;chart__title&quot;&gt;Revenue by channel&lt;/span&gt;
+      &lt;span class=&quot;chart__subtitle&quot;&gt;Donut chart from src/data/sales.json&lt;/span&gt;
+    &lt;/figcaption&gt;
+    &lt;p class=&quot;chart__fallback&quot;&gt;Organic search is the largest channel at $18.5K.&lt;/p&gt;
+  &lt;/figure&gt;
+
+  &lt;figure class=&quot;chart&quot; data-viz=&quot;hbar&quot; data-source=&quot;../data/sales.json&quot; data-path=&quot;regions&quot; data-x=&quot;region&quot; data-series=&quot;revenue:Revenue:2&quot; data-format=&quot;currency-compact&quot;&gt;
+    &lt;figcaption class=&quot;chart__caption&quot;&gt;
+      &lt;span class=&quot;chart__title&quot;&gt;Revenue by region&lt;/span&gt;
+      &lt;span class=&quot;chart__subtitle&quot;&gt;Horizontal bar chart&lt;/span&gt;
+    &lt;/figcaption&gt;
+    &lt;p class=&quot;chart__fallback&quot;&gt;North America leads with $19.8K.&lt;/p&gt;
+  &lt;/figure&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </details>
+        </section>
+
+        <section class="gallery__section" id="data-grid" aria-labelledby="data-grid-title">
+          <div class="gallery__intro">
+            <p class="eyebrow">Data</p>
+            <h2 id="data-grid-title">Data grid</h2>
+            <p class="text-muted">Table rendered from JSON with search, filters, sortable columns, pagination, CSV export and row actions. Server-rendered rows show until data loads, and the toolbar submits as a normal form without JavaScript.</p>
+            <p class="path-chip">src/components/data-grid.html</p>
+            <div class="cluster">
+              <button type="button" class="btn btn--sm" data-copy data-copy-text="Component: Data grid (vanilla-responsive-ui)&#10;Markup: src/components/data-grid.html&#10;CSS: src/assets/css/tokens.css, src/assets/css/themes.css, src/assets/css/base.css, src/assets/css/components/table.css, src/assets/css/components/form.css, src/assets/css/components/navigation.css, src/assets/css/components/feedback.css, src/assets/css/components/button.css&#10;JS: src/assets/js/components/data-grid.js (auto-initialised by src/assets/js/main.js)&#10;Docs: docs/COMPONENTS.md#data-grid&#10;Rules: CLAUDE.md (no dependencies, no inline scripts/styles, WCAG 2.2 AA)" data-copy-success="Copied paths" hidden><span data-copy-label>Copy path for AI</span></button>
+              <button type="button" class="btn btn--sm btn--secondary" data-copy data-copy-target="#code-data-grid" hidden><span data-copy-label>Copy code</span></button>
+              <a class="btn btn--sm btn--ghost" href="../../docs/COMPONENTS.md#data-grid">Docs</a>
+            </div>
+          </div>
+          <div class="gallery__demo stack">
+            <div class="data-grid" data-grid data-source="../data/orders.json" data-page-size="5" data-label="orders">
+              <form class="data-grid__toolbar" action="/orders" method="get">
+                <div class="field">
+                  <label class="field__label" for="grid-demo-search">Search orders</label>
+                  <input class="input" id="grid-demo-search" name="q" type="search" autocomplete="off" data-grid-search>
+                </div>
+                <div class="field field--narrow">
+                  <label class="field__label" for="grid-demo-status">Status</label>
+                  <select class="select" id="grid-demo-status" name="status" data-grid-filter="status">
+                    <option value="">All statuses</option>
+                    <option>Paid</option>
+                    <option>Shipped</option>
+                    <option>Delivered</option>
+                    <option>Pending</option>
+                    <option>Refunded</option>
+                    <option>Failed</option>
+                  </select>
+                </div>
+                <button type="button" class="btn btn--secondary" data-grid-export hidden>Export CSV</button>
+              </form>
+
+              <div class="table-wrapper" role="region" aria-labelledby="grid-demo-caption" tabindex="0">
+                <table class="table">
+                  <caption id="grid-demo-caption" class="visually-hidden">Orders</caption>
+                  <thead>
+                    <tr>
+                      <th scope="col" data-key="id" data-sort="text">Order</th>
+                      <th scope="col" data-key="customer" data-sort="text" data-render="person">Customer</th>
+                      <th scope="col" data-key="date" data-sort="date" data-format="date">Date</th>
+                      <th scope="col" data-key="status" data-sort="text" data-render="badge">Status</th>
+                      <th scope="col" data-key="total" data-sort="number" data-format="currency" class="num">Total</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><td>#1064</td><td>Isla Murray</td><td>8 Oct 2026</td><td><span class="badge badge--success">Delivered</span></td><td class="num">$277.00</td></tr>
+                    <tr><td>#1063</td><td>Leila Haddad</td><td>8 Oct 2026</td><td><span class="badge badge--primary">Shipped</span></td><td class="num">$251.00</td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="data-grid__footer">
+                <p data-grid-status>Showing 2 orders</p>
+                <nav class="pagination" aria-label="Orders pages" data-grid-pagination></nav>
+              </div>
+            </div>
+          </div>
+          <details class="gallery__code">
+            <summary>View code</summary>
+            <div class="code-block">
+              <div class="code-block__header"><span>HTML</span></div>
+              <pre tabindex="0" role="region" aria-label="Data grid markup"><code id="code-data-grid">&lt;div class=&quot;data-grid&quot; data-grid data-source=&quot;../data/orders.json&quot; data-page-size=&quot;5&quot; data-label=&quot;orders&quot;&gt;
+  &lt;form class=&quot;data-grid__toolbar&quot; action=&quot;/orders&quot; method=&quot;get&quot;&gt;
+    &lt;div class=&quot;field&quot;&gt;
+      &lt;label class=&quot;field__label&quot; for=&quot;grid-demo-search&quot;&gt;Search orders&lt;/label&gt;
+      &lt;input class=&quot;input&quot; id=&quot;grid-demo-search&quot; name=&quot;q&quot; type=&quot;search&quot; autocomplete=&quot;off&quot; data-grid-search&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;field field--narrow&quot;&gt;
+      &lt;label class=&quot;field__label&quot; for=&quot;grid-demo-status&quot;&gt;Status&lt;/label&gt;
+      &lt;select class=&quot;select&quot; id=&quot;grid-demo-status&quot; name=&quot;status&quot; data-grid-filter=&quot;status&quot;&gt;
+        &lt;option value=&quot;&quot;&gt;All statuses&lt;/option&gt;
+        &lt;option&gt;Paid&lt;/option&gt;
+        &lt;option&gt;Shipped&lt;/option&gt;
+        &lt;option&gt;Delivered&lt;/option&gt;
+        &lt;option&gt;Pending&lt;/option&gt;
+        &lt;option&gt;Refunded&lt;/option&gt;
+        &lt;option&gt;Failed&lt;/option&gt;
+      &lt;/select&gt;
+    &lt;/div&gt;
+    &lt;button type=&quot;button&quot; class=&quot;btn btn--secondary&quot; data-grid-export hidden&gt;Export CSV&lt;/button&gt;
+  &lt;/form&gt;
+
+  &lt;div class=&quot;table-wrapper&quot; role=&quot;region&quot; aria-labelledby=&quot;grid-demo-caption&quot; tabindex=&quot;0&quot;&gt;
+    &lt;table class=&quot;table&quot;&gt;
+      &lt;caption id=&quot;grid-demo-caption&quot; class=&quot;visually-hidden&quot;&gt;Orders&lt;/caption&gt;
+      &lt;thead&gt;
+        &lt;tr&gt;
+          &lt;th scope=&quot;col&quot; data-key=&quot;id&quot; data-sort=&quot;text&quot;&gt;Order&lt;/th&gt;
+          &lt;th scope=&quot;col&quot; data-key=&quot;customer&quot; data-sort=&quot;text&quot; data-render=&quot;person&quot;&gt;Customer&lt;/th&gt;
+          &lt;th scope=&quot;col&quot; data-key=&quot;date&quot; data-sort=&quot;date&quot; data-format=&quot;date&quot;&gt;Date&lt;/th&gt;
+          &lt;th scope=&quot;col&quot; data-key=&quot;status&quot; data-sort=&quot;text&quot; data-render=&quot;badge&quot;&gt;Status&lt;/th&gt;
+          &lt;th scope=&quot;col&quot; data-key=&quot;total&quot; data-sort=&quot;number&quot; data-format=&quot;currency&quot; class=&quot;num&quot;&gt;Total&lt;/th&gt;
+        &lt;/tr&gt;
+      &lt;/thead&gt;
+      &lt;tbody&gt;
+        &lt;tr&gt;&lt;td&gt;#1064&lt;/td&gt;&lt;td&gt;Isla Murray&lt;/td&gt;&lt;td&gt;8 Oct 2026&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;badge badge--success&quot;&gt;Delivered&lt;/span&gt;&lt;/td&gt;&lt;td class=&quot;num&quot;&gt;$277.00&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;#1063&lt;/td&gt;&lt;td&gt;Leila Haddad&lt;/td&gt;&lt;td&gt;8 Oct 2026&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;badge badge--primary&quot;&gt;Shipped&lt;/span&gt;&lt;/td&gt;&lt;td class=&quot;num&quot;&gt;$251.00&lt;/td&gt;&lt;/tr&gt;
+      &lt;/tbody&gt;
+    &lt;/table&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;data-grid__footer&quot;&gt;
+    &lt;p data-grid-status&gt;Showing 2 orders&lt;/p&gt;
+    &lt;nav class=&quot;pagination&quot; aria-label=&quot;Orders pages&quot; data-grid-pagination&gt;&lt;/nav&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </details>
         </section>
 
         <section class="gallery__section" id="data-table" aria-labelledby="data-table-title">
           <div class="gallery__intro">
+            <p class="eyebrow">Data</p>
             <h2 id="data-table-title">Data table</h2>
             <p class="text-muted">Responsive table in a scrollable, keyboard-focusable region. Add data-sortable for sortable columns and data-chart to draw proportional bars behind data-value cells.</p>
-            <p class="text-sm"><a href="data-table.html">View snippet source</a> · <a href="../../docs/COMPONENTS.md#data-table">Documentation</a></p>
+            <p class="path-chip">src/components/data-table.html</p>
+            <div class="cluster">
+              <button type="button" class="btn btn--sm" data-copy data-copy-text="Component: Data table (vanilla-responsive-ui)&#10;Markup: src/components/data-table.html&#10;CSS: src/assets/css/tokens.css, src/assets/css/themes.css, src/assets/css/base.css, src/assets/css/components/table.css, src/assets/css/components/feedback.css&#10;JS: src/assets/js/components/table-sort.js, src/assets/js/components/data-chart.js (auto-initialised by src/assets/js/main.js)&#10;Docs: docs/COMPONENTS.md#data-table&#10;Rules: CLAUDE.md (no dependencies, no inline scripts/styles, WCAG 2.2 AA)" data-copy-success="Copied paths" hidden><span data-copy-label>Copy path for AI</span></button>
+              <button type="button" class="btn btn--sm btn--secondary" data-copy data-copy-target="#code-data-table" hidden><span data-copy-label>Copy code</span></button>
+              <a class="btn btn--sm btn--ghost" href="../../docs/COMPONENTS.md#data-table">Docs</a>
+            </div>
           </div>
           <div class="gallery__demo stack">
             <div class="table-wrapper" role="region" aria-labelledby="example-orders-caption" tabindex="0">
@@ -361,49 +1183,565 @@
               </table>
             </div>
           </div>
+          <details class="gallery__code">
+            <summary>View code</summary>
+            <div class="code-block">
+              <div class="code-block__header"><span>HTML</span></div>
+              <pre tabindex="0" role="region" aria-label="Data table markup"><code id="code-data-table">&lt;div class=&quot;table-wrapper&quot; role=&quot;region&quot; aria-labelledby=&quot;example-orders-caption&quot; tabindex=&quot;0&quot;&gt;
+  &lt;table class=&quot;table&quot; data-sortable&gt;
+    &lt;caption id=&quot;example-orders-caption&quot;&gt;Recent orders&lt;/caption&gt;
+    &lt;thead&gt;
+      &lt;tr&gt;
+        &lt;th scope=&quot;col&quot; data-sort=&quot;text&quot;&gt;Customer&lt;/th&gt;
+        &lt;th scope=&quot;col&quot; data-sort=&quot;date&quot;&gt;Date&lt;/th&gt;
+        &lt;th scope=&quot;col&quot;&gt;Status&lt;/th&gt;
+        &lt;th scope=&quot;col&quot; data-sort=&quot;number&quot; class=&quot;num&quot;&gt;Amount&lt;/th&gt;
+      &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+      &lt;tr&gt;&lt;td&gt;Olivia Chen&lt;/td&gt;&lt;td data-sort-value=&quot;2026-10-08&quot;&gt;&lt;time datetime=&quot;2026-10-08&quot;&gt;8 Oct 2026&lt;/time&gt;&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;badge badge--success&quot;&gt;Paid&lt;/span&gt;&lt;/td&gt;&lt;td class=&quot;num&quot; data-sort-value=&quot;249&quot;&gt;$249.00&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;Noah Williams&lt;/td&gt;&lt;td data-sort-value=&quot;2026-10-07&quot;&gt;&lt;time datetime=&quot;2026-10-07&quot;&gt;7 Oct 2026&lt;/time&gt;&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;badge badge--warning&quot;&gt;Pending&lt;/span&gt;&lt;/td&gt;&lt;td class=&quot;num&quot; data-sort-value=&quot;1120.5&quot;&gt;$1,120.50&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;Sofia García&lt;/td&gt;&lt;td data-sort-value=&quot;2026-10-06&quot;&gt;&lt;time datetime=&quot;2026-10-06&quot;&gt;6 Oct 2026&lt;/time&gt;&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;badge badge--success&quot;&gt;Paid&lt;/span&gt;&lt;/td&gt;&lt;td class=&quot;num&quot; data-sort-value=&quot;89.99&quot;&gt;$89.99&lt;/td&gt;&lt;/tr&gt;
+    &lt;/tbody&gt;
+  &lt;/table&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;table-wrapper&quot; role=&quot;region&quot; aria-labelledby=&quot;example-chart-caption&quot; tabindex=&quot;0&quot;&gt;
+  &lt;table class=&quot;table&quot; data-chart&gt;
+    &lt;caption id=&quot;example-chart-caption&quot;&gt;Visitors by device&lt;/caption&gt;
+    &lt;thead&gt;&lt;tr&gt;&lt;th scope=&quot;col&quot;&gt;Device&lt;/th&gt;&lt;th scope=&quot;col&quot;&gt;Visitors&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+    &lt;tbody&gt;
+      &lt;tr&gt;&lt;th scope=&quot;row&quot;&gt;Mobile&lt;/th&gt;&lt;td data-value=&quot;6120&quot;&gt;6,120&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;th scope=&quot;row&quot;&gt;Desktop&lt;/th&gt;&lt;td data-value=&quot;3480&quot;&gt;3,480&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;th scope=&quot;row&quot;&gt;Tablet&lt;/th&gt;&lt;td data-value=&quot;910&quot;&gt;910&lt;/td&gt;&lt;/tr&gt;
+    &lt;/tbody&gt;
+  &lt;/table&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </details>
         </section>
 
-        <section class="gallery__section" id="breadcrumb" aria-labelledby="breadcrumb-title">
+        <section class="gallery__section" id="chat" aria-labelledby="chat-title">
           <div class="gallery__intro">
-            <h2 id="breadcrumb-title">Breadcrumb</h2>
-            <p class="text-muted">Hierarchical trail of links to the current page.</p>
-            <p class="text-sm"><a href="breadcrumb.html">View snippet source</a> · <a href="../../docs/COMPONENTS.md#breadcrumb">Documentation</a></p>
+            <p class="eyebrow">AI</p>
+            <h2 id="chat-title">AI chat</h2>
+            <p class="text-muted">Embeddable assistant panel with streaming replies, Markdown and code blocks, tool-call steps, inline charts, sources, follow-up suggestions, message actions (copy, regenerate, feedback) and saved history. Connect any model or agent backend with data-chat-endpoint (NDJSON, SSE or text streams) or registerTransport().</p>
+            <p class="path-chip">src/components/chat.html</p>
+            <div class="cluster">
+              <button type="button" class="btn btn--sm" data-copy data-copy-text="Component: AI chat (vanilla-responsive-ui)&#10;Markup: src/components/chat.html&#10;CSS: src/assets/css/tokens.css, src/assets/css/themes.css, src/assets/css/base.css, src/assets/css/components/chat.css, src/assets/css/components/code.css, src/assets/css/components/chart.css, src/assets/css/components/feedback.css, src/assets/css/components/button.css&#10;JS: src/assets/js/components/chat.js (auto-initialised by src/assets/js/main.js)&#10;Docs: docs/COMPONENTS.md#chat&#10;Rules: CLAUDE.md (no dependencies, no inline scripts/styles, WCAG 2.2 AA)" data-copy-success="Copied paths" hidden><span data-copy-label>Copy path for AI</span></button>
+              <button type="button" class="btn btn--sm btn--secondary" data-copy data-copy-target="#code-chat" hidden><span data-copy-label>Copy code</span></button>
+              <a class="btn btn--sm btn--ghost" href="../../docs/COMPONENTS.md#chat">Docs</a>
+            </div>
           </div>
           <div class="gallery__demo stack">
-            <nav class="breadcrumb" aria-label="Breadcrumb">
-              <ol class="breadcrumb__list">
-                <li class="breadcrumb__item"><a href="/">Home</a></li>
-                <li class="breadcrumb__item"><a href="/shop">Shop</a></li>
-                <li class="breadcrumb__item"><span aria-current="page">Headphones</span></li>
-              </ol>
-            </nav>
+            <section class="chat" data-chat data-chat-persona="general" aria-labelledby="demo-chat-title">
+              <header class="chat__header">
+                <span class="avatar avatar--soft"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8zM5 2l.6 1.4L7 4l-1.4.6L5 6l-.6-1.4L3 4l1.4-.6z"/></svg></span>
+                <div class="chat__heading">
+                  <h3 class="chat__title" id="demo-chat-title">Acme AI</h3>
+                  <p class="chat__status">Demo model · streams replies</p>
+                </div>
+                <button type="button" class="btn btn--ghost btn--sm" data-chat-clear hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg> New chat</button>
+              </header>
+              <div class="chat__log" role="log" aria-label="Conversation" aria-live="off" tabindex="0" data-chat-log>
+                <div class="chat__message chat__message--assistant">
+                  <div class="chat__bubble">
+                    <p>Hi! Ask me to write code, explain accessibility rules or plan a project.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="chat__suggestions" data-chat-suggestions hidden>
+                <button type="button" class="chip" data-chat-suggestion>Write a debounce function</button>
+                <button type="button" class="chip" data-chat-suggestion>Plan a product launch</button>
+              </div>
+              <form class="chat__composer" action="/chat" method="post" data-chat-form>
+                <label class="visually-hidden" for="demo-chat-input">Message Acme AI</label>
+                <textarea class="chat__input" id="demo-chat-input" name="message" rows="1" placeholder="Message Acme AI…" required data-chat-input></textarea>
+                <div class="chat__actions">
+                  <button type="submit" class="btn btn--icon btn--sm" data-chat-send>
+                    <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4z"/></svg>
+                    <span class="visually-hidden">Send message</span>
+                  </button>
+                  <button type="button" class="btn btn--icon btn--sm btn--secondary" data-chat-stop hidden>
+                    <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="2"/></svg>
+                    <span class="visually-hidden">Stop generating</span>
+                  </button>
+                </div>
+              </form>
+              <p class="chat__disclaimer">Demo replies are scripted. Set data-chat-endpoint to use your model.</p>
+            </section>
           </div>
+          <details class="gallery__code">
+            <summary>View code</summary>
+            <div class="code-block">
+              <div class="code-block__header"><span>HTML</span></div>
+              <pre tabindex="0" role="region" aria-label="AI chat markup"><code id="code-chat">&lt;section class=&quot;chat&quot; data-chat data-chat-persona=&quot;general&quot; aria-labelledby=&quot;demo-chat-title&quot;&gt;
+  &lt;header class=&quot;chat__header&quot;&gt;
+    &lt;span class=&quot;avatar avatar--soft&quot;&gt;&lt;svg class=&quot;icon&quot; viewBox=&quot;0 0 24 24&quot; aria-hidden=&quot;true&quot;&gt;&lt;path d=&quot;M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z&quot;/&gt;&lt;path d=&quot;M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8zM5 2l.6 1.4L7 4l-1.4.6L5 6l-.6-1.4L3 4l1.4-.6z&quot;/&gt;&lt;/svg&gt;&lt;/span&gt;
+    &lt;div class=&quot;chat__heading&quot;&gt;
+      &lt;h3 class=&quot;chat__title&quot; id=&quot;demo-chat-title&quot;&gt;Acme AI&lt;/h3&gt;
+      &lt;p class=&quot;chat__status&quot;&gt;Demo model · streams replies&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;button type=&quot;button&quot; class=&quot;btn btn--ghost btn--sm&quot; data-chat-clear hidden&gt;&lt;svg class=&quot;icon icon--sm&quot; viewBox=&quot;0 0 24 24&quot; aria-hidden=&quot;true&quot;&gt;&lt;path d=&quot;M12 5v14M5 12h14&quot;/&gt;&lt;/svg&gt; New chat&lt;/button&gt;
+  &lt;/header&gt;
+  &lt;div class=&quot;chat__log&quot; role=&quot;log&quot; aria-label=&quot;Conversation&quot; aria-live=&quot;off&quot; tabindex=&quot;0&quot; data-chat-log&gt;
+    &lt;div class=&quot;chat__message chat__message--assistant&quot;&gt;
+      &lt;div class=&quot;chat__bubble&quot;&gt;
+        &lt;p&gt;Hi! Ask me to write code, explain accessibility rules or plan a project.&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;chat__suggestions&quot; data-chat-suggestions hidden&gt;
+    &lt;button type=&quot;button&quot; class=&quot;chip&quot; data-chat-suggestion&gt;Write a debounce function&lt;/button&gt;
+    &lt;button type=&quot;button&quot; class=&quot;chip&quot; data-chat-suggestion&gt;Plan a product launch&lt;/button&gt;
+  &lt;/div&gt;
+  &lt;form class=&quot;chat__composer&quot; action=&quot;/chat&quot; method=&quot;post&quot; data-chat-form&gt;
+    &lt;label class=&quot;visually-hidden&quot; for=&quot;demo-chat-input&quot;&gt;Message Acme AI&lt;/label&gt;
+    &lt;textarea class=&quot;chat__input&quot; id=&quot;demo-chat-input&quot; name=&quot;message&quot; rows=&quot;1&quot; placeholder=&quot;Message Acme AI…&quot; required data-chat-input&gt;&lt;/textarea&gt;
+    &lt;div class=&quot;chat__actions&quot;&gt;
+      &lt;button type=&quot;submit&quot; class=&quot;btn btn--icon btn--sm&quot; data-chat-send&gt;
+        &lt;svg class=&quot;icon&quot; viewBox=&quot;0 0 24 24&quot; aria-hidden=&quot;true&quot;&gt;&lt;path d=&quot;M22 2 11 13&quot;/&gt;&lt;path d=&quot;M22 2 15 22l-4-9-9-4z&quot;/&gt;&lt;/svg&gt;
+        &lt;span class=&quot;visually-hidden&quot;&gt;Send message&lt;/span&gt;
+      &lt;/button&gt;
+      &lt;button type=&quot;button&quot; class=&quot;btn btn--icon btn--sm btn--secondary&quot; data-chat-stop hidden&gt;
+        &lt;svg class=&quot;icon&quot; viewBox=&quot;0 0 24 24&quot; aria-hidden=&quot;true&quot;&gt;&lt;rect x=&quot;6&quot; y=&quot;6&quot; width=&quot;12&quot; height=&quot;12&quot; rx=&quot;2&quot;/&gt;&lt;/svg&gt;
+        &lt;span class=&quot;visually-hidden&quot;&gt;Stop generating&lt;/span&gt;
+      &lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/form&gt;
+  &lt;p class=&quot;chat__disclaimer&quot;&gt;Demo replies are scripted. Set data-chat-endpoint to use your model.&lt;/p&gt;
+&lt;/section&gt;</code></pre>
+            </div>
+          </details>
         </section>
 
-        <section class="gallery__section" id="pagination" aria-labelledby="pagination-title">
+        <section class="gallery__section" id="chat-message" aria-labelledby="chat-message-title">
           <div class="gallery__intro">
-            <h2 id="pagination-title">Pagination</h2>
-            <p class="text-muted">Page links with previous/next controls.</p>
-            <p class="text-sm"><a href="pagination.html">View snippet source</a> · <a href="../../docs/COMPONENTS.md#pagination">Documentation</a></p>
+            <p class="eyebrow">AI</p>
+            <h2 id="chat-message-title">Chat messages</h2>
+            <p class="text-muted">Static anatomy of chat messages for server-rendered transcripts or custom renderers: user bubble, assistant reply with Markdown, a code block, a tool-call step, sources, a typing indicator and message actions.</p>
+            <p class="path-chip">src/components/chat-message.html</p>
+            <div class="cluster">
+              <button type="button" class="btn btn--sm" data-copy data-copy-text="Component: Chat messages (vanilla-responsive-ui)&#10;Markup: src/components/chat-message.html&#10;CSS: src/assets/css/tokens.css, src/assets/css/themes.css, src/assets/css/base.css, src/assets/css/components/chat.css, src/assets/css/components/code.css, src/assets/css/components/button.css, src/assets/css/components/feedback.css&#10;JS: src/assets/js/components/copy.js (auto-initialised by src/assets/js/main.js)&#10;Docs: docs/COMPONENTS.md#chat-message&#10;Rules: CLAUDE.md (no dependencies, no inline scripts/styles, WCAG 2.2 AA)" data-copy-success="Copied paths" hidden><span data-copy-label>Copy path for AI</span></button>
+              <button type="button" class="btn btn--sm btn--secondary" data-copy data-copy-target="#code-chat-message" hidden><span data-copy-label>Copy code</span></button>
+              <a class="btn btn--sm btn--ghost" href="../../docs/COMPONENTS.md#chat-message">Docs</a>
+            </div>
           </div>
           <div class="gallery__demo stack">
-            <nav class="pagination" aria-label="Pagination">
-              <ul class="pagination__list">
-                <li><a class="pagination__link"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg><span class="visually-hidden">Previous page</span></a></li>
-                <li><a class="pagination__link" href="?page=1" aria-current="page"><span class="visually-hidden">Page </span>1</a></li>
-                <li><a class="pagination__link" href="?page=2"><span class="visually-hidden">Page </span>2</a></li>
-                <li><a class="pagination__link" href="?page=3"><span class="visually-hidden">Page </span>3</a></li>
-                <li><a class="pagination__link" href="?page=2"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg><span class="visually-hidden">Next page</span></a></li>
-              </ul>
-            </nav>
+            <div class="chat__log" role="log" aria-label="Example conversation" tabindex="0">
+              <div class="chat__message chat__message--user">
+                <div class="chat__bubble">
+                  <p class="visually-hidden">You said:</p>
+                  <div class="chat__content"><p class="chat__user-text">How many orders are pending?</p></div>
+                </div>
+              </div>
+
+              <div class="chat__message chat__message--assistant">
+                <span class="avatar avatar--sm avatar--soft chat__avatar"><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="8" width="18" height="12" rx="3"/><path d="M12 8V4M8 2h8M9 13v2M15 13v2"/></svg></span>
+                <div class="chat__bubble">
+                  <p class="visually-hidden">Assistant said:</p>
+                  <div class="chat__content">
+                    <details class="chat__tool chat__tool--done">
+                      <summary><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> <span class="chat__tool-name">Searching orders</span> <span class="chat__tool-status">Completed</span></summary>
+                      <p class="chat__tool-label">Result</p>
+                      <pre class="chat__tool-io">64 orders scanned · 6 pending · 3 failed</pre>
+                    </details>
+                    <div class="chat__markdown">
+                      <p><strong>6 orders are pending</strong> and 3 failed in the last 60 days. Run this query to list them:</p>
+                      <div class="code-block">
+                        <div class="code-block__header">
+                          <span>sql</span>
+                          <button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-target="#demo-message-code" hidden><span data-copy-label>Copy code</span></button>
+                        </div>
+                        <pre tabindex="0" role="region" aria-label="SQL example"><code id="demo-message-code">SELECT id, customer, total
+FROM orders
+WHERE status IN ('Pending', 'Failed');</code></pre>
+                      </div>
+                    </div>
+                    <div class="chat__sources">
+                      <p class="chat__tool-label">Sources</p>
+                      <ol class="chat__sources-list">
+                        <li><a href="../data/orders.json">orders.json</a></li>
+                      </ol>
+                    </div>
+                  </div>
+                  <div class="chat__message-actions">
+                    <button type="button" class="btn btn--ghost btn--icon btn--sm"><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span class="visually-hidden">Copy response</span></button>
+                    <button type="button" class="btn btn--ghost btn--icon btn--sm" aria-pressed="false"><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10v12M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2a3.13 3.13 0 0 1 3 3.88z"/></svg><span class="visually-hidden">Good response</span></button>
+                    <button type="button" class="btn btn--ghost btn--icon btn--sm" aria-pressed="false"><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M17 14V2M9 18.12 10 14H4.17a2 2 0 0 1-1.92-2.56l2.33-8A2 2 0 0 1 6.5 2H20a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2.76a2 2 0 0 0-1.79 1.11L12 22a3.13 3.13 0 0 1-3-3.88z"/></svg><span class="visually-hidden">Bad response</span></button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="chat__message chat__message--assistant">
+                <span class="avatar avatar--sm avatar--soft chat__avatar"><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="8" width="18" height="12" rx="3"/><path d="M12 8V4M8 2h8M9 13v2M15 13v2"/></svg></span>
+                <div class="chat__bubble">
+                  <div class="chat__typing"><span></span><span></span><span></span><span class="visually-hidden">Assistant is typing</span></div>
+                </div>
+              </div>
+            </div>
           </div>
+          <details class="gallery__code">
+            <summary>View code</summary>
+            <div class="code-block">
+              <div class="code-block__header"><span>HTML</span></div>
+              <pre tabindex="0" role="region" aria-label="Chat messages markup"><code id="code-chat-message">&lt;div class=&quot;chat__log&quot; role=&quot;log&quot; aria-label=&quot;Example conversation&quot; tabindex=&quot;0&quot;&gt;
+  &lt;div class=&quot;chat__message chat__message--user&quot;&gt;
+    &lt;div class=&quot;chat__bubble&quot;&gt;
+      &lt;p class=&quot;visually-hidden&quot;&gt;You said:&lt;/p&gt;
+      &lt;div class=&quot;chat__content&quot;&gt;&lt;p class=&quot;chat__user-text&quot;&gt;How many orders are pending?&lt;/p&gt;&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;chat__message chat__message--assistant&quot;&gt;
+    &lt;span class=&quot;avatar avatar--sm avatar--soft chat__avatar&quot;&gt;&lt;svg class=&quot;icon icon--sm&quot; viewBox=&quot;0 0 24 24&quot; aria-hidden=&quot;true&quot;&gt;&lt;rect x=&quot;3&quot; y=&quot;8&quot; width=&quot;18&quot; height=&quot;12&quot; rx=&quot;3&quot;/&gt;&lt;path d=&quot;M12 8V4M8 2h8M9 13v2M15 13v2&quot;/&gt;&lt;/svg&gt;&lt;/span&gt;
+    &lt;div class=&quot;chat__bubble&quot;&gt;
+      &lt;p class=&quot;visually-hidden&quot;&gt;Assistant said:&lt;/p&gt;
+      &lt;div class=&quot;chat__content&quot;&gt;
+        &lt;details class=&quot;chat__tool chat__tool--done&quot;&gt;
+          &lt;summary&gt;&lt;svg class=&quot;icon icon--sm&quot; viewBox=&quot;0 0 24 24&quot; aria-hidden=&quot;true&quot;&gt;&lt;path d=&quot;M20 6 9 17l-5-5&quot;/&gt;&lt;/svg&gt; &lt;span class=&quot;chat__tool-name&quot;&gt;Searching orders&lt;/span&gt; &lt;span class=&quot;chat__tool-status&quot;&gt;Completed&lt;/span&gt;&lt;/summary&gt;
+          &lt;p class=&quot;chat__tool-label&quot;&gt;Result&lt;/p&gt;
+          &lt;pre class=&quot;chat__tool-io&quot;&gt;64 orders scanned · 6 pending · 3 failed&lt;/pre&gt;
+        &lt;/details&gt;
+        &lt;div class=&quot;chat__markdown&quot;&gt;
+          &lt;p&gt;&lt;strong&gt;6 orders are pending&lt;/strong&gt; and 3 failed in the last 60 days. Run this query to list them:&lt;/p&gt;
+          &lt;div class=&quot;code-block&quot;&gt;
+            &lt;div class=&quot;code-block__header&quot;&gt;
+              &lt;span&gt;sql&lt;/span&gt;
+              &lt;button type=&quot;button&quot; class=&quot;btn btn--ghost btn--sm&quot; data-copy data-copy-target=&quot;#demo-message-code&quot; hidden&gt;&lt;span data-copy-label&gt;Copy code&lt;/span&gt;&lt;/button&gt;
+            &lt;/div&gt;
+            &lt;pre tabindex=&quot;0&quot; role=&quot;region&quot; aria-label=&quot;SQL example&quot;&gt;&lt;code id=&quot;demo-message-code&quot;&gt;SELECT id, customer, total
+FROM orders
+WHERE status IN ('Pending', 'Failed');&lt;/code&gt;&lt;/pre&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;chat__sources&quot;&gt;
+          &lt;p class=&quot;chat__tool-label&quot;&gt;Sources&lt;/p&gt;
+          &lt;ol class=&quot;chat__sources-list&quot;&gt;
+            &lt;li&gt;&lt;a href=&quot;../data/orders.json&quot;&gt;orders.json&lt;/a&gt;&lt;/li&gt;
+          &lt;/ol&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;chat__message-actions&quot;&gt;
+        &lt;button type=&quot;button&quot; class=&quot;btn btn--ghost btn--icon btn--sm&quot;&gt;&lt;svg class=&quot;icon icon--sm&quot; viewBox=&quot;0 0 24 24&quot; aria-hidden=&quot;true&quot;&gt;&lt;rect x=&quot;9&quot; y=&quot;9&quot; width=&quot;13&quot; height=&quot;13&quot; rx=&quot;2&quot;/&gt;&lt;path d=&quot;M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1&quot;/&gt;&lt;/svg&gt;&lt;span class=&quot;visually-hidden&quot;&gt;Copy response&lt;/span&gt;&lt;/button&gt;
+        &lt;button type=&quot;button&quot; class=&quot;btn btn--ghost btn--icon btn--sm&quot; aria-pressed=&quot;false&quot;&gt;&lt;svg class=&quot;icon icon--sm&quot; viewBox=&quot;0 0 24 24&quot; aria-hidden=&quot;true&quot;&gt;&lt;path d=&quot;M7 10v12M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2a3.13 3.13 0 0 1 3 3.88z&quot;/&gt;&lt;/svg&gt;&lt;span class=&quot;visually-hidden&quot;&gt;Good response&lt;/span&gt;&lt;/button&gt;
+        &lt;button type=&quot;button&quot; class=&quot;btn btn--ghost btn--icon btn--sm&quot; aria-pressed=&quot;false&quot;&gt;&lt;svg class=&quot;icon icon--sm&quot; viewBox=&quot;0 0 24 24&quot; aria-hidden=&quot;true&quot;&gt;&lt;path d=&quot;M17 14V2M9 18.12 10 14H4.17a2 2 0 0 1-1.92-2.56l2.33-8A2 2 0 0 1 6.5 2H20a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2.76a2 2 0 0 0-1.79 1.11L12 22a3.13 3.13 0 0 1-3-3.88z&quot;/&gt;&lt;/svg&gt;&lt;span class=&quot;visually-hidden&quot;&gt;Bad response&lt;/span&gt;&lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;chat__message chat__message--assistant&quot;&gt;
+    &lt;span class=&quot;avatar avatar--sm avatar--soft chat__avatar&quot;&gt;&lt;svg class=&quot;icon icon--sm&quot; viewBox=&quot;0 0 24 24&quot; aria-hidden=&quot;true&quot;&gt;&lt;rect x=&quot;3&quot; y=&quot;8&quot; width=&quot;18&quot; height=&quot;12&quot; rx=&quot;3&quot;/&gt;&lt;path d=&quot;M12 8V4M8 2h8M9 13v2M15 13v2&quot;/&gt;&lt;/svg&gt;&lt;/span&gt;
+    &lt;div class=&quot;chat__bubble&quot;&gt;
+      &lt;div class=&quot;chat__typing&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;visually-hidden&quot;&gt;Assistant is typing&lt;/span&gt;&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </details>
+        </section>
+
+        <section class="gallery__section" id="chat-widget" aria-labelledby="chat-widget-title">
+          <div class="gallery__intro">
+            <p class="eyebrow">AI</p>
+            <h2 id="chat-widget-title">Chat widget</h2>
+            <p class="text-muted">Floating &quot;Ask AI&quot; launcher that opens a support assistant panel on any page. The support persona tracks orders, explains returns and shipping and hands off to a person; swap in your own agent with data-chat-endpoint.</p>
+            <p class="path-chip">src/components/chat-widget.html</p>
+            <div class="cluster">
+              <button type="button" class="btn btn--sm" data-copy data-copy-text="Component: Chat widget (vanilla-responsive-ui)&#10;Markup: src/components/chat-widget.html&#10;CSS: src/assets/css/tokens.css, src/assets/css/themes.css, src/assets/css/base.css, src/assets/css/components/chat.css, src/assets/css/components/code.css, src/assets/css/components/feedback.css, src/assets/css/components/button.css&#10;JS: src/assets/js/components/chat.js (auto-initialised by src/assets/js/main.js)&#10;Docs: docs/COMPONENTS.md#chat-widget&#10;Rules: CLAUDE.md (no dependencies, no inline scripts/styles, WCAG 2.2 AA)" data-copy-success="Copied paths" hidden><span data-copy-label>Copy path for AI</span></button>
+              <button type="button" class="btn btn--sm btn--secondary" data-copy data-copy-target="#code-chat-widget" hidden><span data-copy-label>Copy code</span></button>
+              <a class="btn btn--sm btn--ghost" href="../../docs/COMPONENTS.md#chat-widget">Docs</a>
+            </div>
+          </div>
+          <div class="gallery__demo stack">
+            <div class="chat-widget" data-chat-widget>
+              <button type="button" class="btn chat-widget__launcher" aria-expanded="false" aria-controls="demo-widget-panel" data-chat-launcher hidden>
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                <span>Ask Acme AI</span>
+              </button>
+              <div class="chat-widget__panel" id="demo-widget-panel" role="dialog" aria-labelledby="demo-widget-title" hidden>
+                <section class="chat chat--widget" data-chat data-chat-persona="support" data-chat-storage="vr-chat-support-demo">
+                  <header class="chat__header">
+                    <span class="avatar avatar--soft"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="8" width="18" height="12" rx="3"/><path d="M12 8V4M8 2h8M9 13v2M15 13v2"/></svg></span>
+                    <div class="chat__heading">
+                      <h3 class="chat__title" id="demo-widget-title">Acme AI support</h3>
+                      <p class="chat__status">Usually replies instantly</p>
+                    </div>
+                    <button type="button" class="btn btn--ghost btn--icon btn--sm" data-chat-clear hidden>
+                      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M23 4v6h-6M1 20v-6h6"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+                      <span class="visually-hidden">Start a new conversation</span>
+                    </button>
+                    <button type="button" class="btn btn--ghost btn--icon btn--sm" data-chat-close>
+                      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/></svg>
+                      <span class="visually-hidden">Minimise chat</span>
+                    </button>
+                  </header>
+                  <div class="chat__log" role="log" aria-label="Conversation with Acme AI support" aria-live="off" tabindex="0" data-chat-log>
+                    <div class="chat__message chat__message--assistant">
+                      <div class="chat__bubble">
+                        <p>Hi! I can track orders, explain returns and shipping, or connect you with a person. What can I help with?</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="chat__suggestions" data-chat-suggestions hidden>
+                    <button type="button" class="chip" data-chat-suggestion>Where is my order #1061?</button>
+                    <button type="button" class="chip" data-chat-suggestion>What is your return policy?</button>
+                    <button type="button" class="chip" data-chat-suggestion>Talk to a person</button>
+                  </div>
+                  <form class="chat__composer" action="/contact" method="get" data-chat-form>
+                    <label class="visually-hidden" for="demo-widget-input">Message Acme AI support</label>
+                    <textarea class="chat__input" id="demo-widget-input" name="message" rows="1" placeholder="Ask a question…" required data-chat-input></textarea>
+                    <div class="chat__actions">
+                      <button type="submit" class="btn btn--icon btn--sm" data-chat-send>
+                        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4z"/></svg>
+                        <span class="visually-hidden">Send message</span>
+                      </button>
+                      <button type="button" class="btn btn--icon btn--sm btn--secondary" data-chat-stop hidden>
+                        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="2"/></svg>
+                        <span class="visually-hidden">Stop generating</span>
+                      </button>
+                    </div>
+                  </form>
+                  <p class="chat__disclaimer">Demo assistant with sample data. Answers may be inaccurate.</p>
+                </section>
+              </div>
+            </div>
+          </div>
+          <details class="gallery__code">
+            <summary>View code</summary>
+            <div class="code-block">
+              <div class="code-block__header"><span>HTML</span></div>
+              <pre tabindex="0" role="region" aria-label="Chat widget markup"><code id="code-chat-widget">&lt;div class=&quot;chat-widget&quot; data-chat-widget&gt;
+  &lt;button type=&quot;button&quot; class=&quot;btn chat-widget__launcher&quot; aria-expanded=&quot;false&quot; aria-controls=&quot;demo-widget-panel&quot; data-chat-launcher hidden&gt;
+    &lt;svg class=&quot;icon&quot; viewBox=&quot;0 0 24 24&quot; aria-hidden=&quot;true&quot;&gt;&lt;path d=&quot;M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z&quot;/&gt;&lt;/svg&gt;
+    &lt;span&gt;Ask Acme AI&lt;/span&gt;
+  &lt;/button&gt;
+  &lt;div class=&quot;chat-widget__panel&quot; id=&quot;demo-widget-panel&quot; role=&quot;dialog&quot; aria-labelledby=&quot;demo-widget-title&quot; hidden&gt;
+    &lt;section class=&quot;chat chat--widget&quot; data-chat data-chat-persona=&quot;support&quot; data-chat-storage=&quot;vr-chat-support-demo&quot;&gt;
+      &lt;header class=&quot;chat__header&quot;&gt;
+        &lt;span class=&quot;avatar avatar--soft&quot;&gt;&lt;svg class=&quot;icon&quot; viewBox=&quot;0 0 24 24&quot; aria-hidden=&quot;true&quot;&gt;&lt;rect x=&quot;3&quot; y=&quot;8&quot; width=&quot;18&quot; height=&quot;12&quot; rx=&quot;3&quot;/&gt;&lt;path d=&quot;M12 8V4M8 2h8M9 13v2M15 13v2&quot;/&gt;&lt;/svg&gt;&lt;/span&gt;
+        &lt;div class=&quot;chat__heading&quot;&gt;
+          &lt;h3 class=&quot;chat__title&quot; id=&quot;demo-widget-title&quot;&gt;Acme AI support&lt;/h3&gt;
+          &lt;p class=&quot;chat__status&quot;&gt;Usually replies instantly&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;button type=&quot;button&quot; class=&quot;btn btn--ghost btn--icon btn--sm&quot; data-chat-clear hidden&gt;
+          &lt;svg class=&quot;icon&quot; viewBox=&quot;0 0 24 24&quot; aria-hidden=&quot;true&quot;&gt;&lt;path d=&quot;M23 4v6h-6M1 20v-6h6&quot;/&gt;&lt;path d=&quot;M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15&quot;/&gt;&lt;/svg&gt;
+          &lt;span class=&quot;visually-hidden&quot;&gt;Start a new conversation&lt;/span&gt;
+        &lt;/button&gt;
+        &lt;button type=&quot;button&quot; class=&quot;btn btn--ghost btn--icon btn--sm&quot; data-chat-close&gt;
+          &lt;svg class=&quot;icon&quot; viewBox=&quot;0 0 24 24&quot; aria-hidden=&quot;true&quot;&gt;&lt;path d=&quot;M5 12h14&quot;/&gt;&lt;/svg&gt;
+          &lt;span class=&quot;visually-hidden&quot;&gt;Minimise chat&lt;/span&gt;
+        &lt;/button&gt;
+      &lt;/header&gt;
+      &lt;div class=&quot;chat__log&quot; role=&quot;log&quot; aria-label=&quot;Conversation with Acme AI support&quot; aria-live=&quot;off&quot; tabindex=&quot;0&quot; data-chat-log&gt;
+        &lt;div class=&quot;chat__message chat__message--assistant&quot;&gt;
+          &lt;div class=&quot;chat__bubble&quot;&gt;
+            &lt;p&gt;Hi! I can track orders, explain returns and shipping, or connect you with a person. What can I help with?&lt;/p&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;chat__suggestions&quot; data-chat-suggestions hidden&gt;
+        &lt;button type=&quot;button&quot; class=&quot;chip&quot; data-chat-suggestion&gt;Where is my order #1061?&lt;/button&gt;
+        &lt;button type=&quot;button&quot; class=&quot;chip&quot; data-chat-suggestion&gt;What is your return policy?&lt;/button&gt;
+        &lt;button type=&quot;button&quot; class=&quot;chip&quot; data-chat-suggestion&gt;Talk to a person&lt;/button&gt;
+      &lt;/div&gt;
+      &lt;form class=&quot;chat__composer&quot; action=&quot;/contact&quot; method=&quot;get&quot; data-chat-form&gt;
+        &lt;label class=&quot;visually-hidden&quot; for=&quot;demo-widget-input&quot;&gt;Message Acme AI support&lt;/label&gt;
+        &lt;textarea class=&quot;chat__input&quot; id=&quot;demo-widget-input&quot; name=&quot;message&quot; rows=&quot;1&quot; placeholder=&quot;Ask a question…&quot; required data-chat-input&gt;&lt;/textarea&gt;
+        &lt;div class=&quot;chat__actions&quot;&gt;
+          &lt;button type=&quot;submit&quot; class=&quot;btn btn--icon btn--sm&quot; data-chat-send&gt;
+            &lt;svg class=&quot;icon&quot; viewBox=&quot;0 0 24 24&quot; aria-hidden=&quot;true&quot;&gt;&lt;path d=&quot;M22 2 11 13&quot;/&gt;&lt;path d=&quot;M22 2 15 22l-4-9-9-4z&quot;/&gt;&lt;/svg&gt;
+            &lt;span class=&quot;visually-hidden&quot;&gt;Send message&lt;/span&gt;
+          &lt;/button&gt;
+          &lt;button type=&quot;button&quot; class=&quot;btn btn--icon btn--sm btn--secondary&quot; data-chat-stop hidden&gt;
+            &lt;svg class=&quot;icon&quot; viewBox=&quot;0 0 24 24&quot; aria-hidden=&quot;true&quot;&gt;&lt;rect x=&quot;6&quot; y=&quot;6&quot; width=&quot;12&quot; height=&quot;12&quot; rx=&quot;2&quot;/&gt;&lt;/svg&gt;
+            &lt;span class=&quot;visually-hidden&quot;&gt;Stop generating&lt;/span&gt;
+          &lt;/button&gt;
+        &lt;/div&gt;
+      &lt;/form&gt;
+      &lt;p class=&quot;chat__disclaimer&quot;&gt;Demo assistant with sample data. Answers may be inaccurate.&lt;/p&gt;
+    &lt;/section&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </details>
+        </section>
+
+        <section class="gallery__section" id="theme-customizer" aria-labelledby="theme-customizer-title">
+          <div class="gallery__intro">
+            <p class="eyebrow">Theming</p>
+            <h2 id="theme-customizer-title">Theme customizer</h2>
+            <p class="text-muted">Drawer for choosing light/dark/system mode, a brand preset or any custom brand colour, density and corner radius. Changes apply live, persist per visitor, report WCAG contrast and generate CSS you can paste into brand.css.</p>
+            <p class="path-chip">src/components/theme-customizer.html</p>
+            <div class="cluster">
+              <button type="button" class="btn btn--sm" data-copy data-copy-text="Component: Theme customizer (vanilla-responsive-ui)&#10;Markup: src/components/theme-customizer.html&#10;CSS: src/assets/css/tokens.css, src/assets/css/themes.css, src/assets/css/base.css, src/assets/css/themes.css, src/assets/css/components/form.css, src/assets/css/components/dialog.css, src/assets/css/components/button.css&#10;JS: src/assets/js/components/theme-customizer.js, src/assets/js/components/copy.js (auto-initialised by src/assets/js/main.js)&#10;Docs: docs/COMPONENTS.md#theme-customizer&#10;Rules: CLAUDE.md (no dependencies, no inline scripts/styles, WCAG 2.2 AA)" data-copy-success="Copied paths" hidden><span data-copy-label>Copy path for AI</span></button>
+              <button type="button" class="btn btn--sm btn--secondary" data-copy data-copy-target="#code-theme-customizer" hidden><span data-copy-label>Copy code</span></button>
+              <a class="btn btn--sm btn--ghost" href="../../docs/COMPONENTS.md#theme-customizer">Docs</a>
+            </div>
+          </div>
+          <div class="gallery__demo stack">
+            <button type="button" class="btn btn--secondary" commandfor="demo-theme-panel" command="show-modal" data-theme-panel-trigger hidden>
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></svg> Customize theme
+            </button>
+
+            <dialog class="dialog drawer" id="demo-theme-panel" aria-labelledby="demo-theme-panel-title" closedby="any">
+              <div class="dialog__header">
+                <h2 class="dialog__title" id="demo-theme-panel-title">Customize theme</h2>
+                <button type="button" class="btn btn--ghost btn--icon" commandfor="demo-theme-panel" command="close">
+                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+                  <span class="visually-hidden">Close theme panel</span>
+                </button>
+              </div>
+              <form class="dialog__body form" data-theme-customizer>
+                <fieldset class="fieldset">
+                  <legend class="fieldset__legend">Mode</legend>
+                  <div class="segmented">
+                    <label class="segmented__option"><input type="radio" name="mode" value="system"><span class="segmented__label">System</span></label>
+                    <label class="segmented__option"><input type="radio" name="mode" value="light"><span class="segmented__label"><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg> Light</span></label>
+                    <label class="segmented__option"><input type="radio" name="mode" value="dark"><span class="segmented__label"><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg> Dark</span></label>
+                  </div>
+                </fieldset>
+
+                <fieldset class="fieldset">
+                  <legend class="fieldset__legend">Brand colour</legend>
+                  <div class="swatches">
+                    <label class="swatch"><input type="radio" name="brand" value="indigo"><span class="swatch__chip swatch__chip--indigo"></span> Indigo</label>
+                    <label class="swatch"><input type="radio" name="brand" value="teal"><span class="swatch__chip swatch__chip--teal"></span> Teal</label>
+                    <label class="swatch"><input type="radio" name="brand" value="violet"><span class="swatch__chip swatch__chip--violet"></span> Violet</label>
+                    <label class="swatch"><input type="radio" name="brand" value="rose"><span class="swatch__chip swatch__chip--rose"></span> Rose</label>
+                    <label class="swatch"><input type="radio" name="brand" value="amber"><span class="swatch__chip swatch__chip--amber"></span> Amber</label>
+                    <label class="swatch"><input type="radio" name="brand" value="slate"><span class="swatch__chip swatch__chip--slate"></span> Slate</label>
+                  </div>
+                </fieldset>
+
+                <div class="field">
+                  <label class="field__label" for="demo-theme-custom-color">Or pick any brand colour</label>
+                  <p class="field__hint" id="demo-theme-custom-hint">Shades are adjusted automatically to keep text readable in both themes.</p>
+                  <input class="color-input" id="demo-theme-custom-color" name="custom" type="color" value="#2a4fcf" aria-describedby="demo-theme-custom-hint">
+                </div>
+
+                <p class="text-sm text-muted" role="status" data-theme-contrast></p>
+
+                <fieldset class="fieldset">
+                  <legend class="fieldset__legend">Density</legend>
+                  <div class="segmented">
+                    <label class="segmented__option"><input type="radio" name="density" value="compact"><span class="segmented__label">Compact</span></label>
+                    <label class="segmented__option"><input type="radio" name="density" value="default"><span class="segmented__label">Default</span></label>
+                    <label class="segmented__option"><input type="radio" name="density" value="comfortable"><span class="segmented__label">Comfortable</span></label>
+                  </div>
+                </fieldset>
+
+                <fieldset class="fieldset">
+                  <legend class="fieldset__legend">Corners</legend>
+                  <div class="segmented">
+                    <label class="segmented__option"><input type="radio" name="radius" value="sharp"><span class="segmented__label">Sharp</span></label>
+                    <label class="segmented__option"><input type="radio" name="radius" value="default"><span class="segmented__label">Default</span></label>
+                    <label class="segmented__option"><input type="radio" name="radius" value="round"><span class="segmented__label">Round</span></label>
+                  </div>
+                </fieldset>
+
+                <div class="field">
+                  <label class="field__label" for="demo-theme-css-output">CSS for your project</label>
+                  <textarea class="textarea textarea--code" id="demo-theme-css-output" readonly rows="8" data-theme-output></textarea>
+                </div>
+
+                <div class="form-actions">
+                  <button type="button" class="btn btn--sm" data-copy data-copy-target="#demo-theme-css-output" hidden><span data-copy-label>Copy CSS</span></button>
+                  <button type="button" class="btn btn--sm btn--ghost" data-theme-reset>Reset to defaults</button>
+                </div>
+              </form>
+            </dialog>
+          </div>
+          <details class="gallery__code">
+            <summary>View code</summary>
+            <div class="code-block">
+              <div class="code-block__header"><span>HTML</span></div>
+              <pre tabindex="0" role="region" aria-label="Theme customizer markup"><code id="code-theme-customizer">&lt;button type=&quot;button&quot; class=&quot;btn btn--secondary&quot; commandfor=&quot;demo-theme-panel&quot; command=&quot;show-modal&quot; data-theme-panel-trigger hidden&gt;
+  &lt;svg class=&quot;icon&quot; viewBox=&quot;0 0 24 24&quot; aria-hidden=&quot;true&quot;&gt;&lt;path d=&quot;M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6&quot;/&gt;&lt;/svg&gt; Customize theme
+&lt;/button&gt;
+
+&lt;dialog class=&quot;dialog drawer&quot; id=&quot;demo-theme-panel&quot; aria-labelledby=&quot;demo-theme-panel-title&quot; closedby=&quot;any&quot;&gt;
+  &lt;div class=&quot;dialog__header&quot;&gt;
+    &lt;h2 class=&quot;dialog__title&quot; id=&quot;demo-theme-panel-title&quot;&gt;Customize theme&lt;/h2&gt;
+    &lt;button type=&quot;button&quot; class=&quot;btn btn--ghost btn--icon&quot; commandfor=&quot;demo-theme-panel&quot; command=&quot;close&quot;&gt;
+      &lt;svg class=&quot;icon&quot; viewBox=&quot;0 0 24 24&quot; aria-hidden=&quot;true&quot;&gt;&lt;path d=&quot;M18 6 6 18M6 6l12 12&quot;/&gt;&lt;/svg&gt;
+      &lt;span class=&quot;visually-hidden&quot;&gt;Close theme panel&lt;/span&gt;
+    &lt;/button&gt;
+  &lt;/div&gt;
+  &lt;form class=&quot;dialog__body form&quot; data-theme-customizer&gt;
+    &lt;fieldset class=&quot;fieldset&quot;&gt;
+      &lt;legend class=&quot;fieldset__legend&quot;&gt;Mode&lt;/legend&gt;
+      &lt;div class=&quot;segmented&quot;&gt;
+        &lt;label class=&quot;segmented__option&quot;&gt;&lt;input type=&quot;radio&quot; name=&quot;mode&quot; value=&quot;system&quot;&gt;&lt;span class=&quot;segmented__label&quot;&gt;System&lt;/span&gt;&lt;/label&gt;
+        &lt;label class=&quot;segmented__option&quot;&gt;&lt;input type=&quot;radio&quot; name=&quot;mode&quot; value=&quot;light&quot;&gt;&lt;span class=&quot;segmented__label&quot;&gt;&lt;svg class=&quot;icon icon--sm&quot; viewBox=&quot;0 0 24 24&quot; aria-hidden=&quot;true&quot;&gt;&lt;circle cx=&quot;12&quot; cy=&quot;12&quot; r=&quot;4&quot;/&gt;&lt;path d=&quot;M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41&quot;/&gt;&lt;/svg&gt; Light&lt;/span&gt;&lt;/label&gt;
+        &lt;label class=&quot;segmented__option&quot;&gt;&lt;input type=&quot;radio&quot; name=&quot;mode&quot; value=&quot;dark&quot;&gt;&lt;span class=&quot;segmented__label&quot;&gt;&lt;svg class=&quot;icon icon--sm&quot; viewBox=&quot;0 0 24 24&quot; aria-hidden=&quot;true&quot;&gt;&lt;path d=&quot;M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z&quot;/&gt;&lt;/svg&gt; Dark&lt;/span&gt;&lt;/label&gt;
+      &lt;/div&gt;
+    &lt;/fieldset&gt;
+
+    &lt;fieldset class=&quot;fieldset&quot;&gt;
+      &lt;legend class=&quot;fieldset__legend&quot;&gt;Brand colour&lt;/legend&gt;
+      &lt;div class=&quot;swatches&quot;&gt;
+        &lt;label class=&quot;swatch&quot;&gt;&lt;input type=&quot;radio&quot; name=&quot;brand&quot; value=&quot;indigo&quot;&gt;&lt;span class=&quot;swatch__chip swatch__chip--indigo&quot;&gt;&lt;/span&gt; Indigo&lt;/label&gt;
+        &lt;label class=&quot;swatch&quot;&gt;&lt;input type=&quot;radio&quot; name=&quot;brand&quot; value=&quot;teal&quot;&gt;&lt;span class=&quot;swatch__chip swatch__chip--teal&quot;&gt;&lt;/span&gt; Teal&lt;/label&gt;
+        &lt;label class=&quot;swatch&quot;&gt;&lt;input type=&quot;radio&quot; name=&quot;brand&quot; value=&quot;violet&quot;&gt;&lt;span class=&quot;swatch__chip swatch__chip--violet&quot;&gt;&lt;/span&gt; Violet&lt;/label&gt;
+        &lt;label class=&quot;swatch&quot;&gt;&lt;input type=&quot;radio&quot; name=&quot;brand&quot; value=&quot;rose&quot;&gt;&lt;span class=&quot;swatch__chip swatch__chip--rose&quot;&gt;&lt;/span&gt; Rose&lt;/label&gt;
+        &lt;label class=&quot;swatch&quot;&gt;&lt;input type=&quot;radio&quot; name=&quot;brand&quot; value=&quot;amber&quot;&gt;&lt;span class=&quot;swatch__chip swatch__chip--amber&quot;&gt;&lt;/span&gt; Amber&lt;/label&gt;
+        &lt;label class=&quot;swatch&quot;&gt;&lt;input type=&quot;radio&quot; name=&quot;brand&quot; value=&quot;slate&quot;&gt;&lt;span class=&quot;swatch__chip swatch__chip--slate&quot;&gt;&lt;/span&gt; Slate&lt;/label&gt;
+      &lt;/div&gt;
+    &lt;/fieldset&gt;
+
+    &lt;div class=&quot;field&quot;&gt;
+      &lt;label class=&quot;field__label&quot; for=&quot;demo-theme-custom-color&quot;&gt;Or pick any brand colour&lt;/label&gt;
+      &lt;p class=&quot;field__hint&quot; id=&quot;demo-theme-custom-hint&quot;&gt;Shades are adjusted automatically to keep text readable in both themes.&lt;/p&gt;
+      &lt;input class=&quot;color-input&quot; id=&quot;demo-theme-custom-color&quot; name=&quot;custom&quot; type=&quot;color&quot; value=&quot;#2a4fcf&quot; aria-describedby=&quot;demo-theme-custom-hint&quot;&gt;
+    &lt;/div&gt;
+
+    &lt;p class=&quot;text-sm text-muted&quot; role=&quot;status&quot; data-theme-contrast&gt;&lt;/p&gt;
+
+    &lt;fieldset class=&quot;fieldset&quot;&gt;
+      &lt;legend class=&quot;fieldset__legend&quot;&gt;Density&lt;/legend&gt;
+      &lt;div class=&quot;segmented&quot;&gt;
+        &lt;label class=&quot;segmented__option&quot;&gt;&lt;input type=&quot;radio&quot; name=&quot;density&quot; value=&quot;compact&quot;&gt;&lt;span class=&quot;segmented__label&quot;&gt;Compact&lt;/span&gt;&lt;/label&gt;
+        &lt;label class=&quot;segmented__option&quot;&gt;&lt;input type=&quot;radio&quot; name=&quot;density&quot; value=&quot;default&quot;&gt;&lt;span class=&quot;segmented__label&quot;&gt;Default&lt;/span&gt;&lt;/label&gt;
+        &lt;label class=&quot;segmented__option&quot;&gt;&lt;input type=&quot;radio&quot; name=&quot;density&quot; value=&quot;comfortable&quot;&gt;&lt;span class=&quot;segmented__label&quot;&gt;Comfortable&lt;/span&gt;&lt;/label&gt;
+      &lt;/div&gt;
+    &lt;/fieldset&gt;
+
+    &lt;fieldset class=&quot;fieldset&quot;&gt;
+      &lt;legend class=&quot;fieldset__legend&quot;&gt;Corners&lt;/legend&gt;
+      &lt;div class=&quot;segmented&quot;&gt;
+        &lt;label class=&quot;segmented__option&quot;&gt;&lt;input type=&quot;radio&quot; name=&quot;radius&quot; value=&quot;sharp&quot;&gt;&lt;span class=&quot;segmented__label&quot;&gt;Sharp&lt;/span&gt;&lt;/label&gt;
+        &lt;label class=&quot;segmented__option&quot;&gt;&lt;input type=&quot;radio&quot; name=&quot;radius&quot; value=&quot;default&quot;&gt;&lt;span class=&quot;segmented__label&quot;&gt;Default&lt;/span&gt;&lt;/label&gt;
+        &lt;label class=&quot;segmented__option&quot;&gt;&lt;input type=&quot;radio&quot; name=&quot;radius&quot; value=&quot;round&quot;&gt;&lt;span class=&quot;segmented__label&quot;&gt;Round&lt;/span&gt;&lt;/label&gt;
+      &lt;/div&gt;
+    &lt;/fieldset&gt;
+
+    &lt;div class=&quot;field&quot;&gt;
+      &lt;label class=&quot;field__label&quot; for=&quot;demo-theme-css-output&quot;&gt;CSS for your project&lt;/label&gt;
+      &lt;textarea class=&quot;textarea textarea--code&quot; id=&quot;demo-theme-css-output&quot; readonly rows=&quot;8&quot; data-theme-output&gt;&lt;/textarea&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;form-actions&quot;&gt;
+      &lt;button type=&quot;button&quot; class=&quot;btn btn--sm&quot; data-copy data-copy-target=&quot;#demo-theme-css-output&quot; hidden&gt;&lt;span data-copy-label&gt;Copy CSS&lt;/span&gt;&lt;/button&gt;
+      &lt;button type=&quot;button&quot; class=&quot;btn btn--sm btn--ghost&quot; data-theme-reset&gt;Reset to defaults&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/form&gt;
+&lt;/dialog&gt;</code></pre>
+            </div>
+          </details>
         </section>
 
         <section class="gallery__section" id="theme-toggle" aria-labelledby="theme-toggle-title">
           <div class="gallery__intro">
+            <p class="eyebrow">Theming</p>
             <h2 id="theme-toggle-title">Theme toggle</h2>
             <p class="text-muted">Switches between light and dark themes. Follows the operating-system preference until the user chooses, then remembers the choice.</p>
-            <p class="text-sm"><a href="theme-toggle.html">View snippet source</a> · <a href="../../docs/COMPONENTS.md#theme-toggle">Documentation</a></p>
+            <p class="path-chip">src/components/theme-toggle.html</p>
+            <div class="cluster">
+              <button type="button" class="btn btn--sm" data-copy data-copy-text="Component: Theme toggle (vanilla-responsive-ui)&#10;Markup: src/components/theme-toggle.html&#10;CSS: src/assets/css/tokens.css, src/assets/css/themes.css, src/assets/css/base.css, src/assets/css/components/button.css&#10;JS: src/assets/js/components/theme-toggle.js (auto-initialised by src/assets/js/main.js)&#10;Docs: docs/COMPONENTS.md#theme-toggle&#10;Rules: CLAUDE.md (no dependencies, no inline scripts/styles, WCAG 2.2 AA)" data-copy-success="Copied paths" hidden><span data-copy-label>Copy path for AI</span></button>
+              <button type="button" class="btn btn--sm btn--secondary" data-copy data-copy-target="#code-theme-toggle" hidden><span data-copy-label>Copy code</span></button>
+              <a class="btn btn--sm btn--ghost" href="../../docs/COMPONENTS.md#theme-toggle">Docs</a>
+            </div>
           </div>
           <div class="gallery__demo stack">
             <button type="button" class="btn btn--ghost btn--icon theme-toggle" data-theme-toggle aria-pressed="false" hidden>
@@ -412,94 +1750,91 @@
               <span class="visually-hidden">Dark theme</span>
             </button>
           </div>
-        </section>
-
-        <section class="gallery__section" id="site-header" aria-labelledby="site-header-title">
-          <div class="gallery__intro">
-            <h2 id="site-header-title">Site header</h2>
-            <p class="text-muted">Sticky header with brand, primary navigation and actions. On small screens the menu collapses behind a disclosure button.</p>
-            <p class="text-sm"><a href="site-header.html">View snippet source</a> · <a href="../../docs/COMPONENTS.md#site-header">Documentation</a></p>
-          </div>
-          <div class="gallery__demo stack">
-            <header class="site-header">
-              <div class="container site-header__inner">
-                <a class="brand" href="/">
-                  <span class="brand__mark"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 2 7l10 5 10-5z"/><path d="m2 17 10 5 10-5M2 12l10 5 10-5"/></svg></span>
-                  Acme
-                </a>
-
-                <button type="button" class="btn btn--ghost btn--icon site-header__toggle" data-disclosure="dismissible" aria-expanded="false" aria-controls="site-menu" hidden>
-                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
-                  <span class="visually-hidden">Menu</span>
-                </button>
-
-                <div class="site-header__menu" id="site-menu">
-                  <nav class="site-nav" aria-label="Primary">
-                    <ul class="site-nav__list">
-                      <li><a class="site-nav__link" href="/" aria-current="page">Home</a></li>
-                      <li><a class="site-nav__link" href="/features">Features</a></li>
-                      <li><a class="site-nav__link" href="/pricing">Pricing</a></li>
-                    </ul>
-                  </nav>
-                  <div class="site-header__actions">
-                    <a class="btn btn--ghost" href="/sign-in">Sign in</a>
-                    <a class="btn" href="/register">Get started</a>
-                  </div>
-                </div>
-              </div>
-            </header>
-          </div>
-        </section>
-
-        <section class="gallery__section" id="site-footer" aria-labelledby="site-footer-title">
-          <div class="gallery__intro">
-            <h2 id="site-footer-title">Site footer</h2>
-            <p class="text-muted">Footer with brand blurb, grouped link columns and a bottom bar.</p>
-            <p class="text-sm"><a href="site-footer.html">View snippet source</a> · <a href="../../docs/COMPONENTS.md#site-footer">Documentation</a></p>
-          </div>
-          <div class="gallery__demo stack">
-            <footer class="site-footer">
-              <div class="container">
-                <div class="site-footer__grid">
-                  <div class="site-footer__about stack">
-                    <a class="brand" href="/">
-                      <span class="brand__mark"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 2 7l10 5 10-5z"/><path d="m2 17 10 5 10-5M2 12l10 5 10-5"/></svg></span>
-                      Acme
-                    </a>
-                    <p class="text-muted">Dependency-free, accessible UI templates.</p>
-                  </div>
-                  <nav aria-labelledby="example-footer-product">
-                    <h2 class="site-footer__heading" id="example-footer-product">Product</h2>
-                    <ul class="site-footer__links">
-                      <li><a href="/features">Features</a></li>
-                      <li><a href="/pricing">Pricing</a></li>
-                    </ul>
-                  </nav>
-                  <nav aria-labelledby="example-footer-company">
-                    <h2 class="site-footer__heading" id="example-footer-company">Company</h2>
-                    <ul class="site-footer__links">
-                      <li><a href="/about">About</a></li>
-                      <li><a href="/contact">Contact</a></li>
-                    </ul>
-                  </nav>
-                  <nav aria-labelledby="example-footer-legal">
-                    <h2 class="site-footer__heading" id="example-footer-legal">Legal</h2>
-                    <ul class="site-footer__links">
-                      <li><a href="/privacy">Privacy</a></li>
-                      <li><a href="/terms">Terms</a></li>
-                    </ul>
-                  </nav>
-                </div>
-                <div class="site-footer__bottom">
-                  <p>© 2026 Acme. All rights reserved.</p>
-                </div>
-              </div>
-            </footer>
-          </div>
+          <details class="gallery__code">
+            <summary>View code</summary>
+            <div class="code-block">
+              <div class="code-block__header"><span>HTML</span></div>
+              <pre tabindex="0" role="region" aria-label="Theme toggle markup"><code id="code-theme-toggle">&lt;button type=&quot;button&quot; class=&quot;btn btn--ghost btn--icon theme-toggle&quot; data-theme-toggle aria-pressed=&quot;false&quot; hidden&gt;
+  &lt;svg class=&quot;icon theme-toggle__light&quot; viewBox=&quot;0 0 24 24&quot; aria-hidden=&quot;true&quot;&gt;&lt;path d=&quot;M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z&quot;/&gt;&lt;/svg&gt;
+  &lt;svg class=&quot;icon theme-toggle__dark&quot; viewBox=&quot;0 0 24 24&quot; aria-hidden=&quot;true&quot;&gt;&lt;circle cx=&quot;12&quot; cy=&quot;12&quot; r=&quot;4&quot;/&gt;&lt;path d=&quot;M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41&quot;/&gt;&lt;/svg&gt;
+  &lt;span class=&quot;visually-hidden&quot;&gt;Dark theme&lt;/span&gt;
+&lt;/button&gt;</code></pre>
+            </div>
+          </details>
         </section>
         </div>
       </div>
     </div>
   </main>
+
+  <!-- @partial theme-panel -->
+  <dialog class="dialog drawer" id="theme-panel" aria-labelledby="theme-panel-title" closedby="any">
+    <div class="dialog__header">
+      <h2 class="dialog__title" id="theme-panel-title">Customize theme</h2>
+      <button type="button" class="btn btn--ghost btn--icon" commandfor="theme-panel" command="close">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+        <span class="visually-hidden">Close theme panel</span>
+      </button>
+    </div>
+    <form class="dialog__body form" data-theme-customizer>
+      <fieldset class="fieldset">
+        <legend class="fieldset__legend">Mode</legend>
+        <div class="segmented">
+          <label class="segmented__option"><input type="radio" name="mode" value="system"><span class="segmented__label">System</span></label>
+          <label class="segmented__option"><input type="radio" name="mode" value="light"><span class="segmented__label"><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg> Light</span></label>
+          <label class="segmented__option"><input type="radio" name="mode" value="dark"><span class="segmented__label"><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg> Dark</span></label>
+        </div>
+      </fieldset>
+
+      <fieldset class="fieldset">
+        <legend class="fieldset__legend">Brand colour</legend>
+        <div class="swatches">
+          <label class="swatch"><input type="radio" name="brand" value="indigo"><span class="swatch__chip swatch__chip--indigo"></span> Indigo</label>
+          <label class="swatch"><input type="radio" name="brand" value="teal"><span class="swatch__chip swatch__chip--teal"></span> Teal</label>
+          <label class="swatch"><input type="radio" name="brand" value="violet"><span class="swatch__chip swatch__chip--violet"></span> Violet</label>
+          <label class="swatch"><input type="radio" name="brand" value="rose"><span class="swatch__chip swatch__chip--rose"></span> Rose</label>
+          <label class="swatch"><input type="radio" name="brand" value="amber"><span class="swatch__chip swatch__chip--amber"></span> Amber</label>
+          <label class="swatch"><input type="radio" name="brand" value="slate"><span class="swatch__chip swatch__chip--slate"></span> Slate</label>
+        </div>
+      </fieldset>
+
+      <div class="field">
+        <label class="field__label" for="theme-custom-color">Or pick any brand colour</label>
+        <p class="field__hint" id="theme-custom-hint">Shades are adjusted automatically to keep text readable in both themes.</p>
+        <input class="color-input" id="theme-custom-color" name="custom" type="color" value="#2a4fcf" aria-describedby="theme-custom-hint">
+      </div>
+
+      <p class="text-sm text-muted" role="status" data-theme-contrast></p>
+
+      <fieldset class="fieldset">
+        <legend class="fieldset__legend">Density</legend>
+        <div class="segmented">
+          <label class="segmented__option"><input type="radio" name="density" value="compact"><span class="segmented__label">Compact</span></label>
+          <label class="segmented__option"><input type="radio" name="density" value="default"><span class="segmented__label">Default</span></label>
+          <label class="segmented__option"><input type="radio" name="density" value="comfortable"><span class="segmented__label">Comfortable</span></label>
+        </div>
+      </fieldset>
+
+      <fieldset class="fieldset">
+        <legend class="fieldset__legend">Corners</legend>
+        <div class="segmented">
+          <label class="segmented__option"><input type="radio" name="radius" value="sharp"><span class="segmented__label">Sharp</span></label>
+          <label class="segmented__option"><input type="radio" name="radius" value="default"><span class="segmented__label">Default</span></label>
+          <label class="segmented__option"><input type="radio" name="radius" value="round"><span class="segmented__label">Round</span></label>
+        </div>
+      </fieldset>
+
+      <div class="field">
+        <label class="field__label" for="theme-css-output">CSS for your project</label>
+        <textarea class="textarea textarea--code" id="theme-css-output" readonly rows="8" data-theme-output></textarea>
+      </div>
+
+      <div class="form-actions">
+        <button type="button" class="btn btn--sm" data-copy data-copy-target="#theme-css-output" hidden><span data-copy-label>Copy CSS</span></button>
+        <button type="button" class="btn btn--sm btn--ghost" data-theme-reset>Reset to defaults</button>
+      </div>
+    </form>
+  </dialog>
+  <!-- @end theme-panel -->
 </body>
 </html>

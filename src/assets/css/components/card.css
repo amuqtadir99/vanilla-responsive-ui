@@ -195,3 +195,22 @@
     border-color: CanvasText;
   }
 }
+
+/* ---- Description list (key/value details) ----------------------------- */
+.details-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(12rem, 100%), 1fr));
+  gap: var(--spacing-sm) var(--spacing-md);
+  margin: 0;
+}
+
+.details-list dt {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+}
+
+.details-list dd {
+  margin: 0;
+  font-weight: var(--font-weight-medium);
+  overflow-wrap: anywhere;
+}

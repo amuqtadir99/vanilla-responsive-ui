@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; form-action 'self'; base-uri 'self'; object-src 'none'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>Studio wireless headphones — Acme Store</title>
+  <meta name="description" content="Product detail template: CSS-only image gallery, colour swatches, quantity stepper, add to cart, specifications and a review breakdown chart.">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0e1116" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="../../assets/icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../../assets/css/tokens.css">
+  <link rel="stylesheet" href="../../assets/css/themes.css">
+  <link rel="stylesheet" href="../../assets/css/base.css">
+  <link rel="stylesheet" href="../../assets/css/layouts.css">
+  <link rel="stylesheet" href="../../assets/css/components/button.css">
+  <link rel="stylesheet" href="../../assets/css/components/header.css">
+  <link rel="stylesheet" href="../../assets/css/components/navigation.css">
+  <link rel="stylesheet" href="../../assets/css/components/card.css">
+  <link rel="stylesheet" href="../../assets/css/components/form.css">
+  <link rel="stylesheet" href="../../assets/css/components/dialog.css">
+  <link rel="stylesheet" href="../../assets/css/components/feedback.css">
+  <link rel="stylesheet" href="../../assets/css/components/footer.css">
+  <link rel="stylesheet" href="../../assets/css/components/accordion.css">
+  <link rel="stylesheet" href="../../assets/css/components/chat.css">
+  <link rel="stylesheet" href="./shop.css">
+  <link rel="stylesheet" href="../../assets/css/components/table.css">
+  <link rel="stylesheet" href="../../assets/css/components/chart.css">
+  <script type="module" src="../../assets/js/main.js"></script>
+  <script type="module" src="shop.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- @partial template-switcher -->
+  <!-- Demo navigation between templates. Remove this partial in production. -->
+  <nav class="demo-bar" aria-label="Template gallery">
+    <div class="container demo-bar__inner">
+      <a class="demo-bar__home" href="../../index.html">vanilla-responsive-ui</a>
+      <ul class="demo-bar__list">
+        <li><a href="../../templates/landing-page/index.html" data-section>Landing</a></li>
+        <li><a href="../../templates/website/index.html" data-section>Website</a></li>
+        <li><a href="../../templates/dashboard/index.html" data-section>Dashboard</a></li>
+        <li><a href="../../templates/e-commerce/index.html" data-section aria-current="true">Shop</a></li>
+        <li><a href="../../templates/ai/index.html" data-section>AI assistant</a></li>
+        <li><a href="../../templates/auth/index.html" data-section>Auth</a></li>
+        <li><a href="../../components/index.html" data-section>Components</a></li>
+        <li><a href="../../layouts/index.html" data-section>Layouts</a></li>
+      </ul>
+      <div class="demo-bar__actions">
+        <button type="button" class="btn btn--ghost btn--sm" commandfor="theme-panel" command="show-modal" data-theme-panel-trigger hidden>
+          <svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></svg> Theme
+        </button>
+      </div>
+    </div>
+  </nav>
+  <!-- @end template-switcher -->
+  <!-- @partial shop-header -->
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="brand" href="../../templates/e-commerce/index.html">
+        <span class="brand__mark"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 8 12 3 3 8v8l9 5 9-5z"/><path d="m3 8 9 5 9-5M12 13v8"/></svg></span>
+        Acme Store
+      </a>
+
+      <button type="button" class="btn btn--ghost btn--icon site-header__toggle" data-disclosure="dismissible" aria-expanded="false" aria-controls="site-menu" hidden>
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        <span class="visually-hidden">Menu</span>
+      </button>
+
+      <div class="site-header__menu" id="site-menu">
+        <nav class="site-nav" aria-label="Primary">
+          <ul class="site-nav__list">
+            <li><a class="site-nav__link" href="../../templates/e-commerce/index.html">Shop all</a></li>
+            <li><a class="site-nav__link" href="../../templates/e-commerce/product.html" aria-current="page">Featured</a></li>
+            <li><a class="site-nav__link" href="../../templates/e-commerce/cart.html">Cart</a></li>
+            <li><a class="site-nav__link" href="../../templates/website/about.html">About</a></li>
+          </ul>
+        </nav>
+        <div class="site-header__actions">
+          <button type="button" class="btn btn--ghost btn--icon theme-toggle" data-theme-toggle aria-pressed="false" hidden>
+            <svg class="icon theme-toggle__light" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+            <svg class="icon theme-toggle__dark" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+            <span class="visually-hidden">Dark theme</span>
+          </button>
+          <a class="btn btn--ghost btn--icon" href="../../templates/auth/index.html">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            <span class="visually-hidden">Account</span>
+          </a>
+          <a class="btn btn--ghost btn--icon cart-link" href="../../templates/e-commerce/cart.html">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 3h3l2.4 12.2a2 2 0 0 0 2 1.6h8.2a2 2 0 0 0 2-1.6L21 7H6"/></svg>
+            <span class="visually-hidden">Cart,</span>
+            <span class="badge badge--count" data-cart-count>0</span>
+            <span class="visually-hidden">items</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+  <!-- @end shop-header -->
+
+  <main id="main" tabindex="-1">
+    <div class="container shop">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ol class="breadcrumb__list">
+          <li class="breadcrumb__item"><a href="../website/index.html">Home</a></li>
+          <li class="breadcrumb__item"><a href="index.html">Shop</a></li>
+          <li class="breadcrumb__item"><a href="index.html">Audio</a></li>
+          <li class="breadcrumb__item"><span aria-current="page">Studio wireless headphones</span></li>
+        </ol>
+      </nav>
+
+      <div class="layout product-layout" data-layout="split">
+        <section class="gallery" aria-label="Product images">
+          <div class="gallery__stage">
+            <img class="gallery__image gallery__image--1" src="../../assets/images/product-headphones.svg" width="400" height="300" alt="Studio wireless headphones in blue, front view" fetchpriority="high" decoding="async">
+            <img class="gallery__image gallery__image--2" src="../../assets/images/product-watch.svg" width="400" height="300" alt="Headphones folded in the travel case" loading="lazy" decoding="async">
+            <img class="gallery__image gallery__image--3" src="../../assets/images/product-backpack.svg" width="400" height="300" alt="Headphones stored in the commuter backpack" loading="lazy" decoding="async">
+          </div>
+          <fieldset class="gallery__thumbs">
+            <legend class="visually-hidden">Choose an image</legend>
+            <label class="gallery__thumb"><input type="radio" name="gallery" value="1" checked><img src="../../assets/images/product-headphones.svg" width="400" height="300" alt="Front view" loading="lazy" decoding="async"></label>
+            <label class="gallery__thumb"><input type="radio" name="gallery" value="2"><img src="../../assets/images/product-watch.svg" width="400" height="300" alt="In the travel case" loading="lazy" decoding="async"></label>
+            <label class="gallery__thumb"><input type="radio" name="gallery" value="3"><img src="../../assets/images/product-backpack.svg" width="400" height="300" alt="In the backpack" loading="lazy" decoding="async"></label>
+          </fieldset>
+        </section>
+
+        <section class="stack product-info" aria-labelledby="product-title">
+          <span class="badge badge--danger">Sale</span>
+          <h1 id="product-title">Studio wireless headphones</h1>
+          <p class="rating">
+            <svg class="icon icon--filled icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="icon icon--filled icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="icon icon--filled icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="icon icon--filled icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="icon icon--filled icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
+            <span class="visually-hidden">Rated 4.7 out of 5</span>
+            <a class="rating__count" href="#reviews">128 reviews</a>
+          </p>
+          <p class="product__price product__price--lg">$179 <s><span class="visually-hidden">was </span>$229</s></p>
+          <p>Studio-grade sound with adaptive noise cancelling, 40-hour battery life and a fold-flat design that fits any bag.</p>
+
+          <form class="form" action="cart.html" method="get" data-product-form data-product-id="headphones" data-product-name="Studio wireless headphones" data-price="179" data-image="../../assets/images/product-headphones.svg">
+            <fieldset class="fieldset">
+              <legend class="fieldset__legend">Colour</legend>
+              <div class="swatches">
+                <label class="swatch"><input type="radio" name="variant" value="Indigo" checked><span class="swatch__chip swatch__chip--indigo"></span> Indigo</label>
+                <label class="swatch"><input type="radio" name="variant" value="Slate"><span class="swatch__chip swatch__chip--slate"></span> Slate</label>
+                <label class="swatch"><input type="radio" name="variant" value="Rose"><span class="swatch__chip swatch__chip--rose"></span> Rose</label>
+              </div>
+            </fieldset>
+            <div class="field">
+              <label class="field__label" for="product-qty">Quantity</label>
+              <div class="stepper">
+                <button type="button" class="btn btn--secondary btn--icon" data-step="-1" hidden><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/></svg><span class="visually-hidden">Decrease quantity</span></button>
+                <input class="input stepper__input" id="product-qty" name="qty" type="number" inputmode="numeric" min="1" max="10" value="1">
+                <button type="button" class="btn btn--secondary btn--icon" data-step="1" hidden><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><span class="visually-hidden">Increase quantity</span></button>
+              </div>
+            </div>
+            <div class="cluster">
+              <button type="submit" class="btn btn--lg"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 3h3l2.4 12.2a2 2 0 0 0 2 1.6h8.2a2 2 0 0 0 2-1.6L21 7H6"/></svg> Add to cart</button>
+              <a class="btn btn--lg btn--secondary" href="cart.html">View cart</a>
+            </div>
+          </form>
+
+          <ul class="perks-inline list-reset" role="list">
+            <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M1 3h15v13H1zM16 8h4l3 3v5h-7z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg> Free shipping, arrives in 2–4 days</li>
+            <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M23 4v6h-6M1 20v-6h6"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg> 30-day returns</li>
+            <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> 2-year warranty</li>
+          </ul>
+
+          <div class="accordion">
+            <details class="accordion__item" open>
+              <summary class="accordion__summary">Specifications <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+              <div class="accordion__panel">
+                <dl class="details-list">
+                  <div><dt>Battery</dt><dd>40 hours (ANC on)</dd></div>
+                  <div><dt>Weight</dt><dd>254 g</dd></div>
+                  <div><dt>Connectivity</dt><dd>Bluetooth 5.4, USB-C audio</dd></div>
+                  <div><dt>Charging</dt><dd>10 minutes for 5 hours</dd></div>
+                </dl>
+              </div>
+            </details>
+            <details class="accordion__item">
+              <summary class="accordion__summary">Shipping and returns <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+              <div class="accordion__panel"><p>Free standard shipping on orders over $50. Return within 30 days for a full refund.</p></div>
+            </details>
+          </div>
+        </section>
+      </div>
+
+      <section class="reviews" id="reviews" aria-labelledby="reviews-title">
+        <h2 id="reviews-title">Customer reviews</h2>
+        <div class="layout reviews__layout" data-layout="sidebar-left">
+          <div class="layout__sidebar">
+            <script type="application/json" id="review-data">[{"stars": "5 stars", "reviews": 92}, {"stars": "4 stars", "reviews": 24}, {"stars": "3 stars", "reviews": 7}, {"stars": "2 stars", "reviews": 3}, {"stars": "1 star", "reviews": 2}]</script>
+            <figure class="chart" data-viz="hbar" data-source="#review-data" data-x="stars" data-series="reviews:Reviews:5" data-format="integer">
+              <figcaption class="chart__caption"><span class="chart__title">4.7 out of 5</span><span class="chart__subtitle">128 reviews</span></figcaption>
+              <p class="chart__fallback">92 five-star, 24 four-star, 7 three-star, 3 two-star and 2 one-star reviews.</p>
+            </figure>
+          </div>
+          <ul class="review-list list-reset" role="list">
+            <li class="card card--flat"><div class="card__body"><p class="rating"><svg class="icon icon--filled icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="icon icon--filled icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="icon icon--filled icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="icon icon--filled icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="icon icon--filled icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><span class="visually-hidden">5 out of 5</span></p><h3 class="card__title">Best headphones I have owned</h3><p class="card__text">Noise cancelling is superb on flights and the battery lasts all week.</p><p class="text-sm text-muted">Kenji T. · <time datetime="2026-09-28">28 Sep 2026</time> · Verified purchase</p></div></li>
+            <li class="card card--flat"><div class="card__body"><p class="rating"><svg class="icon icon--filled icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="icon icon--filled icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="icon icon--filled icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="icon icon--filled icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="icon icon--filled icon--sm rating__empty" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><span class="visually-hidden">4 out of 5</span></p><h3 class="card__title">Great sound, snug fit</h3><p class="card__text">Excellent clarity. A little tight at first but it eased after a week.</p><p class="text-sm text-muted">Ana S. · <time datetime="2026-09-12">12 Sep 2026</time> · Verified purchase</p></div></li>
+          </ul>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- @partial shop-footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="site-footer__grid">
+        <div class="site-footer__about stack">
+          <a class="brand" href="../../templates/e-commerce/index.html">
+            <span class="brand__mark"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 8 12 3 3 8v8l9 5 9-5z"/><path d="m3 8 9 5 9-5M12 13v8"/></svg></span>
+            Acme Store
+          </a>
+          <p class="text-muted">Thoughtfully designed everyday gear.</p>
+        </div>
+        <nav aria-labelledby="shop-footer-shop">
+          <h2 class="site-footer__heading" id="shop-footer-shop">Shop</h2>
+          <ul class="site-footer__links">
+            <li><a href="../../templates/e-commerce/index.html">All products</a></li>
+            <li><a href="../../templates/e-commerce/product.html" aria-current="page">Featured product</a></li>
+            <li><a href="../../templates/e-commerce/cart.html">Your cart</a></li>
+          </ul>
+        </nav>
+        <nav aria-labelledby="shop-footer-help">
+          <h2 class="site-footer__heading" id="shop-footer-help">Help</h2>
+          <ul class="site-footer__links">
+            <li><a href="../../templates/website/contact.html">Contact support</a></li>
+            <li><a href="../../templates/website/blog.html">Guides</a></li>
+          </ul>
+        </nav>
+        <nav aria-labelledby="shop-footer-account">
+          <h2 class="site-footer__heading" id="shop-footer-account">Account</h2>
+          <ul class="site-footer__links">
+            <li><a href="../../templates/auth/index.html">Sign in</a></li>
+            <li><a href="../../templates/auth/register.html">Create account</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="site-footer__bottom">
+        <p>© 2026 Acme Store. MIT licensed template.</p>
+        <p><a href="#main">Back to top</a></p>
+      </div>
+    </div>
+  </footer>
+  <!-- @end shop-footer -->
+
+  <!-- @partial chat-widget -->
+  <!-- Floating support assistant. Needs components/chat.css + main.js. -->
+  <div class="chat-widget" data-chat-widget>
+    <button type="button" class="btn chat-widget__launcher" aria-expanded="false" aria-controls="chat-widget-panel" data-chat-launcher hidden>
+      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      <span>Ask Acme AI</span>
+    </button>
+    <div class="chat-widget__panel" id="chat-widget-panel" role="dialog" aria-labelledby="chat-widget-title" hidden>
+      <section class="chat chat--widget" data-chat data-chat-persona="support" data-chat-storage="vr-chat-support">
+        <header class="chat__header">
+          <span class="avatar avatar--soft"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="8" width="18" height="12" rx="3"/><path d="M12 8V4M8 2h8M9 13v2M15 13v2"/></svg></span>
+          <div class="chat__heading">
+            <h2 class="chat__title" id="chat-widget-title">Acme AI support</h2>
+            <p class="chat__status">Usually replies instantly</p>
+          </div>
+          <button type="button" class="btn btn--ghost btn--icon btn--sm" data-chat-clear hidden>
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M23 4v6h-6M1 20v-6h6"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+            <span class="visually-hidden">Start a new conversation</span>
+          </button>
+          <button type="button" class="btn btn--ghost btn--icon btn--sm" data-chat-close>
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/></svg>
+            <span class="visually-hidden">Minimise chat</span>
+          </button>
+        </header>
+        <div class="chat__log" role="log" aria-label="Conversation with Acme AI support" aria-live="off" tabindex="0" data-chat-log>
+          <div class="chat__message chat__message--assistant">
+            <div class="chat__bubble">
+              <p>Hi! I can track orders, explain returns and shipping, or connect you with a person. What can I help with?</p>
+            </div>
+          </div>
+        </div>
+        <div class="chat__suggestions" data-chat-suggestions hidden>
+          <button type="button" class="chip" data-chat-suggestion>Where is my order #1061?</button>
+          <button type="button" class="chip" data-chat-suggestion>What is your return policy?</button>
+          <button type="button" class="chip" data-chat-suggestion>Talk to a person</button>
+        </div>
+        <form class="chat__composer" action="../../templates/website/contact.html" method="get" data-chat-form>
+          <label class="visually-hidden" for="chat-widget-input">Message Acme AI support</label>
+          <textarea class="chat__input" id="chat-widget-input" name="message" rows="1" placeholder="Ask a question…" required data-chat-input></textarea>
+          <div class="chat__actions">
+            <button type="submit" class="btn btn--icon btn--sm" data-chat-send>
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4z"/></svg>
+              <span class="visually-hidden">Send message</span>
+            </button>
+            <button type="button" class="btn btn--icon btn--sm btn--secondary" data-chat-stop hidden>
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="2"/></svg>
+              <span class="visually-hidden">Stop generating</span>
+            </button>
+          </div>
+        </form>
+        <p class="chat__disclaimer">Demo assistant with sample data. Answers may be inaccurate.</p>
+      </section>
+    </div>
+  </div>
+  <!-- @end chat-widget -->
+  <!-- @partial theme-panel -->
+  <dialog class="dialog drawer" id="theme-panel" aria-labelledby="theme-panel-title" closedby="any">
+    <div class="dialog__header">
+      <h2 class="dialog__title" id="theme-panel-title">Customize theme</h2>
+      <button type="button" class="btn btn--ghost btn--icon" commandfor="theme-panel" command="close">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+        <span class="visually-hidden">Close theme panel</span>
+      </button>
+    </div>
+    <form class="dialog__body form" data-theme-customizer>
+      <fieldset class="fieldset">
+        <legend class="fieldset__legend">Mode</legend>
+        <div class="segmented">
+          <label class="segmented__option"><input type="radio" name="mode" value="system"><span class="segmented__label">System</span></label>
+          <label class="segmented__option"><input type="radio" name="mode" value="light"><span class="segmented__label"><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg> Light</span></label>
+          <label class="segmented__option"><input type="radio" name="mode" value="dark"><span class="segmented__label"><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg> Dark</span></label>
+        </div>
+      </fieldset>
+
+      <fieldset class="fieldset">
+        <legend class="fieldset__legend">Brand colour</legend>
+        <div class="swatches">
+          <label class="swatch"><input type="radio" name="brand" value="indigo"><span class="swatch__chip swatch__chip--indigo"></span> Indigo</label>
+          <label class="swatch"><input type="radio" name="brand" value="teal"><span class="swatch__chip swatch__chip--teal"></span> Teal</label>
+          <label class="swatch"><input type="radio" name="brand" value="violet"><span class="swatch__chip swatch__chip--violet"></span> Violet</label>
+          <label class="swatch"><input type="radio" name="brand" value="rose"><span class="swatch__chip swatch__chip--rose"></span> Rose</label>
+          <label class="swatch"><input type="radio" name="brand" value="amber"><span class="swatch__chip swatch__chip--amber"></span> Amber</label>
+          <label class="swatch"><input type="radio" name="brand" value="slate"><span class="swatch__chip swatch__chip--slate"></span> Slate</label>
+        </div>
+      </fieldset>
+
+      <div class="field">
+        <label class="field__label" for="theme-custom-color">Or pick any brand colour</label>
+        <p class="field__hint" id="theme-custom-hint">Shades are adjusted automatically to keep text readable in both themes.</p>
+        <input class="color-input" id="theme-custom-color" name="custom" type="color" value="#2a4fcf" aria-describedby="theme-custom-hint">
+      </div>
+
+      <p class="text-sm text-muted" role="status" data-theme-contrast></p>
+
+      <fieldset class="fieldset">
+        <legend class="fieldset__legend">Density</legend>
+        <div class="segmented">
+          <label class="segmented__option"><input type="radio" name="density" value="compact"><span class="segmented__label">Compact</span></label>
+          <label class="segmented__option"><input type="radio" name="density" value="default"><span class="segmented__label">Default</span></label>
+          <label class="segmented__option"><input type="radio" name="density" value="comfortable"><span class="segmented__label">Comfortable</span></label>
+        </div>
+      </fieldset>
+
+      <fieldset class="fieldset">
+        <legend class="fieldset__legend">Corners</legend>
+        <div class="segmented">
+          <label class="segmented__option"><input type="radio" name="radius" value="sharp"><span class="segmented__label">Sharp</span></label>
+          <label class="segmented__option"><input type="radio" name="radius" value="default"><span class="segmented__label">Default</span></label>
+          <label class="segmented__option"><input type="radio" name="radius" value="round"><span class="segmented__label">Round</span></label>
+        </div>
+      </fieldset>
+
+      <div class="field">
+        <label class="field__label" for="theme-css-output">CSS for your project</label>
+        <textarea class="textarea textarea--code" id="theme-css-output" readonly rows="8" data-theme-output></textarea>
+      </div>
+
+      <div class="form-actions">
+        <button type="button" class="btn btn--sm" data-copy data-copy-target="#theme-css-output" hidden><span data-copy-label>Copy CSS</span></button>
+        <button type="button" class="btn btn--sm btn--ghost" data-theme-reset>Reset to defaults</button>
+      </div>
+    </form>
+  </dialog>
+  <!-- @end theme-panel -->
+</body>
+</html>

@@ -6,7 +6,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { parse, elements, attr, hasAttr, idMap, closest, normalize, textContent } from '../lib/html.mjs';
-import { SRC, findFiles, read, isFullDocument } from '../lib/util.mjs';
+import { SRC, findFiles, read, isFullDocument, rel } from '../lib/util.mjs';
 
 export const name = 'HTML standards';
 
@@ -30,6 +30,9 @@ export function run(report) {
     const { root, doctype } = parse(source);
     const all = elements(root);
     const ids = idMap(root);
+    // Partials reference ids that live in the pages they are stamped into;
+    // the stamped copies are checked there.
+    const isPartial = rel(file).startsWith('src/layouts/partials/');
 
     /* ---- Document-level structure ------------------------------------ */
     if (full) {
@@ -110,6 +113,7 @@ export function run(report) {
         const value = attr(el, a);
         if (!value) continue;
         // data-* style references are not IDREFs; `for` on <output> lists ids too.
+        if (isPartial) continue;
         for (const ref of value.split(/\s+/)) {
           report.assert(ids.has(ref), file, el.line, 'idref', `${a}="${ref}" references a missing id.`);
         }
@@ -126,7 +130,7 @@ export function run(report) {
         const url = attr(el, a);
         if (url === undefined) continue;
 
-        if (url.startsWith('#') && url.length > 1) {
+        if (url.startsWith('#') && url.length > 1 && !isPartial) {
           report.assert(ids.has(decodeURIComponent(url.slice(1))), file, el.line, 'fragment', `${a}="${url}" points to a missing id.`);
         }
         if (isLocalPath(url) && full) {
@@ -154,7 +158,7 @@ export function run(report) {
       }
       if (hasAttr(el, 'style')) report.error(file, el.line, 'no-inline-style', 'Inline style attribute is not allowed; use a CSS class.');
       if (el.tag === 'style') report.error(file, el.line, 'no-inline-style', '<style> blocks are not allowed; use an external stylesheet.');
-      if (el.tag === 'script' && !hasAttr(el, 'src') && attr(el, 'type') !== 'application/ld+json') {
+      if (el.tag === 'script' && !hasAttr(el, 'src') && !['application/ld+json', 'application/json'].includes(attr(el, 'type'))) {
         report.error(file, el.line, 'no-inline-script', 'Inline <script> is not allowed; use an external module.');
       }
       const href = attr(el, 'href') || '';

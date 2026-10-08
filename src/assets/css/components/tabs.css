@@ -5,6 +5,7 @@
    ========================================================================== */
 
 .tabs__list {
+  position: relative;
   display: flex;
   gap: var(--spacing-3xs);
   overflow-x: auto;

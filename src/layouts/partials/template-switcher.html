@@ -1,0 +1,21 @@
+<!-- Demo navigation between templates. Remove this partial in production. -->
+<nav class="demo-bar" aria-label="Template gallery">
+  <div class="container demo-bar__inner">
+    <a class="demo-bar__home" href="{{root}}index.html">vanilla-responsive-ui</a>
+    <ul class="demo-bar__list">
+      <li><a href="{{root}}templates/landing-page/index.html" data-section>Landing</a></li>
+      <li><a href="{{root}}templates/website/index.html" data-section>Website</a></li>
+      <li><a href="{{root}}templates/dashboard/index.html" data-section>Dashboard</a></li>
+      <li><a href="{{root}}templates/e-commerce/index.html" data-section>Shop</a></li>
+      <li><a href="{{root}}templates/ai/index.html" data-section>AI assistant</a></li>
+      <li><a href="{{root}}templates/auth/index.html" data-section>Auth</a></li>
+      <li><a href="{{root}}components/index.html" data-section>Components</a></li>
+      <li><a href="{{root}}layouts/index.html" data-section>Layouts</a></li>
+    </ul>
+    <div class="demo-bar__actions">
+      <button type="button" class="btn btn--ghost btn--sm" commandfor="theme-panel" command="show-modal" data-theme-panel-trigger hidden>
+        <svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></svg> Theme
+      </button>
+    </div>
+  </div>
+</nav>

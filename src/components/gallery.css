@@ -28,15 +28,9 @@
   }
 }
 
-.gallery__toc a {
-  display: block;
-  padding: var(--spacing-3xs) var(--spacing-xs);
-  border-radius: var(--radius-md);
-  text-decoration: none;
-}
-
-.gallery__toc a:hover {
-  background-color: var(--color-surface-sunken);
+.gallery__toc .side-nav__link {
+  min-height: 2.25rem;
+  font-size: var(--font-size-sm);
 }
 
 .gallery__sections {
@@ -65,7 +59,35 @@
   overflow: hidden;
 }
 
+@media (min-width: 60em) {
+  .gallery__toc {
+    max-height: calc(100vh - var(--spacing-xl));
+    overflow-y: auto;
+  }
+}
+
+.gallery__code > summary {
+  width: fit-content;
+  color: var(--color-link);
+  font-size: var(--font-size-sm);
+  cursor: pointer;
+}
+
+.gallery__code .code-block {
+  margin-block-start: var(--spacing-2xs);
+}
+
 /* Keep the demo header from sticking to the gallery viewport */
 .gallery__demo .site-header {
   position: relative;
+}
+
+/* Contain the fixed-position demo widgets inside their demo box */
+.gallery__demo:has(.chat-widget) {
+  min-height: 3.5rem;
+  transform: translateZ(0);
+}
+
+.gallery__demo:has(.chat-widget--open) {
+  min-height: 42rem;
 }

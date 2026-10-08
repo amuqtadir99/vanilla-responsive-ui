@@ -1,0 +1,33 @@
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a class="brand" href="{{root}}templates/website/index.html">
+      <span class="brand__mark"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span>
+      Acme Studio
+    </a>
+
+    <button type="button" class="btn btn--ghost btn--icon site-header__toggle" data-disclosure="dismissible" aria-expanded="false" aria-controls="site-menu" hidden>
+      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      <span class="visually-hidden">Menu</span>
+    </button>
+
+    <div class="site-header__menu" id="site-menu">
+      <nav class="site-nav" aria-label="Primary">
+        <ul class="site-nav__list">
+          <li><a class="site-nav__link" href="{{root}}templates/website/index.html">Home</a></li>
+          <li><a class="site-nav__link" href="{{root}}templates/website/about.html">About</a></li>
+          <li><a class="site-nav__link" href="{{root}}templates/website/services.html">Services</a></li>
+          <li><a class="site-nav__link" href="{{root}}templates/website/blog.html" data-section-prefix="blog">Blog</a></li>
+          <li><a class="site-nav__link" href="{{root}}templates/website/contact.html">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="site-header__actions">
+        <button type="button" class="btn btn--ghost btn--icon theme-toggle" data-theme-toggle aria-pressed="false" hidden>
+          <svg class="icon theme-toggle__light" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="icon theme-toggle__dark" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+          <span class="visually-hidden">Dark theme</span>
+        </button>
+        <a class="btn" href="{{root}}templates/website/contact.html">Get a quote</a>
+      </div>
+    </div>
+  </div>
+</header>

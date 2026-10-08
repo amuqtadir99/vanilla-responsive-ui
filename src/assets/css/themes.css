@@ -1,0 +1,229 @@
+/* ==========================================================================
+   Theme presets, density and corner radius
+   --------------------------------------------------------------------------
+   Load after tokens.css. Everything here is opt-in through attributes on
+   <html>, so it works without JavaScript and can be rendered by a server:
+
+     <html lang="en" data-brand="teal" data-density="compact" data-radius="round">
+
+   data-brand    indigo (default, no attribute) | teal | violet | rose | amber | slate
+   data-density  compact | comfortable            (default: none)
+   data-radius   sharp | round                    (default: none)
+
+   Each brand defines light and dark values. Contrast of every preset is
+   verified in both themes by tests/checks/contrast.mjs.
+   The theme customizer (components/theme-customizer.js) sets these
+   attributes at runtime and can generate a brand from any colour.
+   ========================================================================== */
+
+/* Swatch colours for preset pickers (light-theme brand colours) */
+:root {
+  --swatch-indigo: #2a4fcf;
+  --swatch-teal: #0f766e;
+  --swatch-violet: #6d28d9;
+  --swatch-rose: #be123c;
+  --swatch-amber: #a14b07;
+  --swatch-slate: #334155;
+}
+
+/* ---- Brand: teal ---------------------------------------------------------- */
+:root[data-brand="teal"] {
+  --color-primary: #0f766e;
+  --color-primary-hover: #115e59;
+  --color-primary-soft: #d5f5ef;
+  --color-on-primary: #ffffff;
+  --color-link: #0f6b64;
+  --color-focus: #0f766e;
+  --color-selection: #a7efe2;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root[data-brand="teal"]:not([data-theme="light"]) {
+    --color-primary: #2dd4bf;
+    --color-primary-hover: #5eead4;
+    --color-primary-soft: #0f2f2c;
+    --color-on-primary: #04201d;
+    --color-link: #5eead4;
+    --color-focus: #5eead4;
+    --color-selection: #134e4a;
+  }
+}
+
+:root[data-brand="teal"][data-theme="dark"] {
+  --color-primary: #2dd4bf;
+  --color-primary-hover: #5eead4;
+  --color-primary-soft: #0f2f2c;
+  --color-on-primary: #04201d;
+  --color-link: #5eead4;
+  --color-focus: #5eead4;
+  --color-selection: #134e4a;
+}
+
+/* ---- Brand: violet -------------------------------------------------------- */
+:root[data-brand="violet"] {
+  --color-primary: #6d28d9;
+  --color-primary-hover: #5b21b6;
+  --color-primary-soft: #efeafe;
+  --color-on-primary: #ffffff;
+  --color-link: #6227c5;
+  --color-focus: #6d28d9;
+  --color-selection: #ddd6fe;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root[data-brand="violet"]:not([data-theme="light"]) {
+    --color-primary: #b49cfb;
+    --color-primary-hover: #cbbcfd;
+    --color-primary-soft: #271d47;
+    --color-on-primary: #150a33;
+    --color-link: #cbbcfd;
+    --color-focus: #cbbcfd;
+    --color-selection: #3b2d6e;
+  }
+}
+
+:root[data-brand="violet"][data-theme="dark"] {
+  --color-primary: #b49cfb;
+  --color-primary-hover: #cbbcfd;
+  --color-primary-soft: #271d47;
+  --color-on-primary: #150a33;
+  --color-link: #cbbcfd;
+  --color-focus: #cbbcfd;
+  --color-selection: #3b2d6e;
+}
+
+/* ---- Brand: rose ---------------------------------------------------------- */
+:root[data-brand="rose"] {
+  --color-primary: #be123c;
+  --color-primary-hover: #9f1239;
+  --color-primary-soft: #ffe8ea;
+  --color-on-primary: #ffffff;
+  --color-link: #b0123a;
+  --color-focus: #be123c;
+  --color-selection: #fecdd3;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root[data-brand="rose"]:not([data-theme="light"]) {
+    --color-primary: #fb7185;
+    --color-primary-hover: #fda4af;
+    --color-primary-soft: #3a1520;
+    --color-on-primary: #2a0510;
+    --color-link: #fda4af;
+    --color-focus: #fda4af;
+    --color-selection: #5c1d2b;
+  }
+}
+
+:root[data-brand="rose"][data-theme="dark"] {
+  --color-primary: #fb7185;
+  --color-primary-hover: #fda4af;
+  --color-primary-soft: #3a1520;
+  --color-on-primary: #2a0510;
+  --color-link: #fda4af;
+  --color-focus: #fda4af;
+  --color-selection: #5c1d2b;
+}
+
+/* ---- Brand: amber --------------------------------------------------------- */
+:root[data-brand="amber"] {
+  --color-primary: #a14b07;
+  --color-primary-hover: #853d06;
+  --color-primary-soft: #fff1d0;
+  --color-on-primary: #ffffff;
+  --color-link: #92400e;
+  --color-focus: #a14b07;
+  --color-selection: #fde68a;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root[data-brand="amber"]:not([data-theme="light"]) {
+    --color-primary: #fbbf24;
+    --color-primary-hover: #fcd34d;
+    --color-primary-soft: #33260a;
+    --color-on-primary: #1f1500;
+    --color-link: #fcd34d;
+    --color-focus: #fcd34d;
+    --color-selection: #57410d;
+  }
+}
+
+:root[data-brand="amber"][data-theme="dark"] {
+  --color-primary: #fbbf24;
+  --color-primary-hover: #fcd34d;
+  --color-primary-soft: #33260a;
+  --color-on-primary: #1f1500;
+  --color-link: #fcd34d;
+  --color-focus: #fcd34d;
+  --color-selection: #57410d;
+}
+
+/* ---- Brand: slate --------------------------------------------------------- */
+:root[data-brand="slate"] {
+  --color-primary: #334155;
+  --color-primary-hover: #1e293b;
+  --color-primary-soft: #e5eaf1;
+  --color-on-primary: #ffffff;
+  --color-link: #334155;
+  --color-focus: #334155;
+  --color-selection: #cbd5e1;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root[data-brand="slate"]:not([data-theme="light"]) {
+    --color-primary: #cbd5e1;
+    --color-primary-hover: #e2e8f0;
+    --color-primary-soft: #1f2632;
+    --color-on-primary: #0f141b;
+    --color-link: #dbe3ec;
+    --color-focus: #dbe3ec;
+    --color-selection: #334155;
+  }
+}
+
+:root[data-brand="slate"][data-theme="dark"] {
+  --color-primary: #cbd5e1;
+  --color-primary-hover: #e2e8f0;
+  --color-primary-soft: #1f2632;
+  --color-on-primary: #0f141b;
+  --color-link: #dbe3ec;
+  --color-focus: #dbe3ec;
+  --color-selection: #334155;
+}
+
+/* ---- Density ------------------------------------------------------------ */
+/* Compact keeps targets at 36px, above the 24px WCAG 2.5.8 minimum. */
+:root[data-density="compact"] {
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 0.75rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+  --spacing-section: clamp(2rem, 1.5rem + 3vw, 4rem);
+  --target-size: 2.25rem;
+}
+
+:root[data-density="comfortable"] {
+  --spacing-sm: 1.125rem;
+  --spacing-md: 1.75rem;
+  --spacing-lg: 2.5rem;
+  --spacing-xl: 3.5rem;
+  --spacing-section: clamp(3.5rem, 2.5rem + 6vw, 7.5rem);
+  --target-size: 3rem;
+}
+
+/* ---- Corner radius ------------------------------------------------------ */
+:root[data-radius="sharp"] {
+  --radius-sm: 0;
+  --radius-md: 0.125rem;
+  --radius-lg: 0.125rem;
+  --radius-xl: 0.25rem;
+}
+
+:root[data-radius="round"] {
+  --radius-sm: 0.5rem;
+  --radius-md: 0.875rem;
+  --radius-lg: 1.25rem;
+  --radius-xl: 1.75rem;
+}

@@ -12,24 +12,53 @@
   <meta name="theme-color" content="#0e1116" media="(prefers-color-scheme: dark)">
   <link rel="icon" href="../../assets/icons/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="../../assets/css/tokens.css">
+  <link rel="stylesheet" href="../../assets/css/themes.css">
   <link rel="stylesheet" href="../../assets/css/base.css">
+  <link rel="stylesheet" href="../../assets/css/layouts.css">
   <link rel="stylesheet" href="../../assets/css/components/button.css">
   <link rel="stylesheet" href="../../assets/css/components/header.css">
   <link rel="stylesheet" href="../../assets/css/components/navigation.css">
   <link rel="stylesheet" href="../../assets/css/components/card.css">
   <link rel="stylesheet" href="../../assets/css/components/form.css">
+  <link rel="stylesheet" href="../../assets/css/components/dialog.css">
   <link rel="stylesheet" href="../../assets/css/components/feedback.css">
   <link rel="stylesheet" href="../../assets/css/components/footer.css">
-  <link rel="stylesheet" href="shop.css">
+  <link rel="stylesheet" href="../../assets/css/components/accordion.css">
+  <link rel="stylesheet" href="../../assets/css/components/chat.css">
+  <link rel="stylesheet" href="./shop.css">
   <script type="module" src="../../assets/js/main.js"></script>
   <script type="module" src="shop.js"></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to main content</a>
 
+  <!-- @partial template-switcher -->
+  <!-- Demo navigation between templates. Remove this partial in production. -->
+  <nav class="demo-bar" aria-label="Template gallery">
+    <div class="container demo-bar__inner">
+      <a class="demo-bar__home" href="../../index.html">vanilla-responsive-ui</a>
+      <ul class="demo-bar__list">
+        <li><a href="../../templates/landing-page/index.html" data-section>Landing</a></li>
+        <li><a href="../../templates/website/index.html" data-section>Website</a></li>
+        <li><a href="../../templates/dashboard/index.html" data-section>Dashboard</a></li>
+        <li><a href="../../templates/e-commerce/index.html" data-section aria-current="page">Shop</a></li>
+        <li><a href="../../templates/ai/index.html" data-section>AI assistant</a></li>
+        <li><a href="../../templates/auth/index.html" data-section>Auth</a></li>
+        <li><a href="../../components/index.html" data-section>Components</a></li>
+        <li><a href="../../layouts/index.html" data-section>Layouts</a></li>
+      </ul>
+      <div class="demo-bar__actions">
+        <button type="button" class="btn btn--ghost btn--sm" commandfor="theme-panel" command="show-modal" data-theme-panel-trigger hidden>
+          <svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></svg> Theme
+        </button>
+      </div>
+    </div>
+  </nav>
+  <!-- @end template-switcher -->
+  <!-- @partial shop-header -->
   <header class="site-header">
     <div class="container site-header__inner">
-      <a class="brand" href="./">
+      <a class="brand" href="../../templates/e-commerce/index.html" aria-current="page">
         <span class="brand__mark"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 8 12 3 3 8v8l9 5 9-5z"/><path d="m3 8 9 5 9-5M12 13v8"/></svg></span>
         Acme Store
       </a>
@@ -42,10 +71,10 @@
       <div class="site-header__menu" id="site-menu">
         <nav class="site-nav" aria-label="Primary">
           <ul class="site-nav__list">
-            <li><a class="site-nav__link" href="./" aria-current="page">Shop all</a></li>
-            <li><a class="site-nav__link" href="#products">New in</a></li>
-            <li><a class="site-nav__link" href="#products">Sale</a></li>
-            <li><a class="site-nav__link" href="../landing-page/index.html">About</a></li>
+            <li><a class="site-nav__link" href="../../templates/e-commerce/index.html" aria-current="page">Shop all</a></li>
+            <li><a class="site-nav__link" href="../../templates/e-commerce/product.html">Featured</a></li>
+            <li><a class="site-nav__link" href="../../templates/e-commerce/cart.html">Cart</a></li>
+            <li><a class="site-nav__link" href="../../templates/website/about.html">About</a></li>
           </ul>
         </nav>
         <div class="site-header__actions">
@@ -54,26 +83,27 @@
             <svg class="icon theme-toggle__dark" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
             <span class="visually-hidden">Dark theme</span>
           </button>
-          <a class="btn btn--ghost btn--icon" href="../auth/index.html">
+          <a class="btn btn--ghost btn--icon" href="../../templates/auth/index.html">
             <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
             <span class="visually-hidden">Account</span>
           </a>
-          <button type="button" class="btn btn--ghost btn--icon cart-link" data-cart-button>
+          <a class="btn btn--ghost btn--icon cart-link" href="../../templates/e-commerce/cart.html">
             <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 3h3l2.4 12.2a2 2 0 0 0 2 1.6h8.2a2 2 0 0 0 2-1.6L21 7H6"/></svg>
             <span class="visually-hidden">Cart,</span>
             <span class="badge badge--count" data-cart-count>0</span>
             <span class="visually-hidden">items</span>
-          </button>
+          </a>
         </div>
       </div>
     </div>
   </header>
+  <!-- @end shop-header -->
 
   <main id="main" tabindex="-1">
     <div class="container shop">
       <nav class="breadcrumb" aria-label="Breadcrumb">
         <ol class="breadcrumb__list">
-          <li class="breadcrumb__item"><a href="../landing-page/index.html">Home</a></li>
+          <li class="breadcrumb__item"><a href="../website/index.html">Home</a></li>
           <li class="breadcrumb__item"><a href="./">Shop</a></li>
           <li class="breadcrumb__item"><span aria-current="page">All products</span></li>
         </ol>
@@ -134,7 +164,7 @@
                 <img class="card__media" src="../../assets/images/product-headphones.svg" width="400" height="300" alt="" loading="lazy" decoding="async">
                 <div class="card__body">
                   <span class="badge badge--danger">Sale</span>
-                  <h3 class="card__title"><a href="#products">Studio wireless headphones</a></h3>
+                  <h3 class="card__title"><a href="product.html">Studio wireless headphones</a></h3>
                   <p class="rating">
                     <svg class="icon icon--filled icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="icon icon--filled icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="icon icon--filled icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="icon icon--filled icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="icon icon--filled icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
                     <span class="visually-hidden">Rated 4.7 out of 5</span>
@@ -142,7 +172,7 @@
                   </p>
                   <p class="product__price">$179 <s><span class="visually-hidden">was </span>$229</s></p>
                   <div class="card__footer">
-                    <button type="button" class="btn btn--block" data-add-to-cart="Studio wireless headphones">
+                    <button type="button" class="btn btn--block" data-add-to-cart="Studio wireless headphones" data-product-id="headphones" data-price="179" data-image="../../assets/images/product-headphones.svg">
                       <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 3h3l2.4 12.2a2 2 0 0 0 2 1.6h8.2a2 2 0 0 0 2-1.6L21 7H6"/></svg> Add to cart<span class="visually-hidden">: Studio wireless headphones</span>
                     </button>
                   </div>
@@ -154,7 +184,7 @@
                 <img class="card__media" src="../../assets/images/product-watch.svg" width="400" height="300" alt="" loading="lazy" decoding="async">
                 <div class="card__body">
                   <span class="badge badge--primary">New</span>
-                  <h3 class="card__title"><a href="#products">Field smartwatch</a></h3>
+                  <h3 class="card__title"><a href="product.html">Field smartwatch</a></h3>
                   <p class="rating">
                     <svg class="icon icon--filled icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="icon icon--filled icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="icon icon--filled icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="icon icon--filled icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="icon icon--filled icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
                     <span class="visually-hidden">Rated 4.5 out of 5</span>
@@ -162,7 +192,7 @@
                   </p>
                   <p class="product__price">$249</p>
                   <div class="card__footer">
-                    <button type="button" class="btn btn--block" data-add-to-cart="Field smartwatch">
+                    <button type="button" class="btn btn--block" data-add-to-cart="Field smartwatch" data-product-id="watch" data-price="249" data-image="../../assets/images/product-watch.svg">
                       <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 3h3l2.4 12.2a2 2 0 0 0 2 1.6h8.2a2 2 0 0 0 2-1.6L21 7H6"/></svg> Add to cart<span class="visually-hidden">: Field smartwatch</span>
                     </button>
                   </div>
@@ -173,7 +203,7 @@
               <article class="card product">
                 <img class="card__media" src="../../assets/images/product-backpack.svg" width="400" height="300" alt="" loading="lazy" decoding="async">
                 <div class="card__body">
-                  <h3 class="card__title"><a href="#products">Commuter backpack 22&nbsp;L</a></h3>
+                  <h3 class="card__title"><a href="product.html">Commuter backpack 22&nbsp;L</a></h3>
                   <p class="rating">
                     <svg class="icon icon--filled icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="icon icon--filled icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="icon icon--filled icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="icon icon--filled icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="icon icon--filled icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
                     <span class="visually-hidden">Rated 4.8 out of 5</span>
@@ -181,7 +211,7 @@
                   </p>
                   <p class="product__price">$98</p>
                   <div class="card__footer">
-                    <button type="button" class="btn btn--block" data-add-to-cart="Commuter backpack 22 L">
+                    <button type="button" class="btn btn--block" data-add-to-cart="Commuter backpack 22 L" data-product-id="backpack" data-price="98" data-image="../../assets/images/product-backpack.svg">
                       <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 3h3l2.4 12.2a2 2 0 0 0 2 1.6h8.2a2 2 0 0 0 2-1.6L21 7H6"/></svg> Add to cart<span class="visually-hidden">: Commuter backpack 22 L</span>
                     </button>
                   </div>
@@ -192,7 +222,7 @@
               <article class="card product">
                 <img class="card__media" src="../../assets/images/product-camera.svg" width="400" height="300" alt="" loading="lazy" decoding="async">
                 <div class="card__body">
-                  <h3 class="card__title"><a href="#products">Compact mirrorless camera</a></h3>
+                  <h3 class="card__title"><a href="product.html">Compact mirrorless camera</a></h3>
                   <p class="rating">
                     <svg class="icon icon--filled icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="icon icon--filled icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="icon icon--filled icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="icon icon--filled icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="icon icon--filled icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
                     <span class="visually-hidden">Rated 4.6 out of 5</span>
@@ -200,7 +230,7 @@
                   </p>
                   <p class="product__price">$649</p>
                   <div class="card__footer">
-                    <button type="button" class="btn btn--block" data-add-to-cart="Compact mirrorless camera">
+                    <button type="button" class="btn btn--block" data-add-to-cart="Compact mirrorless camera" data-product-id="camera" data-price="649" data-image="../../assets/images/product-camera.svg">
                       <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 3h3l2.4 12.2a2 2 0 0 0 2 1.6h8.2a2 2 0 0 0 2-1.6L21 7H6"/></svg> Add to cart<span class="visually-hidden">: Compact mirrorless camera</span>
                     </button>
                   </div>
@@ -211,7 +241,7 @@
               <article class="card product">
                 <img class="card__media" src="../../assets/images/product-lamp.svg" width="400" height="300" alt="" loading="lazy" decoding="async">
                 <div class="card__body">
-                  <h3 class="card__title"><a href="#products">Arc desk lamp</a></h3>
+                  <h3 class="card__title"><a href="product.html">Arc desk lamp</a></h3>
                   <p class="rating">
                     <svg class="icon icon--filled icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="icon icon--filled icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="icon icon--filled icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="icon icon--filled icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="icon icon--filled icon--sm rating__empty" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
                     <span class="visually-hidden">Rated 4.3 out of 5</span>
@@ -219,7 +249,7 @@
                   </p>
                   <p class="product__price">$72</p>
                   <div class="card__footer">
-                    <button type="button" class="btn btn--block" data-add-to-cart="Arc desk lamp">
+                    <button type="button" class="btn btn--block" data-add-to-cart="Arc desk lamp" data-product-id="lamp" data-price="72" data-image="../../assets/images/product-lamp.svg">
                       <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 3h3l2.4 12.2a2 2 0 0 0 2 1.6h8.2a2 2 0 0 0 2-1.6L21 7H6"/></svg> Add to cart<span class="visually-hidden">: Arc desk lamp</span>
                     </button>
                   </div>
@@ -230,7 +260,7 @@
               <article class="card product">
                 <img class="card__media" src="../../assets/images/product-sneaker.svg" width="400" height="300" alt="" loading="lazy" decoding="async">
                 <div class="card__body">
-                  <h3 class="card__title"><a href="#products">Everyday running shoe</a></h3>
+                  <h3 class="card__title"><a href="product.html">Everyday running shoe</a></h3>
                   <p class="rating">
                     <svg class="icon icon--filled icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="icon icon--filled icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="icon icon--filled icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="icon icon--filled icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="icon icon--filled icon--sm rating__empty" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
                     <span class="visually-hidden">Rated 4.4 out of 5</span>
@@ -238,7 +268,7 @@
                   </p>
                   <p class="product__price">$129</p>
                   <div class="card__footer">
-                    <button type="button" class="btn btn--block" data-add-to-cart="Everyday running shoe">
+                    <button type="button" class="btn btn--block" data-add-to-cart="Everyday running shoe" data-product-id="sneaker" data-price="129" data-image="../../assets/images/product-sneaker.svg">
                       <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 3h3l2.4 12.2a2 2 0 0 0 2 1.6h8.2a2 2 0 0 0 2-1.6L21 7H6"/></svg> Add to cart<span class="visually-hidden">: Everyday running shoe</span>
                     </button>
                   </div>
@@ -271,37 +301,37 @@
     </div>
   </main>
 
+  <!-- @partial shop-footer -->
   <footer class="site-footer">
     <div class="container">
       <div class="site-footer__grid">
         <div class="site-footer__about stack">
-          <a class="brand" href="./">
+          <a class="brand" href="../../templates/e-commerce/index.html" aria-current="page">
             <span class="brand__mark"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 8 12 3 3 8v8l9 5 9-5z"/><path d="m3 8 9 5 9-5M12 13v8"/></svg></span>
             Acme Store
           </a>
           <p class="text-muted">Thoughtfully designed everyday gear.</p>
         </div>
-        <nav aria-labelledby="footer-shop">
-          <h2 class="site-footer__heading" id="footer-shop">Shop</h2>
+        <nav aria-labelledby="shop-footer-shop">
+          <h2 class="site-footer__heading" id="shop-footer-shop">Shop</h2>
           <ul class="site-footer__links">
-            <li><a href="#products">New in</a></li>
-            <li><a href="#products">Best sellers</a></li>
-            <li><a href="#products">Sale</a></li>
+            <li><a href="../../templates/e-commerce/index.html" aria-current="page">All products</a></li>
+            <li><a href="../../templates/e-commerce/product.html">Featured product</a></li>
+            <li><a href="../../templates/e-commerce/cart.html">Your cart</a></li>
           </ul>
         </nav>
-        <nav aria-labelledby="footer-help">
-          <h2 class="site-footer__heading" id="footer-help">Help</h2>
+        <nav aria-labelledby="shop-footer-help">
+          <h2 class="site-footer__heading" id="shop-footer-help">Help</h2>
           <ul class="site-footer__links">
-            <li><a href="#main">Shipping</a></li>
-            <li><a href="#main">Returns</a></li>
-            <li><a href="mailto:support@example.com">Contact support</a></li>
+            <li><a href="../../templates/website/contact.html">Contact support</a></li>
+            <li><a href="../../templates/website/blog.html">Guides</a></li>
           </ul>
         </nav>
-        <nav aria-labelledby="footer-account">
-          <h2 class="site-footer__heading" id="footer-account">Account</h2>
+        <nav aria-labelledby="shop-footer-account">
+          <h2 class="site-footer__heading" id="shop-footer-account">Account</h2>
           <ul class="site-footer__links">
-            <li><a href="../auth/index.html">Sign in</a></li>
-            <li><a href="../auth/register.html">Create account</a></li>
+            <li><a href="../../templates/auth/index.html">Sign in</a></li>
+            <li><a href="../../templates/auth/register.html">Create account</a></li>
           </ul>
         </nav>
       </div>
@@ -311,5 +341,131 @@
       </div>
     </div>
   </footer>
+  <!-- @end shop-footer -->
+
+  <!-- @partial chat-widget -->
+  <!-- Floating support assistant. Needs components/chat.css + main.js. -->
+  <div class="chat-widget" data-chat-widget>
+    <button type="button" class="btn chat-widget__launcher" aria-expanded="false" aria-controls="chat-widget-panel" data-chat-launcher hidden>
+      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      <span>Ask Acme AI</span>
+    </button>
+    <div class="chat-widget__panel" id="chat-widget-panel" role="dialog" aria-labelledby="chat-widget-title" hidden>
+      <section class="chat chat--widget" data-chat data-chat-persona="support" data-chat-storage="vr-chat-support">
+        <header class="chat__header">
+          <span class="avatar avatar--soft"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="8" width="18" height="12" rx="3"/><path d="M12 8V4M8 2h8M9 13v2M15 13v2"/></svg></span>
+          <div class="chat__heading">
+            <h2 class="chat__title" id="chat-widget-title">Acme AI support</h2>
+            <p class="chat__status">Usually replies instantly</p>
+          </div>
+          <button type="button" class="btn btn--ghost btn--icon btn--sm" data-chat-clear hidden>
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M23 4v6h-6M1 20v-6h6"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+            <span class="visually-hidden">Start a new conversation</span>
+          </button>
+          <button type="button" class="btn btn--ghost btn--icon btn--sm" data-chat-close>
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/></svg>
+            <span class="visually-hidden">Minimise chat</span>
+          </button>
+        </header>
+        <div class="chat__log" role="log" aria-label="Conversation with Acme AI support" aria-live="off" tabindex="0" data-chat-log>
+          <div class="chat__message chat__message--assistant">
+            <div class="chat__bubble">
+              <p>Hi! I can track orders, explain returns and shipping, or connect you with a person. What can I help with?</p>
+            </div>
+          </div>
+        </div>
+        <div class="chat__suggestions" data-chat-suggestions hidden>
+          <button type="button" class="chip" data-chat-suggestion>Where is my order #1061?</button>
+          <button type="button" class="chip" data-chat-suggestion>What is your return policy?</button>
+          <button type="button" class="chip" data-chat-suggestion>Talk to a person</button>
+        </div>
+        <form class="chat__composer" action="../../templates/website/contact.html" method="get" data-chat-form>
+          <label class="visually-hidden" for="chat-widget-input">Message Acme AI support</label>
+          <textarea class="chat__input" id="chat-widget-input" name="message" rows="1" placeholder="Ask a question…" required data-chat-input></textarea>
+          <div class="chat__actions">
+            <button type="submit" class="btn btn--icon btn--sm" data-chat-send>
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4z"/></svg>
+              <span class="visually-hidden">Send message</span>
+            </button>
+            <button type="button" class="btn btn--icon btn--sm btn--secondary" data-chat-stop hidden>
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="2"/></svg>
+              <span class="visually-hidden">Stop generating</span>
+            </button>
+          </div>
+        </form>
+        <p class="chat__disclaimer">Demo assistant with sample data. Answers may be inaccurate.</p>
+      </section>
+    </div>
+  </div>
+  <!-- @end chat-widget -->
+  <!-- @partial theme-panel -->
+  <dialog class="dialog drawer" id="theme-panel" aria-labelledby="theme-panel-title" closedby="any">
+    <div class="dialog__header">
+      <h2 class="dialog__title" id="theme-panel-title">Customize theme</h2>
+      <button type="button" class="btn btn--ghost btn--icon" commandfor="theme-panel" command="close">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+        <span class="visually-hidden">Close theme panel</span>
+      </button>
+    </div>
+    <form class="dialog__body form" data-theme-customizer>
+      <fieldset class="fieldset">
+        <legend class="fieldset__legend">Mode</legend>
+        <div class="segmented">
+          <label class="segmented__option"><input type="radio" name="mode" value="system"><span class="segmented__label">System</span></label>
+          <label class="segmented__option"><input type="radio" name="mode" value="light"><span class="segmented__label"><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg> Light</span></label>
+          <label class="segmented__option"><input type="radio" name="mode" value="dark"><span class="segmented__label"><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg> Dark</span></label>
+        </div>
+      </fieldset>
+
+      <fieldset class="fieldset">
+        <legend class="fieldset__legend">Brand colour</legend>
+        <div class="swatches">
+          <label class="swatch"><input type="radio" name="brand" value="indigo"><span class="swatch__chip swatch__chip--indigo"></span> Indigo</label>
+          <label class="swatch"><input type="radio" name="brand" value="teal"><span class="swatch__chip swatch__chip--teal"></span> Teal</label>
+          <label class="swatch"><input type="radio" name="brand" value="violet"><span class="swatch__chip swatch__chip--violet"></span> Violet</label>
+          <label class="swatch"><input type="radio" name="brand" value="rose"><span class="swatch__chip swatch__chip--rose"></span> Rose</label>
+          <label class="swatch"><input type="radio" name="brand" value="amber"><span class="swatch__chip swatch__chip--amber"></span> Amber</label>
+          <label class="swatch"><input type="radio" name="brand" value="slate"><span class="swatch__chip swatch__chip--slate"></span> Slate</label>
+        </div>
+      </fieldset>
+
+      <div class="field">
+        <label class="field__label" for="theme-custom-color">Or pick any brand colour</label>
+        <p class="field__hint" id="theme-custom-hint">Shades are adjusted automatically to keep text readable in both themes.</p>
+        <input class="color-input" id="theme-custom-color" name="custom" type="color" value="#2a4fcf" aria-describedby="theme-custom-hint">
+      </div>
+
+      <p class="text-sm text-muted" role="status" data-theme-contrast></p>
+
+      <fieldset class="fieldset">
+        <legend class="fieldset__legend">Density</legend>
+        <div class="segmented">
+          <label class="segmented__option"><input type="radio" name="density" value="compact"><span class="segmented__label">Compact</span></label>
+          <label class="segmented__option"><input type="radio" name="density" value="default"><span class="segmented__label">Default</span></label>
+          <label class="segmented__option"><input type="radio" name="density" value="comfortable"><span class="segmented__label">Comfortable</span></label>
+        </div>
+      </fieldset>
+
+      <fieldset class="fieldset">
+        <legend class="fieldset__legend">Corners</legend>
+        <div class="segmented">
+          <label class="segmented__option"><input type="radio" name="radius" value="sharp"><span class="segmented__label">Sharp</span></label>
+          <label class="segmented__option"><input type="radio" name="radius" value="default"><span class="segmented__label">Default</span></label>
+          <label class="segmented__option"><input type="radio" name="radius" value="round"><span class="segmented__label">Round</span></label>
+        </div>
+      </fieldset>
+
+      <div class="field">
+        <label class="field__label" for="theme-css-output">CSS for your project</label>
+        <textarea class="textarea textarea--code" id="theme-css-output" readonly rows="8" data-theme-output></textarea>
+      </div>
+
+      <div class="form-actions">
+        <button type="button" class="btn btn--sm" data-copy data-copy-target="#theme-css-output" hidden><span data-copy-label>Copy CSS</span></button>
+        <button type="button" class="btn btn--sm btn--ghost" data-theme-reset>Reset to defaults</button>
+      </div>
+    </form>
+  </dialog>
+  <!-- @end theme-panel -->
 </body>
 </html>
