@@ -1,0 +1,76 @@
+/* ==========================================================================
+   Tabs
+   Without JS every panel is shown with its own heading. tabs.js adds the
+   WAI-ARIA tab roles, reveals the tab list and adds .tabs--enhanced.
+   ========================================================================== */
+
+.tabs__list {
+  display: flex;
+  gap: var(--spacing-3xs);
+  overflow-x: auto;
+  border-block-end: var(--border-width) solid var(--color-border);
+  scrollbar-width: thin;
+}
+
+.tabs__tab {
+  position: relative;
+  min-height: var(--target-size);
+  padding: var(--spacing-2xs) var(--spacing-sm);
+  border: 0;
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
+  background: none;
+  color: var(--color-text-muted);
+  font-weight: var(--font-weight-semibold);
+  white-space: nowrap;
+}
+
+.tabs__tab:hover {
+  color: var(--color-text);
+  background-color: var(--color-surface);
+}
+
+.tabs__tab:focus-visible {
+  outline-offset: calc(var(--focus-ring-width) * -1);
+}
+
+.tabs__tab[aria-selected="true"] {
+  color: var(--color-primary);
+}
+
+.tabs__tab[aria-selected="true"]::after {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  inset-block-end: -1px;
+  height: 3px;
+  border-radius: 3px 3px 0 0;
+  background-color: currentColor;
+}
+
+.tabs__panel {
+  padding-block: var(--spacing-md);
+}
+
+.tabs:not(.tabs--enhanced) .tabs__panel + .tabs__panel {
+  border-block-start: var(--border-width) solid var(--color-border);
+}
+
+.tabs__heading {
+  margin-block-end: var(--spacing-xs);
+  font-size: var(--font-size-lg);
+}
+
+.tabs--enhanced .tabs__heading {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+@media (forced-colors: active) {
+  .tabs__tab[aria-selected="true"]::after {
+    background-color: Highlight;
+  }
+}

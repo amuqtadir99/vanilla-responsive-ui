@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; form-action 'self'; base-uri 'self'; object-src 'none'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>Acme Cloud — Ship accessible interfaces faster</title>
+  <meta name="description" content="Landing page template: hero, features, pricing, testimonials, FAQ and newsletter signup. Dependency-free HTML, CSS and JavaScript.">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0e1116" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="../../assets/icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../../assets/css/tokens.css">
+  <link rel="stylesheet" href="../../assets/css/base.css">
+  <link rel="stylesheet" href="../../assets/css/components/button.css">
+  <link rel="stylesheet" href="../../assets/css/components/header.css">
+  <link rel="stylesheet" href="../../assets/css/components/card.css">
+  <link rel="stylesheet" href="../../assets/css/components/accordion.css">
+  <link rel="stylesheet" href="../../assets/css/components/form.css">
+  <link rel="stylesheet" href="../../assets/css/components/feedback.css">
+  <link rel="stylesheet" href="../../assets/css/components/footer.css">
+  <link rel="stylesheet" href="landing.css">
+  <script type="module" src="../../assets/js/main.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="brand" href="./">
+        <span class="brand__mark"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 2 7l10 5 10-5z"/><path d="m2 17 10 5 10-5M2 12l10 5 10-5"/></svg></span>
+        Acme Cloud
+      </a>
+
+      <button type="button" class="btn btn--ghost btn--icon site-header__toggle" data-disclosure="dismissible" aria-expanded="false" aria-controls="site-menu" hidden>
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        <span class="visually-hidden">Menu</span>
+      </button>
+
+      <div class="site-header__menu" id="site-menu">
+        <nav class="site-nav" aria-label="Primary">
+          <ul class="site-nav__list">
+            <li><a class="site-nav__link" href="#features">Features</a></li>
+            <li><a class="site-nav__link" href="#pricing">Pricing</a></li>
+            <li><a class="site-nav__link" href="#testimonials">Customers</a></li>
+            <li><a class="site-nav__link" href="#faq">FAQ</a></li>
+          </ul>
+        </nav>
+        <div class="site-header__actions">
+          <button type="button" class="btn btn--ghost btn--icon theme-toggle" data-theme-toggle aria-pressed="false" hidden>
+            <svg class="icon theme-toggle__light" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+            <svg class="icon theme-toggle__dark" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+            <span class="visually-hidden">Dark theme</span>
+          </button>
+          <a class="btn btn--ghost" href="../auth/index.html">Sign in</a>
+          <a class="btn" href="../auth/register.html">Get started</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="container hero__inner">
+        <div class="hero__content stack stack--lg">
+          <p class="eyebrow">Version 1.0 is here</p>
+          <h1 id="hero-title" class="hero__title">Ship accessible interfaces, faster.</h1>
+          <p class="lead">Production-ready page templates built on plain HTML, CSS and JavaScript. No build step, no framework lock-in, WCAG 2.2 AA from the first commit.</p>
+          <div class="cluster">
+            <a class="btn btn--lg" href="../auth/register.html">
+              Start free trial
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a class="btn btn--lg btn--secondary" href="#features">See features</a>
+          </div>
+          <p class="text-sm text-muted">No credit card required · Cancel anytime</p>
+        </div>
+        <img class="hero__image" src="../../assets/images/hero.svg" width="960" height="720" alt="Dashboard preview showing statistic cards and a bar chart" fetchpriority="high" decoding="async">
+      </div>
+    </section>
+
+    <section class="section section--alt" id="features" aria-labelledby="features-title">
+      <div class="container">
+        <header class="section__header section__header--center stack">
+          <p class="eyebrow">Features</p>
+          <h2 id="features-title">Everything you need, nothing you don’t</h2>
+          <p class="lead">Every template follows W3C standards and MDN best practices, so it drops into any stack.</p>
+        </header>
+
+        <ul class="grid-auto grid-auto--lg list-reset" role="list">
+          <li class="card card--flat">
+            <div class="card__body">
+              <span class="card__icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2 3 14h9l-1 8 10-12h-9z"/></svg></span>
+              <h3 class="card__title">Zero dependencies</h3>
+              <p class="card__text">Plain HTML, modular CSS and native ES modules. Nothing to install, nothing to audit.</p>
+            </div>
+          </li>
+          <li class="card card--flat">
+            <div class="card__body">
+              <span class="card__icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="4.5" r="1.5"/><path d="M5 8.5 12 10l7-1.5M12 10v4.5M12 14.5 9 21M12 14.5l3 6.5"/></svg></span>
+              <h3 class="card__title">Accessible by default</h3>
+              <p class="card__text">Semantic landmarks, keyboard support, visible focus and ARIA only where HTML falls short.</p>
+            </div>
+          </li>
+          <li class="card card--flat">
+            <div class="card__body">
+              <span class="card__icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 2 7l10 5 10-5z"/><path d="m2 17 10 5 10-5M2 12l10 5 10-5"/></svg></span>
+              <h3 class="card__title">Design tokens</h3>
+              <p class="card__text">Re-theme everything from one file of CSS custom properties, with built-in dark mode.</p>
+            </div>
+          </li>
+          <li class="card card--flat">
+            <div class="card__body">
+              <span class="card__icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
+              <h3 class="card__title">CSP friendly</h3>
+              <p class="card__text">No inline scripts, styles or event handlers. Runs under a strict Content-Security-Policy.</p>
+            </div>
+          </li>
+          <li class="card card--flat">
+            <div class="card__body">
+              <span class="card__icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m16 18 6-6-6-6M8 6l-6 6 6 6"/></svg></span>
+              <h3 class="card__title">Framework agnostic</h3>
+              <p class="card__text">Port to ASP.NET Core, React, Next.js, Vue, Django or Laravel with the integration guide.</p>
+            </div>
+          </li>
+          <li class="card card--flat">
+            <div class="card__body">
+              <span class="card__icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span>
+              <h3 class="card__title">Fast everywhere</h3>
+              <p class="card__text">No render-blocking scripts, lazy-loaded media and a tiny footprint for slow networks.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section" id="pricing" aria-labelledby="pricing-title">
+      <div class="container">
+        <header class="section__header section__header--center stack">
+          <p class="eyebrow">Pricing</p>
+          <h2 id="pricing-title">Simple, transparent pricing</h2>
+          <p class="lead">Start free and upgrade when your team grows.</p>
+        </header>
+
+        <ul class="pricing list-reset" role="list">
+          <li class="card">
+            <div class="card__body">
+              <h3 class="card__title">Starter</h3>
+              <p class="price"><span class="price__amount">$0</span> <span class="text-muted">per month</span></p>
+              <p class="card__text">For side projects and prototypes.</p>
+              <ul class="check-list">
+                <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> 3 projects</li>
+                <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Community support</li>
+                <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> All templates</li>
+              </ul>
+              <div class="card__footer">
+                <a class="btn btn--secondary btn--block" href="../auth/register.html">Choose Starter<span class="visually-hidden"> plan</span></a>
+              </div>
+            </div>
+          </li>
+          <li class="card card--highlight">
+            <div class="card__body">
+              <div class="cluster cluster--between">
+                <h3 class="card__title">Team</h3>
+                <span class="badge badge--primary">Most popular</span>
+              </div>
+              <p class="price"><span class="price__amount">$29</span> <span class="text-muted">per month</span></p>
+              <p class="card__text">For growing product teams.</p>
+              <ul class="check-list">
+                <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Unlimited projects</li>
+                <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Priority email support</li>
+                <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Design token presets</li>
+                <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Accessibility reports</li>
+              </ul>
+              <div class="card__footer">
+                <a class="btn btn--block" href="../auth/register.html">Choose Team<span class="visually-hidden"> plan</span></a>
+              </div>
+            </div>
+          </li>
+          <li class="card">
+            <div class="card__body">
+              <h3 class="card__title">Enterprise</h3>
+              <p class="price"><span class="price__amount">Custom</span></p>
+              <p class="card__text">For organisations with compliance needs.</p>
+              <ul class="check-list">
+                <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> SSO &amp; audit logs</li>
+                <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Dedicated success manager</li>
+                <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> VPAT &amp; security review</li>
+              </ul>
+              <div class="card__footer">
+                <a class="btn btn--secondary btn--block" href="mailto:sales@example.com">Contact sales</a>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section section--alt" id="testimonials" aria-labelledby="testimonials-title">
+      <div class="container">
+        <header class="section__header section__header--center stack">
+          <p class="eyebrow">Customers</p>
+          <h2 id="testimonials-title">Loved by teams who care about quality</h2>
+        </header>
+
+        <ul class="grid-auto grid-auto--lg list-reset" role="list">
+          <li>
+            <figure class="testimonial card card--flat">
+              <blockquote class="testimonial__quote">
+                <p>We replaced a 400&nbsp;KB UI kit with these templates and our Lighthouse scores went green overnight.</p>
+              </blockquote>
+              <figcaption class="testimonial__author">
+                <span class="testimonial__avatar" aria-hidden="true">PR</span>
+                <span><strong>Priya Raman</strong><br><span class="text-muted text-sm">Frontend Lead, Northwind</span></span>
+              </figcaption>
+            </figure>
+          </li>
+          <li>
+            <figure class="testimonial card card--flat">
+              <blockquote class="testimonial__quote">
+                <p>Porting the dashboard into our Razor Pages app took an afternoon. The integration guide is spot on.</p>
+              </blockquote>
+              <figcaption class="testimonial__author">
+                <span class="testimonial__avatar" aria-hidden="true">MO</span>
+                <span><strong>Mateo Ortiz</strong><br><span class="text-muted text-sm">.NET Architect, Contoso</span></span>
+              </figcaption>
+            </figure>
+          </li>
+          <li>
+            <figure class="testimonial card card--flat">
+              <blockquote class="testimonial__quote">
+                <p>Our accessibility audit came back clean for the first time. Screen reader users noticed the difference.</p>
+              </blockquote>
+              <figcaption class="testimonial__author">
+                <span class="testimonial__avatar" aria-hidden="true">AK</span>
+                <span><strong>Amara Kone</strong><br><span class="text-muted text-sm">Product Designer, Fabrikam</span></span>
+              </figcaption>
+            </figure>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section" id="faq" aria-labelledby="faq-title">
+      <div class="container container--narrow">
+        <header class="section__header section__header--center stack">
+          <p class="eyebrow">FAQ</p>
+          <h2 id="faq-title">Frequently asked questions</h2>
+        </header>
+
+        <div class="accordion">
+          <details class="accordion__item" name="faq" open>
+            <summary class="accordion__summary">Do I need Node.js or a build tool? <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+            <div class="accordion__panel">
+              <p>No. Serve the <code>src</code> folder with any static web server and it works. Node.js is only used by the optional validation scripts.</p>
+            </div>
+          </details>
+          <details class="accordion__item" name="faq">
+            <summary class="accordion__summary">Which browsers are supported? <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+            <div class="accordion__panel">
+              <p>The last two versions of Chrome, Edge, Firefox and Safari, including iOS and Android. Older browsers get a functional, simplified layout.</p>
+            </div>
+          </details>
+          <details class="accordion__item" name="faq">
+            <summary class="accordion__summary">Can I use the templates in a commercial product? <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+            <div class="accordion__panel">
+              <p>Yes. Everything is released under the MIT License.</p>
+            </div>
+          </details>
+          <details class="accordion__item" name="faq">
+            <summary class="accordion__summary">Does it work with React, .NET or Django? <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+            <div class="accordion__panel">
+              <p>Yes. The markup maps directly to JSX, Razor and Django templates. See the integration guide in the <code>docs</code> folder for step-by-step examples.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--alt" aria-labelledby="newsletter-title">
+      <div class="container container--narrow stack stack--lg">
+        <header class="stack text-center">
+          <h2 id="newsletter-title">Get product updates</h2>
+          <p class="text-muted">One email a month. No spam, unsubscribe at any time.</p>
+        </header>
+
+        <form class="inline-form" action="/newsletter" method="post" data-validate data-demo-submit="Thanks! Please check your inbox to confirm your subscription.">
+          <div class="field">
+            <label class="field__label" for="newsletter-email">Email address</label>
+            <input class="input" id="newsletter-email" name="email" type="email" autocomplete="email" required aria-describedby="newsletter-email-error" data-error-required="Enter your email address to subscribe.">
+            <p class="field__error" id="newsletter-email-error"></p>
+          </div>
+          <button type="submit" class="btn newsletter__submit">Subscribe</button>
+          <p class="alert alert--success newsletter__status" data-form-status hidden></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="site-footer__grid">
+        <div class="site-footer__about stack">
+          <a class="brand" href="./">
+            <span class="brand__mark"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 2 7l10 5 10-5z"/><path d="m2 17 10 5 10-5M2 12l10 5 10-5"/></svg></span>
+            Acme Cloud
+          </a>
+          <p class="text-muted">Dependency-free, accessible UI templates for every stack.</p>
+        </div>
+        <nav aria-labelledby="footer-product">
+          <h2 class="site-footer__heading" id="footer-product">Product</h2>
+          <ul class="site-footer__links">
+            <li><a href="#features">Features</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+            <li><a href="../dashboard/index.html">Dashboard demo</a></li>
+          </ul>
+        </nav>
+        <nav aria-labelledby="footer-company">
+          <h2 class="site-footer__heading" id="footer-company">Company</h2>
+          <ul class="site-footer__links">
+            <li><a href="#testimonials">Customers</a></li>
+            <li><a href="mailto:hello@example.com">Contact</a></li>
+          </ul>
+        </nav>
+        <nav aria-labelledby="footer-legal">
+          <h2 class="site-footer__heading" id="footer-legal">Legal</h2>
+          <ul class="site-footer__links">
+            <li><a href="#main">Privacy</a></li>
+            <li><a href="#main">Terms</a></li>
+            <li><a href="#main">Accessibility statement</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="site-footer__bottom">
+        <p>© 2026 Acme Cloud. MIT licensed template.</p>
+        <p><a href="#main">Back to top</a></p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

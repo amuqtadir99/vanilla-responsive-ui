@@ -1,0 +1,63 @@
+/* ==========================================================================
+   Accordion
+   Built on native <details>/<summary>: keyboard, screen reader and no-JS
+   support come from the browser. Give sibling <details> the same `name`
+   attribute for exclusive (one-open-at-a-time) behaviour where supported.
+   ========================================================================== */
+
+.accordion {
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-surface-raised);
+}
+
+.accordion__item + .accordion__item {
+  border-block-start: var(--border-width) solid var(--color-border);
+}
+
+.accordion__summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-sm);
+  min-height: var(--target-size);
+  padding: var(--spacing-sm) var(--spacing-md);
+  font-weight: var(--font-weight-semibold);
+  cursor: pointer;
+  list-style: none;
+}
+
+.accordion__summary::-webkit-details-marker {
+  display: none;
+}
+
+.accordion__summary:hover {
+  background-color: var(--color-surface);
+}
+
+.accordion__summary:focus-visible {
+  outline-offset: calc(var(--focus-ring-width) * -1);
+}
+
+.accordion__item:first-child .accordion__summary {
+  border-start-start-radius: var(--radius-lg);
+  border-start-end-radius: var(--radius-lg);
+}
+
+.accordion__item:last-child:not([open]) .accordion__summary {
+  border-end-start-radius: var(--radius-lg);
+  border-end-end-radius: var(--radius-lg);
+}
+
+.accordion__summary .icon {
+  transition: transform var(--duration-base) var(--ease-standard);
+}
+
+.accordion__item[open] > .accordion__summary .icon {
+  transform: rotate(180deg);
+}
+
+.accordion__panel {
+  padding: 0 var(--spacing-md) var(--spacing-md);
+  color: var(--color-text-muted);
+}

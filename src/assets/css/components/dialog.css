@@ -1,0 +1,64 @@
+/* ==========================================================================
+   Dialog
+   Styles the native <dialog> element. showModal() provides the focus trap,
+   inert background, Escape-to-close and top-layer stacking natively.
+   ========================================================================== */
+
+.dialog {
+  width: min(32rem, calc(100% - 2 * var(--spacing-sm)));
+  max-height: calc(100% - 2 * var(--spacing-lg));
+  padding: 0;
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-xl);
+  background-color: var(--color-surface-raised);
+  color: var(--color-text);
+  box-shadow: var(--shadow-lg);
+}
+
+.dialog--lg {
+  width: min(48rem, calc(100% - 2 * var(--spacing-sm)));
+}
+
+.dialog::backdrop {
+  background-color: var(--color-overlay);
+}
+
+.dialog[open] {
+  animation: dialog-in var(--duration-slow) var(--ease-standard);
+}
+
+.dialog__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-md) var(--spacing-md) 0;
+}
+
+.dialog__title {
+  font-size: var(--font-size-xl);
+}
+
+.dialog__body {
+  padding: var(--spacing-sm) var(--spacing-md);
+}
+
+.dialog__footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-sm) var(--spacing-md) var(--spacing-md);
+}
+
+@keyframes dialog-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.5rem) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}

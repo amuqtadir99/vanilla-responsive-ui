@@ -1,0 +1,71 @@
+/* ==========================================================================
+   Component gallery page (src/components/index.html) — demo chrome only.
+   Not needed when using components in your own project.
+   ========================================================================== */
+
+.gallery {
+  padding-block: var(--spacing-xl) var(--spacing-3xl);
+}
+
+.gallery__header {
+  margin-block-end: var(--spacing-xl);
+}
+
+.gallery__layout {
+  display: grid;
+  gap: var(--spacing-xl);
+}
+
+@media (min-width: 60em) {
+  .gallery__layout {
+    grid-template-columns: 12rem minmax(0, 1fr);
+  }
+
+  .gallery__toc {
+    position: sticky;
+    inset-block-start: var(--spacing-md);
+    align-self: start;
+  }
+}
+
+.gallery__toc a {
+  display: block;
+  padding: var(--spacing-3xs) var(--spacing-xs);
+  border-radius: var(--radius-md);
+  text-decoration: none;
+}
+
+.gallery__toc a:hover {
+  background-color: var(--color-surface-sunken);
+}
+
+.gallery__sections {
+  display: grid;
+  gap: var(--spacing-2xl);
+  min-width: 0;
+}
+
+.gallery__section {
+  display: grid;
+  gap: var(--spacing-md);
+  scroll-margin-top: var(--spacing-md);
+}
+
+.gallery__intro {
+  display: grid;
+  gap: var(--spacing-2xs);
+  max-width: var(--measure);
+}
+
+.gallery__demo {
+  padding: var(--spacing-md);
+  border: var(--border-width) dashed var(--color-border-strong);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-bg);
+  overflow: hidden;
+}
+
+/* Keep the demo header from sticking to the gallery viewport */
+.gallery__demo .site-header {
+  position: relative;
+}

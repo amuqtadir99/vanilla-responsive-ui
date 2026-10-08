@@ -1,0 +1,5 @@
+.*Resource violates Content Security Policy.*
+.*The “list” role is unnecessary for element “ul”.*
+.*Property “container” doesn't exist.*
+.*Unrecognized at-rule “@container”.*
+.*The types are incompatible.*

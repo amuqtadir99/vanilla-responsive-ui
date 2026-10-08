@@ -1,0 +1,21 @@
+<!--
+@component: Accordion
+@description: Collapsible sections built on native <details> and <summary>. Siblings that share a name attribute behave exclusively (one open at a time) in supporting browsers.
+@css: components/accordion.css
+@js: none
+@a11y: Native elements provide keyboard support (Enter/Space), expanded state and no-JS behaviour for free. Do not put interactive elements inside <summary>.
+-->
+<div class="accordion">
+  <details class="accordion__item" name="example-faq" open>
+    <summary class="accordion__summary">What is included? <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+    <div class="accordion__panel">
+      <p>Templates, components, design tokens, documentation and validation scripts.</p>
+    </div>
+  </details>
+  <details class="accordion__item" name="example-faq">
+    <summary class="accordion__summary">Is JavaScript required? <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+    <div class="accordion__panel">
+      <p>No. The accordion works entirely with HTML and CSS.</p>
+    </div>
+  </details>
+</div>

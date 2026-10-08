@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; form-action 'self'; base-uri 'self'; object-src 'none'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>Shop all products — Acme Store</title>
+  <meta name="description" content="E-commerce product listing template: filters, sorting, product cards with lazy-loaded images, cart counter and pagination.">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0e1116" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="../../assets/icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../../assets/css/tokens.css">
+  <link rel="stylesheet" href="../../assets/css/base.css">
+  <link rel="stylesheet" href="../../assets/css/components/button.css">
+  <link rel="stylesheet" href="../../assets/css/components/header.css">
+  <link rel="stylesheet" href="../../assets/css/components/navigation.css">
+  <link rel="stylesheet" href="../../assets/css/components/card.css">
+  <link rel="stylesheet" href="../../assets/css/components/form.css">
+  <link rel="stylesheet" href="../../assets/css/components/feedback.css">
+  <link rel="stylesheet" href="../../assets/css/components/footer.css">
+  <link rel="stylesheet" href="shop.css">
+  <script type="module" src="../../assets/js/main.js"></script>
+  <script type="module" src="shop.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="brand" href="./">
+        <span class="brand__mark"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 8 12 3 3 8v8l9 5 9-5z"/><path d="m3 8 9 5 9-5M12 13v8"/></svg></span>
+        Acme Store
+      </a>
+
+      <button type="button" class="btn btn--ghost btn--icon site-header__toggle" data-disclosure="dismissible" aria-expanded="false" aria-controls="site-menu" hidden>
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        <span class="visually-hidden">Menu</span>
+      </button>
+
+      <div class="site-header__menu" id="site-menu">
+        <nav class="site-nav" aria-label="Primary">
+          <ul class="site-nav__list">
+            <li><a class="site-nav__link" href="./" aria-current="page">Shop all</a></li>
+            <li><a class="site-nav__link" href="#products">New in</a></li>
+            <li><a class="site-nav__link" href="#products">Sale</a></li>
+            <li><a class="site-nav__link" href="../landing-page/index.html">About</a></li>
+          </ul>
+        </nav>
+        <div class="site-header__actions">
+          <button type="button" class="btn btn--ghost btn--icon theme-toggle" data-theme-toggle aria-pressed="false" hidden>
+            <svg class="icon theme-toggle__light" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+            <svg class="icon theme-toggle__dark" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+            <span class="visually-hidden">Dark theme</span>
+          </button>
+          <a class="btn btn--ghost btn--icon" href="../auth/index.html">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            <span class="visually-hidden">Account</span>
+          </a>
+          <button type="button" class="btn btn--ghost btn--icon cart-link" data-cart-button>
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 3h3l2.4 12.2a2 2 0 0 0 2 1.6h8.2a2 2 0 0 0 2-1.6L21 7H6"/></svg>
+            <span class="visually-hidden">Cart,</span>
+            <span class="badge badge--count" data-cart-count>0</span>
+            <span class="visually-hidden">items</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <div class="container shop">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ol class="breadcrumb__list">
+          <li class="breadcrumb__item"><a href="../landing-page/index.html">Home</a></li>
+          <li class="breadcrumb__item"><a href="./">Shop</a></li>
+          <li class="breadcrumb__item"><span aria-current="page">All products</span></li>
+        </ol>
+      </nav>
+
+      <div class="shop__header">
+        <div>
+          <h1>Shop all products</h1>
+          <p class="text-muted" id="results-count" role="status" data-results-count>Showing 6 of 6 products</p>
+        </div>
+        <div class="field shop__sort">
+          <label class="field__label" for="sort">Sort by</label>
+          <select class="select" id="sort" name="sort" form="filters" data-sort-products>
+            <option value="featured">Featured</option>
+            <option value="price-asc">Price: low to high</option>
+            <option value="price-desc">Price: high to low</option>
+            <option value="rating">Top rated</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="shop__layout">
+        <aside class="shop__filters" aria-labelledby="filters-title">
+          <details class="filters" open>
+            <summary class="filters__summary">
+              <h2 class="filters__title" id="filters-title"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 3H2l8 9.46V19l4 2v-8.54z"/></svg> Filters</h2>
+            </summary>
+            <form class="form filters__form" id="filters" action="./" method="get" data-filter-form>
+              <fieldset class="fieldset">
+                <legend class="fieldset__legend">Category</legend>
+                <label class="choice"><input type="checkbox" name="category" value="audio"> Audio</label>
+                <label class="choice"><input type="checkbox" name="category" value="wearables"> Wearables</label>
+                <label class="choice"><input type="checkbox" name="category" value="bags"> Bags</label>
+                <label class="choice"><input type="checkbox" name="category" value="home"> Home</label>
+                <label class="choice"><input type="checkbox" name="category" value="footwear"> Footwear</label>
+                <label class="choice"><input type="checkbox" name="category" value="photo"> Photography</label>
+              </fieldset>
+              <fieldset class="fieldset">
+                <legend class="fieldset__legend">Price</legend>
+                <label class="choice"><input type="radio" name="price" value="any" checked> Any price</label>
+                <label class="choice"><input type="radio" name="price" value="0-100"> Under $100</label>
+                <label class="choice"><input type="radio" name="price" value="100-250"> $100 to $250</label>
+                <label class="choice"><input type="radio" name="price" value="250-"> Over $250</label>
+              </fieldset>
+              <div class="form-actions">
+                <button type="submit" class="btn btn--sm" data-filter-submit>Apply filters</button>
+                <button type="reset" class="btn btn--secondary btn--sm">Clear all</button>
+              </div>
+            </form>
+          </details>
+        </aside>
+
+        <section class="shop__products" id="products" aria-labelledby="products-title">
+          <h2 class="visually-hidden" id="products-title">Products</h2>
+          <ul class="product-grid list-reset" role="list" data-product-list>
+            <li data-product data-category="audio" data-price="179" data-rating="4.7" data-order="1">
+              <article class="card product">
+                <img class="card__media" src="../../assets/images/product-headphones.svg" width="400" height="300" alt="" loading="lazy" decoding="async">
+                <div class="card__body">
+                  <span class="badge badge--danger">Sale</span>
+                  <h3 class="card__title"><a href="#products">Studio wireless headphones</a></h3>
+                  <p class="rating">
+                    <svg class="icon icon--filled icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="icon icon--filled icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="icon icon--filled icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="icon icon--filled icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="icon icon--filled icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
+                    <span class="visually-hidden">Rated 4.7 out of 5</span>
+                    <span class="rating__count">(128<span class="visually-hidden"> reviews</span>)</span>
+                  </p>
+                  <p class="product__price">$179 <s><span class="visually-hidden">was </span>$229</s></p>
+                  <div class="card__footer">
+                    <button type="button" class="btn btn--block" data-add-to-cart="Studio wireless headphones">
+                      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 3h3l2.4 12.2a2 2 0 0 0 2 1.6h8.2a2 2 0 0 0 2-1.6L21 7H6"/></svg> Add to cart<span class="visually-hidden">: Studio wireless headphones</span>
+                    </button>
+                  </div>
+                </div>
+              </article>
+            </li>
+            <li data-product data-category="wearables" data-price="249" data-rating="4.5" data-order="2">
+              <article class="card product">
+                <img class="card__media" src="../../assets/images/product-watch.svg" width="400" height="300" alt="" loading="lazy" decoding="async">
+                <div class="card__body">
+                  <span class="badge badge--primary">New</span>
+                  <h3 class="card__title"><a href="#products">Field smartwatch</a></h3>
+                  <p class="rating">
+                    <svg class="icon icon--filled icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="icon icon--filled icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="icon icon--filled icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="icon icon--filled icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="icon icon--filled icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
+                    <span class="visually-hidden">Rated 4.5 out of 5</span>
+                    <span class="rating__count">(86<span class="visually-hidden"> reviews</span>)</span>
+                  </p>
+                  <p class="product__price">$249</p>
+                  <div class="card__footer">
+                    <button type="button" class="btn btn--block" data-add-to-cart="Field smartwatch">
+                      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 3h3l2.4 12.2a2 2 0 0 0 2 1.6h8.2a2 2 0 0 0 2-1.6L21 7H6"/></svg> Add to cart<span class="visually-hidden">: Field smartwatch</span>
+                    </button>
+                  </div>
+                </div>
+              </article>
+            </li>
+            <li data-product data-category="bags" data-price="98" data-rating="4.8" data-order="3">
+              <article class="card product">
+                <img class="card__media" src="../../assets/images/product-backpack.svg" width="400" height="300" alt="" loading="lazy" decoding="async">
+                <div class="card__body">
+                  <h3 class="card__title"><a href="#products">Commuter backpack 22&nbsp;L</a></h3>
+                  <p class="rating">
+                    <svg class="icon icon--filled icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="icon icon--filled icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="icon icon--filled icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="icon icon--filled icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="icon icon--filled icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
+                    <span class="visually-hidden">Rated 4.8 out of 5</span>
+                    <span class="rating__count">(342<span class="visually-hidden"> reviews</span>)</span>
+                  </p>
+                  <p class="product__price">$98</p>
+                  <div class="card__footer">
+                    <button type="button" class="btn btn--block" data-add-to-cart="Commuter backpack 22 L">
+                      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 3h3l2.4 12.2a2 2 0 0 0 2 1.6h8.2a2 2 0 0 0 2-1.6L21 7H6"/></svg> Add to cart<span class="visually-hidden">: Commuter backpack 22 L</span>
+                    </button>
+                  </div>
+                </div>
+              </article>
+            </li>
+            <li data-product data-category="photo" data-price="649" data-rating="4.6" data-order="4">
+              <article class="card product">
+                <img class="card__media" src="../../assets/images/product-camera.svg" width="400" height="300" alt="" loading="lazy" decoding="async">
+                <div class="card__body">
+                  <h3 class="card__title"><a href="#products">Compact mirrorless camera</a></h3>
+                  <p class="rating">
+                    <svg class="icon icon--filled icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="icon icon--filled icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="icon icon--filled icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="icon icon--filled icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="icon icon--filled icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
+                    <span class="visually-hidden">Rated 4.6 out of 5</span>
+                    <span class="rating__count">(57<span class="visually-hidden"> reviews</span>)</span>
+                  </p>
+                  <p class="product__price">$649</p>
+                  <div class="card__footer">
+                    <button type="button" class="btn btn--block" data-add-to-cart="Compact mirrorless camera">
+                      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 3h3l2.4 12.2a2 2 0 0 0 2 1.6h8.2a2 2 0 0 0 2-1.6L21 7H6"/></svg> Add to cart<span class="visually-hidden">: Compact mirrorless camera</span>
+                    </button>
+                  </div>
+                </div>
+              </article>
+            </li>
+            <li data-product data-category="home" data-price="72" data-rating="4.3" data-order="5">
+              <article class="card product">
+                <img class="card__media" src="../../assets/images/product-lamp.svg" width="400" height="300" alt="" loading="lazy" decoding="async">
+                <div class="card__body">
+                  <h3 class="card__title"><a href="#products">Arc desk lamp</a></h3>
+                  <p class="rating">
+                    <svg class="icon icon--filled icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="icon icon--filled icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="icon icon--filled icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="icon icon--filled icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="icon icon--filled icon--sm rating__empty" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
+                    <span class="visually-hidden">Rated 4.3 out of 5</span>
+                    <span class="rating__count">(41<span class="visually-hidden"> reviews</span>)</span>
+                  </p>
+                  <p class="product__price">$72</p>
+                  <div class="card__footer">
+                    <button type="button" class="btn btn--block" data-add-to-cart="Arc desk lamp">
+                      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 3h3l2.4 12.2a2 2 0 0 0 2 1.6h8.2a2 2 0 0 0 2-1.6L21 7H6"/></svg> Add to cart<span class="visually-hidden">: Arc desk lamp</span>
+                    </button>
+                  </div>
+                </div>
+              </article>
+            </li>
+            <li data-product data-category="footwear" data-price="129" data-rating="4.4" data-order="6">
+              <article class="card product">
+                <img class="card__media" src="../../assets/images/product-sneaker.svg" width="400" height="300" alt="" loading="lazy" decoding="async">
+                <div class="card__body">
+                  <h3 class="card__title"><a href="#products">Everyday running shoe</a></h3>
+                  <p class="rating">
+                    <svg class="icon icon--filled icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="icon icon--filled icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="icon icon--filled icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="icon icon--filled icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="icon icon--filled icon--sm rating__empty" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
+                    <span class="visually-hidden">Rated 4.4 out of 5</span>
+                    <span class="rating__count">(203<span class="visually-hidden"> reviews</span>)</span>
+                  </p>
+                  <p class="product__price">$129</p>
+                  <div class="card__footer">
+                    <button type="button" class="btn btn--block" data-add-to-cart="Everyday running shoe">
+                      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 3h3l2.4 12.2a2 2 0 0 0 2 1.6h8.2a2 2 0 0 0 2-1.6L21 7H6"/></svg> Add to cart<span class="visually-hidden">: Everyday running shoe</span>
+                    </button>
+                  </div>
+                </div>
+              </article>
+            </li>
+          </ul>
+
+          <p class="shop__empty text-center" data-empty-state hidden>No products match these filters. <button type="reset" form="filters" class="btn btn--secondary btn--sm">Clear all filters</button></p>
+
+          <nav class="pagination" aria-label="Pagination">
+            <ul class="pagination__list">
+              <li><a class="pagination__link"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg><span class="visually-hidden">Previous page</span></a></li>
+              <li><a class="pagination__link" href="./" aria-current="page"><span class="visually-hidden">Page </span>1</a></li>
+              <li><a class="pagination__link" href="./?page=2"><span class="visually-hidden">Page </span>2</a></li>
+              <li><a class="pagination__link" href="./?page=3"><span class="visually-hidden">Page </span>3</a></li>
+              <li><a class="pagination__link" href="./?page=2"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg><span class="visually-hidden">Next page</span></a></li>
+            </ul>
+          </nav>
+        </section>
+      </div>
+
+      <section class="shop__perks" aria-label="Store benefits">
+        <ul class="perks list-reset" role="list">
+          <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M1 3h15v13H1zM16 8h4l3 3v5h-7z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg> <span><strong>Free shipping</strong> on orders over $50</span></li>
+          <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M23 4v6h-6M1 20v-6h6"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg> <span><strong>30-day returns</strong>, no questions asked</span></li>
+          <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> <span><strong>2-year warranty</strong> on all electronics</span></li>
+        </ul>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="site-footer__grid">
+        <div class="site-footer__about stack">
+          <a class="brand" href="./">
+            <span class="brand__mark"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 8 12 3 3 8v8l9 5 9-5z"/><path d="m3 8 9 5 9-5M12 13v8"/></svg></span>
+            Acme Store
+          </a>
+          <p class="text-muted">Thoughtfully designed everyday gear.</p>
+        </div>
+        <nav aria-labelledby="footer-shop">
+          <h2 class="site-footer__heading" id="footer-shop">Shop</h2>
+          <ul class="site-footer__links">
+            <li><a href="#products">New in</a></li>
+            <li><a href="#products">Best sellers</a></li>
+            <li><a href="#products">Sale</a></li>
+          </ul>
+        </nav>
+        <nav aria-labelledby="footer-help">
+          <h2 class="site-footer__heading" id="footer-help">Help</h2>
+          <ul class="site-footer__links">
+            <li><a href="#main">Shipping</a></li>
+            <li><a href="#main">Returns</a></li>
+            <li><a href="mailto:support@example.com">Contact support</a></li>
+          </ul>
+        </nav>
+        <nav aria-labelledby="footer-account">
+          <h2 class="site-footer__heading" id="footer-account">Account</h2>
+          <ul class="site-footer__links">
+            <li><a href="../auth/index.html">Sign in</a></li>
+            <li><a href="../auth/register.html">Create account</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="site-footer__bottom">
+        <p>© 2026 Acme Store. MIT licensed template.</p>
+        <p><a href="#main">Back to top</a></p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

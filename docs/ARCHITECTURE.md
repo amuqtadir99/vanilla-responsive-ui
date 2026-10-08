@@ -1,0 +1,245 @@
+# Architecture
+
+vanilla-responsive-ui is a set of static files. There is no build step,
+bundler, transpiler or package manager: every file in `src/` is served to the
+browser exactly as written. This document explains how those files fit
+together and why.
+
+## Goals and constraints
+
+| Goal | Consequence |
+| --- | --- |
+| Zero external dependencies | Plain HTML, CSS and ES modules. Utilities live in `src/assets/js/core/`. |
+| Portable to any stack | No templating syntax, no framework conventions. Markup is valid HTML that maps 1:1 to Razor, JSX or Django templates. |
+| Accessible by default | Native elements first, ARIA only to fill gaps, progressive enhancement for every interactive control. |
+| CSP friendly | No inline scripts, styles or handlers. Pages run under `default-src 'self'` without `'unsafe-inline'`. |
+| Fast on slow networks | No render-blocking JS, per-page CSS, lazy component loading, lazy images, system fonts. |
+
+## Directory layout
+
+```text
+src/
+├── index.html                 Home: links to every template and the gallery
+├── assets/
+│   ├── css/
+│   │   ├── tokens.css         Design tokens (colour, type, spacing, motion) + themes
+│   │   ├── base.css           Reset, typography, layout primitives, a11y helpers
+│   │   └── components/        button, header, card, accordion, tabs, dialog,
+│   │                          form, feedback, table, navigation, footer
+│   ├── js/
+│   │   ├── main.js            Entry point and component registry
+│   │   ├── core/              dom.js, announce.js, storage.js
+│   │   └── components/        disclosure, tabs, dialog, form-validation,
+│   │                          password-toggle, theme-toggle, toast,
+│   │                          table-sort, data-chart
+│   ├── icons/                 SVG icon library (inlined in markup)
+│   └── images/                Placeholder SVG artwork
+├── components/                Copy-paste snippets + generated gallery (index.html)
+└── templates/
+    ├── landing-page/          index.html, landing.css
+    ├── dashboard/             index.html, dashboard.css, dashboard.js
+    ├── e-commerce/            index.html, shop.css, shop.js
+    └── auth/                  index.html (sign in), register.html, auth.css
+```
+
+## CSS architecture
+
+### Layers by file, not by `@layer`
+
+Stylesheets are loaded in a fixed order, which gives a predictable cascade
+without relying on `@layer` (browsers that do not understand `@layer`
+discard the whole block):
+
+1. **`tokens.css`** – custom properties only. No selectors other than `:root`.
+2. **`base.css`** – element defaults, the `.icon`, `.visually-hidden` and
+   `.skip-link` helpers, and layout primitives (`.container`, `.stack`,
+   `.cluster`, `.grid-auto`, `.section`).
+3. **`components/*.css`** – one file per component family. Each page links
+   only the files it uses.
+4. **Template CSS** (`landing.css`, `dashboard.css`, …) – page layout only.
+
+### Design tokens
+
+Every colour, size, radius, shadow and duration is a custom property in
+`tokens.css`. Components never contain literal colours (enforced by
+`tests/checks/css.mjs`). To re-theme, override the tokens:
+
+```css
+/* brand.css, loaded after tokens.css */
+:root {
+  --color-primary: #0f766e;
+  --color-primary-hover: #115e59;
+  --color-primary-soft: #ccfbf1;
+  --radius-md: 0.25rem;
+  --font-main: "Inter", system-ui, sans-serif;
+}
+```
+
+`tests/checks/contrast.mjs` re-checks every foreground/background token pair
+in both themes, so a brand override that breaks WCAG contrast fails the
+test suite.
+
+### Theming
+
+- Light is the default (`:root`).
+- Dark applies automatically via `prefers-color-scheme: dark` unless the
+  user explicitly chose light.
+- `theme-toggle.js` stores an explicit choice and sets
+  `<html data-theme="light|dark">`.
+- The system-dark and explicit-dark token blocks must stay identical; the
+  CSS suite enforces this.
+
+### Responsive strategy
+
+- **Mobile first.** Base styles target small screens; `min-width` media
+  queries add columns. Breakpoints are in `em` so they follow the user's
+  font size: `48em` (header), `60em` (hero/gallery), `64em` (dashboard).
+- **Intrinsic grids.** `repeat(auto-fit, minmax(min(X, 100%), 1fr))`
+  creates responsive grids without media queries and never overflows.
+- **Container queries.** Cards are size containers (`container: card /
+  inline-size`), so a card switches to a horizontal layout based on its own
+  width wherever it is placed. Browsers without support keep the stacked
+  layout.
+- **Fluid type.** `clamp(min, rem + vw, max)` scales smoothly while still
+  responding to browser zoom.
+- **Reflow.** Every page is verified to have no horizontal scrolling at
+  320 CSS px (WCAG 1.4.10) by the browser tests.
+
+### Naming
+
+BEM-style classes: `.card`, `.card__title`, `.card--highlight`. State is
+expressed through attributes rather than classes wherever an attribute
+exists: `[aria-expanded]`, `[aria-selected]`, `[aria-current]`,
+`[aria-invalid]`, `[data-state]`, `[hidden]`, `[open]`.
+
+## JavaScript architecture
+
+### Entry point and lazy loading
+
+Pages include one module:
+
+```html
+<script type="module" src="../../assets/js/main.js"></script>
+```
+
+Module scripts are deferred, so they never block rendering. `main.js` holds
+a registry of `[selector, loader]` pairs and dynamically imports only the
+components whose markup is on the page:
+
+```js
+const registry = [
+  ['[data-tabs]', () => import('./components/tabs.js')],
+  // …
+];
+```
+
+Call `initAll(container)` from `main.js` after inserting new markup (for
+example after a client-side navigation).
+
+### Component contract
+
+Every module in `src/assets/js/components/` follows the same shape:
+
+```js
+import { qsa, on, claim } from '../core/dom.js';
+
+export function init(root = document) {
+  for (const el of qsa('[data-thing]', root)) {
+    if (!claim(el, 'thing')) continue; // never bind twice
+    // enhance el…
+  }
+}
+```
+
+- `init(root)` is idempotent (`claim()` marks initialised elements), so
+  frameworks can call it on every render or route change.
+- Configuration comes from `data-*` attributes; state is written to ARIA
+  attributes and `data-state`.
+- No globals: everything is module-scoped and exported explicitly.
+- `window`/`document` are only touched inside functions, so modules can be
+  imported during server-side rendering.
+
+### Core utilities
+
+| Module | Exports | Purpose |
+| --- | --- | --- |
+| `core/dom.js` | `qs`, `qsa`, `on`, `createElement`, `uniqueId`, `ensureId`, `claim` | Query helpers, XSS-safe element creation (text via `textContent`, refuses `on*` attributes), idempotent init. |
+| `core/announce.js` | `announce(message, politeness)` | Screen-reader announcements through a shared visually hidden live region. |
+| `core/storage.js` | `getItem`, `setItem`, `removeItem` | `localStorage` that never throws (private mode, quota, sandboxed iframes). |
+
+### Components
+
+| Module | Markup hook | Behaviour |
+| --- | --- | --- |
+| `disclosure.js` | `[data-disclosure]` | Show/hide region (mobile menu, sidebar); Escape to close; optional light dismiss. |
+| `tabs.js` | `[data-tabs]` | APG tabs with automatic activation, roving tabindex, arrow/Home/End keys. |
+| `dialog.js` | `button[commandfor]`, `dialog[closedby]` | Polyfills Invoker Commands and `closedby="any"` for native `<dialog>`. |
+| `form-validation.js` | `form[data-validate]` | Constraint Validation API with inline errors, `aria-invalid`, focus to first error. |
+| `password-toggle.js` | `[data-password-toggle]` | Show/hide password with `aria-pressed`; always resubmits as `type="password"`. |
+| `theme-toggle.js` | `[data-theme-toggle]` | Light/dark toggle with persisted choice. |
+| `toast.js` | `[data-toast]`, `showToast()` | Polite live-region notifications that pause on hover/focus. |
+| `table-sort.js` | `table[data-sortable]` | Sortable columns with `aria-sort` and announcements. |
+| `data-chart.js` | `table[data-chart]` | Draws proportional bars behind table values via the CSSOM. |
+
+Template-specific behaviour lives next to the template (`dashboard.js`,
+`shop.js`) and imports from the shared modules.
+
+## Progressive enhancement
+
+Every page is fully usable without JavaScript:
+
+| Feature | Without JS | With JS |
+| --- | --- | --- |
+| Mobile menu | Menu always visible, wraps below the brand; toggle is `hidden` | Collapses behind a disclosure button |
+| Accordion | Native `<details>` (no JS at all) | — |
+| Tabs | All panels shown in order, each with its heading; tab list `hidden` | ARIA tabs |
+| Dialog | Opens natively in browsers with Invoker Commands | Polyfilled elsewhere |
+| Forms | Native browser validation; server must validate | Inline accessible errors |
+| Filters (shop) | Submits a GET request with the selected filters | Instant client-side filtering |
+| Table chart | Plain data table | Bars drawn behind values |
+| Theme | Follows the OS setting | User-selectable, persisted |
+
+The one known trade-off: a user who explicitly chose the opposite of their
+OS theme may see a brief flash before `theme-toggle.js` applies it, because
+an inline `<head>` script would violate the CSP. Set `data-theme` on
+`<html>` server-side (from a cookie) to avoid it.
+
+## Performance budget
+
+- The entire design system (all tokens, base and component CSS) is under
+  45 KB uncompressed, comments included (~10 KB gzipped); each page links
+  only the files it uses.
+- All shared JavaScript is about 33 KB uncompressed with full JSDoc
+  (~10 KB gzipped), loaded as deferred modules only when the page needs them.
+- No web fonts (system font stack), no icon fonts (inline SVG).
+- Images carry `width`/`height` (no layout shift), `loading="lazy"` below
+  the fold and `fetchpriority="high"` for the hero.
+- Components read layout before writing it and never animate layout
+  properties; motion respects `prefers-reduced-motion`.
+
+## Browser support
+
+The last two versions of Chrome, Edge, Firefox and Safari (desktop and
+mobile). Newer features are used as enhancements:
+
+| Feature | Fallback |
+| --- | --- |
+| Container queries | Stacked card layout |
+| Invoker Commands (`commandfor`) | `dialog.js` polyfill |
+| `closedby="any"` | `dialog.js` polyfill |
+| Exclusive `<details name>` | Independent accordion items |
+| `text-wrap: balance / pretty` | Normal wrapping |
+| `:has()` | Body scroll not locked behind dialogs; card focus ring falls back to link focus |
+| `dvh` units | Preceding `vh` declaration |
+
+## Testing
+
+| Command | What it covers |
+| --- | --- |
+| `bash .claude/skills/validate-w3c.sh` | Nu HTML Checker on all HTML, snippets, CSS and SVG; HTML/CSS/JS standards |
+| `bash .claude/skills/audit-a11y.sh` | Static accessibility audit, token contrast, browser keyboard tests |
+| `node tests/run-all.mjs` | All static suites including documentation sync |
+| `node tests/browser/smoke.mjs` | Playwright: console/CSP errors, reflow, keyboard, focus, no-JS baseline |
+
+The test suite itself has no dependencies; Playwright is optional and only
+used if already installed.

@@ -1,0 +1,12 @@
+<!--
+@component: Toast
+@description: Transient notifications announced through a polite live region. Trigger declaratively with data-toast or call showToast() from JavaScript.
+@css: components/feedback.css, components/button.css
+@js: components/toast.js
+@a11y: Toasts pause while hovered or focused and include a dismiss button (WCAG 2.2.1). Never put the only copy of important information or required actions in a toast. Messages are inserted with textContent.
+-->
+<div class="cluster">
+  <button type="button" class="btn btn--secondary" data-toast="Link copied to clipboard.">Show info toast</button>
+  <button type="button" class="btn btn--secondary" data-toast="Settings saved." data-toast-variant="success">Show success toast</button>
+  <button type="button" class="btn btn--secondary" data-toast="Upload failed. Please try again." data-toast-variant="danger">Show error toast</button>
+</div>

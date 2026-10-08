@@ -1,0 +1,98 @@
+/* ==========================================================================
+   Data table & table-driven bar chart
+   The wrapper is a focusable, labelled region so keyboard users can scroll
+   wide tables horizontally (WCAG 2.1.1 / 1.4.10).
+   ========================================================================== */
+
+.table-wrapper {
+  max-width: 100%;
+  overflow-x: auto;
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-surface-raised);
+}
+
+.table {
+  width: 100%;
+  font-size: var(--font-size-sm);
+  font-variant-numeric: tabular-nums;
+}
+
+.table caption {
+  padding: var(--spacing-sm) var(--spacing-md);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  text-align: start;
+}
+
+.table th,
+.table td {
+  padding: var(--spacing-xs) var(--spacing-md);
+  border-block-start: var(--border-width) solid var(--color-border);
+  text-align: start;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.table thead th {
+  background-color: var(--color-surface);
+  color: var(--color-text-muted);
+  font-weight: var(--font-weight-semibold);
+}
+
+.table tbody tr:hover {
+  background-color: var(--color-surface);
+}
+
+.table .num {
+  text-align: end;
+}
+
+/* ---- Sortable headers (table-sort.js) --------------------------------- */
+.table__sort {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-3xs);
+  min-height: 2rem;
+  margin-inline: calc(var(--spacing-2xs) * -1);
+  padding: var(--spacing-3xs) var(--spacing-2xs);
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: none;
+  color: inherit;
+  font-weight: inherit;
+}
+
+.table__sort:hover {
+  background-color: var(--color-surface-sunken);
+  color: var(--color-text);
+}
+
+.table__sort-icon {
+  width: 0.9em;
+  height: 0.9em;
+  opacity: 0.45;
+}
+
+[aria-sort="ascending"] .table__sort-icon,
+[aria-sort="descending"] .table__sort-icon {
+  opacity: 1;
+}
+
+[aria-sort="descending"] .table__sort-icon {
+  transform: rotate(180deg);
+}
+
+/* ---- Table bar chart (data-chart.js) ---------------------------------- */
+.data-chart--enhanced td[data-value] {
+  min-width: 12rem;
+  background-image: linear-gradient(
+    to right,
+    var(--color-primary-soft) calc(var(--value, 0) * 100%),
+    transparent calc(var(--value, 0) * 100%)
+  );
+  background-repeat: no-repeat;
+  background-size: calc(100% - 2 * var(--spacing-md)) 70%;
+  background-position: var(--spacing-md) center;
+  font-weight: var(--font-weight-semibold);
+}

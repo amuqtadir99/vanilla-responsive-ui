@@ -1,0 +1,37 @@
+<!--
+@component: Data table
+@description: Responsive table in a scrollable, keyboard-focusable region. Add data-sortable for sortable columns and data-chart to draw proportional bars behind data-value cells.
+@css: components/table.css, components/feedback.css
+@js: components/table-sort.js, components/data-chart.js
+@a11y: Always include a <caption> and scope on header cells. The scroll wrapper is a labelled region with tabindex="0" so keyboard users can scroll it. Sortable headers become buttons; the sorted column gets aria-sort and the change is announced.
+-->
+<div class="table-wrapper" role="region" aria-labelledby="example-orders-caption" tabindex="0">
+  <table class="table" data-sortable>
+    <caption id="example-orders-caption">Recent orders</caption>
+    <thead>
+      <tr>
+        <th scope="col" data-sort="text">Customer</th>
+        <th scope="col" data-sort="date">Date</th>
+        <th scope="col">Status</th>
+        <th scope="col" data-sort="number" class="num">Amount</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Olivia Chen</td><td data-sort-value="2026-10-08"><time datetime="2026-10-08">8 Oct 2026</time></td><td><span class="badge badge--success">Paid</span></td><td class="num" data-sort-value="249">$249.00</td></tr>
+      <tr><td>Noah Williams</td><td data-sort-value="2026-10-07"><time datetime="2026-10-07">7 Oct 2026</time></td><td><span class="badge badge--warning">Pending</span></td><td class="num" data-sort-value="1120.5">$1,120.50</td></tr>
+      <tr><td>Sofia García</td><td data-sort-value="2026-10-06"><time datetime="2026-10-06">6 Oct 2026</time></td><td><span class="badge badge--success">Paid</span></td><td class="num" data-sort-value="89.99">$89.99</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="table-wrapper" role="region" aria-labelledby="example-chart-caption" tabindex="0">
+  <table class="table" data-chart>
+    <caption id="example-chart-caption">Visitors by device</caption>
+    <thead><tr><th scope="col">Device</th><th scope="col">Visitors</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">Mobile</th><td data-value="6120">6,120</td></tr>
+      <tr><th scope="row">Desktop</th><td data-value="3480">3,480</td></tr>
+      <tr><th scope="row">Tablet</th><td data-value="910">910</td></tr>
+    </tbody>
+  </table>
+</div>

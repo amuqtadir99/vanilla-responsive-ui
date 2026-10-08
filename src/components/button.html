@@ -1,0 +1,23 @@
+<!--
+@component: Button
+@description: Primary, secondary, ghost and danger buttons in three sizes, plus icon-only buttons. The same classes style <button> and <a>.
+@css: components/button.css
+@js: none
+@a11y: Use <button type="button"> for actions and <a href> for navigation. Icon-only buttons need an accessible name (visually hidden text or aria-label). Minimum target size is 44×44 px. Disabled state uses the native disabled attribute; use aria-disabled="true" on links.
+-->
+<div class="cluster">
+  <button type="button" class="btn">Primary</button>
+  <button type="button" class="btn btn--secondary">Secondary</button>
+  <button type="button" class="btn btn--ghost">Ghost</button>
+  <button type="button" class="btn btn--danger">Delete</button>
+  <button type="button" class="btn" disabled>Disabled</button>
+</div>
+<div class="cluster">
+  <button type="button" class="btn btn--sm">Small</button>
+  <button type="button" class="btn btn--lg">Large</button>
+  <a class="btn btn--secondary" href="/docs">Link styled as button <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+  <button type="button" class="btn btn--ghost btn--icon">
+    <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/></svg>
+    <span class="visually-hidden">Search</span>
+  </button>
+</div>

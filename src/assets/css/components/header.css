@@ -1,0 +1,133 @@
+/* ==========================================================================
+   Site header & primary navigation
+   Mobile: the menu (nav + actions) collapses behind a disclosure button once
+   JavaScript has enhanced the page (disclosure.js sets data-state on the
+   menu). Without JS the toggle stays hidden and the menu simply wraps below
+   the brand, so every link remains reachable. DOM order matches visual
+   order at every breakpoint (WCAG 2.4.3).
+   ========================================================================== */
+
+.site-header {
+  position: sticky;
+  inset-block-start: 0;
+  z-index: var(--z-sticky);
+  border-block-end: var(--border-width) solid var(--color-border);
+  background-color: var(--color-bg);
+}
+
+.site-header__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--spacing-2xs) var(--spacing-md);
+  min-height: var(--header-height);
+  padding-block: var(--spacing-2xs);
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-2xs);
+  min-height: var(--target-size);
+  margin-inline-end: auto;
+  color: var(--color-text);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  text-decoration: none;
+}
+
+.brand__mark {
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: var(--radius-md);
+  background-color: var(--color-primary);
+  color: var(--color-on-primary);
+}
+
+.site-header__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2xs);
+}
+
+/* ---- Collapsible menu (nav + actions) -------------------------------- */
+.site-header__menu {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  flex-basis: 100%;
+}
+
+.site-nav__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-3xs);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.site-nav__link {
+  display: flex;
+  align-items: center;
+  min-height: var(--target-size);
+  padding-inline: var(--spacing-xs);
+  border-radius: var(--radius-md);
+  color: var(--color-text);
+  font-weight: var(--font-weight-medium);
+  text-decoration: none;
+}
+
+.site-nav__link:hover {
+  background-color: var(--color-surface-sunken);
+}
+
+.site-nav__link[aria-current="page"] {
+  color: var(--color-primary);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.35em;
+}
+
+/* Collapsed state on small screens (only once JS has enhanced the menu) */
+@media (max-width: 47.99em) {
+  .site-header__menu[data-state="closed"] {
+    display: none;
+  }
+
+  .site-header__menu[data-state="open"] {
+    padding-block-end: var(--spacing-sm);
+  }
+
+  .site-header__menu[data-state="open"] .site-nav__list {
+    flex-direction: column;
+  }
+}
+
+@media (min-width: 48em) {
+  .site-header__inner {
+    flex-wrap: nowrap;
+  }
+
+  .brand {
+    margin-inline-end: 0;
+  }
+
+  .site-header__menu {
+    flex-direction: row;
+    align-items: center;
+    flex-basis: auto;
+    flex-grow: 1;
+    gap: var(--spacing-md);
+  }
+
+  .site-nav {
+    margin-inline-end: auto;
+  }
+
+  .site-header__toggle {
+    display: none;
+  }
+}
