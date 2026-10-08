@@ -1,0 +1,26 @@
+<!--
+@component: Tabs
+@description: WAI-ARIA tabs with automatic activation. Without JavaScript every panel is shown in sequence with its own heading.
+@css: components/tabs.css
+@js: components/tabs.js
+@a11y: Roles (tablist, tab, tabpanel), aria-selected, aria-controls and roving tabindex are applied by the script. Arrow keys move between tabs, Home/End jump to the ends; only the active tab is in the Tab order.
+-->
+<div class="tabs" data-tabs>
+  <div class="tabs__list" data-tabs-list data-label="Account settings" hidden>
+    <button type="button" class="tabs__tab" data-tab="tab-panel-profile">Profile</button>
+    <button type="button" class="tabs__tab" data-tab="tab-panel-billing">Billing</button>
+    <button type="button" class="tabs__tab" data-tab="tab-panel-team">Team</button>
+  </div>
+  <section class="tabs__panel" id="tab-panel-profile" aria-labelledby="tab-panel-profile-heading">
+    <h3 class="tabs__heading" id="tab-panel-profile-heading">Profile</h3>
+    <p>Update your name, photo and contact details.</p>
+  </section>
+  <section class="tabs__panel" id="tab-panel-billing" aria-labelledby="tab-panel-billing-heading">
+    <h3 class="tabs__heading" id="tab-panel-billing-heading">Billing</h3>
+    <p>Manage your plan, payment method and invoices.</p>
+  </section>
+  <section class="tabs__panel" id="tab-panel-team" aria-labelledby="tab-panel-team-heading">
+    <h3 class="tabs__heading" id="tab-panel-team-heading">Team</h3>
+    <p>Invite teammates and manage roles.</p>
+  </section>
+</div>

@@ -1,0 +1,17 @@
+# Local tooling caches (e.g. vnu.jar downloaded by validate-w3c.sh --install)
+.cache/
+
+# This project has no package dependencies; never commit these.
+node_modules/
+package-lock.json
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/*
+!.vscode/extensions.json
+
+# Claude Code local overrides
+.claude/settings.local.json

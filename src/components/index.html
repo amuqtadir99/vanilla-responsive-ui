@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<!-- GENERATED FILE. Do not edit by hand: run `node .claude/skills/generate-doc.js`. -->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; form-action 'self'; base-uri 'self'; object-src 'none'">
+  <title>Component gallery — vanilla-responsive-ui</title>
+  <meta name="description" content="Live gallery of every vanilla-responsive-ui component.">
+  <meta name="color-scheme" content="light dark">
+  <link rel="icon" href="../assets/icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../assets/css/tokens.css">
+  <link rel="stylesheet" href="../assets/css/base.css">
+  <link rel="stylesheet" href="../assets/css/components/accordion.css">
+  <link rel="stylesheet" href="../assets/css/components/button.css">
+  <link rel="stylesheet" href="../assets/css/components/card.css">
+  <link rel="stylesheet" href="../assets/css/components/dialog.css">
+  <link rel="stylesheet" href="../assets/css/components/feedback.css">
+  <link rel="stylesheet" href="../assets/css/components/footer.css">
+  <link rel="stylesheet" href="../assets/css/components/form.css">
+  <link rel="stylesheet" href="../assets/css/components/header.css">
+  <link rel="stylesheet" href="../assets/css/components/navigation.css">
+  <link rel="stylesheet" href="../assets/css/components/table.css">
+  <link rel="stylesheet" href="../assets/css/components/tabs.css">
+  <link rel="stylesheet" href="gallery.css">
+  <script type="module" src="../assets/js/main.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <main id="main" tabindex="-1">
+    <div class="container gallery">
+      <div class="gallery__header stack">
+        <p><a href="../index.html">← All templates</a></p>
+        <h1>Component gallery</h1>
+        <p class="lead">14 accessible, dependency-free components. Each one is a copy-paste snippet in <code>src/components/</code>.</p>
+      </div>
+
+      <div class="gallery__layout">
+        <nav class="gallery__toc" aria-label="Components">
+          <ul class="side-nav__list">
+            <li><a href="#button">Button</a></li>
+            <li><a href="#alert">Alert and badge</a></li>
+            <li><a href="#card">Card</a></li>
+            <li><a href="#accordion">Accordion</a></li>
+            <li><a href="#tabs">Tabs</a></li>
+            <li><a href="#dialog">Dialog</a></li>
+            <li><a href="#form-field">Form fields</a></li>
+            <li><a href="#toast">Toast</a></li>
+            <li><a href="#data-table">Data table</a></li>
+            <li><a href="#breadcrumb">Breadcrumb</a></li>
+            <li><a href="#pagination">Pagination</a></li>
+            <li><a href="#theme-toggle">Theme toggle</a></li>
+            <li><a href="#site-header">Site header</a></li>
+            <li><a href="#site-footer">Site footer</a></li>
+          </ul>
+        </nav>
+
+        <div class="gallery__sections">
+        <section class="gallery__section" id="button" aria-labelledby="button-title">
+          <div class="gallery__intro">
+            <h2 id="button-title">Button</h2>
+            <p class="text-muted">Primary, secondary, ghost and danger buttons in three sizes, plus icon-only buttons. The same classes style &lt;button&gt; and &lt;a&gt;.</p>
+            <p class="text-sm"><a href="button.html">View snippet source</a> · <a href="../../docs/COMPONENTS.md#button">Documentation</a></p>
+          </div>
+          <div class="gallery__demo stack">
+            <div class="cluster">
+              <button type="button" class="btn">Primary</button>
+              <button type="button" class="btn btn--secondary">Secondary</button>
+              <button type="button" class="btn btn--ghost">Ghost</button>
+              <button type="button" class="btn btn--danger">Delete</button>
+              <button type="button" class="btn" disabled>Disabled</button>
+            </div>
+            <div class="cluster">
+              <button type="button" class="btn btn--sm">Small</button>
+              <button type="button" class="btn btn--lg">Large</button>
+              <a class="btn btn--secondary" href="/docs">Link styled as button <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+              <button type="button" class="btn btn--ghost btn--icon">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/></svg>
+                <span class="visually-hidden">Search</span>
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <section class="gallery__section" id="alert" aria-labelledby="alert-title">
+          <div class="gallery__intro">
+            <h2 id="alert-title">Alert and badge</h2>
+            <p class="text-muted">Inline status messages in four variants, and compact badges for labels and counts.</p>
+            <p class="text-sm"><a href="alert.html">View snippet source</a> · <a href="../../docs/COMPONENTS.md#alert">Documentation</a></p>
+          </div>
+          <div class="gallery__demo stack">
+            <div class="stack">
+              <div class="alert">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+                <div><p class="alert__title">Information</p><p>Your trial ends in 7 days.</p></div>
+              </div>
+              <div class="alert alert--success">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg>
+                <div><p class="alert__title">Success</p><p>Your changes have been saved.</p></div>
+              </div>
+              <div class="alert alert--warning">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4M12 17h.01"/></svg>
+                <div><p class="alert__title">Warning</p><p>Your storage is 90% full.</p></div>
+              </div>
+              <div class="alert alert--danger">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+                <div><p class="alert__title">Error</p><p>We couldn’t process your payment.</p></div>
+              </div>
+              <p class="cluster">
+                <span class="badge">Draft</span>
+                <span class="badge badge--primary">New</span>
+                <span class="badge badge--success">Paid</span>
+                <span class="badge badge--warning">Pending</span>
+                <span class="badge badge--danger">Failed</span>
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section class="gallery__section" id="card" aria-labelledby="card-title">
+          <div class="gallery__intro">
+            <h2 id="card-title">Card</h2>
+            <p class="text-muted">Content card with optional media, stretched link and footer actions. Each card is a size container, so its layout switches to side-by-side when the card itself is wide (container query), wherever it is placed.</p>
+            <p class="text-sm"><a href="card.html">View snippet source</a> · <a href="../../docs/COMPONENTS.md#card">Documentation</a></p>
+          </div>
+          <div class="gallery__demo stack">
+            <ul class="grid-auto list-reset" role="list">
+              <li>
+                <article class="card">
+                  <div class="card__inner">
+                    <img class="card__media" src="../assets/images/product-lamp.svg" width="400" height="300" alt="" loading="lazy" decoding="async">
+                    <div class="card__body">
+                      <h3 class="card__title"><a href="/articles/design-tokens">Designing with tokens</a></h3>
+                      <p class="card__text">How a single file of custom properties keeps a whole product on brand.</p>
+                      <div class="card__footer">
+                        <span class="badge badge--primary">Guide</span>
+                        <span class="text-sm text-muted">6 min read</span>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+              </li>
+            </ul>
+            <article class="card">
+              <div class="card__inner card__inner--split">
+                <img class="card__media" src="../assets/images/product-camera.svg" width="400" height="300" alt="" loading="lazy" decoding="async">
+                <div class="card__body">
+                  <h3 class="card__title"><a href="/articles/container-queries">Container queries in practice</a></h3>
+                  <p class="card__text">This card turns horizontal when it is at least 34rem wide, independent of the viewport.</p>
+                  <div class="card__footer">
+                    <button type="button" class="btn btn--sm btn--secondary">Save<span class="visually-hidden"> article</span></button>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="gallery__section" id="accordion" aria-labelledby="accordion-title">
+          <div class="gallery__intro">
+            <h2 id="accordion-title">Accordion</h2>
+            <p class="text-muted">Collapsible sections built on native &lt;details&gt; and &lt;summary&gt;. Siblings that share a name attribute behave exclusively (one open at a time) in supporting browsers.</p>
+            <p class="text-sm"><a href="accordion.html">View snippet source</a> · <a href="../../docs/COMPONENTS.md#accordion">Documentation</a></p>
+          </div>
+          <div class="gallery__demo stack">
+            <div class="accordion">
+              <details class="accordion__item" name="example-faq" open>
+                <summary class="accordion__summary">What is included? <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+                <div class="accordion__panel">
+                  <p>Templates, components, design tokens, documentation and validation scripts.</p>
+                </div>
+              </details>
+              <details class="accordion__item" name="example-faq">
+                <summary class="accordion__summary">Is JavaScript required? <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+                <div class="accordion__panel">
+                  <p>No. The accordion works entirely with HTML and CSS.</p>
+                </div>
+              </details>
+            </div>
+          </div>
+        </section>
+
+        <section class="gallery__section" id="tabs" aria-labelledby="tabs-title">
+          <div class="gallery__intro">
+            <h2 id="tabs-title">Tabs</h2>
+            <p class="text-muted">WAI-ARIA tabs with automatic activation. Without JavaScript every panel is shown in sequence with its own heading.</p>
+            <p class="text-sm"><a href="tabs.html">View snippet source</a> · <a href="../../docs/COMPONENTS.md#tabs">Documentation</a></p>
+          </div>
+          <div class="gallery__demo stack">
+            <div class="tabs" data-tabs>
+              <div class="tabs__list" data-tabs-list data-label="Account settings" hidden>
+                <button type="button" class="tabs__tab" data-tab="tab-panel-profile">Profile</button>
+                <button type="button" class="tabs__tab" data-tab="tab-panel-billing">Billing</button>
+                <button type="button" class="tabs__tab" data-tab="tab-panel-team">Team</button>
+              </div>
+              <section class="tabs__panel" id="tab-panel-profile" aria-labelledby="tab-panel-profile-heading">
+                <h3 class="tabs__heading" id="tab-panel-profile-heading">Profile</h3>
+                <p>Update your name, photo and contact details.</p>
+              </section>
+              <section class="tabs__panel" id="tab-panel-billing" aria-labelledby="tab-panel-billing-heading">
+                <h3 class="tabs__heading" id="tab-panel-billing-heading">Billing</h3>
+                <p>Manage your plan, payment method and invoices.</p>
+              </section>
+              <section class="tabs__panel" id="tab-panel-team" aria-labelledby="tab-panel-team-heading">
+                <h3 class="tabs__heading" id="tab-panel-team-heading">Team</h3>
+                <p>Invite teammates and manage roles.</p>
+              </section>
+            </div>
+          </div>
+        </section>
+
+        <section class="gallery__section" id="dialog" aria-labelledby="dialog-title">
+          <div class="gallery__intro">
+            <h2 id="dialog-title">Dialog</h2>
+            <p class="text-muted">Modal dialog on the native &lt;dialog&gt; element, opened and closed declaratively with HTML Invoker Commands (commandfor / command). closedby=&quot;any&quot; enables light dismiss.</p>
+            <p class="text-sm"><a href="dialog.html">View snippet source</a> · <a href="../../docs/COMPONENTS.md#dialog">Documentation</a></p>
+          </div>
+          <div class="gallery__demo stack">
+            <button type="button" class="btn" commandfor="example-dialog" command="show-modal">Open dialog</button>
+
+            <dialog class="dialog" id="example-dialog" aria-labelledby="example-dialog-title" closedby="any">
+              <div class="dialog__header">
+                <h2 class="dialog__title" id="example-dialog-title">Delete project?</h2>
+                <button type="button" class="btn btn--ghost btn--icon" commandfor="example-dialog" command="close">
+                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+                  <span class="visually-hidden">Close dialog</span>
+                </button>
+              </div>
+              <div class="dialog__body">
+                <p>This permanently deletes the project and its 24 files. This cannot be undone.</p>
+              </div>
+              <div class="dialog__footer">
+                <button type="button" class="btn btn--secondary" commandfor="example-dialog" command="close">Cancel</button>
+                <button type="button" class="btn btn--danger" commandfor="example-dialog" command="close" value="delete">Delete project</button>
+              </div>
+            </dialog>
+          </div>
+        </section>
+
+        <section class="gallery__section" id="form-field" aria-labelledby="form-field-title">
+          <div class="gallery__intro">
+            <h2 id="form-field-title">Form fields</h2>
+            <p class="text-muted">Labelled text input, select, textarea, checkbox and radio group with hints and inline errors. Add data-validate to the form for accessible client-side validation.</p>
+            <p class="text-sm"><a href="form-field.html">View snippet source</a> · <a href="../../docs/COMPONENTS.md#form-field">Documentation</a></p>
+          </div>
+          <div class="gallery__demo stack">
+            <form class="form" action="/contact" method="post" data-validate data-demo-submit="Thanks, your message has been sent.">
+              <div class="form-row">
+                <div class="field">
+                  <label class="field__label" for="example-name">Full name <span class="field__required" aria-hidden="true">*</span></label>
+                  <input class="input" id="example-name" name="name" type="text" autocomplete="name" required aria-describedby="example-name-error" data-error-required="Enter your full name.">
+                  <p class="field__error" id="example-name-error"></p>
+                </div>
+                <div class="field">
+                  <label class="field__label" for="example-email">Email <span class="field__required" aria-hidden="true">*</span></label>
+                  <input class="input" id="example-email" name="email" type="email" autocomplete="email" required aria-describedby="example-email-error">
+                  <p class="field__error" id="example-email-error"></p>
+                </div>
+              </div>
+
+              <div class="field">
+                <label class="field__label" for="example-password">Password <span class="field__required" aria-hidden="true">*</span></label>
+                <p class="field__hint" id="example-password-hint">At least 12 characters.</p>
+                <div class="input-group">
+                  <input class="input" id="example-password" name="password" type="password" autocomplete="new-password" minlength="12" required aria-describedby="example-password-hint example-password-error">
+                  <button type="button" class="btn btn--secondary" data-password-toggle aria-controls="example-password" aria-pressed="false" hidden>
+                    <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg> Show<span class="visually-hidden"> password</span>
+                  </button>
+                </div>
+                <p class="field__error" id="example-password-error"></p>
+              </div>
+
+              <div class="field">
+                <label class="field__label" for="example-topic">Topic</label>
+                <select class="select" id="example-topic" name="topic">
+                  <option>General question</option>
+                  <option>Billing</option>
+                  <option>Technical support</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label class="field__label" for="example-message">Message</label>
+                <textarea class="textarea" id="example-message" name="message" rows="4"></textarea>
+              </div>
+
+              <fieldset class="fieldset">
+                <legend class="fieldset__legend">Preferred contact method</legend>
+                <label class="choice"><input type="radio" name="contact" value="email" checked> Email</label>
+                <label class="choice"><input type="radio" name="contact" value="phone"> Phone</label>
+              </fieldset>
+
+              <div class="field">
+                <label class="choice">
+                  <input type="checkbox" id="example-consent" name="consent" required aria-describedby="example-consent-error" data-error-required="Please agree before sending.">
+                  I agree to be contacted about my request
+                </label>
+                <p class="field__error" id="example-consent-error"></p>
+              </div>
+
+              <div class="form-actions">
+                <button type="submit" class="btn">Send message</button>
+                <button type="reset" class="btn btn--ghost">Reset</button>
+              </div>
+              <p class="alert alert--success" data-form-status hidden></p>
+            </form>
+          </div>
+        </section>
+
+        <section class="gallery__section" id="toast" aria-labelledby="toast-title">
+          <div class="gallery__intro">
+            <h2 id="toast-title">Toast</h2>
+            <p class="text-muted">Transient notifications announced through a polite live region. Trigger declaratively with data-toast or call showToast() from JavaScript.</p>
+            <p class="text-sm"><a href="toast.html">View snippet source</a> · <a href="../../docs/COMPONENTS.md#toast">Documentation</a></p>
+          </div>
+          <div class="gallery__demo stack">
+            <div class="cluster">
+              <button type="button" class="btn btn--secondary" data-toast="Link copied to clipboard.">Show info toast</button>
+              <button type="button" class="btn btn--secondary" data-toast="Settings saved." data-toast-variant="success">Show success toast</button>
+              <button type="button" class="btn btn--secondary" data-toast="Upload failed. Please try again." data-toast-variant="danger">Show error toast</button>
+            </div>
+          </div>
+        </section>
+
+        <section class="gallery__section" id="data-table" aria-labelledby="data-table-title">
+          <div class="gallery__intro">
+            <h2 id="data-table-title">Data table</h2>
+            <p class="text-muted">Responsive table in a scrollable, keyboard-focusable region. Add data-sortable for sortable columns and data-chart to draw proportional bars behind data-value cells.</p>
+            <p class="text-sm"><a href="data-table.html">View snippet source</a> · <a href="../../docs/COMPONENTS.md#data-table">Documentation</a></p>
+          </div>
+          <div class="gallery__demo stack">
+            <div class="table-wrapper" role="region" aria-labelledby="example-orders-caption" tabindex="0">
+              <table class="table" data-sortable>
+                <caption id="example-orders-caption">Recent orders</caption>
+                <thead>
+                  <tr>
+                    <th scope="col" data-sort="text">Customer</th>
+                    <th scope="col" data-sort="date">Date</th>
+                    <th scope="col">Status</th>
+                    <th scope="col" data-sort="number" class="num">Amount</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td>Olivia Chen</td><td data-sort-value="2026-10-08"><time datetime="2026-10-08">8 Oct 2026</time></td><td><span class="badge badge--success">Paid</span></td><td class="num" data-sort-value="249">$249.00</td></tr>
+                  <tr><td>Noah Williams</td><td data-sort-value="2026-10-07"><time datetime="2026-10-07">7 Oct 2026</time></td><td><span class="badge badge--warning">Pending</span></td><td class="num" data-sort-value="1120.5">$1,120.50</td></tr>
+                  <tr><td>Sofia García</td><td data-sort-value="2026-10-06"><time datetime="2026-10-06">6 Oct 2026</time></td><td><span class="badge badge--success">Paid</span></td><td class="num" data-sort-value="89.99">$89.99</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="table-wrapper" role="region" aria-labelledby="example-chart-caption" tabindex="0">
+              <table class="table" data-chart>
+                <caption id="example-chart-caption">Visitors by device</caption>
+                <thead><tr><th scope="col">Device</th><th scope="col">Visitors</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row">Mobile</th><td data-value="6120">6,120</td></tr>
+                  <tr><th scope="row">Desktop</th><td data-value="3480">3,480</td></tr>
+                  <tr><th scope="row">Tablet</th><td data-value="910">910</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <section class="gallery__section" id="breadcrumb" aria-labelledby="breadcrumb-title">
+          <div class="gallery__intro">
+            <h2 id="breadcrumb-title">Breadcrumb</h2>
+            <p class="text-muted">Hierarchical trail of links to the current page.</p>
+            <p class="text-sm"><a href="breadcrumb.html">View snippet source</a> · <a href="../../docs/COMPONENTS.md#breadcrumb">Documentation</a></p>
+          </div>
+          <div class="gallery__demo stack">
+            <nav class="breadcrumb" aria-label="Breadcrumb">
+              <ol class="breadcrumb__list">
+                <li class="breadcrumb__item"><a href="/">Home</a></li>
+                <li class="breadcrumb__item"><a href="/shop">Shop</a></li>
+                <li class="breadcrumb__item"><span aria-current="page">Headphones</span></li>
+              </ol>
+            </nav>
+          </div>
+        </section>
+
+        <section class="gallery__section" id="pagination" aria-labelledby="pagination-title">
+          <div class="gallery__intro">
+            <h2 id="pagination-title">Pagination</h2>
+            <p class="text-muted">Page links with previous/next controls.</p>
+            <p class="text-sm"><a href="pagination.html">View snippet source</a> · <a href="../../docs/COMPONENTS.md#pagination">Documentation</a></p>
+          </div>
+          <div class="gallery__demo stack">
+            <nav class="pagination" aria-label="Pagination">
+              <ul class="pagination__list">
+                <li><a class="pagination__link"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg><span class="visually-hidden">Previous page</span></a></li>
+                <li><a class="pagination__link" href="?page=1" aria-current="page"><span class="visually-hidden">Page </span>1</a></li>
+                <li><a class="pagination__link" href="?page=2"><span class="visually-hidden">Page </span>2</a></li>
+                <li><a class="pagination__link" href="?page=3"><span class="visually-hidden">Page </span>3</a></li>
+                <li><a class="pagination__link" href="?page=2"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg><span class="visually-hidden">Next page</span></a></li>
+              </ul>
+            </nav>
+          </div>
+        </section>
+
+        <section class="gallery__section" id="theme-toggle" aria-labelledby="theme-toggle-title">
+          <div class="gallery__intro">
+            <h2 id="theme-toggle-title">Theme toggle</h2>
+            <p class="text-muted">Switches between light and dark themes. Follows the operating-system preference until the user chooses, then remembers the choice.</p>
+            <p class="text-sm"><a href="theme-toggle.html">View snippet source</a> · <a href="../../docs/COMPONENTS.md#theme-toggle">Documentation</a></p>
+          </div>
+          <div class="gallery__demo stack">
+            <button type="button" class="btn btn--ghost btn--icon theme-toggle" data-theme-toggle aria-pressed="false" hidden>
+              <svg class="icon theme-toggle__light" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+              <svg class="icon theme-toggle__dark" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+              <span class="visually-hidden">Dark theme</span>
+            </button>
+          </div>
+        </section>
+
+        <section class="gallery__section" id="site-header" aria-labelledby="site-header-title">
+          <div class="gallery__intro">
+            <h2 id="site-header-title">Site header</h2>
+            <p class="text-muted">Sticky header with brand, primary navigation and actions. On small screens the menu collapses behind a disclosure button.</p>
+            <p class="text-sm"><a href="site-header.html">View snippet source</a> · <a href="../../docs/COMPONENTS.md#site-header">Documentation</a></p>
+          </div>
+          <div class="gallery__demo stack">
+            <header class="site-header">
+              <div class="container site-header__inner">
+                <a class="brand" href="/">
+                  <span class="brand__mark"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 2 7l10 5 10-5z"/><path d="m2 17 10 5 10-5M2 12l10 5 10-5"/></svg></span>
+                  Acme
+                </a>
+
+                <button type="button" class="btn btn--ghost btn--icon site-header__toggle" data-disclosure="dismissible" aria-expanded="false" aria-controls="site-menu" hidden>
+                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+                  <span class="visually-hidden">Menu</span>
+                </button>
+
+                <div class="site-header__menu" id="site-menu">
+                  <nav class="site-nav" aria-label="Primary">
+                    <ul class="site-nav__list">
+                      <li><a class="site-nav__link" href="/" aria-current="page">Home</a></li>
+                      <li><a class="site-nav__link" href="/features">Features</a></li>
+                      <li><a class="site-nav__link" href="/pricing">Pricing</a></li>
+                    </ul>
+                  </nav>
+                  <div class="site-header__actions">
+                    <a class="btn btn--ghost" href="/sign-in">Sign in</a>
+                    <a class="btn" href="/register">Get started</a>
+                  </div>
+                </div>
+              </div>
+            </header>
+          </div>
+        </section>
+
+        <section class="gallery__section" id="site-footer" aria-labelledby="site-footer-title">
+          <div class="gallery__intro">
+            <h2 id="site-footer-title">Site footer</h2>
+            <p class="text-muted">Footer with brand blurb, grouped link columns and a bottom bar.</p>
+            <p class="text-sm"><a href="site-footer.html">View snippet source</a> · <a href="../../docs/COMPONENTS.md#site-footer">Documentation</a></p>
+          </div>
+          <div class="gallery__demo stack">
+            <footer class="site-footer">
+              <div class="container">
+                <div class="site-footer__grid">
+                  <div class="site-footer__about stack">
+                    <a class="brand" href="/">
+                      <span class="brand__mark"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 2 7l10 5 10-5z"/><path d="m2 17 10 5 10-5M2 12l10 5 10-5"/></svg></span>
+                      Acme
+                    </a>
+                    <p class="text-muted">Dependency-free, accessible UI templates.</p>
+                  </div>
+                  <nav aria-labelledby="example-footer-product">
+                    <h2 class="site-footer__heading" id="example-footer-product">Product</h2>
+                    <ul class="site-footer__links">
+                      <li><a href="/features">Features</a></li>
+                      <li><a href="/pricing">Pricing</a></li>
+                    </ul>
+                  </nav>
+                  <nav aria-labelledby="example-footer-company">
+                    <h2 class="site-footer__heading" id="example-footer-company">Company</h2>
+                    <ul class="site-footer__links">
+                      <li><a href="/about">About</a></li>
+                      <li><a href="/contact">Contact</a></li>
+                    </ul>
+                  </nav>
+                  <nav aria-labelledby="example-footer-legal">
+                    <h2 class="site-footer__heading" id="example-footer-legal">Legal</h2>
+                    <ul class="site-footer__links">
+                      <li><a href="/privacy">Privacy</a></li>
+                      <li><a href="/terms">Terms</a></li>
+                    </ul>
+                  </nav>
+                </div>
+                <div class="site-footer__bottom">
+                  <p>© 2026 Acme. All rights reserved.</p>
+                </div>
+              </div>
+            </footer>
+          </div>
+        </section>
+        </div>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

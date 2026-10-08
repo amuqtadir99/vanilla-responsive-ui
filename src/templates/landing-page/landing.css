@@ -1,0 +1,87 @@
+/* ==========================================================================
+   Landing page template styles
+   ========================================================================== */
+
+/* ---- Hero -------------------------------------------------------------- */
+.hero {
+  padding-block: var(--spacing-section);
+  overflow: hidden;
+}
+
+.hero__inner {
+  display: grid;
+  gap: var(--spacing-xl);
+  align-items: center;
+}
+
+@media (min-width: 60em) {
+  .hero__inner {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.hero__title {
+  font-size: var(--font-size-4xl);
+  letter-spacing: -0.02em;
+}
+
+.hero__image {
+  width: 100%;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+}
+
+/* ---- Pricing ----------------------------------------------------------- */
+.pricing {
+  display: grid;
+  gap: var(--spacing-md);
+  grid-template-columns: repeat(auto-fit, minmax(min(18rem, 100%), 1fr));
+  align-items: stretch;
+}
+
+/* ---- Testimonials ------------------------------------------------------ */
+.testimonial {
+  height: 100%;
+  padding: var(--spacing-md);
+  gap: var(--spacing-md);
+}
+
+.testimonial__quote {
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-snug);
+}
+
+.testimonial__quote p::before {
+  content: "\201C";
+}
+
+.testimonial__quote p::after {
+  content: "\201D";
+}
+
+.testimonial__author {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  margin-block-start: auto;
+}
+
+.testimonial__avatar {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  background-color: var(--color-primary-soft);
+  color: var(--color-primary);
+  font-weight: var(--font-weight-bold);
+}
+
+/* ---- Newsletter -------------------------------------------------------- */
+.newsletter__submit {
+  margin-block-start: calc(var(--font-size-base) * var(--line-height-normal) + var(--spacing-3xs));
+}
+
+.newsletter__status {
+  flex-basis: 100%;
+}

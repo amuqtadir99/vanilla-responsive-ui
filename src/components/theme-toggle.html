@@ -1,0 +1,12 @@
+<!--
+@component: Theme toggle
+@description: Switches between light and dark themes. Follows the operating-system preference until the user chooses, then remembers the choice.
+@css: components/button.css
+@js: components/theme-toggle.js
+@a11y: A toggle button with a constant accessible name ("Dark theme") and aria-pressed for state. Hidden until JavaScript runs, because it cannot work without it.
+-->
+<button type="button" class="btn btn--ghost btn--icon theme-toggle" data-theme-toggle aria-pressed="false" hidden>
+  <svg class="icon theme-toggle__light" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+  <svg class="icon theme-toggle__dark" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+  <span class="visually-hidden">Dark theme</span>
+</button>

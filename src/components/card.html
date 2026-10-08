@@ -1,0 +1,36 @@
+<!--
+@component: Card
+@description: Content card with optional media, stretched link and footer actions. Each card is a size container, so its layout switches to side-by-side when the card itself is wide (container query), wherever it is placed.
+@css: components/card.css
+@js: none
+@a11y: The stretched link makes the whole card clickable while only the title link is announced and tabbable. Decorative images use alt="". Controls in the footer stay independently clickable.
+-->
+<ul class="grid-auto list-reset" role="list">
+  <li>
+    <article class="card">
+      <div class="card__inner">
+        <img class="card__media" src="../assets/images/product-lamp.svg" width="400" height="300" alt="" loading="lazy" decoding="async">
+        <div class="card__body">
+          <h3 class="card__title"><a href="/articles/design-tokens">Designing with tokens</a></h3>
+          <p class="card__text">How a single file of custom properties keeps a whole product on brand.</p>
+          <div class="card__footer">
+            <span class="badge badge--primary">Guide</span>
+            <span class="text-sm text-muted">6 min read</span>
+          </div>
+        </div>
+      </div>
+    </article>
+  </li>
+</ul>
+<article class="card">
+  <div class="card__inner card__inner--split">
+    <img class="card__media" src="../assets/images/product-camera.svg" width="400" height="300" alt="" loading="lazy" decoding="async">
+    <div class="card__body">
+      <h3 class="card__title"><a href="/articles/container-queries">Container queries in practice</a></h3>
+      <p class="card__text">This card turns horizontal when it is at least 34rem wide, independent of the viewport.</p>
+      <div class="card__footer">
+        <button type="button" class="btn btn--sm btn--secondary">Save<span class="visually-hidden"> article</span></button>
+      </div>
+    </div>
+  </div>
+</article>

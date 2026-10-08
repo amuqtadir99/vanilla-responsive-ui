@@ -1,0 +1,48 @@
+/* ==========================================================================
+   Authentication template styles (sign in, register)
+   ========================================================================== */
+
+.auth {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  background-color: var(--color-surface);
+}
+
+.auth__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-sm) var(--container-padding);
+}
+
+.auth__header .brand {
+  margin-inline-end: 0;
+}
+
+.auth__main {
+  display: grid;
+  place-items: center;
+  padding: var(--spacing-md) var(--container-padding) var(--spacing-xl);
+}
+
+.auth__card {
+  display: grid;
+  gap: var(--spacing-lg);
+  width: 100%;
+  max-width: 28rem;
+  padding: clamp(1.25rem, 0.75rem + 2.5vw, 2.5rem);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-xl);
+  background-color: var(--color-surface-raised);
+  box-shadow: var(--shadow-md);
+}
+
+.auth__title {
+  font-size: var(--font-size-2xl);
+}
+
+.auth__footer {
+  padding: var(--spacing-md) var(--container-padding);
+  text-align: center;
+}

@@ -1,0 +1,14 @@
+<!--
+@component: Breadcrumb
+@description: Hierarchical trail of links to the current page.
+@css: components/navigation.css
+@js: none
+@a11y: A <nav> labelled "Breadcrumb" containing an ordered list. Separators are CSS-generated so they are not announced. The current page is marked with aria-current="page".
+-->
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <ol class="breadcrumb__list">
+    <li class="breadcrumb__item"><a href="/">Home</a></li>
+    <li class="breadcrumb__item"><a href="/shop">Shop</a></li>
+    <li class="breadcrumb__item"><span aria-current="page">Headphones</span></li>
+  </ol>
+</nav>

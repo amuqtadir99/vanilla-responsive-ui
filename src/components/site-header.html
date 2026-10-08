@@ -1,0 +1,34 @@
+<!--
+@component: Site header
+@description: Sticky header with brand, primary navigation and actions. On small screens the menu collapses behind a disclosure button.
+@css: components/button.css, components/header.css
+@js: components/disclosure.js, components/theme-toggle.js
+@a11y: The toggle ships with the hidden attribute and is revealed by JavaScript, so without JS the full menu is always visible. The toggle exposes aria-expanded and aria-controls; Escape closes the menu and returns focus. Mark the current page link with aria-current="page".
+-->
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a class="brand" href="/">
+      <span class="brand__mark"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 2 7l10 5 10-5z"/><path d="m2 17 10 5 10-5M2 12l10 5 10-5"/></svg></span>
+      Acme
+    </a>
+
+    <button type="button" class="btn btn--ghost btn--icon site-header__toggle" data-disclosure="dismissible" aria-expanded="false" aria-controls="site-menu" hidden>
+      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      <span class="visually-hidden">Menu</span>
+    </button>
+
+    <div class="site-header__menu" id="site-menu">
+      <nav class="site-nav" aria-label="Primary">
+        <ul class="site-nav__list">
+          <li><a class="site-nav__link" href="/" aria-current="page">Home</a></li>
+          <li><a class="site-nav__link" href="/features">Features</a></li>
+          <li><a class="site-nav__link" href="/pricing">Pricing</a></li>
+        </ul>
+      </nav>
+      <div class="site-header__actions">
+        <a class="btn btn--ghost" href="/sign-in">Sign in</a>
+        <a class="btn" href="/register">Get started</a>
+      </div>
+    </div>
+  </div>
+</header>

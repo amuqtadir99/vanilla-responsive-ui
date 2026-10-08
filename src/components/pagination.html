@@ -1,0 +1,16 @@
+<!--
+@component: Pagination
+@description: Page links with previous/next controls.
+@css: components/navigation.css
+@js: none
+@a11y: A <nav> labelled "Pagination". Numbers include visually hidden "Page" text, the current page uses aria-current="page", and an unavailable previous/next link has no href so it is removed from the tab order.
+-->
+<nav class="pagination" aria-label="Pagination">
+  <ul class="pagination__list">
+    <li><a class="pagination__link"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg><span class="visually-hidden">Previous page</span></a></li>
+    <li><a class="pagination__link" href="?page=1" aria-current="page"><span class="visually-hidden">Page </span>1</a></li>
+    <li><a class="pagination__link" href="?page=2"><span class="visually-hidden">Page </span>2</a></li>
+    <li><a class="pagination__link" href="?page=3"><span class="visually-hidden">Page </span>3</a></li>
+    <li><a class="pagination__link" href="?page=2"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg><span class="visually-hidden">Next page</span></a></li>
+  </ul>
+</nav>

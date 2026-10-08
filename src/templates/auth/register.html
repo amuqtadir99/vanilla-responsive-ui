@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; form-action 'self'; base-uri 'self'; object-src 'none'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>Create account — Acme Cloud</title>
+  <meta name="description" content="Registration page template with inline validation, password requirements, confirm-password matching and terms consent.">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#f5f7fa" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#161a21" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="../../assets/icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../../assets/css/tokens.css">
+  <link rel="stylesheet" href="../../assets/css/base.css">
+  <link rel="stylesheet" href="../../assets/css/components/button.css">
+  <link rel="stylesheet" href="../../assets/css/components/header.css">
+  <link rel="stylesheet" href="../../assets/css/components/form.css">
+  <link rel="stylesheet" href="../../assets/css/components/feedback.css">
+  <link rel="stylesheet" href="auth.css">
+  <script type="module" src="../../assets/js/main.js"></script>
+</head>
+<body class="auth">
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="auth__header">
+    <a class="brand" href="../landing-page/index.html">
+      <span class="brand__mark"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 2 7l10 5 10-5z"/><path d="m2 17 10 5 10-5M2 12l10 5 10-5"/></svg></span>
+      Acme Cloud
+    </a>
+    <button type="button" class="btn btn--ghost btn--icon theme-toggle" data-theme-toggle aria-pressed="false" hidden>
+      <svg class="icon theme-toggle__light" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="icon theme-toggle__dark" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+      <span class="visually-hidden">Dark theme</span>
+    </button>
+  </header>
+
+  <main class="auth__main" id="main" tabindex="-1">
+    <div class="auth__card">
+      <div class="stack stack--xs text-center">
+        <h1 class="auth__title">Create your account</h1>
+        <p class="text-muted">Start your free 14-day trial. No credit card required.</p>
+      </div>
+
+      <p class="text-sm text-muted">Fields marked with <span class="field__required" aria-hidden="true">*</span><span class="visually-hidden">an asterisk</span> are required.</p>
+
+      <form class="form" action="/account/register" method="post" data-validate data-demo-submit="Account created (demo). Connect this form to your registration endpoint.">
+        <div class="form-row">
+          <div class="field">
+            <label class="field__label" for="reg-first-name">First name <span class="field__required" aria-hidden="true">*</span></label>
+            <input class="input" id="reg-first-name" name="given-name" type="text" autocomplete="given-name" required aria-describedby="reg-first-name-error" data-error-required="Enter your first name.">
+            <p class="field__error" id="reg-first-name-error"></p>
+          </div>
+          <div class="field">
+            <label class="field__label" for="reg-last-name">Last name <span class="field__required" aria-hidden="true">*</span></label>
+            <input class="input" id="reg-last-name" name="family-name" type="text" autocomplete="family-name" required aria-describedby="reg-last-name-error" data-error-required="Enter your last name.">
+            <p class="field__error" id="reg-last-name-error"></p>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="field__label" for="reg-email">Work email <span class="field__required" aria-hidden="true">*</span></label>
+          <input class="input" id="reg-email" name="email" type="email" autocomplete="email" inputmode="email" spellcheck="false" required aria-describedby="reg-email-error" data-error-required="Enter your work email address.">
+          <p class="field__error" id="reg-email-error"></p>
+        </div>
+
+        <div class="field">
+          <label class="field__label" for="reg-country">Country or region</label>
+          <select class="select" id="reg-country" name="country" autocomplete="country">
+            <option value="">Select…</option>
+            <option value="AU">Australia</option>
+            <option value="CA">Canada</option>
+            <option value="DE">Germany</option>
+            <option value="IN">India</option>
+            <option value="NG">Nigeria</option>
+            <option value="GB">United Kingdom</option>
+            <option value="US">United States</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label class="field__label" for="reg-password">Password <span class="field__required" aria-hidden="true">*</span></label>
+          <p class="field__hint" id="reg-password-hint">At least 12 characters. A passphrase of several words works well.</p>
+          <div class="input-group">
+            <input class="input" id="reg-password" name="new-password" type="password" autocomplete="new-password" minlength="12" required aria-describedby="reg-password-hint reg-password-error" data-error-required="Create a password." data-error-minlength="Use at least 12 characters for your password.">
+            <button type="button" class="btn btn--secondary" data-password-toggle aria-controls="reg-password" aria-pressed="false" hidden>
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg> Show<span class="visually-hidden"> password</span>
+            </button>
+          </div>
+          <p class="field__error" id="reg-password-error"></p>
+        </div>
+
+        <div class="field">
+          <label class="field__label" for="reg-password-confirm">Confirm password <span class="field__required" aria-hidden="true">*</span></label>
+          <input class="input" id="reg-password-confirm" name="confirm-password" type="password" autocomplete="new-password" required data-match="reg-password" aria-describedby="reg-password-confirm-error" data-error-required="Re-enter your password." data-error-match="Passwords do not match.">
+          <p class="field__error" id="reg-password-confirm-error"></p>
+        </div>
+
+        <div class="field">
+          <label class="choice choice--top">
+            <input type="checkbox" id="reg-terms" name="terms" value="accepted" required aria-describedby="reg-terms-error" data-error-required="You must accept the terms to create an account.">
+            <span>I agree to the <a href="#main">Terms of Service</a> and <a href="#main">Privacy Policy</a> <span class="field__required" aria-hidden="true">*</span></span>
+          </label>
+          <p class="field__error" id="reg-terms-error"></p>
+        </div>
+
+        <button type="submit" class="btn btn--block btn--lg">Create account</button>
+        <p class="alert alert--success" data-form-status hidden></p>
+      </form>
+
+      <p class="text-center text-muted">Already have an account? <a href="index.html">Sign in</a></p>
+    </div>
+  </main>
+
+  <footer class="auth__footer text-sm text-muted">
+    <p>© 2026 Acme Cloud · <a href="#main">Privacy</a> · <a href="#main">Terms</a></p>
+  </footer>
+</body>
+</html>

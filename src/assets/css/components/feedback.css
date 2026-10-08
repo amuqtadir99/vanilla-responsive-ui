@@ -1,0 +1,158 @@
+/* ==========================================================================
+   Feedback: alert, badge and toast
+   Status is never conveyed by colour alone: every variant carries an icon
+   and/or text label (WCAG 1.4.1).
+   ========================================================================== */
+
+/* ---- Alert ------------------------------------------------------------- */
+.alert {
+  --alert-color: var(--color-info);
+  --alert-bg: var(--color-info-soft);
+
+  display: flex;
+  gap: var(--spacing-xs);
+  align-items: flex-start;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: var(--border-width) solid var(--alert-color);
+  border-inline-start-width: 4px;
+  border-radius: var(--radius-md);
+  background-color: var(--alert-bg);
+  color: var(--color-text);
+}
+
+.alert > .icon {
+  margin-block-start: 0.15em;
+  color: var(--alert-color);
+}
+
+.alert__title {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+}
+
+.alert--success {
+  --alert-color: var(--color-success);
+  --alert-bg: var(--color-success-soft);
+}
+
+.alert--warning {
+  --alert-color: var(--color-warning);
+  --alert-bg: var(--color-warning-soft);
+}
+
+.alert--danger {
+  --alert-color: var(--color-danger);
+  --alert-bg: var(--color-danger-soft);
+}
+
+/* ---- Badge ------------------------------------------------------------- */
+.badge {
+  --badge-color: var(--color-text-muted);
+  --badge-bg: var(--color-surface-sunken);
+
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-3xs);
+  padding: 0.125rem var(--spacing-2xs);
+  border-radius: var(--radius-pill);
+  background-color: var(--badge-bg);
+  color: var(--badge-color);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.5;
+  white-space: nowrap;
+}
+
+.badge--primary {
+  --badge-color: var(--color-primary);
+  --badge-bg: var(--color-primary-soft);
+}
+
+.badge--success {
+  --badge-color: var(--color-success);
+  --badge-bg: var(--color-success-soft);
+}
+
+.badge--warning {
+  --badge-color: var(--color-warning);
+  --badge-bg: var(--color-warning-soft);
+}
+
+.badge--danger {
+  --badge-color: var(--color-danger);
+  --badge-bg: var(--color-danger-soft);
+}
+
+/* Counter bubble on an icon button (e.g. cart) */
+.badge--count {
+  position: absolute;
+  inset-block-start: 0.125rem;
+  inset-inline-end: 0.125rem;
+  min-width: 1.25rem;
+  justify-content: center;
+  padding: 0 0.3rem;
+  background-color: var(--color-primary);
+  color: var(--color-on-primary);
+}
+
+/* ---- Toast ------------------------------------------------------------- */
+.toast-region {
+  position: fixed;
+  inset-block-end: var(--spacing-sm);
+  inset-inline-end: var(--spacing-sm);
+  inset-inline-start: var(--spacing-sm);
+  z-index: var(--z-toast);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--spacing-2xs);
+  pointer-events: none;
+}
+
+.toast {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  max-width: 24rem;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border: var(--border-width) solid var(--color-border);
+  border-inline-start: 4px solid var(--toast-color, var(--color-primary));
+  border-radius: var(--radius-md);
+  background-color: var(--color-surface-raised);
+  color: var(--color-text);
+  box-shadow: var(--shadow-lg);
+  pointer-events: auto;
+  animation: toast-in var(--duration-slow) var(--ease-standard);
+}
+
+.toast--success {
+  --toast-color: var(--color-success);
+}
+
+.toast--danger {
+  --toast-color: var(--color-danger);
+}
+
+.toast__message {
+  flex: 1;
+}
+
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.5rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (forced-colors: active) {
+  .alert,
+  .badge,
+  .toast {
+    border: 1px solid CanvasText;
+  }
+}

@@ -1,0 +1,43 @@
+name: Validate
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: W3C, standards, accessibility
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+
+      - name: W3C validation (Nu HTML Checker) + HTML/CSS/JS standards
+        run: bash .claude/skills/validate-w3c.sh --install --require
+
+      - name: Static accessibility audit + colour contrast
+        run: bash .claude/skills/audit-a11y.sh --static
+
+      - name: Documentation is in sync
+        run: node tests/run-all.mjs --only docs
+
+      # Playwright is CI-only tooling, installed globally so the repository
+      # itself keeps zero dependencies (no package.json, no node_modules).
+      - name: Browser tests (Playwright)
+        run: |
+          npm install --global playwright@1.56.1 --no-audit --no-fund
+          playwright install --with-deps chromium
+          node tests/browser/smoke.mjs --require

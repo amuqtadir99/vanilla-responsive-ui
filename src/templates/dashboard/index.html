@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; form-action 'self'; base-uri 'self'; object-src 'none'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>Overview — Acme Dashboard</title>
+  <meta name="description" content="Admin dashboard template: sidebar navigation, KPI cards, accessible table chart, sortable data table, tabs and a modal dialog.">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0e1116" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="../../assets/icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../../assets/css/tokens.css">
+  <link rel="stylesheet" href="../../assets/css/base.css">
+  <link rel="stylesheet" href="../../assets/css/components/button.css">
+  <link rel="stylesheet" href="../../assets/css/components/header.css">
+  <link rel="stylesheet" href="../../assets/css/components/navigation.css">
+  <link rel="stylesheet" href="../../assets/css/components/card.css">
+  <link rel="stylesheet" href="../../assets/css/components/tabs.css">
+  <link rel="stylesheet" href="../../assets/css/components/table.css">
+  <link rel="stylesheet" href="../../assets/css/components/form.css">
+  <link rel="stylesheet" href="../../assets/css/components/dialog.css">
+  <link rel="stylesheet" href="../../assets/css/components/feedback.css">
+  <link rel="stylesheet" href="dashboard.css">
+  <script type="module" src="../../assets/js/main.js"></script>
+  <script type="module" src="dashboard.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <div class="dashboard">
+    <header class="dashboard__topbar">
+      <a class="brand" href="./">
+        <span class="brand__mark"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 2 7l10 5 10-5z"/><path d="m2 17 10 5 10-5M2 12l10 5 10-5"/></svg></span>
+        Acme
+      </a>
+
+      <button type="button" class="btn btn--ghost btn--icon dashboard__menu-toggle" data-disclosure aria-expanded="false" aria-controls="dashboard-nav" hidden>
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        <span class="visually-hidden">Dashboard menu</span>
+      </button>
+
+      <form class="dashboard__search" role="search" action="#" method="get">
+        <label class="visually-hidden" for="dashboard-search">Search orders, customers and reports</label>
+        <span class="dashboard__search-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/></svg></span>
+        <input class="input" id="dashboard-search" name="q" type="search" placeholder="Search…" autocomplete="off">
+      </form>
+
+      <div class="dashboard__actions">
+        <button type="button" class="btn btn--ghost btn--icon theme-toggle" data-theme-toggle aria-pressed="false" hidden>
+          <svg class="icon theme-toggle__light" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="icon theme-toggle__dark" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+          <span class="visually-hidden">Dark theme</span>
+        </button>
+        <button type="button" class="btn btn--ghost btn--icon dashboard__notify" data-toast="You have 3 unread notifications.">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+          <span class="visually-hidden">Notifications</span>
+          <span class="badge badge--count" aria-hidden="true">3</span>
+          <span class="visually-hidden">(3 unread)</span>
+        </button>
+        <span class="dashboard__avatar" aria-hidden="true">JD</span>
+      </div>
+    </header>
+
+    <nav class="dashboard__sidebar" id="dashboard-nav" aria-label="Dashboard">
+      <ul class="side-nav__list">
+        <li><a class="side-nav__link" href="./" aria-current="page"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg> Overview</a></li>
+        <li><a class="side-nav__link" href="#orders"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 8 12 3 3 8v8l9 5 9-5z"/><path d="m3 8 9 5 9-5M12 13v8"/></svg> Orders <span class="badge badge--primary">12<span class="visually-hidden"> new</span></span></a></li>
+        <li><a class="side-nav__link" href="#revenue"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20V10M18 20V4M6 20v-4"/></svg> Analytics</a></li>
+        <li><a class="side-nav__link" href="#activity"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg> Customers</a></li>
+      </ul>
+      <p class="side-nav__heading" id="nav-account">Account</p>
+      <ul class="side-nav__list" aria-labelledby="nav-account">
+        <li><a class="side-nav__link" href="#main"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></svg> Settings</a></li>
+        <li><a class="side-nav__link" href="../auth/index.html"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg> Sign out</a></li>
+      </ul>
+    </nav>
+
+    <main class="dashboard__main" id="main" tabindex="-1">
+      <div class="dashboard__page-header">
+        <div>
+          <h1 class="dashboard__title">Overview</h1>
+          <p class="text-muted">Performance for the last 30 days</p>
+        </div>
+        <div class="cluster">
+          <button type="button" class="btn btn--secondary" data-toast="Export started. You will receive an email when the CSV is ready." data-toast-variant="success">Export CSV</button>
+          <button type="button" class="btn" commandfor="report-dialog" command="show-modal">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+            New report
+          </button>
+        </div>
+      </div>
+
+      <section aria-labelledby="kpi-title">
+        <h2 class="visually-hidden" id="kpi-title">Key metrics</h2>
+        <ul class="kpis list-reset" role="list">
+          <li class="card card--flat">
+            <div class="card__body">
+              <p class="stat__label">Revenue</p>
+              <p class="stat__value">$48,290</p>
+              <p><span class="badge badge--success"><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m23 6-9.5 9.5-5-5L1 18"/><path d="M17 6h6v6"/></svg> 12.4%<span class="visually-hidden"> increase</span></span> <span class="text-sm text-muted">vs last month</span></p>
+            </div>
+          </li>
+          <li class="card card--flat">
+            <div class="card__body">
+              <p class="stat__label">Orders</p>
+              <p class="stat__value">1,284</p>
+              <p><span class="badge badge--success"><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m23 6-9.5 9.5-5-5L1 18"/><path d="M17 6h6v6"/></svg> 8.1%<span class="visually-hidden"> increase</span></span> <span class="text-sm text-muted">vs last month</span></p>
+            </div>
+          </li>
+          <li class="card card--flat">
+            <div class="card__body">
+              <p class="stat__label">New customers</p>
+              <p class="stat__value">392</p>
+              <p><span class="badge badge--danger"><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m23 18-9.5-9.5-5 5L1 6"/><path d="M17 18h6v-6"/></svg> 3.2%<span class="visually-hidden"> decrease</span></span> <span class="text-sm text-muted">vs last month</span></p>
+            </div>
+          </li>
+          <li class="card card--flat">
+            <div class="card__body">
+              <p class="stat__label">Refund rate</p>
+              <p class="stat__value">1.8%</p>
+              <p><span class="badge badge--success"><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m23 18-9.5-9.5-5 5L1 6"/><path d="M17 18h6v-6"/></svg> 0.4 pts<span class="visually-hidden"> lower (improvement)</span></span> <span class="text-sm text-muted">vs last month</span></p>
+            </div>
+          </li>
+        </ul>
+      </section>
+
+      <div class="dashboard__grid">
+        <section class="card card--flat" id="revenue" aria-labelledby="revenue-title">
+          <div class="card__body">
+            <h2 class="card__title" id="revenue-title">Revenue by channel</h2>
+            <div class="table-wrapper" role="region" aria-labelledby="revenue-caption" tabindex="0">
+              <table class="table" data-chart>
+                <caption id="revenue-caption" class="visually-hidden">Revenue by channel, last 30 days</caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Channel</th>
+                    <th scope="col">Revenue</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><th scope="row">Organic search</th><td data-value="18450">$18,450</td></tr>
+                  <tr><th scope="row">Direct</th><td data-value="12120">$12,120</td></tr>
+                  <tr><th scope="row">Email</th><td data-value="8930">$8,930</td></tr>
+                  <tr><th scope="row">Social</th><td data-value="5260">$5,260</td></tr>
+                  <tr><th scope="row">Referral</th><td data-value="3530">$3,530</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <section class="card card--flat" id="activity" aria-labelledby="activity-title">
+          <div class="card__body">
+            <h2 class="card__title" id="activity-title">Workspace</h2>
+            <div class="tabs" data-tabs>
+              <div class="tabs__list" data-tabs-list data-label="Workspace" hidden>
+                <button type="button" class="tabs__tab" data-tab="panel-activity">Activity</button>
+                <button type="button" class="tabs__tab" data-tab="panel-tasks">Tasks</button>
+                <button type="button" class="tabs__tab" data-tab="panel-notes">Notes</button>
+              </div>
+
+              <section class="tabs__panel" id="panel-activity" aria-labelledby="panel-activity-heading">
+                <h3 class="tabs__heading" id="panel-activity-heading">Activity</h3>
+                <ul class="timeline">
+                  <li><strong>Priya</strong> refunded order #1038 <time class="text-sm text-muted" datetime="2026-10-08T09:12">9:12</time></li>
+                  <li><strong>Mateo</strong> published the autumn catalogue <time class="text-sm text-muted" datetime="2026-10-08T08:40">8:40</time></li>
+                  <li><strong>Amara</strong> invited 2 teammates <time class="text-sm text-muted" datetime="2026-10-07T17:05">Yesterday</time></li>
+                </ul>
+              </section>
+
+              <section class="tabs__panel" id="panel-tasks" aria-labelledby="panel-tasks-heading">
+                <h3 class="tabs__heading" id="panel-tasks-heading">Tasks</h3>
+                <fieldset class="fieldset">
+                  <legend class="visually-hidden">Open tasks</legend>
+                  <label class="choice"><input type="checkbox" name="task" value="q4"> Review Q4 pricing</label>
+                  <label class="choice"><input type="checkbox" name="task" value="audit" checked> Run accessibility audit</label>
+                  <label class="choice"><input type="checkbox" name="task" value="onboard"> Onboard new support hire</label>
+                </fieldset>
+              </section>
+
+              <section class="tabs__panel" id="panel-notes" aria-labelledby="panel-notes-heading">
+                <h3 class="tabs__heading" id="panel-notes-heading">Notes</h3>
+                <p class="text-muted">Email revenue is up after the October newsletter redesign. Consider repeating the layout for the holiday campaign.</p>
+              </section>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <section id="orders" aria-labelledby="orders-title" class="stack">
+        <div class="cluster cluster--between">
+          <h2 class="dashboard__section-title" id="orders-title">Recent orders</h2>
+          <a href="#orders">View all<span class="visually-hidden"> orders</span></a>
+        </div>
+        <div class="table-wrapper" role="region" aria-labelledby="orders-caption" tabindex="0">
+          <table class="table" data-sortable>
+            <caption id="orders-caption" class="visually-hidden">Recent orders (select a column header to sort)</caption>
+            <thead>
+              <tr>
+                <th scope="col" data-sort="text">Order</th>
+                <th scope="col" data-sort="text">Customer</th>
+                <th scope="col" data-sort="date">Date</th>
+                <th scope="col" data-sort="text">Status</th>
+                <th scope="col" data-sort="number" class="num">Amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><a href="#orders">#1042</a></td>
+                <td>Olivia Chen</td>
+                <td data-sort-value="2026-10-08"><time datetime="2026-10-08">8 Oct 2026</time></td>
+                <td><span class="badge badge--success">Paid</span></td>
+                <td class="num" data-sort-value="249.00">$249.00</td>
+              </tr>
+              <tr>
+                <td><a href="#orders">#1041</a></td>
+                <td>Noah Williams</td>
+                <td data-sort-value="2026-10-07"><time datetime="2026-10-07">7 Oct 2026</time></td>
+                <td><span class="badge badge--warning">Pending</span></td>
+                <td class="num" data-sort-value="1120.50">$1,120.50</td>
+              </tr>
+              <tr>
+                <td><a href="#orders">#1040</a></td>
+                <td>Sofia García</td>
+                <td data-sort-value="2026-10-06"><time datetime="2026-10-06">6 Oct 2026</time></td>
+                <td><span class="badge badge--success">Paid</span></td>
+                <td class="num" data-sort-value="89.99">$89.99</td>
+              </tr>
+              <tr>
+                <td><a href="#orders">#1039</a></td>
+                <td>Liam Okafor</td>
+                <td data-sort-value="2026-10-05"><time datetime="2026-10-05">5 Oct 2026</time></td>
+                <td><span class="badge badge--danger">Failed</span></td>
+                <td class="num" data-sort-value="430.00">$430.00</td>
+              </tr>
+              <tr>
+                <td><a href="#orders">#1038</a></td>
+                <td>Emma Svensson</td>
+                <td data-sort-value="2026-10-03"><time datetime="2026-10-03">3 Oct 2026</time></td>
+                <td><span class="badge">Refunded</span></td>
+                <td class="num" data-sort-value="64.00">$64.00</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <dialog class="dialog" id="report-dialog" aria-labelledby="report-dialog-title" closedby="any">
+    <form method="dialog" data-validate>
+      <div class="dialog__header">
+        <h2 class="dialog__title" id="report-dialog-title">New report</h2>
+        <button type="button" class="btn btn--ghost btn--icon" commandfor="report-dialog" command="close">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+          <span class="visually-hidden">Close dialog</span>
+        </button>
+      </div>
+      <div class="dialog__body form">
+        <div class="field">
+          <label class="field__label" for="report-name">Report name <span class="field__required" aria-hidden="true">*</span></label>
+          <input class="input" id="report-name" name="name" type="text" required maxlength="80" aria-describedby="report-name-error" data-error-required="Give the report a name.">
+          <p class="field__error" id="report-name-error"></p>
+        </div>
+        <div class="field">
+          <label class="field__label" for="report-range">Date range</label>
+          <select class="select" id="report-range" name="range">
+            <option value="7">Last 7 days</option>
+            <option value="30" selected>Last 30 days</option>
+            <option value="90">Last 90 days</option>
+          </select>
+        </div>
+        <fieldset class="fieldset">
+          <legend class="fieldset__legend">Format</legend>
+          <label class="choice"><input type="radio" name="format" value="pdf" checked> PDF</label>
+          <label class="choice"><input type="radio" name="format" value="csv"> CSV</label>
+        </fieldset>
+      </div>
+      <div class="dialog__footer">
+        <button type="button" class="btn btn--secondary" commandfor="report-dialog" command="close">Cancel</button>
+        <button type="submit" class="btn" value="create">Create report</button>
+      </div>
+    </form>
+  </dialog>
+</body>
+</html>
