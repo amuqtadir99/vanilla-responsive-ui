@@ -1,0 +1,50 @@
+name: Deploy docs to GitHub Pages
+
+# Publishes the repository as a static site, so the documentation, live
+# templates and page builder work from a URL (ES modules do not run from
+# file://). The docs home is at https://<owner>.github.io/<repo>/src/.
+# One-time setup: Settings → Pages → Build and deployment → Source: GitHub Actions.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Build and deploy
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}src/
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+
+      # Fail the deploy rather than publish stale generated docs.
+      - name: Generated docs and partials are current
+        run: |
+          node .claude/skills/generate-doc.js --check
+          node .claude/skills/pages.js sync --check
+
+      - uses: actions/configure-pages@v6
+
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: .
+
+      - id: deployment
+        uses: actions/deploy-pages@v5

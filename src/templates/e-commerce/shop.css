@@ -105,24 +105,8 @@
 }
 
 /* ---- Perks ------------------------------------------------------------- */
-.perks {
-  display: grid;
-  gap: var(--spacing-md);
-  grid-template-columns: repeat(auto-fit, minmax(min(16rem, 100%), 1fr));
-  padding: var(--spacing-md);
-  border-radius: var(--radius-lg);
-  background-color: var(--color-surface);
-}
 
-.perks li {
-  display: flex;
-  gap: var(--spacing-xs);
-  align-items: flex-start;
-}
 
-.perks .icon {
-  color: var(--color-primary);
-}
 
 /* ---- Product page ------------------------------------------------------ */
 .product-layout {

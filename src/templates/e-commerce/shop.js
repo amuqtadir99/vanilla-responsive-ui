@@ -62,6 +62,20 @@ if (list && filterForm && sortSelect && resultsCount && emptyState) {
   on(sortSelect, 'change', () => list.append(...[...products].sort(sorters[sortSelect.value] || sorters.featured)));
   const filters = filterForm.closest('details');
   if (filters && window.matchMedia('(max-width: 47.99em)').matches) filters.open = false;
+
+  // Honour ?category=…&price=… (category tiles and shared links), the same
+  // query a server would receive from the no-JS form.
+  const params = new URLSearchParams(window.location.search);
+  if (params.has('category') || params.has('price')) {
+    const wanted = new Set(params.getAll('category'));
+    for (const box of qsa('input[name="category"]', filterForm)) box.checked = wanted.has(box.value);
+    const price = params.get('price');
+    if (price) {
+      const radio = qsa('input[name="price"]', filterForm).find((r) => r.value === price);
+      if (radio) radio.checked = true;
+    }
+    applyFilters();
+  }
 }
 
 for (const button of qsa('[data-add-to-cart]')) {

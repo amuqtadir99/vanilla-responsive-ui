@@ -24,7 +24,89 @@
   flex: 1;
   display: grid;
   place-items: center;
+  gap: var(--spacing-xl);
   padding: var(--spacing-md) var(--container-padding) var(--spacing-xl);
+}
+
+/* Split screen on wide viewports: form on the left, brand panel right */
+.auth__aside {
+  display: none;
+}
+
+@media (min-width: 64em) {
+  .auth__main {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: stretch;
+    padding-block-start: 0;
+  }
+
+  .auth__main > .auth__card {
+    align-self: center;
+    justify-self: center;
+  }
+
+  .auth__aside {
+    position: relative;
+    isolation: isolate;
+    display: grid;
+    align-items: center;
+    overflow: hidden;
+    padding: var(--spacing-2xl);
+    border-radius: var(--radius-2xl);
+    background-image: var(--gradient-cta);
+    color: var(--color-on-primary);
+  }
+
+  .auth__aside::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background-image:
+      radial-gradient(28rem 20rem at 100% 0%, var(--color-sheen), transparent 70%),
+      radial-gradient(22rem 16rem at 0% 100%, var(--color-sheen), transparent 70%);
+  }
+}
+
+.auth__aside-inner {
+  display: grid;
+  gap: var(--spacing-xl);
+  max-width: 32rem;
+  margin-inline: auto;
+}
+
+.auth__aside .checklist .icon {
+  color: inherit;
+}
+
+.auth__quote {
+  display: grid;
+  gap: var(--spacing-md);
+  margin: 0;
+}
+
+.auth__quote blockquote {
+  margin: 0;
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-snug);
+  text-wrap: pretty;
+}
+
+.auth__quote .avatar {
+  background-color: var(--color-on-primary);
+  color: var(--color-primary);
+}
+
+.auth__aside .mock {
+  color: var(--color-text);
+  transform: rotate(-2deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .auth__aside .mock {
+    transform: none;
+  }
 }
 
 .auth__card {

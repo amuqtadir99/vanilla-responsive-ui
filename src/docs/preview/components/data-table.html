@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; form-action 'self'; base-uri 'self'; object-src 'none'">
+  <title>Data table preview — vanilla-responsive-ui</title>
+  <meta name="description" content="Live preview of the Data table component.">
+  <meta name="color-scheme" content="light dark">
+  <meta name="vr-data-base" content="../../../data/">
+  <meta name="generator" content="node .claude/skills/generate-doc.js (do not edit by hand)">
+  <link rel="icon" href="../../../assets/icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../../../assets/css/tokens.css">
+  <link rel="stylesheet" href="../../../assets/css/themes.css">
+  <link rel="stylesheet" href="../../../assets/css/base.css">
+  <link rel="stylesheet" href="../../../assets/css/layouts.css">
+  <link rel="stylesheet" href="../../../assets/css/components/accordion.css">
+  <link rel="stylesheet" href="../../../assets/css/components/button.css">
+  <link rel="stylesheet" href="../../../assets/css/components/card.css">
+  <link rel="stylesheet" href="../../../assets/css/components/chart.css">
+  <link rel="stylesheet" href="../../../assets/css/components/chat.css">
+  <link rel="stylesheet" href="../../../assets/css/components/code.css">
+  <link rel="stylesheet" href="../../../assets/css/components/dialog.css">
+  <link rel="stylesheet" href="../../../assets/css/components/feedback.css">
+  <link rel="stylesheet" href="../../../assets/css/components/footer.css">
+  <link rel="stylesheet" href="../../../assets/css/components/form.css">
+  <link rel="stylesheet" href="../../../assets/css/components/header.css">
+  <link rel="stylesheet" href="../../../assets/css/components/navigation.css">
+  <link rel="stylesheet" href="../../../assets/css/components/table.css">
+  <link rel="stylesheet" href="../../../assets/css/components/tabs.css">
+  <link rel="stylesheet" href="../../../assets/css/blocks.css">
+  <link rel="stylesheet" href="../../../docs/assets/preview.css">
+  <script type="module" src="../../../assets/js/main.js"></script>
+</head>
+<body class="preview-body preview-body--component">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <main id="main" tabindex="-1" class="preview-main">
+    <h1 class="visually-hidden">Data table preview</h1>
+    <div class="table-wrapper" role="region" aria-labelledby="example-orders-caption" tabindex="0">
+      <table class="table" data-sortable>
+        <caption id="example-orders-caption">Recent orders</caption>
+        <thead>
+          <tr>
+            <th scope="col" data-sort="text">Customer</th>
+            <th scope="col" data-sort="date">Date</th>
+            <th scope="col">Status</th>
+            <th scope="col" data-sort="number" class="num">Amount</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Olivia Chen</td><td data-sort-value="2026-10-08"><time datetime="2026-10-08">8 Oct 2026</time></td><td><span class="badge badge--success">Paid</span></td><td class="num" data-sort-value="249">$249.00</td></tr>
+          <tr><td>Noah Williams</td><td data-sort-value="2026-10-07"><time datetime="2026-10-07">7 Oct 2026</time></td><td><span class="badge badge--warning">Pending</span></td><td class="num" data-sort-value="1120.5">$1,120.50</td></tr>
+          <tr><td>Sofia García</td><td data-sort-value="2026-10-06"><time datetime="2026-10-06">6 Oct 2026</time></td><td><span class="badge badge--success">Paid</span></td><td class="num" data-sort-value="89.99">$89.99</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="table-wrapper" role="region" aria-labelledby="example-chart-caption" tabindex="0">
+      <table class="table" data-chart>
+        <caption id="example-chart-caption">Visitors by device</caption>
+        <thead><tr><th scope="col">Device</th><th scope="col">Visitors</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Mobile</th><td data-value="6120">6,120</td></tr>
+          <tr><th scope="row">Desktop</th><td data-value="3480">3,480</td></tr>
+          <tr><th scope="row">Tablet</th><td data-value="910">910</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+</body>
+</html>

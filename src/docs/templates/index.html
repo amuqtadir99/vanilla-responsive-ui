@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; form-action 'self'; base-uri 'self'; object-src 'none'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>Templates — vanilla-responsive-ui docs</title>
+  <meta name="description" content="All template pages with live previews.">
+  <meta name="color-scheme" content="light dark">
+  <meta name="generator" content="node .claude/skills/generate-doc.js (do not edit by hand)">
+  <link rel="icon" href="../../assets/icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../../assets/css/tokens.css">
+  <link rel="stylesheet" href="../../assets/css/themes.css">
+  <link rel="stylesheet" href="../../assets/css/base.css">
+  <link rel="stylesheet" href="../../assets/css/layouts.css">
+  <link rel="stylesheet" href="../../assets/css/components/button.css">
+  <link rel="stylesheet" href="../../assets/css/components/form.css">
+  <link rel="stylesheet" href="../../assets/css/components/feedback.css">
+  <link rel="stylesheet" href="../../assets/css/components/tabs.css">
+  <link rel="stylesheet" href="../../assets/css/components/table.css">
+  <link rel="stylesheet" href="../../assets/css/components/code.css">
+  <link rel="stylesheet" href="../../assets/css/components/accordion.css">
+  <link rel="stylesheet" href="../../assets/css/components/card.css">
+  <link rel="stylesheet" href="../../assets/css/components/navigation.css">
+  <link rel="stylesheet" href="../../assets/css/blocks.css">
+  <link rel="stylesheet" href="../../docs/assets/foundations.css">
+  <link rel="stylesheet" href="../../docs/assets/docs.css">
+  <script type="module" src="../../assets/js/main.js"></script>
+  <script type="module" src="../../docs/assets/docs.js"></script>
+</head>
+<body class="docs-body">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <p class="needs-server"><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4M12 17h.01"/></svg> <span>You opened this file from disk, so browsers block its JavaScript (copy buttons, previews, the builder). Run <code>python3 -m http.server 8080</code> in the repository folder and open <a href="http://localhost:8080/src/">localhost:8080/src/</a>, or use the <a href="https://amuqtadir99.github.io/vanilla-responsive-ui/src/">hosted docs</a>.</span></p>
+  <header class="docs-topbar">
+    <div class="docs-topbar__inner">
+      <button type="button" class="btn btn--ghost btn--icon docs-topbar__menu" data-disclosure="dismissible" aria-expanded="false" aria-controls="docs-sidebar" hidden>
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        <span class="visually-hidden">Documentation menu</span>
+      </button>
+      <a class="docs-brand" href="../../index.html">
+        <span class="docs-brand__mark"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 2 7l10 5 10-5z"/><path d="m2 17 10 5 10-5M2 12l10 5 10-5"/></svg></span>
+        <span>vanilla-responsive-ui</span>
+      </a>
+      <nav class="docs-topnav" aria-label="Main">
+        <ul class="docs-topnav__list" role="list">
+          <li><a href="../../docs/getting-started.html">Docs</a></li>
+          <li><a href="../../docs/components/site-footer.html">Components</a></li>
+          <li><a href="../../docs/blocks/hero-centered.html">Blocks</a></li>
+          <li><a href="../../docs/templates/index.html" aria-current="true">Templates</a></li>
+          <li><a href="../../builder/index.html">Builder</a></li>
+        </ul>
+      </nav>
+      <div class="docs-topbar__actions">
+        <a class="btn btn--ghost btn--sm" href="https://github.com/amuqtadir99/vanilla-responsive-ui"><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m16 18 6-6-6-6M8 6l-6 6 6 6"/></svg> <span class="docs-topbar__label">GitHub</span></a>
+        <button type="button" class="btn btn--ghost btn--icon theme-toggle" data-theme-toggle aria-pressed="false" hidden>
+          <svg class="icon theme-toggle__light" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="icon theme-toggle__dark" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+          <span class="visually-hidden">Dark theme</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="docs-layout docs-layout--wide">
+    <nav class="docs-sidebar" id="docs-sidebar" aria-label="Documentation">
+      <div class="docs-search" data-docs-search hidden>
+        <label class="visually-hidden" for="docs-search-input">Search the documentation</label>
+        <svg class="icon icon--sm docs-search__icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/></svg>
+        <input class="input docs-search__input" id="docs-search-input" type="search" placeholder="Search…" autocomplete="off" aria-describedby="docs-search-hint">
+        <kbd class="docs-search__kbd" id="docs-search-hint"><span class="visually-hidden">Press </span>/<span class="visually-hidden"> to search</span></kbd>
+        <p class="docs-search__empty text-sm text-muted" role="status" data-docs-search-status></p>
+      </div>
+      <div class="docs-nav__group" data-docs-group>
+        <p class="docs-nav__title" id="nav-get-started">Get started</p>
+        <ul class="docs-nav__list" role="list" aria-labelledby="nav-get-started">
+          <li><a class="docs-nav__link" href="../../index.html">Introduction</a></li>
+          <li><a class="docs-nav__link" href="../../docs/getting-started.html">Getting started</a></li>
+          <li><a class="docs-nav__link" href="../../builder/index.html">Page builder</a></li>
+          <li><a class="docs-nav__link" href="../../docs/ai-agents.html">Working with AI agents</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav__group" data-docs-group>
+        <p class="docs-nav__title" id="nav-templates">Templates</p>
+        <ul class="docs-nav__list" role="list" aria-labelledby="nav-templates">
+          <li><a class="docs-nav__link" href="../../docs/templates/index.html" aria-current="page">All templates</a></li>
+          <li><a class="docs-nav__link" href="../../docs/templates/landing-page-index.html">Landing page</a></li>
+          <li><a class="docs-nav__link" href="../../docs/templates/website-index.html">Website</a></li>
+          <li><a class="docs-nav__link" href="../../docs/templates/dashboard-index.html">Dashboard</a></li>
+          <li><a class="docs-nav__link" href="../../docs/templates/e-commerce-index.html">E-commerce</a></li>
+          <li><a class="docs-nav__link" href="../../docs/templates/ai-index.html">AI apps</a></li>
+          <li><a class="docs-nav__link" href="../../docs/templates/auth-index.html">Authentication</a></li>
+          <li><a class="docs-nav__link" href="../../docs/layouts.html">Layouts</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav__group" data-docs-group>
+        <p class="docs-nav__title" id="nav-blocks">Blocks</p>
+        <ul class="docs-nav__list" role="list" aria-labelledby="nav-blocks">
+          <li><a class="docs-nav__link" href="../../docs/blocks/hero-centered.html">Hero centered</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/hero-split.html">Hero split</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/logo-cloud.html">Logo cloud</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/stats-band.html">Stats band</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/testimonials.html">Testimonials</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/feature-bento.html">Feature bento</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/feature-grid.html">Feature grid</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/feature-rows.html">Feature rows</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/steps.html">Steps</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/category-tiles.html">Category tiles</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/perks.html">Perks</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/pricing.html">Pricing</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/promo-banner.html">Promo banner</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/blog-posts.html">Blog posts</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/faq.html">FAQ</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/team.html">Team</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/contact.html">Contact</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/cta-banner.html">CTA banner</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/newsletter.html">Newsletter</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav__group" data-docs-group>
+        <p class="docs-nav__title" id="nav-components">Components</p>
+        <ul class="docs-nav__list" role="list" aria-labelledby="nav-components">
+          <li><a class="docs-nav__link" href="../../docs/components/site-footer.html">Site footer</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/site-header.html">Site header</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/breadcrumb.html">Breadcrumb</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/pagination.html">Pagination</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/tabs.html">Tabs</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/button.html">Button</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/accordion.html">Accordion</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/card.html">Card</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/form-field.html">Form fields</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/alert.html">Alert and badge</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/toast.html">Toast</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/dialog.html">Dialog</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/chart.html">Charts</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/data-grid.html">Data grid</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/data-table.html">Data table</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/chat.html">AI chat</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/chat-message.html">Chat messages</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/chat-widget.html">Chat widget</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/theme-customizer.html">Theme customizer</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/theme-toggle.html">Theme toggle</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav__group" data-docs-group>
+        <p class="docs-nav__title" id="nav-foundations">Foundations</p>
+        <ul class="docs-nav__list" role="list" aria-labelledby="nav-foundations">
+          <li><a class="docs-nav__link" href="../../docs/foundations/colors.html">Colours</a></li>
+          <li><a class="docs-nav__link" href="../../docs/foundations/typography.html">Typography</a></li>
+          <li><a class="docs-nav__link" href="../../docs/foundations/spacing.html">Spacing and shape</a></li>
+          <li><a class="docs-nav__link" href="../../docs/foundations/icons.html">Icons</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav__group" data-docs-group>
+        <p class="docs-nav__title" id="nav-guides">Guides</p>
+        <ul class="docs-nav__list" role="list" aria-labelledby="nav-guides">
+          <li><a class="docs-nav__link" href="../../docs/guides/theming.html">Theming</a></li>
+          <li><a class="docs-nav__link" href="../../docs/guides/layouts.html">Layouts and pages</a></li>
+          <li><a class="docs-nav__link" href="../../docs/guides/data.html">Data and charts</a></li>
+          <li><a class="docs-nav__link" href="../../docs/guides/ai-chat.html">AI chat</a></li>
+          <li><a class="docs-nav__link" href="../../docs/guides/accessibility.html">Accessibility</a></li>
+          <li><a class="docs-nav__link" href="../../docs/guides/security.html">Security</a></li>
+          <li><a class="docs-nav__link" href="../../docs/guides/integration.html">Framework integration</a></li>
+          <li><a class="docs-nav__link" href="../../docs/guides/architecture.html">Architecture</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <main class="docs-main" id="main" tabindex="-1">
+      <header class="docs-header">
+        <p class="eyebrow">Templates</p>
+        <h1 class="docs-header__title">Live templates</h1>
+        <p class="docs-header__lead">21 complete pages in 6 families. Every thumbnail is the real page running live. Open one to see it at any screen size, break it into parts and copy any section.</p>
+        
+        
+      </header>
+
+      <section class="docs-section" aria-labelledby="family-landing-page">
+        <h2 class="docs-section__title" id="family-landing-page">Landing page <span class="text-muted text-sm">1 page</span></h2>
+        <ul class="docs-cards" role="list">
+          <li class="docs-card">
+            <div class="docs-thumb" aria-hidden="true" data-docs-thumb><iframe src="../../templates/landing-page/index.html" title="Acme Cloud — Ship accessible interfaces faster thumbnail" loading="lazy" tabindex="-1"></iframe></div>
+            <div class="docs-card__body">
+              <h3 class="docs-card__title"><a href="landing-page-index.html">Acme Cloud</a></h3>
+              <p class="text-sm text-muted">Landing page template: hero, features, pricing, testimonials, FAQ and newsletter signup. Dependency-free HTML, CSS and JavaScript.</p>
+            </div>
+          </li>
+        </ul>
+      </section>
+
+      <section class="docs-section" aria-labelledby="family-website">
+        <h2 class="docs-section__title" id="family-website">Website <span class="text-muted text-sm">6 pages</span></h2>
+        <ul class="docs-cards" role="list">
+          <li class="docs-card">
+            <div class="docs-thumb" aria-hidden="true" data-docs-thumb><iframe src="../../templates/website/index.html" title="Strategy, design and engineering — Acme Studio thumbnail" loading="lazy" tabindex="-1"></iframe></div>
+            <div class="docs-card__body">
+              <h3 class="docs-card__title"><a href="website-index.html">Strategy, design and engineering</a></h3>
+              <p class="text-sm text-muted">Multi-page website template: home page with hero, services, results, case study, testimonials, latest articles and a call to action.</p>
+            </div>
+          </li>
+          <li class="docs-card">
+            <div class="docs-thumb" aria-hidden="true" data-docs-thumb><iframe src="../../templates/website/about.html" title="About us — Acme Studio thumbnail" loading="lazy" tabindex="-1"></iframe></div>
+            <div class="docs-card__body">
+              <h3 class="docs-card__title"><a href="website-about.html">About us</a></h3>
+              <p class="text-sm text-muted">About page template: company story, values with accessibility statement, milestones and team grid.</p>
+            </div>
+          </li>
+          <li class="docs-card">
+            <div class="docs-thumb" aria-hidden="true" data-docs-thumb><iframe src="../../templates/website/blog-post.html" title="A practical guide to WCAG 2.2 — Acme Studio thumbnail" loading="lazy" tabindex="-1"></iframe></div>
+            <div class="docs-card__body">
+              <h3 class="docs-card__title"><a href="website-blog-post.html">A practical guide to WCAG 2.2</a></h3>
+              <p class="text-sm text-muted">Article template using the docs layout: series navigation, readable article with code sample and figure, and an on-this-page table of contents.</p>
+            </div>
+          </li>
+          <li class="docs-card">
+            <div class="docs-thumb" aria-hidden="true" data-docs-thumb><iframe src="../../templates/website/blog.html" title="Blog — Acme Studio thumbnail" loading="lazy" tabindex="-1"></iframe></div>
+            <div class="docs-card__body">
+              <h3 class="docs-card__title"><a href="website-blog.html">Blog</a></h3>
+              <p class="text-sm text-muted">Blog listing template using the sidebar-right layout: article cards, search, categories, newsletter and pagination.</p>
+            </div>
+          </li>
+          <li class="docs-card">
+            <div class="docs-thumb" aria-hidden="true" data-docs-thumb><iframe src="../../templates/website/contact.html" title="Contact — Acme Studio thumbnail" loading="lazy" tabindex="-1"></iframe></div>
+            <div class="docs-card__body">
+              <h3 class="docs-card__title"><a href="website-contact.html">Contact</a></h3>
+              <p class="text-sm text-muted">Contact page template using the split layout: validated enquiry form beside contact details, office map and privacy note.</p>
+            </div>
+          </li>
+          <li class="docs-card">
+            <div class="docs-thumb" aria-hidden="true" data-docs-thumb><iframe src="../../templates/website/services.html" title="Services — Acme Studio thumbnail" loading="lazy" tabindex="-1"></iframe></div>
+            <div class="docs-card__body">
+              <h3 class="docs-card__title"><a href="website-services.html">Services</a></h3>
+              <p class="text-sm text-muted">Services page template using the sidebar-left layout: sticky section navigation, service details and FAQ.</p>
+            </div>
+          </li>
+        </ul>
+      </section>
+
+      <section class="docs-section" aria-labelledby="family-dashboard">
+        <h2 class="docs-section__title" id="family-dashboard">Dashboard <span class="text-muted text-sm">6 pages</span></h2>
+        <ul class="docs-cards" role="list">
+          <li class="docs-card">
+            <div class="docs-thumb" aria-hidden="true" data-docs-thumb><iframe src="../../templates/dashboard/index.html" title="Overview — Acme Dashboard thumbnail" loading="lazy" tabindex="-1"></iframe></div>
+            <div class="docs-card__body">
+              <h3 class="docs-card__title"><a href="dashboard-index.html">Overview</a></h3>
+              <p class="text-sm text-muted">Admin dashboard template: KPI cards with sparklines, revenue and channel charts, recent orders grid, workspace tabs and a report dialog.</p>
+            </div>
+          </li>
+          <li class="docs-card">
+            <div class="docs-thumb" aria-hidden="true" data-docs-thumb><iframe src="../../templates/dashboard/analytics.html" title="Analytics — Acme Dashboard thumbnail" loading="lazy" tabindex="-1"></iframe></div>
+            <div class="docs-card__body">
+              <h3 class="docs-card__title"><a href="dashboard-analytics.html">Analytics</a></h3>
+              <p class="text-sm text-muted">Analytics dashboard: interactive SVG line, area, bar, horizontal bar, donut and sparkline charts driven by JSON data, with a date range picker.</p>
+            </div>
+          </li>
+          <li class="docs-card">
+            <div class="docs-thumb" aria-hidden="true" data-docs-thumb><iframe src="../../templates/dashboard/assistant.html" title="AI assistant — Acme Dashboard thumbnail" loading="lazy" tabindex="-1"></iframe></div>
+            <div class="docs-card__body">
+              <h3 class="docs-card__title"><a href="dashboard-assistant.html">AI assistant</a></h3>
+              <p class="text-sm text-muted">Ask-your-data assistant inside the dashboard: questions about sales, orders and customers answered with streamed text, tool steps and live charts.</p>
+            </div>
+          </li>
+          <li class="docs-card">
+            <div class="docs-thumb" aria-hidden="true" data-docs-thumb><iframe src="../../templates/dashboard/customers.html" title="Customers — Acme Dashboard thumbnail" loading="lazy" tabindex="-1"></iframe></div>
+            <div class="docs-card__body">
+              <h3 class="docs-card__title"><a href="dashboard-customers.html">Customers</a></h3>
+              <p class="text-sm text-muted">Customers page: segment donut and spend charts plus a searchable customer grid loaded from JSON.</p>
+            </div>
+          </li>
+          <li class="docs-card">
+            <div class="docs-thumb" aria-hidden="true" data-docs-thumb><iframe src="../../templates/dashboard/orders.html" title="Orders — Acme Dashboard thumbnail" loading="lazy" tabindex="-1"></iframe></div>
+            <div class="docs-card__body">
+              <h3 class="docs-card__title"><a href="dashboard-orders.html">Orders</a></h3>
+              <p class="text-sm text-muted">Orders page: searchable, filterable, sortable data grid loaded from JSON with pagination, CSV export and an order detail dialog.</p>
+            </div>
+          </li>
+          <li class="docs-card">
+            <div class="docs-thumb" aria-hidden="true" data-docs-thumb><iframe src="../../templates/dashboard/settings.html" title="Settings — Acme Dashboard thumbnail" loading="lazy" tabindex="-1"></iframe></div>
+            <div class="docs-card__body">
+              <h3 class="docs-card__title"><a href="dashboard-settings.html">Settings</a></h3>
+              <p class="text-sm text-muted">Settings page: profile form, theme customizer, data source connection for charts and grids, and notification preferences.</p>
+            </div>
+          </li>
+        </ul>
+      </section>
+
+      <section class="docs-section" aria-labelledby="family-e-commerce">
+        <h2 class="docs-section__title" id="family-e-commerce">E-commerce <span class="text-muted text-sm">3 pages</span></h2>
+        <ul class="docs-cards" role="list">
+          <li class="docs-card">
+            <div class="docs-thumb" aria-hidden="true" data-docs-thumb><iframe src="../../templates/e-commerce/index.html" title="Shop all products — Acme Store thumbnail" loading="lazy" tabindex="-1"></iframe></div>
+            <div class="docs-card__body">
+              <h3 class="docs-card__title"><a href="e-commerce-index.html">Shop all products</a></h3>
+              <p class="text-sm text-muted">E-commerce product listing template: filters, sorting, product cards with lazy-loaded images, cart counter and pagination.</p>
+            </div>
+          </li>
+          <li class="docs-card">
+            <div class="docs-thumb" aria-hidden="true" data-docs-thumb><iframe src="../../templates/e-commerce/cart.html" title="Your cart — Acme Store thumbnail" loading="lazy" tabindex="-1"></iframe></div>
+            <div class="docs-card__body">
+              <h3 class="docs-card__title"><a href="e-commerce-cart.html">Your cart</a></h3>
+              <p class="text-sm text-muted">Shopping cart template: editable line items, promo code validation, order summary with shipping and tax, and an empty state.</p>
+            </div>
+          </li>
+          <li class="docs-card">
+            <div class="docs-thumb" aria-hidden="true" data-docs-thumb><iframe src="../../templates/e-commerce/product.html" title="Studio wireless headphones — Acme Store thumbnail" loading="lazy" tabindex="-1"></iframe></div>
+            <div class="docs-card__body">
+              <h3 class="docs-card__title"><a href="e-commerce-product.html">Studio wireless headphones</a></h3>
+              <p class="text-sm text-muted">Product detail template: CSS-only image gallery, colour swatches, quantity stepper, add to cart, specifications and a review breakdown chart.</p>
+            </div>
+          </li>
+        </ul>
+      </section>
+
+      <section class="docs-section" aria-labelledby="family-ai">
+        <h2 class="docs-section__title" id="family-ai">AI apps <span class="text-muted text-sm">2 pages</span></h2>
+        <ul class="docs-cards" role="list">
+          <li class="docs-card">
+            <div class="docs-thumb" aria-hidden="true" data-docs-thumb><iframe src="../../templates/ai/index.html" title="AI assistant — Acme AI thumbnail" loading="lazy" tabindex="-1"></iframe></div>
+            <div class="docs-card__body">
+              <h3 class="docs-card__title"><a href="ai-index.html">AI assistant</a></h3>
+              <p class="text-sm text-muted">Full-page AI assistant template: streaming replies, Markdown and code blocks, tool steps, sources, file attachments, message actions and saved conversations.</p>
+            </div>
+          </li>
+          <li class="docs-card">
+            <div class="docs-thumb" aria-hidden="true" data-docs-thumb><iframe src="../../templates/ai/agent.html" title="Agent workspace — Acme AI thumbnail" loading="lazy" tabindex="-1"></iframe></div>
+            <div class="docs-card__body">
+              <h3 class="docs-card__title"><a href="ai-agent.html">Agent workspace</a></h3>
+              <p class="text-sm text-muted">Agent workspace template: chat with a multi-step coding agent alongside a live run panel showing the plan, step status, tool calls and generated artifacts.</p>
+            </div>
+          </li>
+        </ul>
+      </section>
+
+      <section class="docs-section" aria-labelledby="family-auth">
+        <h2 class="docs-section__title" id="family-auth">Authentication <span class="text-muted text-sm">3 pages</span></h2>
+        <ul class="docs-cards" role="list">
+          <li class="docs-card">
+            <div class="docs-thumb" aria-hidden="true" data-docs-thumb><iframe src="../../templates/auth/index.html" title="Sign in — Acme Cloud thumbnail" loading="lazy" tabindex="-1"></iframe></div>
+            <div class="docs-card__body">
+              <h3 class="docs-card__title"><a href="auth-index.html">Sign in</a></h3>
+              <p class="text-sm text-muted">Sign-in page template with accessible validation, password visibility toggle and remember-me option.</p>
+            </div>
+          </li>
+          <li class="docs-card">
+            <div class="docs-thumb" aria-hidden="true" data-docs-thumb><iframe src="../../templates/auth/forgot-password.html" title="Reset password — Acme Cloud thumbnail" loading="lazy" tabindex="-1"></iframe></div>
+            <div class="docs-card__body">
+              <h3 class="docs-card__title"><a href="auth-forgot-password.html">Reset password</a></h3>
+              <p class="text-sm text-muted">Forgot-password page template: single email field with validation and a privacy-preserving confirmation message.</p>
+            </div>
+          </li>
+          <li class="docs-card">
+            <div class="docs-thumb" aria-hidden="true" data-docs-thumb><iframe src="../../templates/auth/register.html" title="Create account — Acme Cloud thumbnail" loading="lazy" tabindex="-1"></iframe></div>
+            <div class="docs-card__body">
+              <h3 class="docs-card__title"><a href="auth-register.html">Create account</a></h3>
+              <p class="text-sm text-muted">Registration page template with inline validation, password requirements, confirm-password matching and terms consent.</p>
+            </div>
+          </li>
+        </ul>
+      </section>
+    </main>
+    
+  </div>
+
+  <footer class="docs-footer">
+    <p>MIT licensed · Built with plain HTML, CSS and JavaScript · <a href="https://github.com/amuqtadir99/vanilla-responsive-ui">Source on GitHub</a> · Generated by <code>node .claude/skills/generate-doc.js</code></p>
+  </footer>
+</body>
+</html>

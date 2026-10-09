@@ -1,0 +1,27 @@
+<!--
+@block: Newsletter
+@category: Call to action
+@description: Newsletter sign-up card: heading and promise on one side, a labelled email field and button on the other.
+@css: blocks.css, components/form.css, components/button.css
+@js: components/form-validation.js
+@a11y: Visible label, autocomplete="email", inline validation errors linked with aria-describedby. Remove data-demo-submit in production.
+-->
+<section data-block="newsletter" class="section" aria-labelledby="newsletter-title">
+  <div class="container">
+    <div class="newsletter">
+      <div class="stack stack--xs">
+        <h2 class="block-header__title" id="newsletter-title">Get product updates</h2>
+        <p class="text-muted">One email a month with new blocks and releases. No spam, unsubscribe anytime.</p>
+      </div>
+      <form class="newsletter__form" action="/newsletter" method="post" novalidate data-validate data-demo-submit>
+        <div class="field">
+          <label class="field__label" for="newsletter-email">Email address</label>
+          <input class="input" id="newsletter-email" name="email" type="email" autocomplete="email" required aria-describedby="newsletter-email-error">
+          <p class="field__error" id="newsletter-email-error"></p>
+        </div>
+        <button type="submit" class="btn"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4z"/></svg> Subscribe</button>
+        <p class="field__hint" role="status" data-form-status hidden>Thanks! Check your inbox to confirm.</p>
+      </form>
+    </div>
+  </div>
+</section>

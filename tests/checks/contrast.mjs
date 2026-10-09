@@ -44,6 +44,18 @@ const PAIRS = [
   ['--color-focus', '--color-surface', 3, 'focus ring on surface'],
   ['--color-warning', '--color-surface-raised', 3, 'rating stars'],
   ...[1, 2, 3, 4, 5, 6].map((n) => [`--chart-${n}`, '--color-surface-raised', 3, `chart series ${n}`]),
+  ['--color-accent', '--color-bg', 4.5, 'gradient headline text (accent end)'],
+  ['--color-accent', '--color-accent-soft', 4.5, 'accent badge'],
+  ['--color-text', '--color-accent-soft', 4.5, 'text on accent tint'],
+  ['--color-inverse-text', '--color-inverse-bg', 4.5, 'inverse band text'],
+  ['--color-inverse-text', '--color-inverse-surface', 4.5, 'cards on inverse band'],
+  ['--color-inverse-muted', '--color-inverse-bg', 4.5, 'secondary text on inverse band'],
+  ['--color-inverse-muted', '--color-inverse-surface', 4.5, 'secondary text on inverse cards'],
+  ['--color-inverse-accent', '--color-inverse-bg', 4.5, 'links and eyebrows on inverse band'],
+  ['--color-inverse-accent', '--color-inverse-surface', 4.5, 'links on inverse cards'],
+  ['--color-inverse-bg', '--color-inverse-accent', 4.5, 'primary button on inverse band'],
+  ['--color-inverse-bg', '--color-inverse-text', 4.5, 'primary button hover on inverse band'],
+  ...['tag', 'attr', 'string', 'comment', 'keyword', 'number', 'function', 'variable'].map((t) => [`--code-${t}`, '--color-inverse-bg', 4.5, `code: ${t}`]),
 ];
 
 // Pairs that depend on the brand colour, checked for every data-brand preset.
@@ -63,7 +75,7 @@ const THEMES_FILE = path.join(SRC, 'assets', 'css', 'themes.css');
 
 function parseBlock(body) {
   const tokens = {};
-  for (const m of body.matchAll(/(--(?:color|chart)-[\w-]+)\s*:\s*(#[0-9a-fA-F]{3,8})\s*;/g)) tokens[m[1]] = m[2];
+  for (const m of body.matchAll(/(--(?:color|chart|code)-[\w-]+)\s*:\s*(#[0-9a-fA-F]{3,8})\s*;/g)) tokens[m[1]] = m[2];
   return tokens;
 }
 

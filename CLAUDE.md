@@ -36,8 +36,14 @@ Flask, FastAPI, Laravel or Rails.
    - Shared chrome: edit `src/layouts/partials/<name>.html`, then run
      `node .claude/skills/pages.js sync`. Never edit the text between
      `<!-- @partial x -->` and `<!-- @end x -->` in a page.
+   - Blocks: header in `src/blocks/<name>.html` (`@block`, `@category`,
+     …; one `<section data-block="name">`), styles in `blocks.css`, then
+     `node .claude/skills/generate-doc.js`.
    - Generated files (never edit by hand): `docs/COMPONENTS.md`,
-     `src/components/index.html`, `catalog.json`.
+     `src/components/index.html`, `catalog.json`, `src/index.html`,
+     everything under `src/docs/` except `src/docs/assets/docs.*` and
+     `preview.css`, and `src/builder/canvas.html`. Change the generator
+     (`.claude/skills/generate-doc.js`, `docs-site.js`) instead.
    - New patterns: `docs/ARCHITECTURE.md`, `docs/ACCESSIBILITY.md`,
      `docs/SECURITY.md` as relevant.
 5. **Cross-browser and performance.** Target the last two versions of
@@ -94,6 +100,7 @@ partial, data file and skill with exact paths; read it before searching.
 | `src/assets/css/themes.css` | Brand, density and radius presets (`data-*` on `<html>`) |
 | `src/assets/css/base.css` | Reset, typography, layout primitives, a11y helpers |
 | `src/assets/css/layouts.css` | `data-layout` page layouts and the app shell |
+| `src/assets/css/blocks.css` | Page sections (hero, bento, pricing, CTA, …) used by templates and the builder |
 | `src/assets/css/components/` | One stylesheet per component family |
 | `src/assets/js/main.js` | Entry point; applies the theme, lazy-loads components present on the page |
 | `src/assets/js/core/` | `dom`, `announce`, `storage`, `theme`, `data`, `format`, `markdown`, `clipboard` |
@@ -101,11 +108,14 @@ partial, data file and skill with exact paths; read it before searching.
 | `src/assets/js/demo/` | Offline chat mock; not part of the component contract |
 | `src/assets/icons/` | SVG icon library (inline them in markup) |
 | `src/components/` | Copy-paste snippets with metadata headers (+ generated gallery) |
-| `src/layouts/` | Eight layout pages, the layout builder, `partials/` |
+| `src/blocks/` | 19 page sections, one `<section data-block>` each, with metadata headers |
+| `src/index.html`, `src/docs/` | Documentation website (generated): live previews, code, template anatomy, guides |
+| `src/builder/` | Page builder app (`builder.js`); `canvas.html` holds every block as a `<template>` (generated) |
+| `src/layouts/` | Eight layout pages and `partials/` |
 | `src/data/` | Sample JSON behind charts, grids and assistants |
 | `src/templates/` | website, dashboard, e-commerce, ai, landing-page, auth |
 | `tests/` | Zero-dependency checks (`run-all.mjs`), Playwright smoke tests |
-| `.claude/skills/` | Skills (`<name>/SKILL.md`) and scripts: `validate-w3c.sh`, `audit-a11y.sh`, `generate-doc.js`, `pages.js` |
+| `.claude/skills/` | Skills (`<name>/SKILL.md`) and scripts: `validate-w3c.sh`, `audit-a11y.sh`, `generate-doc.js` (+ `docs-site.js`), `pages.js` |
 | `docs/` | Architecture, layouts, theming, data, AI chat, accessibility, security, integration, components |
 
 ## Adding a page
@@ -133,6 +143,6 @@ and the validation commands. See `docs/LAYOUTS.md`.
 
 ## Previewing
 
-ES modules do not load from `file://`. Serve the repository root:
+ES modules do not load from `file://` (pages show a notice). Serve the repository root:
 `python3 -m http.server 8080` (or `node tests/lib/server.mjs 8080`) and open
 <http://localhost:8080/src/>.

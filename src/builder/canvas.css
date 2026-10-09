@@ -1,0 +1,54 @@
+/* ==========================================================================
+   Page builder canvas: selection and editing affordances (preview only).
+   ========================================================================== */
+
+.canvas-body {
+  min-height: 100vh;
+}
+
+.canvas-main > [data-builder-uid] {
+  position: relative;
+  outline: 2px solid transparent;
+  outline-offset: -2px;
+  transition: outline-color var(--duration-fast) var(--ease-standard);
+}
+
+.canvas-main > [data-builder-uid]:hover {
+  outline-color: var(--color-border-strong);
+}
+
+.canvas-main > [data-builder-selected] {
+  outline: 3px solid var(--color-focus);
+  outline-offset: -3px;
+}
+
+[contenteditable] {
+  outline: 2px dashed var(--color-focus);
+  outline-offset: 4px;
+  cursor: text;
+}
+
+.canvas-empty {
+  display: grid;
+  gap: var(--spacing-2xs);
+  place-content: center;
+  min-height: 60vh;
+  margin: var(--spacing-lg);
+  padding: var(--spacing-xl);
+  border: 2px dashed var(--color-border-strong);
+  border-radius: var(--radius-2xl);
+  color: var(--color-text-muted);
+  text-align: center;
+}
+
+.canvas-empty__title {
+  color: var(--color-text);
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+}
+
+/* Sticky headers would cover the selected section in a scaled preview. */
+.canvas-body .site-header,
+.canvas-body .shop-header {
+  position: static;
+}

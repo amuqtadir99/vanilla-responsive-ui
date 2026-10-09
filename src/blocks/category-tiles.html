@@ -1,0 +1,47 @@
+<!--
+@block: Category tiles
+@category: Commerce
+@description: Grid of shop categories with icons and product counts; each tile is one stretched link.
+@css: blocks.css
+@js: none
+@a11y: Each tile is a list item with one link (the category name) stretched over the tile, so it is one tab stop with a clear name; counts are plain text.
+-->
+<section data-block="category-tiles" class="section section--tight" aria-labelledby="categories-title">
+  <div class="container">
+    <div class="block-header block-header--split">
+      <h2 class="block-header__title" id="categories-title">Shop by category</h2>
+    </div>
+    <ul class="tiles" role="list">
+      <li class="tile">
+        <span class="tile__icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg></span>
+        <a class="tile__link" href="/shop?category=audio">Audio</a>
+        <span class="tile__count">24 products</span>
+      </li>
+      <li class="tile">
+        <span class="tile__icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span>
+        <a class="tile__link" href="/shop?category=wearables">Wearables</a>
+        <span class="tile__count">12 products</span>
+      </li>
+      <li class="tile">
+        <span class="tile__icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 8 12 3 3 8v8l9 5 9-5z"/><path d="m3 8 9 5 9-5M12 13v8"/></svg></span>
+        <a class="tile__link" href="/shop?category=bags">Bags</a>
+        <span class="tile__count">18 products</span>
+      </li>
+      <li class="tile">
+        <span class="tile__icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg></span>
+        <a class="tile__link" href="/shop?category=home">Home</a>
+        <span class="tile__count">31 products</span>
+      </li>
+      <li class="tile">
+        <span class="tile__icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span>
+        <a class="tile__link" href="/shop?category=sport">Sport</a>
+        <span class="tile__count">15 products</span>
+      </li>
+      <li class="tile">
+        <span class="tile__icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></span>
+        <a class="tile__link" href="/shop?category=photography">Photography</a>
+        <span class="tile__count">9 products</span>
+      </li>
+    </ul>
+  </div>
+</section>

@@ -37,6 +37,7 @@ async function loadPlaywright() {
 const PAGES = findFiles(SRC, (n) => n.endsWith('.html'))
   .map((f) => path.relative(ROOT, f).split(path.sep).join('/'))
   .filter((f) => !f.startsWith('src/layouts/partials/'))
+  .filter((f) => !f.startsWith('src/blocks/'))
   .filter((f) => !f.startsWith('src/components/') || f === 'src/components/index.html')
   .sort();
 
@@ -351,15 +352,81 @@ async function main() {
       await context.close();
     }
 
-    /* ---- Layout builder ---------------------------------------------- */
+    /* ---- Page builder ------------------------------------------------- */
     {
-      const { page, context } = await openPage(browser, server.url, 'src/layouts/index.html');
-      await page.locator('input[name="layout"][value="holy-grail"]').check();
-      check('choosing a layout updates the preview', await waitFor(page, () => document.querySelector('[data-builder-frame]').getAttribute('src').includes('holy-grail')));
-      check('HTML output matches the chosen layout', await waitFor(page, () => document.querySelector('#builder-code-html').textContent.includes('data-layout="holy-grail"')));
-      check('CLI command reflects the form', (await page.locator('#builder-code-cli').textContent()).includes('--layout holy-grail'));
-      await page.locator('input[name="device"][value="mobile"]').check();
-      check('device preview switches width', (await page.locator('[data-builder-viewport]').getAttribute('data-device')) === 'mobile');
+      const { page, context } = await openPage(browser, server.url, 'src/builder/index.html', { width: 1440, height: 900 }, { acceptDownloads: true });
+      await page.evaluate(() => localStorage.removeItem('vr-builder-project-v1'));
+      await page.reload({ waitUntil: 'networkidle' });
+      const outlineItems = page.locator('[data-outline] li');
+      const startCount = await outlineItems.count();
+      check('builder loads a starter page from blocks', startCount > 0 && (await page.locator('[data-library-item]').count()) > 10);
+      await page.locator('[data-library-item]', { hasText: 'Team' }).locator('button').click();
+      check('Add inserts a block into the outline', (await outlineItems.count()) === startCount + 1);
+      const names = () => outlineItems.locator('.builder-outline__name').allTextContents();
+      const before = await names();
+      await page.locator('[data-outline] li.is-selected [data-move="up"]').click();
+      const moved = await names();
+      check('move up reorders the page', moved.join() !== before.join());
+      await page.locator('[data-builder-undo]').click();
+      check('undo restores the previous order', (await names()).join() === before.join());
+      await outlineItems.filter({ hasText: 'Pricing' }).first().locator('button', { hasText: 'Duplicate' }).click();
+      check('duplicated blocks keep ids unique', (await page.locator('[data-checks]').innerText()).includes('All ids are unique'));
+      const frame = page.frameLocator('[data-canvas-frame]');
+      const heading = frame.locator('main h1:not(.visually-hidden)').first();
+      await heading.dblclick();
+      await heading.evaluate((el) => {
+        const range = el.ownerDocument.createRange();
+        range.selectNodeContents(el);
+        const selection = el.ownerDocument.getSelection();
+        selection.removeAllRanges();
+        selection.addRange(range);
+      });
+      await page.keyboard.type('Hello builder');
+      await page.keyboard.press('Enter');
+      check('double-click edits text in place', (await heading.textContent()) === 'Hello builder');
+      await page.locator('button', { hasText: 'Export' }).click();
+      const html = await page.locator('[data-export-html]').textContent();
+      check('export is a complete page with the edit', html.startsWith('<!DOCTYPE html>') && html.includes('Hello builder') && !/data-builder|contenteditable/.test(html));
+      const [download] = await Promise.all([page.waitForEvent('download'), page.locator('[data-export-download]').click()]);
+      check('download offers an .html file', download.suggestedFilename().endsWith('.html'));
+      await page.keyboard.press('Escape');
+      await page.reload({ waitUntil: 'networkidle' });
+      check('the page is saved between visits', (await outlineItems.count()) === startCount + 2);
+      await context.close();
+    }
+
+    /* ---- Documentation site ---------------------------------------------- */
+    {
+      const { page, context } = await openPage(browser, server.url, 'src/docs/blocks/pricing.html', { width: 1440, height: 900 }, { permissions: ['clipboard-read', 'clipboard-write'] });
+      const search = page.locator('#docs-search-input');
+      await search.fill('faq');
+      check('sidebar search filters the navigation', (await page.locator('.docs-nav__link:visible').count()) < 5);
+      await search.fill('');
+      await page.locator('[data-copy]', { hasText: 'Copy path for AI' }).first().click();
+      const reference = await page.evaluate(() => navigator.clipboard.readText());
+      check('"Copy path for AI" copies block paths', reference.includes('src/blocks/pricing.html') && reference.includes('blocks.css'), reference.slice(0, 80));
+      const codeButton = page.locator('.docs-section:has(#code) [data-copy][data-copy-target]').first();
+      await codeButton.click();
+      const code = await page.evaluate(() => navigator.clipboard.readText());
+      check('"Copy code" copies the block markup', code.startsWith('<section data-block="pricing"'), code.slice(0, 60));
+      const frame = page.locator('[data-docs-preview] [data-docs-frame]').first();
+      await page.waitForFunction(() => document.querySelector('[data-docs-preview] [data-docs-frame]').style.width === '1280px');
+      check('block previews render at desktop width', true);
+      await page.locator('[data-docs-preview] input[value="mobile"]').first().check();
+      check('device switch resizes the preview', (await frame.evaluate((f) => f.style.width)) === '390px');
+      await context.close();
+    }
+    {
+      const { page, context } = await openPage(browser, server.url, 'src/docs/templates/landing-page-index.html');
+      const parts = page.locator('.docs-anatomy__item');
+      check('template anatomy lists the page parts', (await parts.count()) >= 8);
+      const pricing = parts.filter({ hasText: 'Simple pricing' });
+      await pricing.locator('summary').click();
+      check('a part links to the block it came from', (await pricing.locator('a', { hasText: 'Block: Pricing' }).count()) === 1);
+      await pricing.locator('[data-docs-locate]').click();
+      await page.waitForTimeout(200);
+      const scrolled = await page.locator('[data-docs-frame]').evaluate((f) => f.contentWindow.scrollY);
+      check('"Show in preview" scrolls the live page to that part', scrolled > 500, String(scrolled));
       await context.close();
     }
 

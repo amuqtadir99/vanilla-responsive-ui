@@ -79,6 +79,15 @@ use per-request nonces (`script-src 'self' 'nonce-…'`) rather than
   `eval`, `new Function` and `setAttribute('style' | 'on…')` are rejected by
   `tests/checks/js.mjs`.
 
+### Page builder and documentation
+
+- The builder clones blocks from inert `<template>` elements and moves DOM
+  nodes; saved pages are restored with `DOMParser` (no script execution)
+  and stripped of runtime attributes before export.
+- Exported pages carry the same strict CSP meta tag as the templates.
+- Documentation code is highlighted at build time, so docs pages need no
+  runtime HTML parsing.
+
 ### Model output and remote data
 
 - **Chat replies** are untrusted. `core/markdown.js` renders a small

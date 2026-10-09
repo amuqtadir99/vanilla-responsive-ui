@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; form-action 'self'; base-uri 'self'; object-src 'none'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>Colours — vanilla-responsive-ui docs</title>
+  <meta name="description" content="Colour tokens for light and dark themes, brand presets and the chart palette.">
+  <meta name="color-scheme" content="light dark">
+  <meta name="generator" content="node .claude/skills/generate-doc.js (do not edit by hand)">
+  <link rel="icon" href="../../assets/icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../../assets/css/tokens.css">
+  <link rel="stylesheet" href="../../assets/css/themes.css">
+  <link rel="stylesheet" href="../../assets/css/base.css">
+  <link rel="stylesheet" href="../../assets/css/layouts.css">
+  <link rel="stylesheet" href="../../assets/css/components/button.css">
+  <link rel="stylesheet" href="../../assets/css/components/form.css">
+  <link rel="stylesheet" href="../../assets/css/components/feedback.css">
+  <link rel="stylesheet" href="../../assets/css/components/tabs.css">
+  <link rel="stylesheet" href="../../assets/css/components/table.css">
+  <link rel="stylesheet" href="../../assets/css/components/code.css">
+  <link rel="stylesheet" href="../../assets/css/components/accordion.css">
+  <link rel="stylesheet" href="../../assets/css/components/card.css">
+  <link rel="stylesheet" href="../../assets/css/components/navigation.css">
+  <link rel="stylesheet" href="../../assets/css/blocks.css">
+  <link rel="stylesheet" href="../../docs/assets/foundations.css">
+  <link rel="stylesheet" href="../../docs/assets/docs.css">
+  <script type="module" src="../../assets/js/main.js"></script>
+  <script type="module" src="../../docs/assets/docs.js"></script>
+</head>
+<body class="docs-body">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <p class="needs-server"><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4M12 17h.01"/></svg> <span>You opened this file from disk, so browsers block its JavaScript (copy buttons, previews, the builder). Run <code>python3 -m http.server 8080</code> in the repository folder and open <a href="http://localhost:8080/src/">localhost:8080/src/</a>, or use the <a href="https://amuqtadir99.github.io/vanilla-responsive-ui/src/">hosted docs</a>.</span></p>
+  <header class="docs-topbar">
+    <div class="docs-topbar__inner">
+      <button type="button" class="btn btn--ghost btn--icon docs-topbar__menu" data-disclosure="dismissible" aria-expanded="false" aria-controls="docs-sidebar" hidden>
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        <span class="visually-hidden">Documentation menu</span>
+      </button>
+      <a class="docs-brand" href="../../index.html">
+        <span class="docs-brand__mark"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 2 7l10 5 10-5z"/><path d="m2 17 10 5 10-5M2 12l10 5 10-5"/></svg></span>
+        <span>vanilla-responsive-ui</span>
+      </a>
+      <nav class="docs-topnav" aria-label="Main">
+        <ul class="docs-topnav__list" role="list">
+          <li><a href="../../docs/getting-started.html">Docs</a></li>
+          <li><a href="../../docs/components/site-footer.html">Components</a></li>
+          <li><a href="../../docs/blocks/hero-centered.html">Blocks</a></li>
+          <li><a href="../../docs/templates/index.html">Templates</a></li>
+          <li><a href="../../builder/index.html">Builder</a></li>
+        </ul>
+      </nav>
+      <div class="docs-topbar__actions">
+        <a class="btn btn--ghost btn--sm" href="https://github.com/amuqtadir99/vanilla-responsive-ui"><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m16 18 6-6-6-6M8 6l-6 6 6 6"/></svg> <span class="docs-topbar__label">GitHub</span></a>
+        <button type="button" class="btn btn--ghost btn--icon theme-toggle" data-theme-toggle aria-pressed="false" hidden>
+          <svg class="icon theme-toggle__light" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="icon theme-toggle__dark" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+          <span class="visually-hidden">Dark theme</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="docs-layout">
+    <nav class="docs-sidebar" id="docs-sidebar" aria-label="Documentation">
+      <div class="docs-search" data-docs-search hidden>
+        <label class="visually-hidden" for="docs-search-input">Search the documentation</label>
+        <svg class="icon icon--sm docs-search__icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/></svg>
+        <input class="input docs-search__input" id="docs-search-input" type="search" placeholder="Search…" autocomplete="off" aria-describedby="docs-search-hint">
+        <kbd class="docs-search__kbd" id="docs-search-hint"><span class="visually-hidden">Press </span>/<span class="visually-hidden"> to search</span></kbd>
+        <p class="docs-search__empty text-sm text-muted" role="status" data-docs-search-status></p>
+      </div>
+      <div class="docs-nav__group" data-docs-group>
+        <p class="docs-nav__title" id="nav-get-started">Get started</p>
+        <ul class="docs-nav__list" role="list" aria-labelledby="nav-get-started">
+          <li><a class="docs-nav__link" href="../../index.html">Introduction</a></li>
+          <li><a class="docs-nav__link" href="../../docs/getting-started.html">Getting started</a></li>
+          <li><a class="docs-nav__link" href="../../builder/index.html">Page builder</a></li>
+          <li><a class="docs-nav__link" href="../../docs/ai-agents.html">Working with AI agents</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav__group" data-docs-group>
+        <p class="docs-nav__title" id="nav-templates">Templates</p>
+        <ul class="docs-nav__list" role="list" aria-labelledby="nav-templates">
+          <li><a class="docs-nav__link" href="../../docs/templates/index.html">All templates</a></li>
+          <li><a class="docs-nav__link" href="../../docs/templates/landing-page-index.html">Landing page</a></li>
+          <li><a class="docs-nav__link" href="../../docs/templates/website-index.html">Website</a></li>
+          <li><a class="docs-nav__link" href="../../docs/templates/dashboard-index.html">Dashboard</a></li>
+          <li><a class="docs-nav__link" href="../../docs/templates/e-commerce-index.html">E-commerce</a></li>
+          <li><a class="docs-nav__link" href="../../docs/templates/ai-index.html">AI apps</a></li>
+          <li><a class="docs-nav__link" href="../../docs/templates/auth-index.html">Authentication</a></li>
+          <li><a class="docs-nav__link" href="../../docs/layouts.html">Layouts</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav__group" data-docs-group>
+        <p class="docs-nav__title" id="nav-blocks">Blocks</p>
+        <ul class="docs-nav__list" role="list" aria-labelledby="nav-blocks">
+          <li><a class="docs-nav__link" href="../../docs/blocks/hero-centered.html">Hero centered</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/hero-split.html">Hero split</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/logo-cloud.html">Logo cloud</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/stats-band.html">Stats band</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/testimonials.html">Testimonials</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/feature-bento.html">Feature bento</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/feature-grid.html">Feature grid</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/feature-rows.html">Feature rows</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/steps.html">Steps</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/category-tiles.html">Category tiles</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/perks.html">Perks</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/pricing.html">Pricing</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/promo-banner.html">Promo banner</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/blog-posts.html">Blog posts</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/faq.html">FAQ</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/team.html">Team</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/contact.html">Contact</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/cta-banner.html">CTA banner</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/newsletter.html">Newsletter</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav__group" data-docs-group>
+        <p class="docs-nav__title" id="nav-components">Components</p>
+        <ul class="docs-nav__list" role="list" aria-labelledby="nav-components">
+          <li><a class="docs-nav__link" href="../../docs/components/site-footer.html">Site footer</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/site-header.html">Site header</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/breadcrumb.html">Breadcrumb</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/pagination.html">Pagination</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/tabs.html">Tabs</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/button.html">Button</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/accordion.html">Accordion</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/card.html">Card</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/form-field.html">Form fields</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/alert.html">Alert and badge</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/toast.html">Toast</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/dialog.html">Dialog</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/chart.html">Charts</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/data-grid.html">Data grid</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/data-table.html">Data table</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/chat.html">AI chat</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/chat-message.html">Chat messages</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/chat-widget.html">Chat widget</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/theme-customizer.html">Theme customizer</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/theme-toggle.html">Theme toggle</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav__group" data-docs-group>
+        <p class="docs-nav__title" id="nav-foundations">Foundations</p>
+        <ul class="docs-nav__list" role="list" aria-labelledby="nav-foundations">
+          <li><a class="docs-nav__link" href="../../docs/foundations/colors.html" aria-current="page">Colours</a></li>
+          <li><a class="docs-nav__link" href="../../docs/foundations/typography.html">Typography</a></li>
+          <li><a class="docs-nav__link" href="../../docs/foundations/spacing.html">Spacing and shape</a></li>
+          <li><a class="docs-nav__link" href="../../docs/foundations/icons.html">Icons</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav__group" data-docs-group>
+        <p class="docs-nav__title" id="nav-guides">Guides</p>
+        <ul class="docs-nav__list" role="list" aria-labelledby="nav-guides">
+          <li><a class="docs-nav__link" href="../../docs/guides/theming.html">Theming</a></li>
+          <li><a class="docs-nav__link" href="../../docs/guides/layouts.html">Layouts and pages</a></li>
+          <li><a class="docs-nav__link" href="../../docs/guides/data.html">Data and charts</a></li>
+          <li><a class="docs-nav__link" href="../../docs/guides/ai-chat.html">AI chat</a></li>
+          <li><a class="docs-nav__link" href="../../docs/guides/accessibility.html">Accessibility</a></li>
+          <li><a class="docs-nav__link" href="../../docs/guides/security.html">Security</a></li>
+          <li><a class="docs-nav__link" href="../../docs/guides/integration.html">Framework integration</a></li>
+          <li><a class="docs-nav__link" href="../../docs/guides/architecture.html">Architecture</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <main class="docs-main" id="main" tabindex="-1">
+      <header class="docs-header">
+        <p class="eyebrow">Foundations</p>
+        <h1 class="docs-header__title">Colours</h1>
+        <p class="docs-header__lead">Every colour is a CSS custom property in <code>src/assets/css/tokens.css</code>, with light and dark values. Swatches below are live: switch the theme or a brand preset and they update. Contrast for each pair is verified by the test suite.</p>
+        
+        
+      </header>
+
+      <section class="docs-section" aria-labelledby="brand-presets">
+        <h2 class="docs-section__title" id="brand-presets">Brand presets</h2>
+        <p class="text-muted">Set <code>data-brand</code> on <code>&lt;html&gt;</code>, or pick any colour in the theme panel.</p>
+        <ul class="docs-presets" role="list"><li><span class="swatch__chip swatch__chip--indigo"></span> <code>data-brand="indigo"</code></li><li><span class="swatch__chip swatch__chip--teal"></span> <code>data-brand="teal"</code></li><li><span class="swatch__chip swatch__chip--violet"></span> <code>data-brand="violet"</code></li><li><span class="swatch__chip swatch__chip--rose"></span> <code>data-brand="rose"</code></li><li><span class="swatch__chip swatch__chip--amber"></span> <code>data-brand="amber"</code></li><li><span class="swatch__chip swatch__chip--slate"></span> <code>data-brand="slate"</code></li></ul>
+        <div class="docs-code">
+  <div class="docs-code__header">
+    <span class="docs-code__label">Preset attributes</span>
+    <span class="docs-code__actions"><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-target="#code-591" data-copy-success="Code copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy code</span></button></span>
+  </div>
+  <pre tabindex="0" role="region" aria-label="Preset attributes"><code id="code-591"><span class="tok-tag">&lt;html</span> <span class="tok-attr">lang</span><span class="tok-punct">=</span><span class="tok-string">&quot;en&quot;</span> <span class="tok-attr">data-brand</span><span class="tok-punct">=</span><span class="tok-string">&quot;teal&quot;</span> <span class="tok-attr">data-density</span><span class="tok-punct">=</span><span class="tok-string">&quot;compact&quot;</span> <span class="tok-attr">data-radius</span><span class="tok-punct">=</span><span class="tok-string">&quot;round&quot;</span><span class="tok-tag">&gt;</span></code></pre>
+</div>
+      </section>
+
+      <section class="docs-section" aria-labelledby="colors-surfaces">
+        <h2 class="docs-section__title" id="colors-surfaces">Surfaces</h2>
+        <div class="table-wrapper" role="region" aria-labelledby="colors-surfaces" tabindex="0">
+          <table class="table docs-token-table">
+            <caption class="visually-hidden">Surfaces colour tokens</caption>
+            <thead><tr><th scope="col">Swatch</th><th scope="col">Token</th><th scope="col">Light</th><th scope="col">Dark</th><th scope="col"><span class="visually-hidden">Copy</span></th></tr></thead>
+            <tbody>
+              <tr><td><span class="docs-swatch sw-color-bg"></span></td><td><code>--color-bg</code></td><td><code>#ffffff</code></td><td><code>#0e1116</code></td><td><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-text="var(--color-bg)" data-copy-success="Copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy</span><span class="visually-hidden"> var(--color-bg)</span></button></td></tr>
+              <tr><td><span class="docs-swatch sw-color-surface"></span></td><td><code>--color-surface</code></td><td><code>#f5f7fa</code></td><td><code>#161a21</code></td><td><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-text="var(--color-surface)" data-copy-success="Copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy</span><span class="visually-hidden"> var(--color-surface)</span></button></td></tr>
+              <tr><td><span class="docs-swatch sw-color-surface-raised"></span></td><td><code>--color-surface-raised</code></td><td><code>#ffffff</code></td><td><code>#1c212a</code></td><td><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-text="var(--color-surface-raised)" data-copy-success="Copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy</span><span class="visually-hidden"> var(--color-surface-raised)</span></button></td></tr>
+              <tr><td><span class="docs-swatch sw-color-surface-sunken"></span></td><td><code>--color-surface-sunken</code></td><td><code>#eceff4</code></td><td><code>#0a0c10</code></td><td><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-text="var(--color-surface-sunken)" data-copy-success="Copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy</span><span class="visually-hidden"> var(--color-surface-sunken)</span></button></td></tr>
+              <tr><td><span class="docs-swatch sw-color-border"></span></td><td><code>--color-border</code></td><td><code>#d6dbe3</code></td><td><code>#2c323d</code></td><td><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-text="var(--color-border)" data-copy-success="Copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy</span><span class="visually-hidden"> var(--color-border)</span></button></td></tr>
+              <tr><td><span class="docs-swatch sw-color-border-strong"></span></td><td><code>--color-border-strong</code></td><td><code>#737c8a</code></td><td><code>#7a8392</code></td><td><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-text="var(--color-border-strong)" data-copy-success="Copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy</span><span class="visually-hidden"> var(--color-border-strong)</span></button></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="docs-section" aria-labelledby="colors-text">
+        <h2 class="docs-section__title" id="colors-text">Text</h2>
+        <div class="table-wrapper" role="region" aria-labelledby="colors-text" tabindex="0">
+          <table class="table docs-token-table">
+            <caption class="visually-hidden">Text colour tokens</caption>
+            <thead><tr><th scope="col">Swatch</th><th scope="col">Token</th><th scope="col">Light</th><th scope="col">Dark</th><th scope="col"><span class="visually-hidden">Copy</span></th></tr></thead>
+            <tbody>
+              <tr><td><span class="docs-swatch sw-color-text"></span></td><td><code>--color-text</code></td><td><code>#161a21</code></td><td><code>#e8ebf0</code></td><td><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-text="var(--color-text)" data-copy-success="Copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy</span><span class="visually-hidden"> var(--color-text)</span></button></td></tr>
+              <tr><td><span class="docs-swatch sw-color-text-muted"></span></td><td><code>--color-text-muted</code></td><td><code>#4f5764</code></td><td><code>#a5adba</code></td><td><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-text="var(--color-text-muted)" data-copy-success="Copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy</span><span class="visually-hidden"> var(--color-text-muted)</span></button></td></tr>
+              <tr><td><span class="docs-swatch sw-color-link"></span></td><td><code>--color-link</code></td><td><code>#2546b8</code></td><td><code>#9fb5ff</code></td><td><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-text="var(--color-link)" data-copy-success="Copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy</span><span class="visually-hidden"> var(--color-link)</span></button></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="docs-section" aria-labelledby="colors-brand">
+        <h2 class="docs-section__title" id="colors-brand">Brand</h2>
+        <div class="table-wrapper" role="region" aria-labelledby="colors-brand" tabindex="0">
+          <table class="table docs-token-table">
+            <caption class="visually-hidden">Brand colour tokens</caption>
+            <thead><tr><th scope="col">Swatch</th><th scope="col">Token</th><th scope="col">Light</th><th scope="col">Dark</th><th scope="col"><span class="visually-hidden">Copy</span></th></tr></thead>
+            <tbody>
+              <tr><td><span class="docs-swatch sw-color-primary"></span></td><td><code>--color-primary</code></td><td><code>#2a4fcf</code></td><td><code>#86a3ff</code></td><td><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-text="var(--color-primary)" data-copy-success="Copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy</span><span class="visually-hidden"> var(--color-primary)</span></button></td></tr>
+              <tr><td><span class="docs-swatch sw-color-primary-hover"></span></td><td><code>--color-primary-hover</code></td><td><code>#1f3ea8</code></td><td><code>#a8bdff</code></td><td><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-text="var(--color-primary-hover)" data-copy-success="Copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy</span><span class="visually-hidden"> var(--color-primary-hover)</span></button></td></tr>
+              <tr><td><span class="docs-swatch sw-color-primary-soft"></span></td><td><code>--color-primary-soft</code></td><td><code>#e7edfd</code></td><td><code>#1b2648</code></td><td><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-text="var(--color-primary-soft)" data-copy-success="Copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy</span><span class="visually-hidden"> var(--color-primary-soft)</span></button></td></tr>
+              <tr><td><span class="docs-swatch sw-color-on-primary"></span></td><td><code>--color-on-primary</code></td><td><code>#ffffff</code></td><td><code>#0b1020</code></td><td><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-text="var(--color-on-primary)" data-copy-success="Copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy</span><span class="visually-hidden"> var(--color-on-primary)</span></button></td></tr>
+              <tr><td><span class="docs-swatch sw-color-focus"></span></td><td><code>--color-focus</code></td><td><code>#2a4fcf</code></td><td><code>#a8bdff</code></td><td><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-text="var(--color-focus)" data-copy-success="Copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy</span><span class="visually-hidden"> var(--color-focus)</span></button></td></tr>
+              <tr><td><span class="docs-swatch sw-color-selection"></span></td><td><code>--color-selection</code></td><td><code>#c9d6fb</code></td><td><code>#2c3f7a</code></td><td><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-text="var(--color-selection)" data-copy-success="Copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy</span><span class="visually-hidden"> var(--color-selection)</span></button></td></tr>
+              <tr><td><span class="docs-swatch sw-color-accent"></span></td><td><code>--color-accent</code></td><td><code>#6d28d9</code></td><td><code>#c4a5ff</code></td><td><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-text="var(--color-accent)" data-copy-success="Copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy</span><span class="visually-hidden"> var(--color-accent)</span></button></td></tr>
+              <tr><td><span class="docs-swatch sw-color-accent-soft"></span></td><td><code>--color-accent-soft</code></td><td><code>#f1eafe</code></td><td><code>#2a1d47</code></td><td><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-text="var(--color-accent-soft)" data-copy-success="Copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy</span><span class="visually-hidden"> var(--color-accent-soft)</span></button></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="docs-section" aria-labelledby="colors-status">
+        <h2 class="docs-section__title" id="colors-status">Status</h2>
+        <div class="table-wrapper" role="region" aria-labelledby="colors-status" tabindex="0">
+          <table class="table docs-token-table">
+            <caption class="visually-hidden">Status colour tokens</caption>
+            <thead><tr><th scope="col">Swatch</th><th scope="col">Token</th><th scope="col">Light</th><th scope="col">Dark</th><th scope="col"><span class="visually-hidden">Copy</span></th></tr></thead>
+            <tbody>
+              <tr><td><span class="docs-swatch sw-color-success"></span></td><td><code>--color-success</code></td><td><code>#17713a</code></td><td><code>#5cc983</code></td><td><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-text="var(--color-success)" data-copy-success="Copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy</span><span class="visually-hidden"> var(--color-success)</span></button></td></tr>
+              <tr><td><span class="docs-swatch sw-color-success-soft"></span></td><td><code>--color-success-soft</code></td><td><code>#e3f3e8</code></td><td><code>#12281a</code></td><td><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-text="var(--color-success-soft)" data-copy-success="Copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy</span><span class="visually-hidden"> var(--color-success-soft)</span></button></td></tr>
+              <tr><td><span class="docs-swatch sw-color-warning"></span></td><td><code>--color-warning</code></td><td><code>#7f5300</code></td><td><code>#e8b84a</code></td><td><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-text="var(--color-warning)" data-copy-success="Copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy</span><span class="visually-hidden"> var(--color-warning)</span></button></td></tr>
+              <tr><td><span class="docs-swatch sw-color-warning-soft"></span></td><td><code>--color-warning-soft</code></td><td><code>#fff3d4</code></td><td><code>#2c230e</code></td><td><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-text="var(--color-warning-soft)" data-copy-success="Copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy</span><span class="visually-hidden"> var(--color-warning-soft)</span></button></td></tr>
+              <tr><td><span class="docs-swatch sw-color-danger"></span></td><td><code>--color-danger</code></td><td><code>#b4232a</code></td><td><code>#ff8a85</code></td><td><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-text="var(--color-danger)" data-copy-success="Copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy</span><span class="visually-hidden"> var(--color-danger)</span></button></td></tr>
+              <tr><td><span class="docs-swatch sw-color-danger-soft"></span></td><td><code>--color-danger-soft</code></td><td><code>#fdebec</code></td><td><code>#36171a</code></td><td><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-text="var(--color-danger-soft)" data-copy-success="Copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy</span><span class="visually-hidden"> var(--color-danger-soft)</span></button></td></tr>
+              <tr><td><span class="docs-swatch sw-color-info"></span></td><td><code>--color-info</code></td><td><code>#1d5fa8</code></td><td><code>#7cb8f5</code></td><td><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-text="var(--color-info)" data-copy-success="Copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy</span><span class="visually-hidden"> var(--color-info)</span></button></td></tr>
+              <tr><td><span class="docs-swatch sw-color-info-soft"></span></td><td><code>--color-info-soft</code></td><td><code>#e5f0fb</code></td><td><code>#122236</code></td><td><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-text="var(--color-info-soft)" data-copy-success="Copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy</span><span class="visually-hidden"> var(--color-info-soft)</span></button></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="docs-section" aria-labelledby="colors-inverse-bands">
+        <h2 class="docs-section__title" id="colors-inverse-bands">Inverse bands</h2>
+        <div class="table-wrapper" role="region" aria-labelledby="colors-inverse-bands" tabindex="0">
+          <table class="table docs-token-table">
+            <caption class="visually-hidden">Inverse bands colour tokens</caption>
+            <thead><tr><th scope="col">Swatch</th><th scope="col">Token</th><th scope="col">Light</th><th scope="col">Dark</th><th scope="col"><span class="visually-hidden">Copy</span></th></tr></thead>
+            <tbody>
+              <tr><td><span class="docs-swatch sw-color-inverse-bg"></span></td><td><code>--color-inverse-bg</code></td><td><code>#0f1424</code></td><td><code>#161c2e</code></td><td><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-text="var(--color-inverse-bg)" data-copy-success="Copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy</span><span class="visually-hidden"> var(--color-inverse-bg)</span></button></td></tr>
+              <tr><td><span class="docs-swatch sw-color-inverse-surface"></span></td><td><code>--color-inverse-surface</code></td><td><code>#182037</code></td><td><code>#1f2740</code></td><td><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-text="var(--color-inverse-surface)" data-copy-success="Copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy</span><span class="visually-hidden"> var(--color-inverse-surface)</span></button></td></tr>
+              <tr><td><span class="docs-swatch sw-color-inverse-text"></span></td><td><code>--color-inverse-text</code></td><td><code>#f3f5fa</code></td><td><code>#f3f5fa</code></td><td><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-text="var(--color-inverse-text)" data-copy-success="Copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy</span><span class="visually-hidden"> var(--color-inverse-text)</span></button></td></tr>
+              <tr><td><span class="docs-swatch sw-color-inverse-muted"></span></td><td><code>--color-inverse-muted</code></td><td><code>#b3bccd</code></td><td><code>#b3bccd</code></td><td><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-text="var(--color-inverse-muted)" data-copy-success="Copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy</span><span class="visually-hidden"> var(--color-inverse-muted)</span></button></td></tr>
+              <tr><td><span class="docs-swatch sw-color-inverse-border"></span></td><td><code>--color-inverse-border</code></td><td><code>#2b3552</code></td><td><code>#2f3a5a</code></td><td><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-text="var(--color-inverse-border)" data-copy-success="Copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy</span><span class="visually-hidden"> var(--color-inverse-border)</span></button></td></tr>
+              <tr><td><span class="docs-swatch sw-color-inverse-accent"></span></td><td><code>--color-inverse-accent</code></td><td><code>#a8bdff</code></td><td><code>#a8bdff</code></td><td><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-text="var(--color-inverse-accent)" data-copy-success="Copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy</span><span class="visually-hidden"> var(--color-inverse-accent)</span></button></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="docs-section" aria-labelledby="colors-charts">
+        <h2 class="docs-section__title" id="colors-charts">Charts</h2>
+        <div class="table-wrapper" role="region" aria-labelledby="colors-charts" tabindex="0">
+          <table class="table docs-token-table">
+            <caption class="visually-hidden">Charts colour tokens</caption>
+            <thead><tr><th scope="col">Swatch</th><th scope="col">Token</th><th scope="col">Light</th><th scope="col">Dark</th><th scope="col"><span class="visually-hidden">Copy</span></th></tr></thead>
+            <tbody>
+              <tr><td><span class="docs-swatch sw-chart-1"></span></td><td><code>--chart-1</code></td><td><code>#2a4fcf</code></td><td><code>#86a3ff</code></td><td><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-text="var(--chart-1)" data-copy-success="Copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy</span><span class="visually-hidden"> var(--chart-1)</span></button></td></tr>
+              <tr><td><span class="docs-swatch sw-chart-2"></span></td><td><code>--chart-2</code></td><td><code>#0d7d72</code></td><td><code>#2dd4bf</code></td><td><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-text="var(--chart-2)" data-copy-success="Copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy</span><span class="visually-hidden"> var(--chart-2)</span></button></td></tr>
+              <tr><td><span class="docs-swatch sw-chart-3"></span></td><td><code>--chart-3</code></td><td><code>#c2410c</code></td><td><code>#fb923c</code></td><td><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-text="var(--chart-3)" data-copy-success="Copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy</span><span class="visually-hidden"> var(--chart-3)</span></button></td></tr>
+              <tr><td><span class="docs-swatch sw-chart-4"></span></td><td><code>--chart-4</code></td><td><code>#8b3fd1</code></td><td><code>#c084fc</code></td><td><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-text="var(--chart-4)" data-copy-success="Copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy</span><span class="visually-hidden"> var(--chart-4)</span></button></td></tr>
+              <tr><td><span class="docs-swatch sw-chart-5"></span></td><td><code>--chart-5</code></td><td><code>#996000</code></td><td><code>#facc15</code></td><td><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-text="var(--chart-5)" data-copy-success="Copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy</span><span class="visually-hidden"> var(--chart-5)</span></button></td></tr>
+              <tr><td><span class="docs-swatch sw-chart-6"></span></td><td><code>--chart-6</code></td><td><code>#c8236f</code></td><td><code>#f472b6</code></td><td><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-text="var(--chart-6)" data-copy-success="Copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy</span><span class="visually-hidden"> var(--chart-6)</span></button></td></tr>
+              <tr><td><span class="docs-swatch sw-chart-grid"></span></td><td><code>--chart-grid</code></td><td><code>#e3e7ee</code></td><td><code>#2a303a</code></td><td><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-text="var(--chart-grid)" data-copy-success="Copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy</span><span class="visually-hidden"> var(--chart-grid)</span></button></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+    <aside class="docs-toc" aria-labelledby="toc-title">
+      <h2 class="docs-toc__title" id="toc-title">On this page</h2>
+      <ul class="docs-toc__list" role="list">
+        <li><a href="#brand-presets">Brand presets</a></li>
+        <li><a href="#colors-surfaces">Surfaces</a></li>
+        <li><a href="#colors-text">Text</a></li>
+        <li><a href="#colors-brand">Brand</a></li>
+        <li><a href="#colors-status">Status</a></li>
+        <li><a href="#colors-inverse-bands">Inverse bands</a></li>
+        <li><a href="#colors-charts">Charts</a></li>
+      </ul>
+    </aside>
+  </div>
+
+  <footer class="docs-footer">
+    <p>MIT licensed · Built with plain HTML, CSS and JavaScript · <a href="https://github.com/amuqtadir99/vanilla-responsive-ui">Source on GitHub</a> · Generated by <code>node .claude/skills/generate-doc.js</code></p>
+  </footer>
+</body>
+</html>

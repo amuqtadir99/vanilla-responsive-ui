@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; form-action 'self'; base-uri 'self'; object-src 'none'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>Theming — vanilla-responsive-ui docs</title>
+  <meta name="description" content="Theming guide for vanilla-responsive-ui.">
+  <meta name="color-scheme" content="light dark">
+  <meta name="generator" content="node .claude/skills/generate-doc.js (do not edit by hand)">
+  <link rel="icon" href="../../assets/icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../../assets/css/tokens.css">
+  <link rel="stylesheet" href="../../assets/css/themes.css">
+  <link rel="stylesheet" href="../../assets/css/base.css">
+  <link rel="stylesheet" href="../../assets/css/layouts.css">
+  <link rel="stylesheet" href="../../assets/css/components/button.css">
+  <link rel="stylesheet" href="../../assets/css/components/form.css">
+  <link rel="stylesheet" href="../../assets/css/components/feedback.css">
+  <link rel="stylesheet" href="../../assets/css/components/tabs.css">
+  <link rel="stylesheet" href="../../assets/css/components/table.css">
+  <link rel="stylesheet" href="../../assets/css/components/code.css">
+  <link rel="stylesheet" href="../../assets/css/components/accordion.css">
+  <link rel="stylesheet" href="../../assets/css/components/card.css">
+  <link rel="stylesheet" href="../../assets/css/components/navigation.css">
+  <link rel="stylesheet" href="../../assets/css/blocks.css">
+  <link rel="stylesheet" href="../../docs/assets/foundations.css">
+  <link rel="stylesheet" href="../../docs/assets/docs.css">
+  <script type="module" src="../../assets/js/main.js"></script>
+  <script type="module" src="../../docs/assets/docs.js"></script>
+</head>
+<body class="docs-body">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <p class="needs-server"><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4M12 17h.01"/></svg> <span>You opened this file from disk, so browsers block its JavaScript (copy buttons, previews, the builder). Run <code>python3 -m http.server 8080</code> in the repository folder and open <a href="http://localhost:8080/src/">localhost:8080/src/</a>, or use the <a href="https://amuqtadir99.github.io/vanilla-responsive-ui/src/">hosted docs</a>.</span></p>
+  <header class="docs-topbar">
+    <div class="docs-topbar__inner">
+      <button type="button" class="btn btn--ghost btn--icon docs-topbar__menu" data-disclosure="dismissible" aria-expanded="false" aria-controls="docs-sidebar" hidden>
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        <span class="visually-hidden">Documentation menu</span>
+      </button>
+      <a class="docs-brand" href="../../index.html">
+        <span class="docs-brand__mark"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 2 7l10 5 10-5z"/><path d="m2 17 10 5 10-5M2 12l10 5 10-5"/></svg></span>
+        <span>vanilla-responsive-ui</span>
+      </a>
+      <nav class="docs-topnav" aria-label="Main">
+        <ul class="docs-topnav__list" role="list">
+          <li><a href="../../docs/getting-started.html">Docs</a></li>
+          <li><a href="../../docs/components/site-footer.html">Components</a></li>
+          <li><a href="../../docs/blocks/hero-centered.html">Blocks</a></li>
+          <li><a href="../../docs/templates/index.html">Templates</a></li>
+          <li><a href="../../builder/index.html">Builder</a></li>
+        </ul>
+      </nav>
+      <div class="docs-topbar__actions">
+        <a class="btn btn--ghost btn--sm" href="https://github.com/amuqtadir99/vanilla-responsive-ui"><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m16 18 6-6-6-6M8 6l-6 6 6 6"/></svg> <span class="docs-topbar__label">GitHub</span></a>
+        <button type="button" class="btn btn--ghost btn--icon theme-toggle" data-theme-toggle aria-pressed="false" hidden>
+          <svg class="icon theme-toggle__light" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="icon theme-toggle__dark" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+          <span class="visually-hidden">Dark theme</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="docs-layout">
+    <nav class="docs-sidebar" id="docs-sidebar" aria-label="Documentation">
+      <div class="docs-search" data-docs-search hidden>
+        <label class="visually-hidden" for="docs-search-input">Search the documentation</label>
+        <svg class="icon icon--sm docs-search__icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/></svg>
+        <input class="input docs-search__input" id="docs-search-input" type="search" placeholder="Search…" autocomplete="off" aria-describedby="docs-search-hint">
+        <kbd class="docs-search__kbd" id="docs-search-hint"><span class="visually-hidden">Press </span>/<span class="visually-hidden"> to search</span></kbd>
+        <p class="docs-search__empty text-sm text-muted" role="status" data-docs-search-status></p>
+      </div>
+      <div class="docs-nav__group" data-docs-group>
+        <p class="docs-nav__title" id="nav-get-started">Get started</p>
+        <ul class="docs-nav__list" role="list" aria-labelledby="nav-get-started">
+          <li><a class="docs-nav__link" href="../../index.html">Introduction</a></li>
+          <li><a class="docs-nav__link" href="../../docs/getting-started.html">Getting started</a></li>
+          <li><a class="docs-nav__link" href="../../builder/index.html">Page builder</a></li>
+          <li><a class="docs-nav__link" href="../../docs/ai-agents.html">Working with AI agents</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav__group" data-docs-group>
+        <p class="docs-nav__title" id="nav-templates">Templates</p>
+        <ul class="docs-nav__list" role="list" aria-labelledby="nav-templates">
+          <li><a class="docs-nav__link" href="../../docs/templates/index.html">All templates</a></li>
+          <li><a class="docs-nav__link" href="../../docs/templates/landing-page-index.html">Landing page</a></li>
+          <li><a class="docs-nav__link" href="../../docs/templates/website-index.html">Website</a></li>
+          <li><a class="docs-nav__link" href="../../docs/templates/dashboard-index.html">Dashboard</a></li>
+          <li><a class="docs-nav__link" href="../../docs/templates/e-commerce-index.html">E-commerce</a></li>
+          <li><a class="docs-nav__link" href="../../docs/templates/ai-index.html">AI apps</a></li>
+          <li><a class="docs-nav__link" href="../../docs/templates/auth-index.html">Authentication</a></li>
+          <li><a class="docs-nav__link" href="../../docs/layouts.html">Layouts</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav__group" data-docs-group>
+        <p class="docs-nav__title" id="nav-blocks">Blocks</p>
+        <ul class="docs-nav__list" role="list" aria-labelledby="nav-blocks">
+          <li><a class="docs-nav__link" href="../../docs/blocks/hero-centered.html">Hero centered</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/hero-split.html">Hero split</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/logo-cloud.html">Logo cloud</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/stats-band.html">Stats band</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/testimonials.html">Testimonials</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/feature-bento.html">Feature bento</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/feature-grid.html">Feature grid</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/feature-rows.html">Feature rows</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/steps.html">Steps</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/category-tiles.html">Category tiles</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/perks.html">Perks</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/pricing.html">Pricing</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/promo-banner.html">Promo banner</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/blog-posts.html">Blog posts</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/faq.html">FAQ</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/team.html">Team</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/contact.html">Contact</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/cta-banner.html">CTA banner</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/newsletter.html">Newsletter</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav__group" data-docs-group>
+        <p class="docs-nav__title" id="nav-components">Components</p>
+        <ul class="docs-nav__list" role="list" aria-labelledby="nav-components">
+          <li><a class="docs-nav__link" href="../../docs/components/site-footer.html">Site footer</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/site-header.html">Site header</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/breadcrumb.html">Breadcrumb</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/pagination.html">Pagination</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/tabs.html">Tabs</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/button.html">Button</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/accordion.html">Accordion</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/card.html">Card</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/form-field.html">Form fields</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/alert.html">Alert and badge</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/toast.html">Toast</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/dialog.html">Dialog</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/chart.html">Charts</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/data-grid.html">Data grid</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/data-table.html">Data table</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/chat.html">AI chat</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/chat-message.html">Chat messages</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/chat-widget.html">Chat widget</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/theme-customizer.html">Theme customizer</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/theme-toggle.html">Theme toggle</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav__group" data-docs-group>
+        <p class="docs-nav__title" id="nav-foundations">Foundations</p>
+        <ul class="docs-nav__list" role="list" aria-labelledby="nav-foundations">
+          <li><a class="docs-nav__link" href="../../docs/foundations/colors.html">Colours</a></li>
+          <li><a class="docs-nav__link" href="../../docs/foundations/typography.html">Typography</a></li>
+          <li><a class="docs-nav__link" href="../../docs/foundations/spacing.html">Spacing and shape</a></li>
+          <li><a class="docs-nav__link" href="../../docs/foundations/icons.html">Icons</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav__group" data-docs-group>
+        <p class="docs-nav__title" id="nav-guides">Guides</p>
+        <ul class="docs-nav__list" role="list" aria-labelledby="nav-guides">
+          <li><a class="docs-nav__link" href="../../docs/guides/theming.html" aria-current="page">Theming</a></li>
+          <li><a class="docs-nav__link" href="../../docs/guides/layouts.html">Layouts and pages</a></li>
+          <li><a class="docs-nav__link" href="../../docs/guides/data.html">Data and charts</a></li>
+          <li><a class="docs-nav__link" href="../../docs/guides/ai-chat.html">AI chat</a></li>
+          <li><a class="docs-nav__link" href="../../docs/guides/accessibility.html">Accessibility</a></li>
+          <li><a class="docs-nav__link" href="../../docs/guides/security.html">Security</a></li>
+          <li><a class="docs-nav__link" href="../../docs/guides/integration.html">Framework integration</a></li>
+          <li><a class="docs-nav__link" href="../../docs/guides/architecture.html">Architecture</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <main class="docs-main" id="main" tabindex="-1">
+      <header class="docs-header">
+        <p class="eyebrow">Guide</p>
+        <h1 class="docs-header__title">Theming</h1>
+        
+        
+        <div class="docs-header__actions"><a class="btn btn--ghost btn--sm" href="https://github.com/amuqtadir99/vanilla-responsive-ui/blob/main/docs/THEMING.md"><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20h9M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4z"/></svg> Edit THEMING.md on GitHub</a></div>
+      </header>
+
+      <div class="docs-prose">
+<p>Colours, type, spacing, corners and motion all come from CSS custom properties (&quot;design tokens&quot;). There are four ways to change them, from least to most effort:</p>
+<div class="table-wrapper" role="region" aria-label="Approach, Needs JavaScript, Best for" tabindex="0"><table class="table" aria-label="Approach, Needs JavaScript, Best for"><thead><tr><th scope="col">Approach</th><th scope="col">Needs JavaScript</th><th scope="col">Best for</th></tr></thead><tbody><tr><td>1. Attributes on <code>&lt;html&gt;</code> (presets)</td><td>No</td><td>Picking a brand preset, density or corner style</td></tr><tr><td>2. Theme customizer panel</td><td>Yes</td><td>Letting users, clients or designers try options live</td></tr><tr><td>3. <code>brand.css</code> overrides</td><td>No</td><td>Your own brand colours, fonts and spacing</td></tr><tr><td>4. <code>core/theme.js</code> API</td><td>Yes</td><td>Per-tenant themes, settings pages, server-driven themes</td></tr></tbody></table></div>
+<p>Every option keeps <strong>WCAG AA contrast</strong>: presets are verified by the test suite in light and dark mode, and custom colours are adjusted automatically.</p>
+<h2 id="1-presets-with-attributes">1. Presets with attributes</h2>
+<p><code>themes.css</code> (load after <code>tokens.css</code>) adds presets selected with attributes:</p>
+<div class="docs-code">
+  <div class="docs-code__header">
+    <span class="docs-code__label">HTML</span>
+    <span class="docs-code__actions"><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-target="#code-537" data-copy-success="Code copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy code</span></button></span>
+  </div>
+  <pre tabindex="0" role="region" aria-label="HTML"><code id="code-537"><span class="tok-tag">&lt;html</span> <span class="tok-attr">lang</span><span class="tok-punct">=</span><span class="tok-string">&quot;en&quot;</span> <span class="tok-attr">data-brand</span><span class="tok-punct">=</span><span class="tok-string">&quot;teal&quot;</span> <span class="tok-attr">data-density</span><span class="tok-punct">=</span><span class="tok-string">&quot;compact&quot;</span> <span class="tok-attr">data-radius</span><span class="tok-punct">=</span><span class="tok-string">&quot;round&quot;</span> <span class="tok-attr">data-theme</span><span class="tok-punct">=</span><span class="tok-string">&quot;dark&quot;</span><span class="tok-tag">&gt;</span></code></pre>
+</div>
+<div class="table-wrapper" role="region" aria-label="Attribute, Values, Default" tabindex="0"><table class="table" aria-label="Attribute, Values, Default"><thead><tr><th scope="col">Attribute</th><th scope="col">Values</th><th scope="col">Default</th></tr></thead><tbody><tr><td><code>data-brand</code></td><td><code>teal</code>, <code>violet</code>, <code>rose</code>, <code>amber</code>, <code>slate</code></td><td>indigo (no attribute)</td></tr><tr><td><code>data-density</code></td><td><code>compact</code>, <code>comfortable</code></td><td>normal spacing</td></tr><tr><td><code>data-radius</code></td><td><code>sharp</code>, <code>round</code></td><td>normal corners</td></tr><tr><td><code>data-theme</code></td><td><code>light</code>, <code>dark</code></td><td>follows the operating system</td></tr></tbody></table></div>
+<p>Each brand preset defines light and dark values for <code>--color-primary</code>, <code>--color-primary-hover</code>, <code>--color-primary-soft</code>, <code>--color-on-primary</code>, <code>--color-link</code>, <code>--color-focus</code> and <code>--color-selection</code>. Compact density keeps controls at 36px, above the 24px WCAG 2.5.8 minimum.</p>
+<p>Render these attributes on the server to avoid any flash on first paint.</p>
+<h2 id="2-the-theme-customizer">2. The theme customizer</h2>
+<p>Every template has a <strong>Theme</strong> button (in the template switcher) that opens a drawer with:</p>
+<ul><li>mode: system, light or dark,</li><li>brand: six presets or <strong>any custom colour</strong>,</li><li>density and corner style,</li><li>a live contrast report (&quot;button text 5.5:1, links 6.3:1 — passes WCAG AA&quot;),</li><li><strong>Copy CSS</strong>: the exact CSS to paste into <code>brand.css</code>.</li></ul>
+<p>Choices are remembered per visitor (localStorage) and apply across all templates. The mode is also stored in a <code>vr_theme</code> cookie so a server can render <code>data-theme</code> on first paint (see the <a href="integration.html#theme-without-a-flash">integration guide</a>).</p>
+<p>Add the panel to your own pages with the <code>theme-panel</code> partial or the <a href="../../components/theme-customizer.html">theme customizer snippet</a>.</p>
+<h2 id="3-brandcss-overrides">3. brand.css overrides</h2>
+<p>Create a stylesheet loaded after <code>tokens.css</code> and <code>themes.css</code>:</p>
+<div class="docs-code">
+  <div class="docs-code__header">
+    <span class="docs-code__label">CSS</span>
+    <span class="docs-code__actions"><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-target="#code-538" data-copy-success="Code copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy code</span></button></span>
+  </div>
+  <pre tabindex="0" role="region" aria-label="CSS"><code id="code-538"><span class="tok-comment">/* brand.css */</span>
+<span class="tok-selector">:root </span><span class="tok-punct">{</span>
+  <span class="tok-property">--color-primary</span><span class="tok-punct">:</span> <span class="tok-number">#0f766e</span><span class="tok-punct">;</span>
+  <span class="tok-property">--color-primary-hover</span><span class="tok-punct">:</span> <span class="tok-number">#115e59</span><span class="tok-punct">;</span>
+  <span class="tok-property">--color-primary-soft</span><span class="tok-punct">:</span> <span class="tok-number">#d5f5ef</span><span class="tok-punct">;</span>
+  <span class="tok-property">--color-on-primary</span><span class="tok-punct">:</span> <span class="tok-number">#ffffff</span><span class="tok-punct">;</span>
+  <span class="tok-property">--color-link</span><span class="tok-punct">:</span> <span class="tok-number">#0f6b64</span><span class="tok-punct">;</span>
+  <span class="tok-property">--color-focus</span><span class="tok-punct">:</span> <span class="tok-number">#0f766e</span><span class="tok-punct">;</span>
+
+  <span class="tok-property">--font-main</span><span class="tok-punct">:</span> <span class="tok-string">&quot;Inter&quot;</span>, system-ui, sans-serif<span class="tok-punct">;</span>
+  <span class="tok-property">--radius-md</span><span class="tok-punct">:</span> <span class="tok-number">0.25rem</span><span class="tok-punct">;</span>
+  <span class="tok-property">--container-max</span><span class="tok-punct">:</span> <span class="tok-number">80rem</span><span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-comment">/* Dark values: repeat for the OS preference and the explicit toggle. */</span>
+<span class="tok-keyword">@media</span> (prefers-color-scheme: dark) <span class="tok-punct">{</span>
+  <span class="tok-selector">:root:not([data-theme=&quot;light&quot;]) </span><span class="tok-punct">{</span>
+    <span class="tok-property">--color-primary</span><span class="tok-punct">:</span> <span class="tok-number">#2dd4bf</span><span class="tok-punct">;</span>
+    <span class="tok-property">--color-on-primary</span><span class="tok-punct">:</span> <span class="tok-number">#04201d</span><span class="tok-punct">;</span>
+  <span class="tok-punct">}</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">:root[data-theme=&quot;dark&quot;] </span><span class="tok-punct">{</span>
+  <span class="tok-property">--color-primary</span><span class="tok-punct">:</span> <span class="tok-number">#2dd4bf</span><span class="tok-punct">;</span>
+  <span class="tok-property">--color-on-primary</span><span class="tok-punct">:</span> <span class="tok-number">#04201d</span><span class="tok-punct">;</span>
+<span class="tok-punct">}</span></code></pre>
+</div>
+<p>The customizer's <strong>Copy CSS</strong> button writes this file for you from any colour, with contrast-safe light and dark shades.</p>
+<h3 id="token-reference">Token reference</h3>
+<div class="table-wrapper" role="region" aria-label="Group, Tokens" tabindex="0"><table class="table" aria-label="Group, Tokens"><thead><tr><th scope="col">Group</th><th scope="col">Tokens</th></tr></thead><tbody><tr><td>Surfaces</td><td><code>--color-bg</code>, <code>--color-surface</code>, <code>--color-surface-raised</code>, <code>--color-surface-sunken</code>, <code>--color-border</code>, <code>--color-border-strong</code></td></tr><tr><td>Text</td><td><code>--color-text</code>, <code>--color-text-muted</code>, <code>--color-link</code></td></tr><tr><td>Brand</td><td><code>--color-primary</code>, <code>--color-primary-hover</code>, <code>--color-primary-soft</code>, <code>--color-on-primary</code>, <code>--color-focus</code>, <code>--color-selection</code></td></tr><tr><td>Status</td><td><code>--color-success</code>, <code>--color-warning</code>, <code>--color-danger</code>, <code>--color-info</code> and their <code>-soft</code> backgrounds</td></tr><tr><td>Charts</td><td><code>--chart-1</code> … <code>--chart-6</code>, <code>--chart-grid</code></td></tr><tr><td>Type</td><td><code>--font-main</code>, <code>--font-mono</code>, <code>--font-size-xs</code> … <code>--font-size-4xl</code> (fluid <code>clamp()</code>), weights, line heights</td></tr><tr><td>Space</td><td><code>--spacing-3xs</code> … <code>--spacing-3xl</code>, <code>--spacing-section</code>, <code>--container-max</code>, <code>--container-padding</code></td></tr><tr><td>Shape</td><td><code>--radius-sm</code> … <code>--radius-xl</code>, <code>--radius-pill</code>, <code>--shadow-sm</code> … <code>--shadow-lg</code></td></tr><tr><td>Interaction</td><td><code>--target-size</code>, <code>--focus-ring-width</code>, <code>--focus-ring-offset</code>, <code>--duration-*</code>, <code>--ease-standard</code></td></tr></tbody></table></div>
+<p>Check contrast after changing colours:</p>
+<div class="docs-code">
+  <div class="docs-code__header">
+    <span class="docs-code__label">BASH</span>
+    <span class="docs-code__actions"><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-target="#code-539" data-copy-success="Code copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy code</span></button></span>
+  </div>
+  <pre tabindex="0" role="region" aria-label="BASH"><code id="code-539">node tests/run-all.mjs --only contrast</code></pre>
+</div>
+<p>To add a preset, copy one of the blocks in <code>themes.css</code> (light, system-dark and explicit-dark), add a swatch token and option, and run the contrast suite: it checks every preset automatically.</p>
+<h2 id="4-javascript-api">4. JavaScript API</h2>
+<div class="docs-code">
+  <div class="docs-code__header">
+    <span class="docs-code__label">JS</span>
+    <span class="docs-code__actions"><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-target="#code-540" data-copy-success="Code copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy code</span></button></span>
+  </div>
+  <pre tabindex="0" role="region" aria-label="JS"><code id="code-540"><span class="tok-keyword">import</span> { getSettings, applySettings, setMode, generateBrand, toCss } <span class="tok-keyword">from</span> <span class="tok-string">'./assets/js/core/theme.js'</span>;
+
+<span class="tok-function">applySettings</span>({ ...<span class="tok-function">getSettings</span>(), brand: <span class="tok-string">'violet'</span>, density: <span class="tok-string">'compact'</span> });
+<span class="tok-function">applySettings</span>({ ...<span class="tok-function">getSettings</span>(), custom: <span class="tok-string">'#e11d48'</span> }); <span class="tok-comment">// any colour</span>
+<span class="tok-function">setMode</span>(<span class="tok-string">'dark'</span>);                                       <span class="tok-comment">// 'light' | 'dark' | 'system'</span>
+
+<span class="tok-keyword">const</span> { light, dark } = <span class="tok-function">generateBrand</span>(<span class="tok-string">'#e11d48'</span>);      <span class="tok-comment">// contrast-safe palettes</span>
+console.<span class="tok-function">log</span>(<span class="tok-function">toCss</span>(<span class="tok-function">getSettings</span>()));                     <span class="tok-comment">// CSS for brand.css</span></code></pre>
+</div>
+<p><code>applySettings</code> validates every value, persists it (unless <code>{ persist: false }</code>), sets the <code>&lt;html&gt;</code> attributes and dispatches <code>vr:settingschange</code>. <code>setMode</code> dispatches <code>vr:themechange</code>. Custom colours are applied through the CSSOM, which a strict Content-Security-Policy allows.</p>
+<p><strong>Per-tenant themes:</strong> render <code>data-brand</code> (or a <code>brand.css</code> link) on the server for each tenant; use <code>applySettings</code> only for user-level overrides.</p>
+      </div>
+    </main>
+    <aside class="docs-toc" aria-labelledby="toc-title">
+      <h2 class="docs-toc__title" id="toc-title">On this page</h2>
+      <ul class="docs-toc__list" role="list">
+        <li><a href="#1-presets-with-attributes">1. Presets with attributes</a></li>
+        <li><a href="#2-the-theme-customizer">2. The theme customizer</a></li>
+        <li><a href="#3-brandcss-overrides">3. brand.css overrides</a></li>
+        <li><a href="#4-javascript-api">4. JavaScript API</a></li>
+      </ul>
+    </aside>
+  </div>
+
+  <footer class="docs-footer">
+    <p>MIT licensed · Built with plain HTML, CSS and JavaScript · <a href="https://github.com/amuqtadir99/vanilla-responsive-ui">Source on GitHub</a> · Generated by <code>node .claude/skills/generate-doc.js</code></p>
+  </footer>
+</body>
+</html>

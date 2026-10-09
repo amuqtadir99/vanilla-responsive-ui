@@ -61,12 +61,12 @@ else
   trap 'rm -rf "$tmp"' EXIT
 
   mapfile -t docs < <(grep -rliE '^\s*(<!--.*-->\s*)*<!doctype html>' src --include='*.html' | sort)
-  mapfile -t snippets < <(find src/components -maxdepth 1 -name '*.html' ! -name 'index.html' | sort)
+  mapfile -t snippets < <({ find src/components -maxdepth 1 -name '*.html' ! -name 'index.html'; find src/blocks -maxdepth 1 -name '*.html'; } | sort)
 
   # Wrap each snippet in a minimal valid document so it can be validated.
   wrapped=()
   for snippet in "${snippets[@]}"; do
-    out="$tmp/$(basename "$snippet")"
+    out="$tmp/$(basename "$(dirname "$snippet")")__$(basename "$snippet")"
     {
       printf '<!DOCTYPE html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n<title>%s</title>\n</head>\n<body>\n<main>\n' "$(basename "$snippet")"
       cat "$snippet"
@@ -85,13 +85,13 @@ else
       echo "✓ $label"
     else
       echo "✗ $label"
-      echo "$output" | grep -v '^Picked up JAVA_TOOL_OPTIONS' | sed "s#file:$tmp/#src/components/#; s#file:$ROOT/##"
+      echo "$output" | grep -v '^Picked up JAVA_TOOL_OPTIONS' | sed "s#file:$tmp/\([a-z]*\)__#src/\1/#; s#file:$ROOT/##"
       status=1
     fi
   }
 
   run_vnu "HTML documents (${#docs[@]})" --html "${docs[@]}"
-  run_vnu "Component snippets (${#wrapped[@]})" --html "${wrapped[@]}"
+  run_vnu "Component and block snippets (${#wrapped[@]})" --html "${wrapped[@]}"
   run_vnu "Stylesheets (${#styles[@]})" --css "${styles[@]}"
   run_vnu "SVG files (${#svgs[@]})" --svg "${svgs[@]}"
 fi

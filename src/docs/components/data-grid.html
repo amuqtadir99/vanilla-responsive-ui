@@ -1,0 +1,1704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; form-action 'self'; base-uri 'self'; object-src 'none'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>Data grid component — vanilla-responsive-ui docs</title>
+  <meta name="description" content="Table rendered from JSON with search, filters, sortable columns, pagination, CSV export and row actions. Server-rendered rows show until data loads, and the toolbar submits as a normal form without JavaScript.">
+  <meta name="color-scheme" content="light dark">
+  <meta name="generator" content="node .claude/skills/generate-doc.js (do not edit by hand)">
+  <link rel="icon" href="../../assets/icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../../assets/css/tokens.css">
+  <link rel="stylesheet" href="../../assets/css/themes.css">
+  <link rel="stylesheet" href="../../assets/css/base.css">
+  <link rel="stylesheet" href="../../assets/css/layouts.css">
+  <link rel="stylesheet" href="../../assets/css/components/button.css">
+  <link rel="stylesheet" href="../../assets/css/components/form.css">
+  <link rel="stylesheet" href="../../assets/css/components/feedback.css">
+  <link rel="stylesheet" href="../../assets/css/components/tabs.css">
+  <link rel="stylesheet" href="../../assets/css/components/table.css">
+  <link rel="stylesheet" href="../../assets/css/components/code.css">
+  <link rel="stylesheet" href="../../assets/css/components/accordion.css">
+  <link rel="stylesheet" href="../../assets/css/components/card.css">
+  <link rel="stylesheet" href="../../assets/css/components/navigation.css">
+  <link rel="stylesheet" href="../../assets/css/blocks.css">
+  <link rel="stylesheet" href="../../docs/assets/foundations.css">
+  <link rel="stylesheet" href="../../docs/assets/docs.css">
+  <script type="module" src="../../assets/js/main.js"></script>
+  <script type="module" src="../../docs/assets/docs.js"></script>
+</head>
+<body class="docs-body">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <p class="needs-server"><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4M12 17h.01"/></svg> <span>You opened this file from disk, so browsers block its JavaScript (copy buttons, previews, the builder). Run <code>python3 -m http.server 8080</code> in the repository folder and open <a href="http://localhost:8080/src/">localhost:8080/src/</a>, or use the <a href="https://amuqtadir99.github.io/vanilla-responsive-ui/src/">hosted docs</a>.</span></p>
+  <header class="docs-topbar">
+    <div class="docs-topbar__inner">
+      <button type="button" class="btn btn--ghost btn--icon docs-topbar__menu" data-disclosure="dismissible" aria-expanded="false" aria-controls="docs-sidebar" hidden>
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        <span class="visually-hidden">Documentation menu</span>
+      </button>
+      <a class="docs-brand" href="../../index.html">
+        <span class="docs-brand__mark"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 2 7l10 5 10-5z"/><path d="m2 17 10 5 10-5M2 12l10 5 10-5"/></svg></span>
+        <span>vanilla-responsive-ui</span>
+      </a>
+      <nav class="docs-topnav" aria-label="Main">
+        <ul class="docs-topnav__list" role="list">
+          <li><a href="../../docs/getting-started.html">Docs</a></li>
+          <li><a href="../../docs/components/site-footer.html" aria-current="true">Components</a></li>
+          <li><a href="../../docs/blocks/hero-centered.html">Blocks</a></li>
+          <li><a href="../../docs/templates/index.html">Templates</a></li>
+          <li><a href="../../builder/index.html">Builder</a></li>
+        </ul>
+      </nav>
+      <div class="docs-topbar__actions">
+        <a class="btn btn--ghost btn--sm" href="https://github.com/amuqtadir99/vanilla-responsive-ui"><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m16 18 6-6-6-6M8 6l-6 6 6 6"/></svg> <span class="docs-topbar__label">GitHub</span></a>
+        <button type="button" class="btn btn--ghost btn--icon theme-toggle" data-theme-toggle aria-pressed="false" hidden>
+          <svg class="icon theme-toggle__light" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="icon theme-toggle__dark" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+          <span class="visually-hidden">Dark theme</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="docs-layout">
+    <nav class="docs-sidebar" id="docs-sidebar" aria-label="Documentation">
+      <div class="docs-search" data-docs-search hidden>
+        <label class="visually-hidden" for="docs-search-input">Search the documentation</label>
+        <svg class="icon icon--sm docs-search__icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/></svg>
+        <input class="input docs-search__input" id="docs-search-input" type="search" placeholder="Search…" autocomplete="off" aria-describedby="docs-search-hint">
+        <kbd class="docs-search__kbd" id="docs-search-hint"><span class="visually-hidden">Press </span>/<span class="visually-hidden"> to search</span></kbd>
+        <p class="docs-search__empty text-sm text-muted" role="status" data-docs-search-status></p>
+      </div>
+      <div class="docs-nav__group" data-docs-group>
+        <p class="docs-nav__title" id="nav-get-started">Get started</p>
+        <ul class="docs-nav__list" role="list" aria-labelledby="nav-get-started">
+          <li><a class="docs-nav__link" href="../../index.html">Introduction</a></li>
+          <li><a class="docs-nav__link" href="../../docs/getting-started.html">Getting started</a></li>
+          <li><a class="docs-nav__link" href="../../builder/index.html">Page builder</a></li>
+          <li><a class="docs-nav__link" href="../../docs/ai-agents.html">Working with AI agents</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav__group" data-docs-group>
+        <p class="docs-nav__title" id="nav-templates">Templates</p>
+        <ul class="docs-nav__list" role="list" aria-labelledby="nav-templates">
+          <li><a class="docs-nav__link" href="../../docs/templates/index.html">All templates</a></li>
+          <li><a class="docs-nav__link" href="../../docs/templates/landing-page-index.html">Landing page</a></li>
+          <li><a class="docs-nav__link" href="../../docs/templates/website-index.html">Website</a></li>
+          <li><a class="docs-nav__link" href="../../docs/templates/dashboard-index.html">Dashboard</a></li>
+          <li><a class="docs-nav__link" href="../../docs/templates/e-commerce-index.html">E-commerce</a></li>
+          <li><a class="docs-nav__link" href="../../docs/templates/ai-index.html">AI apps</a></li>
+          <li><a class="docs-nav__link" href="../../docs/templates/auth-index.html">Authentication</a></li>
+          <li><a class="docs-nav__link" href="../../docs/layouts.html">Layouts</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav__group" data-docs-group>
+        <p class="docs-nav__title" id="nav-blocks">Blocks</p>
+        <ul class="docs-nav__list" role="list" aria-labelledby="nav-blocks">
+          <li><a class="docs-nav__link" href="../../docs/blocks/hero-centered.html">Hero centered</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/hero-split.html">Hero split</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/logo-cloud.html">Logo cloud</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/stats-band.html">Stats band</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/testimonials.html">Testimonials</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/feature-bento.html">Feature bento</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/feature-grid.html">Feature grid</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/feature-rows.html">Feature rows</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/steps.html">Steps</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/category-tiles.html">Category tiles</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/perks.html">Perks</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/pricing.html">Pricing</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/promo-banner.html">Promo banner</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/blog-posts.html">Blog posts</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/faq.html">FAQ</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/team.html">Team</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/contact.html">Contact</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/cta-banner.html">CTA banner</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/newsletter.html">Newsletter</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav__group" data-docs-group>
+        <p class="docs-nav__title" id="nav-components">Components</p>
+        <ul class="docs-nav__list" role="list" aria-labelledby="nav-components">
+          <li><a class="docs-nav__link" href="../../docs/components/site-footer.html">Site footer</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/site-header.html">Site header</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/breadcrumb.html">Breadcrumb</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/pagination.html">Pagination</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/tabs.html">Tabs</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/button.html">Button</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/accordion.html">Accordion</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/card.html">Card</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/form-field.html">Form fields</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/alert.html">Alert and badge</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/toast.html">Toast</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/dialog.html">Dialog</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/chart.html">Charts</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/data-grid.html" aria-current="page">Data grid</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/data-table.html">Data table</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/chat.html">AI chat</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/chat-message.html">Chat messages</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/chat-widget.html">Chat widget</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/theme-customizer.html">Theme customizer</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/theme-toggle.html">Theme toggle</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav__group" data-docs-group>
+        <p class="docs-nav__title" id="nav-foundations">Foundations</p>
+        <ul class="docs-nav__list" role="list" aria-labelledby="nav-foundations">
+          <li><a class="docs-nav__link" href="../../docs/foundations/colors.html">Colours</a></li>
+          <li><a class="docs-nav__link" href="../../docs/foundations/typography.html">Typography</a></li>
+          <li><a class="docs-nav__link" href="../../docs/foundations/spacing.html">Spacing and shape</a></li>
+          <li><a class="docs-nav__link" href="../../docs/foundations/icons.html">Icons</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav__group" data-docs-group>
+        <p class="docs-nav__title" id="nav-guides">Guides</p>
+        <ul class="docs-nav__list" role="list" aria-labelledby="nav-guides">
+          <li><a class="docs-nav__link" href="../../docs/guides/theming.html">Theming</a></li>
+          <li><a class="docs-nav__link" href="../../docs/guides/layouts.html">Layouts and pages</a></li>
+          <li><a class="docs-nav__link" href="../../docs/guides/data.html">Data and charts</a></li>
+          <li><a class="docs-nav__link" href="../../docs/guides/ai-chat.html">AI chat</a></li>
+          <li><a class="docs-nav__link" href="../../docs/guides/accessibility.html">Accessibility</a></li>
+          <li><a class="docs-nav__link" href="../../docs/guides/security.html">Security</a></li>
+          <li><a class="docs-nav__link" href="../../docs/guides/integration.html">Framework integration</a></li>
+          <li><a class="docs-nav__link" href="../../docs/guides/architecture.html">Architecture</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <main class="docs-main" id="main" tabindex="-1">
+      <header class="docs-header">
+        <p class="eyebrow">Component · Data</p>
+        <h1 class="docs-header__title">Data grid</h1>
+        <p class="docs-header__lead">Table rendered from JSON with search, filters, sortable columns, pagination, CSV export and row actions. Server-rendered rows show until data loads, and the toolbar submits as a normal form without JavaScript.</p>
+        <ul class="docs-meta" role="list">
+          <li><span class="badge">Data</span></li>
+          <li><span class="badge badge--primary">HTML + CSS + JS</span></li>
+          <li><span class="path-chip">src/components/data-grid.html</span></li>
+        </ul>
+        <div class="docs-header__actions"><button type="button" class="btn btn--sm" data-copy data-copy-text="Component: Data grid (vanilla-responsive-ui)&#10;Markup: src/components/data-grid.html&#10;CSS: src/assets/css/tokens.css, src/assets/css/themes.css, src/assets/css/base.css, src/assets/css/components/table.css, src/assets/css/components/form.css, src/assets/css/components/navigation.css, src/assets/css/components/feedback.css, src/assets/css/components/button.css&#10;JS: src/assets/js/components/data-grid.js (auto-initialised by src/assets/js/main.js)&#10;Docs: src/docs/components/data-grid.html&#10;Accessibility: Sortable headers are buttons with aria-sort; result counts, sorting and paging are announced; action buttons include the row id in their accessible name; the scroll wrapper is a labelled, focusable region. Status is shown as text badges, not colour alone.&#10;Rules: CLAUDE.md (no dependencies, no inline scripts/styles, WCAG 2.2 AA)" data-copy-success="Reference copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8zM5 2l.6 1.4L7 4l-1.4.6L5 6l-.6-1.4L3 4l1.4-.6z"/></svg> <span data-copy-label>Copy path for AI</span></button>
+          <button type="button" class="btn btn--sm btn--secondary" data-copy data-copy-text="&lt;div class=&quot;data-grid&quot; data-grid data-source=&quot;orders&quot; data-page-size=&quot;5&quot; data-label=&quot;orders&quot;&gt;&#10;  &lt;form class=&quot;data-grid__toolbar&quot; action=&quot;/orders&quot; method=&quot;get&quot;&gt;&#10;    &lt;div class=&quot;field&quot;&gt;&#10;      &lt;label class=&quot;field__label&quot; for=&quot;grid-demo-search&quot;&gt;Search orders&lt;/label&gt;&#10;      &lt;input class=&quot;input&quot; id=&quot;grid-demo-search&quot; name=&quot;q&quot; type=&quot;search&quot; autocomplete=&quot;off&quot; data-grid-search&gt;&#10;    &lt;/div&gt;&#10;    &lt;div class=&quot;field field--narrow&quot;&gt;&#10;      &lt;label class=&quot;field__label&quot; for=&quot;grid-demo-status&quot;&gt;Status&lt;/label&gt;&#10;      &lt;select class=&quot;select&quot; id=&quot;grid-demo-status&quot; name=&quot;status&quot; data-grid-filter=&quot;status&quot;&gt;&#10;        &lt;option value=&quot;&quot;&gt;All statuses&lt;/option&gt;&#10;        &lt;option&gt;Paid&lt;/option&gt;&#10;        &lt;option&gt;Shipped&lt;/option&gt;&#10;        &lt;option&gt;Delivered&lt;/option&gt;&#10;        &lt;option&gt;Pending&lt;/option&gt;&#10;        &lt;option&gt;Refunded&lt;/option&gt;&#10;        &lt;option&gt;Failed&lt;/option&gt;&#10;      &lt;/select&gt;&#10;    &lt;/div&gt;&#10;    &lt;button type=&quot;button&quot; class=&quot;btn btn--secondary&quot; data-grid-export hidden&gt;Export CSV&lt;/button&gt;&#10;  &lt;/form&gt;&#10;&#10;  &lt;div class=&quot;table-wrapper&quot; role=&quot;region&quot; aria-labelledby=&quot;grid-demo-caption&quot; tabindex=&quot;0&quot;&gt;&#10;    &lt;table class=&quot;table&quot;&gt;&#10;      &lt;caption id=&quot;grid-demo-caption&quot; class=&quot;visually-hidden&quot;&gt;Orders&lt;/caption&gt;&#10;      &lt;thead&gt;&#10;        &lt;tr&gt;&#10;          &lt;th scope=&quot;col&quot; data-key=&quot;id&quot; data-sort=&quot;text&quot;&gt;Order&lt;/th&gt;&#10;          &lt;th scope=&quot;col&quot; data-key=&quot;customer&quot; data-sort=&quot;text&quot; data-render=&quot;person&quot;&gt;Customer&lt;/th&gt;&#10;          &lt;th scope=&quot;col&quot; data-key=&quot;date&quot; data-sort=&quot;date&quot; data-format=&quot;date&quot;&gt;Date&lt;/th&gt;&#10;          &lt;th scope=&quot;col&quot; data-key=&quot;status&quot; data-sort=&quot;text&quot; data-render=&quot;badge&quot;&gt;Status&lt;/th&gt;&#10;          &lt;th scope=&quot;col&quot; data-key=&quot;total&quot; data-sort=&quot;number&quot; data-format=&quot;currency&quot; class=&quot;num&quot;&gt;Total&lt;/th&gt;&#10;        &lt;/tr&gt;&#10;      &lt;/thead&gt;&#10;      &lt;tbody&gt;&#10;        &lt;tr&gt;&lt;td&gt;#1064&lt;/td&gt;&lt;td&gt;Isla Murray&lt;/td&gt;&lt;td&gt;8 Oct 2026&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;badge badge--success&quot;&gt;Delivered&lt;/span&gt;&lt;/td&gt;&lt;td class=&quot;num&quot;&gt;$277.00&lt;/td&gt;&lt;/tr&gt;&#10;        &lt;tr&gt;&lt;td&gt;#1063&lt;/td&gt;&lt;td&gt;Leila Haddad&lt;/td&gt;&lt;td&gt;8 Oct 2026&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;badge badge--primary&quot;&gt;Shipped&lt;/span&gt;&lt;/td&gt;&lt;td class=&quot;num&quot;&gt;$251.00&lt;/td&gt;&lt;/tr&gt;&#10;      &lt;/tbody&gt;&#10;    &lt;/table&gt;&#10;  &lt;/div&gt;&#10;&#10;  &lt;div class=&quot;data-grid__footer&quot;&gt;&#10;    &lt;p data-grid-status&gt;Showing 2 orders&lt;/p&gt;&#10;    &lt;nav class=&quot;pagination&quot; aria-label=&quot;Orders pages&quot; data-grid-pagination&gt;&lt;/nav&gt;&#10;  &lt;/div&gt;&#10;&lt;/div&gt;" data-copy-success="Markup copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy HTML</span></button>
+          </div>
+      </header>
+
+      <section class="docs-section" aria-labelledby="preview">
+        <h2 class="docs-section__title" id="preview">Preview</h2>
+        <div class="docs-preview" data-docs-preview data-mode="component" data-device="desktop">
+  <div class="docs-preview__bar">
+    <fieldset class="fieldset docs-device" data-docs-device hidden>
+      <legend class="visually-hidden">Preview width</legend>
+      <div class="segmented">
+        <label class="segmented__option"><input type="radio" name="device-118" value="desktop" checked><span class="segmented__label"><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg> Desktop</span></label>
+        <label class="segmented__option"><input type="radio" name="device-118" value="tablet"><span class="segmented__label"><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M12 18h.01"/></svg> Tablet</span></label>
+        <label class="segmented__option"><input type="radio" name="device-118" value="mobile"><span class="segmented__label"><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg> Mobile</span></label>
+      </div>
+    </fieldset>
+    <a class="btn btn--ghost btn--sm" href="../preview/components/data-grid.html" target="_blank" rel="noopener noreferrer"><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14 21 3"/></svg> Open in new tab<span class="visually-hidden"> (Data grid preview)</span></a>
+  </div>
+  <div class="docs-preview__stage" data-docs-stage>
+    <iframe class="docs-preview__frame" src="../preview/components/data-grid.html" title="Data grid preview" loading="lazy" data-docs-frame></iframe>
+  </div>
+</div>
+      </section>
+
+      <section class="docs-section" aria-labelledby="code">
+        <h2 class="docs-section__title" id="code">Code</h2>
+        <div class="tabs docs-tabs" data-tabs>
+    <div class="tabs__list" data-tabs-list data-label="Data grid source" hidden>
+      <button type="button" class="tabs__tab" data-tab="tabs-119-0">HTML</button>
+      <button type="button" class="tabs__tab" data-tab="tabs-119-1">table.css</button>
+      <button type="button" class="tabs__tab" data-tab="tabs-119-2">form.css</button>
+      <button type="button" class="tabs__tab" data-tab="tabs-119-3">navigation.css</button>
+      <button type="button" class="tabs__tab" data-tab="tabs-119-4">feedback.css</button>
+      <button type="button" class="tabs__tab" data-tab="tabs-119-5">button.css</button>
+      <button type="button" class="tabs__tab" data-tab="tabs-119-6">data-grid.js</button>
+    </div>
+    <section class="tabs__panel" id="tabs-119-0" aria-labelledby="tabs-119-0-h">
+      <h3 class="tabs__heading" id="tabs-119-0-h">HTML</h3>
+      <div class="docs-code">
+  <div class="docs-code__header">
+    <span class="docs-code__label"><span class="docs-code__path">src/components/data-grid.html</span></span>
+    <span class="docs-code__actions"><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-text="src/components/data-grid.html" data-copy-success="Path copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg> <span data-copy-label>Copy path</span></button><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-target="#code-111" data-copy-success="Code copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy code</span></button></span>
+  </div>
+  <pre tabindex="0" role="region" aria-label="src/components/data-grid.html"><code id="code-111"><span class="tok-tag">&lt;div</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;data-grid&quot;</span> <span class="tok-attr">data-grid</span> <span class="tok-attr">data-source</span><span class="tok-punct">=</span><span class="tok-string">&quot;orders&quot;</span> <span class="tok-attr">data-page-size</span><span class="tok-punct">=</span><span class="tok-string">&quot;5&quot;</span> <span class="tok-attr">data-label</span><span class="tok-punct">=</span><span class="tok-string">&quot;orders&quot;</span><span class="tok-tag">&gt;</span>
+  <span class="tok-tag">&lt;form</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;data-grid__toolbar&quot;</span> <span class="tok-attr">action</span><span class="tok-punct">=</span><span class="tok-string">&quot;/orders&quot;</span> <span class="tok-attr">method</span><span class="tok-punct">=</span><span class="tok-string">&quot;get&quot;</span><span class="tok-tag">&gt;</span>
+    <span class="tok-tag">&lt;div</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;field&quot;</span><span class="tok-tag">&gt;</span>
+      <span class="tok-tag">&lt;label</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;field__label&quot;</span> <span class="tok-attr">for</span><span class="tok-punct">=</span><span class="tok-string">&quot;grid-demo-search&quot;</span><span class="tok-tag">&gt;</span>Search orders<span class="tok-tag">&lt;/label</span><span class="tok-tag">&gt;</span>
+      <span class="tok-tag">&lt;input</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;input&quot;</span> <span class="tok-attr">id</span><span class="tok-punct">=</span><span class="tok-string">&quot;grid-demo-search&quot;</span> <span class="tok-attr">name</span><span class="tok-punct">=</span><span class="tok-string">&quot;q&quot;</span> <span class="tok-attr">type</span><span class="tok-punct">=</span><span class="tok-string">&quot;search&quot;</span> <span class="tok-attr">autocomplete</span><span class="tok-punct">=</span><span class="tok-string">&quot;off&quot;</span> <span class="tok-attr">data-grid-search</span><span class="tok-tag">&gt;</span>
+    <span class="tok-tag">&lt;/div</span><span class="tok-tag">&gt;</span>
+    <span class="tok-tag">&lt;div</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;field field--narrow&quot;</span><span class="tok-tag">&gt;</span>
+      <span class="tok-tag">&lt;label</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;field__label&quot;</span> <span class="tok-attr">for</span><span class="tok-punct">=</span><span class="tok-string">&quot;grid-demo-status&quot;</span><span class="tok-tag">&gt;</span>Status<span class="tok-tag">&lt;/label</span><span class="tok-tag">&gt;</span>
+      <span class="tok-tag">&lt;select</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;select&quot;</span> <span class="tok-attr">id</span><span class="tok-punct">=</span><span class="tok-string">&quot;grid-demo-status&quot;</span> <span class="tok-attr">name</span><span class="tok-punct">=</span><span class="tok-string">&quot;status&quot;</span> <span class="tok-attr">data-grid-filter</span><span class="tok-punct">=</span><span class="tok-string">&quot;status&quot;</span><span class="tok-tag">&gt;</span>
+        <span class="tok-tag">&lt;option</span> <span class="tok-attr">value</span><span class="tok-punct">=</span><span class="tok-string">&quot;&quot;</span><span class="tok-tag">&gt;</span>All statuses<span class="tok-tag">&lt;/option</span><span class="tok-tag">&gt;</span>
+        <span class="tok-tag">&lt;option</span><span class="tok-tag">&gt;</span>Paid<span class="tok-tag">&lt;/option</span><span class="tok-tag">&gt;</span>
+        <span class="tok-tag">&lt;option</span><span class="tok-tag">&gt;</span>Shipped<span class="tok-tag">&lt;/option</span><span class="tok-tag">&gt;</span>
+        <span class="tok-tag">&lt;option</span><span class="tok-tag">&gt;</span>Delivered<span class="tok-tag">&lt;/option</span><span class="tok-tag">&gt;</span>
+        <span class="tok-tag">&lt;option</span><span class="tok-tag">&gt;</span>Pending<span class="tok-tag">&lt;/option</span><span class="tok-tag">&gt;</span>
+        <span class="tok-tag">&lt;option</span><span class="tok-tag">&gt;</span>Refunded<span class="tok-tag">&lt;/option</span><span class="tok-tag">&gt;</span>
+        <span class="tok-tag">&lt;option</span><span class="tok-tag">&gt;</span>Failed<span class="tok-tag">&lt;/option</span><span class="tok-tag">&gt;</span>
+      <span class="tok-tag">&lt;/select</span><span class="tok-tag">&gt;</span>
+    <span class="tok-tag">&lt;/div</span><span class="tok-tag">&gt;</span>
+    <span class="tok-tag">&lt;button</span> <span class="tok-attr">type</span><span class="tok-punct">=</span><span class="tok-string">&quot;button&quot;</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;btn btn--secondary&quot;</span> <span class="tok-attr">data-grid-export</span> <span class="tok-attr">hidden</span><span class="tok-tag">&gt;</span>Export CSV<span class="tok-tag">&lt;/button</span><span class="tok-tag">&gt;</span>
+  <span class="tok-tag">&lt;/form</span><span class="tok-tag">&gt;</span>
+
+  <span class="tok-tag">&lt;div</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;table-wrapper&quot;</span> <span class="tok-attr">role</span><span class="tok-punct">=</span><span class="tok-string">&quot;region&quot;</span> <span class="tok-attr">aria-labelledby</span><span class="tok-punct">=</span><span class="tok-string">&quot;grid-demo-caption&quot;</span> <span class="tok-attr">tabindex</span><span class="tok-punct">=</span><span class="tok-string">&quot;0&quot;</span><span class="tok-tag">&gt;</span>
+    <span class="tok-tag">&lt;table</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;table&quot;</span><span class="tok-tag">&gt;</span>
+      <span class="tok-tag">&lt;caption</span> <span class="tok-attr">id</span><span class="tok-punct">=</span><span class="tok-string">&quot;grid-demo-caption&quot;</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;visually-hidden&quot;</span><span class="tok-tag">&gt;</span>Orders<span class="tok-tag">&lt;/caption</span><span class="tok-tag">&gt;</span>
+      <span class="tok-tag">&lt;thead</span><span class="tok-tag">&gt;</span>
+        <span class="tok-tag">&lt;tr</span><span class="tok-tag">&gt;</span>
+          <span class="tok-tag">&lt;th</span> <span class="tok-attr">scope</span><span class="tok-punct">=</span><span class="tok-string">&quot;col&quot;</span> <span class="tok-attr">data-key</span><span class="tok-punct">=</span><span class="tok-string">&quot;id&quot;</span> <span class="tok-attr">data-sort</span><span class="tok-punct">=</span><span class="tok-string">&quot;text&quot;</span><span class="tok-tag">&gt;</span>Order<span class="tok-tag">&lt;/th</span><span class="tok-tag">&gt;</span>
+          <span class="tok-tag">&lt;th</span> <span class="tok-attr">scope</span><span class="tok-punct">=</span><span class="tok-string">&quot;col&quot;</span> <span class="tok-attr">data-key</span><span class="tok-punct">=</span><span class="tok-string">&quot;customer&quot;</span> <span class="tok-attr">data-sort</span><span class="tok-punct">=</span><span class="tok-string">&quot;text&quot;</span> <span class="tok-attr">data-render</span><span class="tok-punct">=</span><span class="tok-string">&quot;person&quot;</span><span class="tok-tag">&gt;</span>Customer<span class="tok-tag">&lt;/th</span><span class="tok-tag">&gt;</span>
+          <span class="tok-tag">&lt;th</span> <span class="tok-attr">scope</span><span class="tok-punct">=</span><span class="tok-string">&quot;col&quot;</span> <span class="tok-attr">data-key</span><span class="tok-punct">=</span><span class="tok-string">&quot;date&quot;</span> <span class="tok-attr">data-sort</span><span class="tok-punct">=</span><span class="tok-string">&quot;date&quot;</span> <span class="tok-attr">data-format</span><span class="tok-punct">=</span><span class="tok-string">&quot;date&quot;</span><span class="tok-tag">&gt;</span>Date<span class="tok-tag">&lt;/th</span><span class="tok-tag">&gt;</span>
+          <span class="tok-tag">&lt;th</span> <span class="tok-attr">scope</span><span class="tok-punct">=</span><span class="tok-string">&quot;col&quot;</span> <span class="tok-attr">data-key</span><span class="tok-punct">=</span><span class="tok-string">&quot;status&quot;</span> <span class="tok-attr">data-sort</span><span class="tok-punct">=</span><span class="tok-string">&quot;text&quot;</span> <span class="tok-attr">data-render</span><span class="tok-punct">=</span><span class="tok-string">&quot;badge&quot;</span><span class="tok-tag">&gt;</span>Status<span class="tok-tag">&lt;/th</span><span class="tok-tag">&gt;</span>
+          <span class="tok-tag">&lt;th</span> <span class="tok-attr">scope</span><span class="tok-punct">=</span><span class="tok-string">&quot;col&quot;</span> <span class="tok-attr">data-key</span><span class="tok-punct">=</span><span class="tok-string">&quot;total&quot;</span> <span class="tok-attr">data-sort</span><span class="tok-punct">=</span><span class="tok-string">&quot;number&quot;</span> <span class="tok-attr">data-format</span><span class="tok-punct">=</span><span class="tok-string">&quot;currency&quot;</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;num&quot;</span><span class="tok-tag">&gt;</span>Total<span class="tok-tag">&lt;/th</span><span class="tok-tag">&gt;</span>
+        <span class="tok-tag">&lt;/tr</span><span class="tok-tag">&gt;</span>
+      <span class="tok-tag">&lt;/thead</span><span class="tok-tag">&gt;</span>
+      <span class="tok-tag">&lt;tbody</span><span class="tok-tag">&gt;</span>
+        <span class="tok-tag">&lt;tr</span><span class="tok-tag">&gt;</span><span class="tok-tag">&lt;td</span><span class="tok-tag">&gt;</span>#1064<span class="tok-tag">&lt;/td</span><span class="tok-tag">&gt;</span><span class="tok-tag">&lt;td</span><span class="tok-tag">&gt;</span>Isla Murray<span class="tok-tag">&lt;/td</span><span class="tok-tag">&gt;</span><span class="tok-tag">&lt;td</span><span class="tok-tag">&gt;</span>8 Oct 2026<span class="tok-tag">&lt;/td</span><span class="tok-tag">&gt;</span><span class="tok-tag">&lt;td</span><span class="tok-tag">&gt;</span><span class="tok-tag">&lt;span</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;badge badge--success&quot;</span><span class="tok-tag">&gt;</span>Delivered<span class="tok-tag">&lt;/span</span><span class="tok-tag">&gt;</span><span class="tok-tag">&lt;/td</span><span class="tok-tag">&gt;</span><span class="tok-tag">&lt;td</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;num&quot;</span><span class="tok-tag">&gt;</span>$277.00<span class="tok-tag">&lt;/td</span><span class="tok-tag">&gt;</span><span class="tok-tag">&lt;/tr</span><span class="tok-tag">&gt;</span>
+        <span class="tok-tag">&lt;tr</span><span class="tok-tag">&gt;</span><span class="tok-tag">&lt;td</span><span class="tok-tag">&gt;</span>#1063<span class="tok-tag">&lt;/td</span><span class="tok-tag">&gt;</span><span class="tok-tag">&lt;td</span><span class="tok-tag">&gt;</span>Leila Haddad<span class="tok-tag">&lt;/td</span><span class="tok-tag">&gt;</span><span class="tok-tag">&lt;td</span><span class="tok-tag">&gt;</span>8 Oct 2026<span class="tok-tag">&lt;/td</span><span class="tok-tag">&gt;</span><span class="tok-tag">&lt;td</span><span class="tok-tag">&gt;</span><span class="tok-tag">&lt;span</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;badge badge--primary&quot;</span><span class="tok-tag">&gt;</span>Shipped<span class="tok-tag">&lt;/span</span><span class="tok-tag">&gt;</span><span class="tok-tag">&lt;/td</span><span class="tok-tag">&gt;</span><span class="tok-tag">&lt;td</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;num&quot;</span><span class="tok-tag">&gt;</span>$251.00<span class="tok-tag">&lt;/td</span><span class="tok-tag">&gt;</span><span class="tok-tag">&lt;/tr</span><span class="tok-tag">&gt;</span>
+      <span class="tok-tag">&lt;/tbody</span><span class="tok-tag">&gt;</span>
+    <span class="tok-tag">&lt;/table</span><span class="tok-tag">&gt;</span>
+  <span class="tok-tag">&lt;/div</span><span class="tok-tag">&gt;</span>
+
+  <span class="tok-tag">&lt;div</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;data-grid__footer&quot;</span><span class="tok-tag">&gt;</span>
+    <span class="tok-tag">&lt;p</span> <span class="tok-attr">data-grid-status</span><span class="tok-tag">&gt;</span>Showing 2 orders<span class="tok-tag">&lt;/p</span><span class="tok-tag">&gt;</span>
+    <span class="tok-tag">&lt;nav</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;pagination&quot;</span> <span class="tok-attr">aria-label</span><span class="tok-punct">=</span><span class="tok-string">&quot;Orders pages&quot;</span> <span class="tok-attr">data-grid-pagination</span><span class="tok-tag">&gt;</span><span class="tok-tag">&lt;/nav</span><span class="tok-tag">&gt;</span>
+  <span class="tok-tag">&lt;/div</span><span class="tok-tag">&gt;</span>
+<span class="tok-tag">&lt;/div</span><span class="tok-tag">&gt;</span></code></pre>
+</div>
+    </section>
+    <section class="tabs__panel" id="tabs-119-1" aria-labelledby="tabs-119-1-h">
+      <h3 class="tabs__heading" id="tabs-119-1-h">table.css</h3>
+      <div class="docs-code">
+  <div class="docs-code__header">
+    <span class="docs-code__label"><span class="docs-code__path">src/assets/css/components/table.css</span></span>
+    <span class="docs-code__actions"><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-text="src/assets/css/components/table.css" data-copy-success="Path copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg> <span data-copy-label>Copy path</span></button><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-target="#code-112" data-copy-success="Code copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy code</span></button></span>
+  </div>
+  <pre tabindex="0" role="region" aria-label="src/assets/css/components/table.css"><code id="code-112"><span class="tok-comment">/* ==========================================================================
+   Data table &amp; table-driven bar chart
+   The wrapper is a focusable, labelled region so keyboard users can scroll
+   wide tables horizontally (WCAG 2.1.1 / 1.4.10).
+   ========================================================================== */</span>
+
+<span class="tok-selector">.table-wrapper </span><span class="tok-punct">{</span>
+  <span class="tok-comment">/* Containing block for visually hidden text inside cells, so it is
+     clipped by the scroll area instead of widening the page. */</span>
+  <span class="tok-property">position</span><span class="tok-punct">:</span> relative<span class="tok-punct">;</span>
+  <span class="tok-property">max-width</span><span class="tok-punct">:</span> <span class="tok-number">100</span>%<span class="tok-punct">;</span>
+  <span class="tok-property">overflow-x</span><span class="tok-punct">:</span> auto<span class="tok-punct">;</span>
+  <span class="tok-property">border</span><span class="tok-punct">:</span> var(<span class="tok-variable">--border-width</span>) solid var(<span class="tok-variable">--color-border</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">border-radius</span><span class="tok-punct">:</span> var(<span class="tok-variable">--radius-lg</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">background-color</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-surface-raised</span>)<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.table </span><span class="tok-punct">{</span>
+  <span class="tok-property">width</span><span class="tok-punct">:</span> <span class="tok-number">100</span>%<span class="tok-punct">;</span>
+  <span class="tok-property">font-size</span><span class="tok-punct">:</span> var(<span class="tok-variable">--font-size-sm</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">font-variant-numeric</span><span class="tok-punct">:</span> tabular-nums<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.table caption </span><span class="tok-punct">{</span>
+  <span class="tok-property">padding</span><span class="tok-punct">:</span> var(<span class="tok-variable">--spacing-sm</span>) var(<span class="tok-variable">--spacing-md</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">font-size</span><span class="tok-punct">:</span> var(<span class="tok-variable">--font-size-base</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">font-weight</span><span class="tok-punct">:</span> var(<span class="tok-variable">--font-weight-semibold</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">text-align</span><span class="tok-punct">:</span> start<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.table th,
+.table td </span><span class="tok-punct">{</span>
+  <span class="tok-property">padding</span><span class="tok-punct">:</span> var(<span class="tok-variable">--spacing-xs</span>) var(<span class="tok-variable">--spacing-md</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">border-block-start</span><span class="tok-punct">:</span> var(<span class="tok-variable">--border-width</span>) solid var(<span class="tok-variable">--color-border</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">text-align</span><span class="tok-punct">:</span> start<span class="tok-punct">;</span>
+  <span class="tok-property">vertical-align</span><span class="tok-punct">:</span> middle<span class="tok-punct">;</span>
+  <span class="tok-property">white-space</span><span class="tok-punct">:</span> nowrap<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.table thead th </span><span class="tok-punct">{</span>
+  <span class="tok-property">background-color</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-surface</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">color</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-text-muted</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">font-weight</span><span class="tok-punct">:</span> var(<span class="tok-variable">--font-weight-semibold</span>)<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.table tbody tr:hover </span><span class="tok-punct">{</span>
+  <span class="tok-property">background-color</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-surface</span>)<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.table .num </span><span class="tok-punct">{</span>
+  <span class="tok-property">text-align</span><span class="tok-punct">:</span> end<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-comment">/* ---- Sortable headers (table-sort.js) --------------------------------- */</span>
+<span class="tok-selector">.table__sort </span><span class="tok-punct">{</span>
+  <span class="tok-property">display</span><span class="tok-punct">:</span> inline-flex<span class="tok-punct">;</span>
+  <span class="tok-property">align-items</span><span class="tok-punct">:</span> center<span class="tok-punct">;</span>
+  <span class="tok-property">gap</span><span class="tok-punct">:</span> var(<span class="tok-variable">--spacing-3xs</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">min-height</span><span class="tok-punct">:</span> <span class="tok-number">2rem</span><span class="tok-punct">;</span>
+  <span class="tok-property">margin-inline</span><span class="tok-punct">:</span> calc(var(<span class="tok-variable">--spacing-2xs</span>) * <span class="tok-number">-1</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">padding</span><span class="tok-punct">:</span> var(<span class="tok-variable">--spacing-3xs</span>) var(<span class="tok-variable">--spacing-2xs</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">border</span><span class="tok-punct">:</span> <span class="tok-number">0</span><span class="tok-punct">;</span>
+  <span class="tok-property">border-radius</span><span class="tok-punct">:</span> var(<span class="tok-variable">--radius-sm</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">background</span><span class="tok-punct">:</span> none<span class="tok-punct">;</span>
+  <span class="tok-property">color</span><span class="tok-punct">:</span> inherit<span class="tok-punct">;</span>
+  <span class="tok-property">font-weight</span><span class="tok-punct">:</span> inherit<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.table__sort:hover </span><span class="tok-punct">{</span>
+  <span class="tok-property">background-color</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-surface-sunken</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">color</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-text</span>)<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.table__sort-icon </span><span class="tok-punct">{</span>
+  <span class="tok-property">width</span><span class="tok-punct">:</span> <span class="tok-number">0.9em</span><span class="tok-punct">;</span>
+  <span class="tok-property">height</span><span class="tok-punct">:</span> <span class="tok-number">0.9em</span><span class="tok-punct">;</span>
+  <span class="tok-property">opacity</span><span class="tok-punct">:</span> <span class="tok-number">0.45</span><span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">[aria-sort=&quot;ascending&quot;] .table__sort-icon,
+[aria-sort=&quot;descending&quot;] .table__sort-icon </span><span class="tok-punct">{</span>
+  <span class="tok-property">opacity</span><span class="tok-punct">:</span> <span class="tok-number">1</span><span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">[aria-sort=&quot;descending&quot;] .table__sort-icon </span><span class="tok-punct">{</span>
+  <span class="tok-property">transform</span><span class="tok-punct">:</span> rotate(<span class="tok-number">180deg</span>)<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-comment">/* ---- Table bar chart (data-chart.js) ---------------------------------- */</span>
+<span class="tok-selector">.data-chart--enhanced td[data-value] </span><span class="tok-punct">{</span>
+  <span class="tok-property">min-width</span><span class="tok-punct">:</span> <span class="tok-number">12rem</span><span class="tok-punct">;</span>
+  <span class="tok-property">background-image</span><span class="tok-punct">:</span> linear-gradient(
+    to right,
+    var(<span class="tok-variable">--color-primary-soft</span>) calc(var(<span class="tok-variable">--value</span>, <span class="tok-number">0</span>) * <span class="tok-number">100</span>%),
+    transparent calc(var(<span class="tok-variable">--value</span>, <span class="tok-number">0</span>) * <span class="tok-number">100</span>%)
+  )<span class="tok-punct">;</span>
+  <span class="tok-property">background-repeat</span><span class="tok-punct">:</span> no-repeat<span class="tok-punct">;</span>
+  <span class="tok-property">background-size</span><span class="tok-punct">:</span> calc(<span class="tok-number">100</span>% - <span class="tok-number">2</span> * var(<span class="tok-variable">--spacing-md</span>)) <span class="tok-number">70</span>%<span class="tok-punct">;</span>
+  <span class="tok-property">background-position</span><span class="tok-punct">:</span> var(<span class="tok-variable">--spacing-md</span>) center<span class="tok-punct">;</span>
+  <span class="tok-property">font-weight</span><span class="tok-punct">:</span> var(<span class="tok-variable">--font-weight-semibold</span>)<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-comment">/* ---- Data grid (data-grid.js) ----------------------------------------- */</span>
+<span class="tok-selector">.data-grid </span><span class="tok-punct">{</span>
+  <span class="tok-property">display</span><span class="tok-punct">:</span> grid<span class="tok-punct">;</span>
+  <span class="tok-property">gap</span><span class="tok-punct">:</span> var(<span class="tok-variable">--spacing-sm</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">min-width</span><span class="tok-punct">:</span> <span class="tok-number">0</span><span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.data-grid__toolbar </span><span class="tok-punct">{</span>
+  <span class="tok-property">display</span><span class="tok-punct">:</span> flex<span class="tok-punct">;</span>
+  <span class="tok-property">flex-wrap</span><span class="tok-punct">:</span> wrap<span class="tok-punct">;</span>
+  <span class="tok-property">align-items</span><span class="tok-punct">:</span> flex-end<span class="tok-punct">;</span>
+  <span class="tok-property">gap</span><span class="tok-punct">:</span> var(<span class="tok-variable">--spacing-xs</span>)<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.data-grid__toolbar .field </span><span class="tok-punct">{</span>
+  <span class="tok-property">flex</span><span class="tok-punct">:</span> <span class="tok-number">1</span> <span class="tok-number">1</span> <span class="tok-number">12rem</span><span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.data-grid__toolbar .field--narrow </span><span class="tok-punct">{</span>
+  <span class="tok-property">flex</span><span class="tok-punct">:</span> <span class="tok-number">0</span> <span class="tok-number">1</span> <span class="tok-number">11rem</span><span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.data-grid__footer </span><span class="tok-punct">{</span>
+  <span class="tok-property">display</span><span class="tok-punct">:</span> flex<span class="tok-punct">;</span>
+  <span class="tok-property">flex-wrap</span><span class="tok-punct">:</span> wrap<span class="tok-punct">;</span>
+  <span class="tok-property">align-items</span><span class="tok-punct">:</span> center<span class="tok-punct">;</span>
+  <span class="tok-property">justify-content</span><span class="tok-punct">:</span> space-between<span class="tok-punct">;</span>
+  <span class="tok-property">gap</span><span class="tok-punct">:</span> var(<span class="tok-variable">--spacing-sm</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">color</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-text-muted</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">font-size</span><span class="tok-punct">:</span> var(<span class="tok-variable">--font-size-sm</span>)<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.data-grid__empty </span><span class="tok-punct">{</span>
+  <span class="tok-property">padding</span><span class="tok-punct">:</span> var(<span class="tok-variable">--spacing-xl</span>) var(<span class="tok-variable">--spacing-md</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">color</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-text-muted</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">text-align</span><span class="tok-punct">:</span> center<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.data-grid[aria-busy=&quot;true&quot;] tbody </span><span class="tok-punct">{</span>
+  <span class="tok-property">opacity</span><span class="tok-punct">:</span> <span class="tok-number">0.6</span><span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.pagination__link:disabled </span><span class="tok-punct">{</span>
+  <span class="tok-property">color</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-text-muted</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">cursor</span><span class="tok-punct">:</span> not-allowed<span class="tok-punct">;</span>
+  <span class="tok-property">opacity</span><span class="tok-punct">:</span> <span class="tok-number">0.6</span><span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">button.pagination__link </span><span class="tok-punct">{</span>
+  <span class="tok-property">background</span><span class="tok-punct">:</span> none<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-comment">/* Person cell: avatar + name + email */</span>
+<span class="tok-selector">.person </span><span class="tok-punct">{</span>
+  <span class="tok-property">display</span><span class="tok-punct">:</span> inline-flex<span class="tok-punct">;</span>
+  <span class="tok-property">align-items</span><span class="tok-punct">:</span> center<span class="tok-punct">;</span>
+  <span class="tok-property">gap</span><span class="tok-punct">:</span> var(<span class="tok-variable">--spacing-2xs</span>)<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.person__text </span><span class="tok-punct">{</span>
+  <span class="tok-property">display</span><span class="tok-punct">:</span> grid<span class="tok-punct">;</span>
+  <span class="tok-property">line-height</span><span class="tok-punct">:</span> var(<span class="tok-variable">--line-height-snug</span>)<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.person__name </span><span class="tok-punct">{</span>
+  <span class="tok-property">font-weight</span><span class="tok-punct">:</span> var(<span class="tok-variable">--font-weight-medium</span>)<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.person__meta </span><span class="tok-punct">{</span>
+  <span class="tok-property">color</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-text-muted</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">font-size</span><span class="tok-punct">:</span> var(<span class="tok-variable">--font-size-xs</span>)<span class="tok-punct">;</span>
+<span class="tok-punct">}</span></code></pre>
+</div>
+    </section>
+    <section class="tabs__panel" id="tabs-119-2" aria-labelledby="tabs-119-2-h">
+      <h3 class="tabs__heading" id="tabs-119-2-h">form.css</h3>
+      <div class="docs-code">
+  <div class="docs-code__header">
+    <span class="docs-code__label"><span class="docs-code__path">src/assets/css/components/form.css</span></span>
+    <span class="docs-code__actions"><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-text="src/assets/css/components/form.css" data-copy-success="Path copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg> <span data-copy-label>Copy path</span></button><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-target="#code-113" data-copy-success="Code copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy code</span></button></span>
+  </div>
+  <pre tabindex="0" role="region" aria-label="src/assets/css/components/form.css"><code id="code-113"><span class="tok-comment">/* ==========================================================================
+   Forms
+   Every control has a visible &lt;label&gt;. Hints and errors are linked with
+   aria-describedby; form-validation.js toggles aria-invalid and writes
+   error text with textContent.
+   ========================================================================== */</span>
+
+<span class="tok-selector">.form </span><span class="tok-punct">{</span>
+  <span class="tok-property">display</span><span class="tok-punct">:</span> grid<span class="tok-punct">;</span>
+  <span class="tok-property">gap</span><span class="tok-punct">:</span> var(<span class="tok-variable">--spacing-md</span>)<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.field </span><span class="tok-punct">{</span>
+  <span class="tok-property">display</span><span class="tok-punct">:</span> grid<span class="tok-punct">;</span>
+  <span class="tok-property">gap</span><span class="tok-punct">:</span> var(<span class="tok-variable">--spacing-3xs</span>)<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.field__label,
+.fieldset__legend </span><span class="tok-punct">{</span>
+  <span class="tok-property">font-weight</span><span class="tok-punct">:</span> var(<span class="tok-variable">--font-weight-semibold</span>)<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.field__required </span><span class="tok-punct">{</span>
+  <span class="tok-property">color</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-danger</span>)<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.field__hint </span><span class="tok-punct">{</span>
+  <span class="tok-property">color</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-text-muted</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">font-size</span><span class="tok-punct">:</span> var(<span class="tok-variable">--font-size-sm</span>)<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.field__error </span><span class="tok-punct">{</span>
+  <span class="tok-property">display</span><span class="tok-punct">:</span> flex<span class="tok-punct">;</span>
+  <span class="tok-property">align-items</span><span class="tok-punct">:</span> flex-start<span class="tok-punct">;</span>
+  <span class="tok-property">gap</span><span class="tok-punct">:</span> var(<span class="tok-variable">--spacing-3xs</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">color</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-danger</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">font-size</span><span class="tok-punct">:</span> var(<span class="tok-variable">--font-size-sm</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">font-weight</span><span class="tok-punct">:</span> var(<span class="tok-variable">--font-weight-medium</span>)<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.field__error:empty </span><span class="tok-punct">{</span>
+  <span class="tok-property">display</span><span class="tok-punct">:</span> none<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-comment">/* ---- Text-like controls ----------------------------------------------- */</span>
+<span class="tok-selector">.input,
+.select,
+.textarea </span><span class="tok-punct">{</span>
+  <span class="tok-property">width</span><span class="tok-punct">:</span> <span class="tok-number">100</span>%<span class="tok-punct">;</span>
+  <span class="tok-property">min-height</span><span class="tok-punct">:</span> var(<span class="tok-variable">--target-size</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">padding</span><span class="tok-punct">:</span> var(<span class="tok-variable">--spacing-2xs</span>) var(<span class="tok-variable">--spacing-xs</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">border</span><span class="tok-punct">:</span> var(<span class="tok-variable">--border-width</span>) solid var(<span class="tok-variable">--color-border-strong</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">border-radius</span><span class="tok-punct">:</span> var(<span class="tok-variable">--radius-md</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">background-color</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-bg</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">color</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-text</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">transition</span><span class="tok-punct">:</span> border-color var(<span class="tok-variable">--duration-fast</span>) var(<span class="tok-variable">--ease-standard</span>)<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.input::placeholder,
+.textarea::placeholder </span><span class="tok-punct">{</span>
+  <span class="tok-property">color</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-text-muted</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">opacity</span><span class="tok-punct">:</span> <span class="tok-number">1</span><span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.input:hover,
+.select:hover,
+.textarea:hover </span><span class="tok-punct">{</span>
+  <span class="tok-property">border-color</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-text</span>)<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.input:focus-visible,
+.select:focus-visible,
+.textarea:focus-visible </span><span class="tok-punct">{</span>
+  <span class="tok-property">outline-offset</span><span class="tok-punct">:</span> <span class="tok-number">0</span><span class="tok-punct">;</span>
+  <span class="tok-property">border-color</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-focus</span>)<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.input[aria-invalid=&quot;true&quot;],
+.select[aria-invalid=&quot;true&quot;],
+.textarea[aria-invalid=&quot;true&quot;] </span><span class="tok-punct">{</span>
+  <span class="tok-property">border-color</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-danger</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">border-width</span><span class="tok-punct">:</span> <span class="tok-number">2px</span><span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.input:disabled,
+.select:disabled,
+.textarea:disabled </span><span class="tok-punct">{</span>
+  <span class="tok-property">background-color</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-surface-sunken</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">cursor</span><span class="tok-punct">:</span> not-allowed<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.textarea </span><span class="tok-punct">{</span>
+  <span class="tok-property">min-height</span><span class="tok-punct">:</span> <span class="tok-number">7rem</span><span class="tok-punct">;</span>
+  <span class="tok-property">resize</span><span class="tok-punct">:</span> vertical<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.select </span><span class="tok-punct">{</span>
+  <span class="tok-property">appearance</span><span class="tok-punct">:</span> none<span class="tok-punct">;</span>
+  <span class="tok-property">padding-inline-end</span><span class="tok-punct">:</span> var(<span class="tok-variable">--spacing-xl</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">background-image</span><span class="tok-punct">:</span> linear-gradient(<span class="tok-number">45deg</span>, transparent <span class="tok-number">50</span>%, currentColor <span class="tok-number">50</span>%),
+    linear-gradient(<span class="tok-number">135deg</span>, currentColor <span class="tok-number">50</span>%, transparent <span class="tok-number">50</span>%)<span class="tok-punct">;</span>
+  <span class="tok-property">background-position</span><span class="tok-punct">:</span>
+    calc(<span class="tok-number">100</span>% - <span class="tok-number">1.15rem</span>) <span class="tok-number">50</span>%,
+    calc(<span class="tok-number">100</span>% - <span class="tok-number">0.8rem</span>) <span class="tok-number">50</span>%<span class="tok-punct">;</span>
+  <span class="tok-property">background-size</span><span class="tok-punct">:</span>
+    <span class="tok-number">0.35rem</span> <span class="tok-number">0.35rem</span>,
+    <span class="tok-number">0.35rem</span> <span class="tok-number">0.35rem</span><span class="tok-punct">;</span>
+  <span class="tok-property">background-repeat</span><span class="tok-punct">:</span> no-repeat<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-comment">/* Input with an inline action (e.g. show/hide password) */</span>
+<span class="tok-selector">.input-group </span><span class="tok-punct">{</span>
+  <span class="tok-property">display</span><span class="tok-punct">:</span> flex<span class="tok-punct">;</span>
+  <span class="tok-property">align-items</span><span class="tok-punct">:</span> stretch<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.input-group .input </span><span class="tok-punct">{</span>
+  <span class="tok-property">flex</span><span class="tok-punct">:</span> <span class="tok-number">1</span><span class="tok-punct">;</span>
+  <span class="tok-property">min-width</span><span class="tok-punct">:</span> <span class="tok-number">0</span><span class="tok-punct">;</span>
+  <span class="tok-property">border-start-end-radius</span><span class="tok-punct">:</span> <span class="tok-number">0</span><span class="tok-punct">;</span>
+  <span class="tok-property">border-end-end-radius</span><span class="tok-punct">:</span> <span class="tok-number">0</span><span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.input-group .btn </span><span class="tok-punct">{</span>
+  <span class="tok-property">border-start-start-radius</span><span class="tok-punct">:</span> <span class="tok-number">0</span><span class="tok-punct">;</span>
+  <span class="tok-property">border-end-start-radius</span><span class="tok-punct">:</span> <span class="tok-number">0</span><span class="tok-punct">;</span>
+  <span class="tok-property">margin-inline-start</span><span class="tok-punct">:</span> calc(var(<span class="tok-variable">--border-width</span>) * <span class="tok-number">-1</span>)<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-comment">/* ---- Checkbox &amp; radio ------------------------------------------------- */</span>
+<span class="tok-selector">.fieldset </span><span class="tok-punct">{</span>
+  <span class="tok-property">display</span><span class="tok-punct">:</span> grid<span class="tok-punct">;</span>
+  <span class="tok-property">gap</span><span class="tok-punct">:</span> var(<span class="tok-variable">--spacing-2xs</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">margin</span><span class="tok-punct">:</span> <span class="tok-number">0</span><span class="tok-punct">;</span>
+  <span class="tok-property">padding</span><span class="tok-punct">:</span> <span class="tok-number">0</span><span class="tok-punct">;</span>
+  <span class="tok-property">border</span><span class="tok-punct">:</span> <span class="tok-number">0</span><span class="tok-punct">;</span>
+  <span class="tok-property">min-width</span><span class="tok-punct">:</span> <span class="tok-number">0</span><span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.fieldset__legend </span><span class="tok-punct">{</span>
+  <span class="tok-property">margin-block-end</span><span class="tok-punct">:</span> var(<span class="tok-variable">--spacing-2xs</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">padding</span><span class="tok-punct">:</span> <span class="tok-number">0</span><span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.choice </span><span class="tok-punct">{</span>
+  <span class="tok-property">display</span><span class="tok-punct">:</span> flex<span class="tok-punct">;</span>
+  <span class="tok-property">align-items</span><span class="tok-punct">:</span> center<span class="tok-punct">;</span>
+  <span class="tok-property">gap</span><span class="tok-punct">:</span> var(<span class="tok-variable">--spacing-2xs</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">min-height</span><span class="tok-punct">:</span> var(<span class="tok-variable">--target-size</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">cursor</span><span class="tok-punct">:</span> pointer<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.choice input </span><span class="tok-punct">{</span>
+  <span class="tok-property">width</span><span class="tok-punct">:</span> <span class="tok-number">1.25rem</span><span class="tok-punct">;</span>
+  <span class="tok-property">height</span><span class="tok-punct">:</span> <span class="tok-number">1.25rem</span><span class="tok-punct">;</span>
+  <span class="tok-property">margin</span><span class="tok-punct">:</span> <span class="tok-number">0</span><span class="tok-punct">;</span>
+  <span class="tok-property">accent-color</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-primary</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">cursor</span><span class="tok-punct">:</span> pointer<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.choice--top </span><span class="tok-punct">{</span>
+  <span class="tok-property">align-items</span><span class="tok-punct">:</span> flex-start<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.choice--top input </span><span class="tok-punct">{</span>
+  <span class="tok-property">margin-block-start</span><span class="tok-punct">:</span> <span class="tok-number">0.2em</span><span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-comment">/* ---- Layout helpers --------------------------------------------------- */</span>
+<span class="tok-selector">.form-row </span><span class="tok-punct">{</span>
+  <span class="tok-property">display</span><span class="tok-punct">:</span> grid<span class="tok-punct">;</span>
+  <span class="tok-property">gap</span><span class="tok-punct">:</span> var(<span class="tok-variable">--spacing-md</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">grid-template-columns</span><span class="tok-punct">:</span> repeat(auto-fit, minmax(min(<span class="tok-number">14rem</span>, <span class="tok-number">100</span>%), <span class="tok-number">1fr</span>))<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.form-actions </span><span class="tok-punct">{</span>
+  <span class="tok-property">display</span><span class="tok-punct">:</span> flex<span class="tok-punct">;</span>
+  <span class="tok-property">flex-wrap</span><span class="tok-punct">:</span> wrap<span class="tok-punct">;</span>
+  <span class="tok-property">align-items</span><span class="tok-punct">:</span> center<span class="tok-punct">;</span>
+  <span class="tok-property">gap</span><span class="tok-punct">:</span> var(<span class="tok-variable">--spacing-xs</span>)<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.form-divider </span><span class="tok-punct">{</span>
+  <span class="tok-property">display</span><span class="tok-punct">:</span> flex<span class="tok-punct">;</span>
+  <span class="tok-property">align-items</span><span class="tok-punct">:</span> center<span class="tok-punct">;</span>
+  <span class="tok-property">gap</span><span class="tok-punct">:</span> var(<span class="tok-variable">--spacing-sm</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">color</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-text-muted</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">font-size</span><span class="tok-punct">:</span> var(<span class="tok-variable">--font-size-sm</span>)<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.form-divider::before,
+.form-divider::after </span><span class="tok-punct">{</span>
+  <span class="tok-property">content</span><span class="tok-punct">:</span> <span class="tok-string">&quot;&quot;</span><span class="tok-punct">;</span>
+  <span class="tok-property">flex</span><span class="tok-punct">:</span> <span class="tok-number">1</span><span class="tok-punct">;</span>
+  <span class="tok-property">border-block-start</span><span class="tok-punct">:</span> var(<span class="tok-variable">--border-width</span>) solid var(<span class="tok-variable">--color-border</span>)<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-comment">/* Inline (single-row) form, e.g. newsletter signup */</span>
+<span class="tok-selector">.inline-form </span><span class="tok-punct">{</span>
+  <span class="tok-property">display</span><span class="tok-punct">:</span> flex<span class="tok-punct">;</span>
+  <span class="tok-property">flex-wrap</span><span class="tok-punct">:</span> wrap<span class="tok-punct">;</span>
+  <span class="tok-property">gap</span><span class="tok-punct">:</span> var(<span class="tok-variable">--spacing-xs</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">align-items</span><span class="tok-punct">:</span> flex-start<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.inline-form .field </span><span class="tok-punct">{</span>
+  <span class="tok-property">flex</span><span class="tok-punct">:</span> <span class="tok-number">1</span> <span class="tok-number">1</span> <span class="tok-number">16rem</span><span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-keyword">@media</span> (forced-colors: active) <span class="tok-punct">{</span>
+  <span class="tok-selector">.input[aria-invalid=&quot;true&quot;],
+  .select[aria-invalid=&quot;true&quot;],
+  .textarea[aria-invalid=&quot;true&quot;] </span><span class="tok-punct">{</span>
+    <span class="tok-property">border-style</span><span class="tok-punct">:</span> dashed<span class="tok-punct">;</span>
+  <span class="tok-punct">}</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-comment">/* ---- Segmented control (radio group styled as buttons) ---------------- */</span>
+<span class="tok-selector">.segmented </span><span class="tok-punct">{</span>
+  <span class="tok-property">display</span><span class="tok-punct">:</span> inline-flex<span class="tok-punct">;</span>
+  <span class="tok-property">flex-wrap</span><span class="tok-punct">:</span> wrap<span class="tok-punct">;</span>
+  <span class="tok-property">gap</span><span class="tok-punct">:</span> var(<span class="tok-variable">--spacing-3xs</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">padding</span><span class="tok-punct">:</span> var(<span class="tok-variable">--spacing-3xs</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">border</span><span class="tok-punct">:</span> var(<span class="tok-variable">--border-width</span>) solid var(<span class="tok-variable">--color-border</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">border-radius</span><span class="tok-punct">:</span> var(<span class="tok-variable">--radius-md</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">background-color</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-surface</span>)<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.segmented__option </span><span class="tok-punct">{</span>
+  <span class="tok-property">position</span><span class="tok-punct">:</span> relative<span class="tok-punct">;</span>
+  <span class="tok-property">display</span><span class="tok-punct">:</span> inline-flex<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.segmented__option input </span><span class="tok-punct">{</span>
+  <span class="tok-property">position</span><span class="tok-punct">:</span> absolute<span class="tok-punct">;</span>
+  <span class="tok-property">inset</span><span class="tok-punct">:</span> <span class="tok-number">0</span><span class="tok-punct">;</span>
+  <span class="tok-property">margin</span><span class="tok-punct">:</span> <span class="tok-number">0</span><span class="tok-punct">;</span>
+  <span class="tok-property">opacity</span><span class="tok-punct">:</span> <span class="tok-number">0</span><span class="tok-punct">;</span>
+  <span class="tok-property">cursor</span><span class="tok-punct">:</span> pointer<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.segmented__label </span><span class="tok-punct">{</span>
+  <span class="tok-property">display</span><span class="tok-punct">:</span> inline-flex<span class="tok-punct">;</span>
+  <span class="tok-property">align-items</span><span class="tok-punct">:</span> center<span class="tok-punct">;</span>
+  <span class="tok-property">gap</span><span class="tok-punct">:</span> var(<span class="tok-variable">--spacing-3xs</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">min-height</span><span class="tok-punct">:</span> <span class="tok-number">2.25rem</span><span class="tok-punct">;</span>
+  <span class="tok-property">padding-inline</span><span class="tok-punct">:</span> var(<span class="tok-variable">--spacing-xs</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">border-radius</span><span class="tok-punct">:</span> var(<span class="tok-variable">--radius-sm</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">color</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-text-muted</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">font-size</span><span class="tok-punct">:</span> var(<span class="tok-variable">--font-size-sm</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">font-weight</span><span class="tok-punct">:</span> var(<span class="tok-variable">--font-weight-semibold</span>)<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.segmented__option input:checked + .segmented__label </span><span class="tok-punct">{</span>
+  <span class="tok-property">background-color</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-surface-raised</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">color</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-text</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">box-shadow</span><span class="tok-punct">:</span> var(<span class="tok-variable">--shadow-sm</span>)<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.segmented__option input:focus-visible + .segmented__label </span><span class="tok-punct">{</span>
+  <span class="tok-property">outline</span><span class="tok-punct">:</span> var(<span class="tok-variable">--focus-ring-width</span>) solid var(<span class="tok-variable">--color-focus</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">outline-offset</span><span class="tok-punct">:</span> var(<span class="tok-variable">--focus-ring-offset</span>)<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-comment">/* ---- Colour swatches -------------------------------------------------- */</span>
+<span class="tok-selector">.swatches </span><span class="tok-punct">{</span>
+  <span class="tok-property">display</span><span class="tok-punct">:</span> grid<span class="tok-punct">;</span>
+  <span class="tok-property">grid-template-columns</span><span class="tok-punct">:</span> repeat(auto-fill, minmax(<span class="tok-number">6.5rem</span>, <span class="tok-number">1fr</span>))<span class="tok-punct">;</span>
+  <span class="tok-property">gap</span><span class="tok-punct">:</span> var(<span class="tok-variable">--spacing-2xs</span>)<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.swatch </span><span class="tok-punct">{</span>
+  <span class="tok-property">position</span><span class="tok-punct">:</span> relative<span class="tok-punct">;</span>
+  <span class="tok-property">display</span><span class="tok-punct">:</span> flex<span class="tok-punct">;</span>
+  <span class="tok-property">align-items</span><span class="tok-punct">:</span> center<span class="tok-punct">;</span>
+  <span class="tok-property">gap</span><span class="tok-punct">:</span> var(<span class="tok-variable">--spacing-2xs</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">min-height</span><span class="tok-punct">:</span> var(<span class="tok-variable">--target-size</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">padding</span><span class="tok-punct">:</span> var(<span class="tok-variable">--spacing-3xs</span>) var(<span class="tok-variable">--spacing-2xs</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">border</span><span class="tok-punct">:</span> var(<span class="tok-variable">--border-width</span>) solid var(<span class="tok-variable">--color-border</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">border-radius</span><span class="tok-punct">:</span> var(<span class="tok-variable">--radius-md</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">font-size</span><span class="tok-punct">:</span> var(<span class="tok-variable">--font-size-sm</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">cursor</span><span class="tok-punct">:</span> pointer<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.swatch input </span><span class="tok-punct">{</span>
+  <span class="tok-property">position</span><span class="tok-punct">:</span> absolute<span class="tok-punct">;</span>
+  <span class="tok-property">inset</span><span class="tok-punct">:</span> <span class="tok-number">0</span><span class="tok-punct">;</span>
+  <span class="tok-property">margin</span><span class="tok-punct">:</span> <span class="tok-number">0</span><span class="tok-punct">;</span>
+  <span class="tok-property">opacity</span><span class="tok-punct">:</span> <span class="tok-number">0</span><span class="tok-punct">;</span>
+  <span class="tok-property">cursor</span><span class="tok-punct">:</span> pointer<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.swatch:has(input:checked) </span><span class="tok-punct">{</span>
+  <span class="tok-property">border-color</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-text</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">box-shadow</span><span class="tok-punct">:</span> inset <span class="tok-number">0</span> <span class="tok-number">0</span> <span class="tok-number">0</span> <span class="tok-number">1px</span> var(<span class="tok-variable">--color-text</span>)<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.swatch:has(input:focus-visible) </span><span class="tok-punct">{</span>
+  <span class="tok-property">outline</span><span class="tok-punct">:</span> var(<span class="tok-variable">--focus-ring-width</span>) solid var(<span class="tok-variable">--color-focus</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">outline-offset</span><span class="tok-punct">:</span> var(<span class="tok-variable">--focus-ring-offset</span>)<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.swatch__chip </span><span class="tok-punct">{</span>
+  <span class="tok-property">width</span><span class="tok-punct">:</span> <span class="tok-number">1.25rem</span><span class="tok-punct">;</span>
+  <span class="tok-property">height</span><span class="tok-punct">:</span> <span class="tok-number">1.25rem</span><span class="tok-punct">;</span>
+  <span class="tok-property">border-radius</span><span class="tok-punct">:</span> <span class="tok-number">50</span>%<span class="tok-punct">;</span>
+  <span class="tok-property">background-color</span><span class="tok-punct">:</span> var(<span class="tok-variable">--swatch</span>, var(<span class="tok-variable">--color-primary</span>))<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.swatch__chip--indigo </span><span class="tok-punct">{</span> <span class="tok-property">--swatch</span><span class="tok-punct">:</span> var(<span class="tok-variable">--swatch-indigo</span>)<span class="tok-punct">;</span> <span class="tok-punct">}</span>
+<span class="tok-selector">.swatch__chip--teal </span><span class="tok-punct">{</span> <span class="tok-property">--swatch</span><span class="tok-punct">:</span> var(<span class="tok-variable">--swatch-teal</span>)<span class="tok-punct">;</span> <span class="tok-punct">}</span>
+<span class="tok-selector">.swatch__chip--violet </span><span class="tok-punct">{</span> <span class="tok-property">--swatch</span><span class="tok-punct">:</span> var(<span class="tok-variable">--swatch-violet</span>)<span class="tok-punct">;</span> <span class="tok-punct">}</span>
+<span class="tok-selector">.swatch__chip--rose </span><span class="tok-punct">{</span> <span class="tok-property">--swatch</span><span class="tok-punct">:</span> var(<span class="tok-variable">--swatch-rose</span>)<span class="tok-punct">;</span> <span class="tok-punct">}</span>
+<span class="tok-selector">.swatch__chip--amber </span><span class="tok-punct">{</span> <span class="tok-property">--swatch</span><span class="tok-punct">:</span> var(<span class="tok-variable">--swatch-amber</span>)<span class="tok-punct">;</span> <span class="tok-punct">}</span>
+<span class="tok-selector">.swatch__chip--slate </span><span class="tok-punct">{</span> <span class="tok-property">--swatch</span><span class="tok-punct">:</span> var(<span class="tok-variable">--swatch-slate</span>)<span class="tok-punct">;</span> <span class="tok-punct">}</span>
+
+<span class="tok-selector">.color-input </span><span class="tok-punct">{</span>
+  <span class="tok-property">width</span><span class="tok-punct">:</span> var(<span class="tok-variable">--target-size</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">height</span><span class="tok-punct">:</span> var(<span class="tok-variable">--target-size</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">padding</span><span class="tok-punct">:</span> var(<span class="tok-variable">--spacing-3xs</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">border</span><span class="tok-punct">:</span> var(<span class="tok-variable">--border-width</span>) solid var(<span class="tok-variable">--color-border-strong</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">border-radius</span><span class="tok-punct">:</span> var(<span class="tok-variable">--radius-md</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">background-color</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-bg</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">cursor</span><span class="tok-punct">:</span> pointer<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.textarea--code </span><span class="tok-punct">{</span>
+  <span class="tok-property">min-height</span><span class="tok-punct">:</span> <span class="tok-number">10rem</span><span class="tok-punct">;</span>
+  <span class="tok-property">font-family</span><span class="tok-punct">:</span> var(<span class="tok-variable">--font-mono</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">font-size</span><span class="tok-punct">:</span> var(<span class="tok-variable">--font-size-xs</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">line-height</span><span class="tok-punct">:</span> var(<span class="tok-variable">--line-height-snug</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">white-space</span><span class="tok-punct">:</span> pre<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-keyword">@media</span> (forced-colors: active) <span class="tok-punct">{</span>
+  <span class="tok-selector">.segmented__option input:checked + .segmented__label,
+  .swatch:has(input:checked) </span><span class="tok-punct">{</span>
+    <span class="tok-property">outline</span><span class="tok-punct">:</span> <span class="tok-number">2px</span> solid Highlight<span class="tok-punct">;</span>
+  <span class="tok-punct">}</span>
+<span class="tok-punct">}</span></code></pre>
+</div>
+    </section>
+    <section class="tabs__panel" id="tabs-119-3" aria-labelledby="tabs-119-3-h">
+      <h3 class="tabs__heading" id="tabs-119-3-h">navigation.css</h3>
+      <div class="docs-code">
+  <div class="docs-code__header">
+    <span class="docs-code__label"><span class="docs-code__path">src/assets/css/components/navigation.css</span></span>
+    <span class="docs-code__actions"><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-text="src/assets/css/components/navigation.css" data-copy-success="Path copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg> <span data-copy-label>Copy path</span></button><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-target="#code-114" data-copy-success="Code copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy code</span></button></span>
+  </div>
+  <pre tabindex="0" role="region" aria-label="src/assets/css/components/navigation.css"><code id="code-114"><span class="tok-comment">/* ==========================================================================
+   Secondary navigation: breadcrumb, pagination, vertical (sidebar) nav
+   ========================================================================== */</span>
+
+<span class="tok-comment">/* ---- Breadcrumb -------------------------------------------------------- */</span>
+<span class="tok-selector">.breadcrumb__list </span><span class="tok-punct">{</span>
+  <span class="tok-property">display</span><span class="tok-punct">:</span> flex<span class="tok-punct">;</span>
+  <span class="tok-property">flex-wrap</span><span class="tok-punct">:</span> wrap<span class="tok-punct">;</span>
+  <span class="tok-property">align-items</span><span class="tok-punct">:</span> center<span class="tok-punct">;</span>
+  <span class="tok-property">gap</span><span class="tok-punct">:</span> var(<span class="tok-variable">--spacing-3xs</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">margin</span><span class="tok-punct">:</span> <span class="tok-number">0</span><span class="tok-punct">;</span>
+  <span class="tok-property">padding</span><span class="tok-punct">:</span> <span class="tok-number">0</span><span class="tok-punct">;</span>
+  <span class="tok-property">list-style</span><span class="tok-punct">:</span> none<span class="tok-punct">;</span>
+  <span class="tok-property">font-size</span><span class="tok-punct">:</span> var(<span class="tok-variable">--font-size-sm</span>)<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.breadcrumb__item </span><span class="tok-punct">{</span>
+  <span class="tok-property">display</span><span class="tok-punct">:</span> inline-flex<span class="tok-punct">;</span>
+  <span class="tok-property">align-items</span><span class="tok-punct">:</span> center<span class="tok-punct">;</span>
+  <span class="tok-property">gap</span><span class="tok-punct">:</span> var(<span class="tok-variable">--spacing-3xs</span>)<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.breadcrumb__item + .breadcrumb__item::before </span><span class="tok-punct">{</span>
+  <span class="tok-property">content</span><span class="tok-punct">:</span> <span class="tok-string">&quot;/&quot;</span><span class="tok-punct">;</span>
+  <span class="tok-property">color</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-text-muted</span>)<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.breadcrumb__item a </span><span class="tok-punct">{</span>
+  <span class="tok-property">display</span><span class="tok-punct">:</span> inline-block<span class="tok-punct">;</span>
+  <span class="tok-property">padding-block</span><span class="tok-punct">:</span> var(<span class="tok-variable">--spacing-3xs</span>)<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.breadcrumb__item [aria-current=&quot;page&quot;] </span><span class="tok-punct">{</span>
+  <span class="tok-property">color</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-text-muted</span>)<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-comment">/* ---- Pagination -------------------------------------------------------- */</span>
+<span class="tok-selector">.pagination__list </span><span class="tok-punct">{</span>
+  <span class="tok-property">display</span><span class="tok-punct">:</span> flex<span class="tok-punct">;</span>
+  <span class="tok-property">flex-wrap</span><span class="tok-punct">:</span> wrap<span class="tok-punct">;</span>
+  <span class="tok-property">justify-content</span><span class="tok-punct">:</span> center<span class="tok-punct">;</span>
+  <span class="tok-property">gap</span><span class="tok-punct">:</span> var(<span class="tok-variable">--spacing-3xs</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">margin</span><span class="tok-punct">:</span> <span class="tok-number">0</span><span class="tok-punct">;</span>
+  <span class="tok-property">padding</span><span class="tok-punct">:</span> <span class="tok-number">0</span><span class="tok-punct">;</span>
+  <span class="tok-property">list-style</span><span class="tok-punct">:</span> none<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.pagination__link </span><span class="tok-punct">{</span>
+  <span class="tok-property">display</span><span class="tok-punct">:</span> inline-flex<span class="tok-punct">;</span>
+  <span class="tok-property">align-items</span><span class="tok-punct">:</span> center<span class="tok-punct">;</span>
+  <span class="tok-property">justify-content</span><span class="tok-punct">:</span> center<span class="tok-punct">;</span>
+  <span class="tok-property">gap</span><span class="tok-punct">:</span> var(<span class="tok-variable">--spacing-3xs</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">min-width</span><span class="tok-punct">:</span> var(<span class="tok-variable">--target-size</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">min-height</span><span class="tok-punct">:</span> var(<span class="tok-variable">--target-size</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">padding-inline</span><span class="tok-punct">:</span> var(<span class="tok-variable">--spacing-xs</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">border</span><span class="tok-punct">:</span> var(<span class="tok-variable">--border-width</span>) solid var(<span class="tok-variable">--color-border</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">border-radius</span><span class="tok-punct">:</span> var(<span class="tok-variable">--radius-md</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">color</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-text</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">font-weight</span><span class="tok-punct">:</span> var(<span class="tok-variable">--font-weight-medium</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">text-decoration</span><span class="tok-punct">:</span> none<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.pagination__link:hover </span><span class="tok-punct">{</span>
+  <span class="tok-property">background-color</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-surface-sunken</span>)<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.pagination__link[aria-current=&quot;page&quot;] </span><span class="tok-punct">{</span>
+  <span class="tok-property">border-color</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-primary</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">background-color</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-primary</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">color</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-on-primary</span>)<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">a.pagination__link:not([href]) </span><span class="tok-punct">{</span>
+  <span class="tok-property">color</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-text-muted</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">pointer-events</span><span class="tok-punct">:</span> none<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-comment">/* ---- Vertical nav (sidebar) ------------------------------------------- */</span>
+<span class="tok-selector">.side-nav__list </span><span class="tok-punct">{</span>
+  <span class="tok-property">display</span><span class="tok-punct">:</span> grid<span class="tok-punct">;</span>
+  <span class="tok-property">gap</span><span class="tok-punct">:</span> var(<span class="tok-variable">--spacing-3xs</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">margin</span><span class="tok-punct">:</span> <span class="tok-number">0</span><span class="tok-punct">;</span>
+  <span class="tok-property">padding</span><span class="tok-punct">:</span> <span class="tok-number">0</span><span class="tok-punct">;</span>
+  <span class="tok-property">list-style</span><span class="tok-punct">:</span> none<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.side-nav__heading </span><span class="tok-punct">{</span>
+  <span class="tok-property">margin-block</span><span class="tok-punct">:</span> var(<span class="tok-variable">--spacing-md</span>) var(<span class="tok-variable">--spacing-2xs</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">padding-inline</span><span class="tok-punct">:</span> var(<span class="tok-variable">--spacing-xs</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">color</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-text-muted</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">font-size</span><span class="tok-punct">:</span> var(<span class="tok-variable">--font-size-xs</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">font-weight</span><span class="tok-punct">:</span> var(<span class="tok-variable">--font-weight-semibold</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">letter-spacing</span><span class="tok-punct">:</span> <span class="tok-number">0.06em</span><span class="tok-punct">;</span>
+  <span class="tok-property">text-transform</span><span class="tok-punct">:</span> uppercase<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.side-nav__link </span><span class="tok-punct">{</span>
+  <span class="tok-property">display</span><span class="tok-punct">:</span> flex<span class="tok-punct">;</span>
+  <span class="tok-property">align-items</span><span class="tok-punct">:</span> center<span class="tok-punct">;</span>
+  <span class="tok-property">gap</span><span class="tok-punct">:</span> var(<span class="tok-variable">--spacing-xs</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">min-height</span><span class="tok-punct">:</span> var(<span class="tok-variable">--target-size</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">padding-inline</span><span class="tok-punct">:</span> var(<span class="tok-variable">--spacing-xs</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">border-radius</span><span class="tok-punct">:</span> var(<span class="tok-variable">--radius-md</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">color</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-text</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">font-weight</span><span class="tok-punct">:</span> var(<span class="tok-variable">--font-weight-medium</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">text-decoration</span><span class="tok-punct">:</span> none<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.side-nav__link:hover </span><span class="tok-punct">{</span>
+  <span class="tok-property">background-color</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-surface-sunken</span>)<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.side-nav__link[aria-current=&quot;page&quot;] </span><span class="tok-punct">{</span>
+  <span class="tok-property">background-color</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-primary-soft</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">color</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-primary</span>)<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.side-nav__link .badge </span><span class="tok-punct">{</span>
+  <span class="tok-property">margin-inline-start</span><span class="tok-punct">:</span> auto<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-keyword">@media</span> (forced-colors: active) <span class="tok-punct">{</span>
+  <span class="tok-selector">.pagination__link[aria-current=&quot;page&quot;],
+  .side-nav__link[aria-current=&quot;page&quot;] </span><span class="tok-punct">{</span>
+    <span class="tok-property">border</span><span class="tok-punct">:</span> <span class="tok-number">2px</span> solid Highlight<span class="tok-punct">;</span>
+  <span class="tok-punct">}</span>
+<span class="tok-punct">}</span></code></pre>
+</div>
+    </section>
+    <section class="tabs__panel" id="tabs-119-4" aria-labelledby="tabs-119-4-h">
+      <h3 class="tabs__heading" id="tabs-119-4-h">feedback.css</h3>
+      <div class="docs-code">
+  <div class="docs-code__header">
+    <span class="docs-code__label"><span class="docs-code__path">src/assets/css/components/feedback.css</span></span>
+    <span class="docs-code__actions"><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-text="src/assets/css/components/feedback.css" data-copy-success="Path copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg> <span data-copy-label>Copy path</span></button><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-target="#code-115" data-copy-success="Code copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy code</span></button></span>
+  </div>
+  <pre tabindex="0" role="region" aria-label="src/assets/css/components/feedback.css"><code id="code-115"><span class="tok-comment">/* ==========================================================================
+   Feedback: alert, badge and toast
+   Status is never conveyed by colour alone: every variant carries an icon
+   and/or text label (WCAG 1.4.1).
+   ========================================================================== */</span>
+
+<span class="tok-comment">/* ---- Alert ------------------------------------------------------------- */</span>
+<span class="tok-selector">.alert </span><span class="tok-punct">{</span>
+  <span class="tok-property">--alert-color</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-info</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">--alert-bg</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-info-soft</span>)<span class="tok-punct">;</span>
+
+  <span class="tok-property">display</span><span class="tok-punct">:</span> flex<span class="tok-punct">;</span>
+  <span class="tok-property">gap</span><span class="tok-punct">:</span> var(<span class="tok-variable">--spacing-xs</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">align-items</span><span class="tok-punct">:</span> flex-start<span class="tok-punct">;</span>
+  <span class="tok-property">padding</span><span class="tok-punct">:</span> var(<span class="tok-variable">--spacing-sm</span>) var(<span class="tok-variable">--spacing-md</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">border</span><span class="tok-punct">:</span> var(<span class="tok-variable">--border-width</span>) solid var(<span class="tok-variable">--alert-color</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">border-inline-start-width</span><span class="tok-punct">:</span> <span class="tok-number">4px</span><span class="tok-punct">;</span>
+  <span class="tok-property">border-radius</span><span class="tok-punct">:</span> var(<span class="tok-variable">--radius-md</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">background-color</span><span class="tok-punct">:</span> var(<span class="tok-variable">--alert-bg</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">color</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-text</span>)<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.alert &gt; .icon </span><span class="tok-punct">{</span>
+  <span class="tok-property">margin-block-start</span><span class="tok-punct">:</span> <span class="tok-number">0.15em</span><span class="tok-punct">;</span>
+  <span class="tok-property">color</span><span class="tok-punct">:</span> var(<span class="tok-variable">--alert-color</span>)<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.alert__title </span><span class="tok-punct">{</span>
+  <span class="tok-property">font-size</span><span class="tok-punct">:</span> var(<span class="tok-variable">--font-size-base</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">font-weight</span><span class="tok-punct">:</span> var(<span class="tok-variable">--font-weight-semibold</span>)<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.alert--success </span><span class="tok-punct">{</span>
+  <span class="tok-property">--alert-color</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-success</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">--alert-bg</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-success-soft</span>)<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.alert--warning </span><span class="tok-punct">{</span>
+  <span class="tok-property">--alert-color</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-warning</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">--alert-bg</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-warning-soft</span>)<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.alert--danger </span><span class="tok-punct">{</span>
+  <span class="tok-property">--alert-color</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-danger</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">--alert-bg</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-danger-soft</span>)<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-comment">/* ---- Badge ------------------------------------------------------------- */</span>
+<span class="tok-selector">.badge </span><span class="tok-punct">{</span>
+  <span class="tok-property">--badge-color</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-text-muted</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">--badge-bg</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-surface-sunken</span>)<span class="tok-punct">;</span>
+
+  <span class="tok-property">display</span><span class="tok-punct">:</span> inline-flex<span class="tok-punct">;</span>
+  <span class="tok-property">align-items</span><span class="tok-punct">:</span> center<span class="tok-punct">;</span>
+  <span class="tok-property">gap</span><span class="tok-punct">:</span> var(<span class="tok-variable">--spacing-3xs</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">padding</span><span class="tok-punct">:</span> <span class="tok-number">0.125rem</span> var(<span class="tok-variable">--spacing-2xs</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">border-radius</span><span class="tok-punct">:</span> var(<span class="tok-variable">--radius-pill</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">background-color</span><span class="tok-punct">:</span> var(<span class="tok-variable">--badge-bg</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">color</span><span class="tok-punct">:</span> var(<span class="tok-variable">--badge-color</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">font-size</span><span class="tok-punct">:</span> var(<span class="tok-variable">--font-size-xs</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">font-weight</span><span class="tok-punct">:</span> var(<span class="tok-variable">--font-weight-semibold</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">line-height</span><span class="tok-punct">:</span> <span class="tok-number">1.5</span><span class="tok-punct">;</span>
+  <span class="tok-property">white-space</span><span class="tok-punct">:</span> nowrap<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.badge--primary </span><span class="tok-punct">{</span>
+  <span class="tok-property">--badge-color</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-primary</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">--badge-bg</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-primary-soft</span>)<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.badge--success </span><span class="tok-punct">{</span>
+  <span class="tok-property">--badge-color</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-success</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">--badge-bg</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-success-soft</span>)<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.badge--warning </span><span class="tok-punct">{</span>
+  <span class="tok-property">--badge-color</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-warning</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">--badge-bg</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-warning-soft</span>)<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.badge--danger </span><span class="tok-punct">{</span>
+  <span class="tok-property">--badge-color</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-danger</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">--badge-bg</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-danger-soft</span>)<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-comment">/* Counter bubble on an icon button (e.g. cart) */</span>
+<span class="tok-selector">.badge--count </span><span class="tok-punct">{</span>
+  <span class="tok-property">position</span><span class="tok-punct">:</span> absolute<span class="tok-punct">;</span>
+  <span class="tok-property">inset-block-start</span><span class="tok-punct">:</span> <span class="tok-number">0.125rem</span><span class="tok-punct">;</span>
+  <span class="tok-property">inset-inline-end</span><span class="tok-punct">:</span> <span class="tok-number">0.125rem</span><span class="tok-punct">;</span>
+  <span class="tok-property">min-width</span><span class="tok-punct">:</span> <span class="tok-number">1.25rem</span><span class="tok-punct">;</span>
+  <span class="tok-property">justify-content</span><span class="tok-punct">:</span> center<span class="tok-punct">;</span>
+  <span class="tok-property">padding</span><span class="tok-punct">:</span> <span class="tok-number">0</span> <span class="tok-number">0.3rem</span><span class="tok-punct">;</span>
+  <span class="tok-property">background-color</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-primary</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">color</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-on-primary</span>)<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-comment">/* ---- Toast ------------------------------------------------------------- */</span>
+<span class="tok-selector">.toast-region </span><span class="tok-punct">{</span>
+  <span class="tok-property">position</span><span class="tok-punct">:</span> fixed<span class="tok-punct">;</span>
+  <span class="tok-property">inset-block-end</span><span class="tok-punct">:</span> var(<span class="tok-variable">--spacing-sm</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">inset-inline-end</span><span class="tok-punct">:</span> var(<span class="tok-variable">--spacing-sm</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">inset-inline-start</span><span class="tok-punct">:</span> var(<span class="tok-variable">--spacing-sm</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">z-index</span><span class="tok-punct">:</span> var(<span class="tok-variable">--z-toast</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">display</span><span class="tok-punct">:</span> flex<span class="tok-punct">;</span>
+  <span class="tok-property">flex-direction</span><span class="tok-punct">:</span> column<span class="tok-punct">;</span>
+  <span class="tok-property">align-items</span><span class="tok-punct">:</span> flex-end<span class="tok-punct">;</span>
+  <span class="tok-property">gap</span><span class="tok-punct">:</span> var(<span class="tok-variable">--spacing-2xs</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">pointer-events</span><span class="tok-punct">:</span> none<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.toast </span><span class="tok-punct">{</span>
+  <span class="tok-property">display</span><span class="tok-punct">:</span> flex<span class="tok-punct">;</span>
+  <span class="tok-property">align-items</span><span class="tok-punct">:</span> center<span class="tok-punct">;</span>
+  <span class="tok-property">gap</span><span class="tok-punct">:</span> var(<span class="tok-variable">--spacing-xs</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">max-width</span><span class="tok-punct">:</span> <span class="tok-number">24rem</span><span class="tok-punct">;</span>
+  <span class="tok-property">padding</span><span class="tok-punct">:</span> var(<span class="tok-variable">--spacing-xs</span>) var(<span class="tok-variable">--spacing-sm</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">border</span><span class="tok-punct">:</span> var(<span class="tok-variable">--border-width</span>) solid var(<span class="tok-variable">--color-border</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">border-inline-start</span><span class="tok-punct">:</span> <span class="tok-number">4px</span> solid var(<span class="tok-variable">--toast-color</span>, var(<span class="tok-variable">--color-primary</span>))<span class="tok-punct">;</span>
+  <span class="tok-property">border-radius</span><span class="tok-punct">:</span> var(<span class="tok-variable">--radius-md</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">background-color</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-surface-raised</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">color</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-text</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">box-shadow</span><span class="tok-punct">:</span> var(<span class="tok-variable">--shadow-lg</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">pointer-events</span><span class="tok-punct">:</span> auto<span class="tok-punct">;</span>
+  <span class="tok-property">animation</span><span class="tok-punct">:</span> toast-in var(<span class="tok-variable">--duration-slow</span>) var(<span class="tok-variable">--ease-standard</span>)<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.toast--success </span><span class="tok-punct">{</span>
+  <span class="tok-property">--toast-color</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-success</span>)<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.toast--danger </span><span class="tok-punct">{</span>
+  <span class="tok-property">--toast-color</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-danger</span>)<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.toast__message </span><span class="tok-punct">{</span>
+  <span class="tok-property">flex</span><span class="tok-punct">:</span> <span class="tok-number">1</span><span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-keyword">@keyframes</span> toast-in <span class="tok-punct">{</span>
+  <span class="tok-selector">from </span><span class="tok-punct">{</span>
+    <span class="tok-property">opacity</span><span class="tok-punct">:</span> <span class="tok-number">0</span><span class="tok-punct">;</span>
+    <span class="tok-property">transform</span><span class="tok-punct">:</span> translateY(<span class="tok-number">0.5rem</span>)<span class="tok-punct">;</span>
+  <span class="tok-punct">}</span>
+
+  <span class="tok-selector">to </span><span class="tok-punct">{</span>
+    <span class="tok-property">opacity</span><span class="tok-punct">:</span> <span class="tok-number">1</span><span class="tok-punct">;</span>
+    <span class="tok-property">transform</span><span class="tok-punct">:</span> none<span class="tok-punct">;</span>
+  <span class="tok-punct">}</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-keyword">@media</span> (forced-colors: active) <span class="tok-punct">{</span>
+  <span class="tok-selector">.alert,
+  .badge,
+  .toast </span><span class="tok-punct">{</span>
+    <span class="tok-property">border</span><span class="tok-punct">:</span> <span class="tok-number">1px</span> solid CanvasText<span class="tok-punct">;</span>
+  <span class="tok-punct">}</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-comment">/* ---- Avatar ------------------------------------------------------------ */</span>
+<span class="tok-selector">.avatar </span><span class="tok-punct">{</span>
+  <span class="tok-property">display</span><span class="tok-punct">:</span> inline-grid<span class="tok-punct">;</span>
+  <span class="tok-property">place-items</span><span class="tok-punct">:</span> center<span class="tok-punct">;</span>
+  <span class="tok-property">flex-shrink</span><span class="tok-punct">:</span> <span class="tok-number">0</span><span class="tok-punct">;</span>
+  <span class="tok-property">width</span><span class="tok-punct">:</span> <span class="tok-number">2.25rem</span><span class="tok-punct">;</span>
+  <span class="tok-property">height</span><span class="tok-punct">:</span> <span class="tok-number">2.25rem</span><span class="tok-punct">;</span>
+  <span class="tok-property">border-radius</span><span class="tok-punct">:</span> <span class="tok-number">50</span>%<span class="tok-punct">;</span>
+  <span class="tok-property">background-color</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-primary</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">color</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-on-primary</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">font-size</span><span class="tok-punct">:</span> var(<span class="tok-variable">--font-size-sm</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">font-weight</span><span class="tok-punct">:</span> var(<span class="tok-variable">--font-weight-bold</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">line-height</span><span class="tok-punct">:</span> <span class="tok-number">1</span><span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.avatar--soft </span><span class="tok-punct">{</span>
+  <span class="tok-property">background-color</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-primary-soft</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">color</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-primary</span>)<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.avatar--sm </span><span class="tok-punct">{</span>
+  <span class="tok-property">width</span><span class="tok-punct">:</span> <span class="tok-number">1.75rem</span><span class="tok-punct">;</span>
+  <span class="tok-property">height</span><span class="tok-punct">:</span> <span class="tok-number">1.75rem</span><span class="tok-punct">;</span>
+  <span class="tok-property">font-size</span><span class="tok-punct">:</span> var(<span class="tok-variable">--font-size-xs</span>)<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.avatar--lg </span><span class="tok-punct">{</span>
+  <span class="tok-property">width</span><span class="tok-punct">:</span> <span class="tok-number">3rem</span><span class="tok-punct">;</span>
+  <span class="tok-property">height</span><span class="tok-punct">:</span> <span class="tok-number">3rem</span><span class="tok-punct">;</span>
+  <span class="tok-property">font-size</span><span class="tok-punct">:</span> var(<span class="tok-variable">--font-size-base</span>)<span class="tok-punct">;</span>
+<span class="tok-punct">}</span></code></pre>
+</div>
+    </section>
+    <section class="tabs__panel" id="tabs-119-5" aria-labelledby="tabs-119-5-h">
+      <h3 class="tabs__heading" id="tabs-119-5-h">button.css</h3>
+      <div class="docs-code">
+  <div class="docs-code__header">
+    <span class="docs-code__label"><span class="docs-code__path">src/assets/css/components/button.css</span></span>
+    <span class="docs-code__actions"><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-text="src/assets/css/components/button.css" data-copy-success="Path copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg> <span data-copy-label>Copy path</span></button><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-target="#code-116" data-copy-success="Code copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy code</span></button></span>
+  </div>
+  <pre tabindex="0" role="region" aria-label="src/assets/css/components/button.css"><code id="code-116"><span class="tok-comment">/* ==========================================================================
+   Button
+   Works on &lt;button&gt; and &lt;a&gt;. Variants: primary (default), secondary, ghost,
+   danger. Sizes: sm, lg. Modifiers: block, icon (icon-only; requires an
+   accessible name via aria-label or visually-hidden text).
+   ========================================================================== */</span>
+
+<span class="tok-selector">.btn </span><span class="tok-punct">{</span>
+  <span class="tok-property">--btn-bg</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-primary</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">--btn-bg-hover</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-primary-hover</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">--btn-color</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-on-primary</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">--btn-border</span><span class="tok-punct">:</span> transparent<span class="tok-punct">;</span>
+
+  <span class="tok-property">display</span><span class="tok-punct">:</span> inline-flex<span class="tok-punct">;</span>
+  <span class="tok-property">align-items</span><span class="tok-punct">:</span> center<span class="tok-punct">;</span>
+  <span class="tok-property">justify-content</span><span class="tok-punct">:</span> center<span class="tok-punct">;</span>
+  <span class="tok-property">gap</span><span class="tok-punct">:</span> var(<span class="tok-variable">--spacing-2xs</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">min-height</span><span class="tok-punct">:</span> var(<span class="tok-variable">--target-size</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">padding</span><span class="tok-punct">:</span> var(<span class="tok-variable">--spacing-2xs</span>) var(<span class="tok-variable">--spacing-md</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">border</span><span class="tok-punct">:</span> var(<span class="tok-variable">--border-width</span>) solid var(<span class="tok-variable">--btn-border</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">border-radius</span><span class="tok-punct">:</span> var(<span class="tok-variable">--radius-md</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">background-color</span><span class="tok-punct">:</span> var(<span class="tok-variable">--btn-bg</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">color</span><span class="tok-punct">:</span> var(<span class="tok-variable">--btn-color</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">font-size</span><span class="tok-punct">:</span> var(<span class="tok-variable">--font-size-base</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">font-weight</span><span class="tok-punct">:</span> var(<span class="tok-variable">--font-weight-semibold</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">line-height</span><span class="tok-punct">:</span> var(<span class="tok-variable">--line-height-tight</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">text-align</span><span class="tok-punct">:</span> center<span class="tok-punct">;</span>
+  <span class="tok-property">text-decoration</span><span class="tok-punct">:</span> none<span class="tok-punct">;</span>
+  <span class="tok-property">white-space</span><span class="tok-punct">:</span> nowrap<span class="tok-punct">;</span>
+  <span class="tok-property">cursor</span><span class="tok-punct">:</span> pointer<span class="tok-punct">;</span>
+  <span class="tok-property">user-select</span><span class="tok-punct">:</span> none<span class="tok-punct">;</span>
+  <span class="tok-property">transition</span><span class="tok-punct">:</span>
+    background-color var(<span class="tok-variable">--duration-fast</span>) var(<span class="tok-variable">--ease-standard</span>),
+    border-color var(<span class="tok-variable">--duration-fast</span>) var(<span class="tok-variable">--ease-standard</span>),
+    color var(<span class="tok-variable">--duration-fast</span>) var(<span class="tok-variable">--ease-standard</span>)<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.btn:hover </span><span class="tok-punct">{</span>
+  <span class="tok-property">background-color</span><span class="tok-punct">:</span> var(<span class="tok-variable">--btn-bg-hover</span>)<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.btn:active </span><span class="tok-punct">{</span>
+  <span class="tok-property">transform</span><span class="tok-punct">:</span> translateY(<span class="tok-number">1px</span>)<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.btn:disabled,
+.btn[aria-disabled=&quot;true&quot;] </span><span class="tok-punct">{</span>
+  <span class="tok-property">opacity</span><span class="tok-punct">:</span> <span class="tok-number">0.55</span><span class="tok-punct">;</span>
+  <span class="tok-property">cursor</span><span class="tok-punct">:</span> not-allowed<span class="tok-punct">;</span>
+  <span class="tok-property">transform</span><span class="tok-punct">:</span> none<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-comment">/* ---- Variants ---------------------------------------------------------- */</span>
+<span class="tok-selector">.btn--secondary </span><span class="tok-punct">{</span>
+  <span class="tok-property">--btn-bg</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-surface-raised</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">--btn-bg-hover</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-surface-sunken</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">--btn-color</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-text</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">--btn-border</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-border-strong</span>)<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.btn--ghost </span><span class="tok-punct">{</span>
+  <span class="tok-property">--btn-bg</span><span class="tok-punct">:</span> transparent<span class="tok-punct">;</span>
+  <span class="tok-property">--btn-bg-hover</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-surface-sunken</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">--btn-color</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-text</span>)<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.btn--danger </span><span class="tok-punct">{</span>
+  <span class="tok-property">--btn-bg</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-danger</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">--btn-bg-hover</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-danger</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">--btn-color</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-bg</span>)<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.btn--danger:hover </span><span class="tok-punct">{</span>
+  <span class="tok-property">filter</span><span class="tok-punct">:</span> brightness(<span class="tok-number">0.92</span>)<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-comment">/* ---- Sizes ------------------------------------------------------------- */</span>
+<span class="tok-selector">.btn--sm </span><span class="tok-punct">{</span>
+  <span class="tok-property">min-height</span><span class="tok-punct">:</span> <span class="tok-number">2.25rem</span><span class="tok-punct">;</span>
+  <span class="tok-property">padding</span><span class="tok-punct">:</span> var(<span class="tok-variable">--spacing-3xs</span>) var(<span class="tok-variable">--spacing-xs</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">font-size</span><span class="tok-punct">:</span> var(<span class="tok-variable">--font-size-sm</span>)<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.btn--lg </span><span class="tok-punct">{</span>
+  <span class="tok-property">max-width</span><span class="tok-punct">:</span> <span class="tok-number">100</span>%<span class="tok-punct">;</span>
+  <span class="tok-property">min-height</span><span class="tok-punct">:</span> <span class="tok-number">3.25rem</span><span class="tok-punct">;</span>
+  <span class="tok-property">padding</span><span class="tok-punct">:</span> var(<span class="tok-variable">--spacing-xs</span>) var(<span class="tok-variable">--spacing-lg</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">font-size</span><span class="tok-punct">:</span> var(<span class="tok-variable">--font-size-lg</span>)<span class="tok-punct">;</span>
+  <span class="tok-comment">/* Long labels wrap rather than overflow narrow screens (WCAG 1.4.10). */</span>
+  <span class="tok-property">white-space</span><span class="tok-punct">:</span> normal<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.btn--block </span><span class="tok-punct">{</span>
+  <span class="tok-property">display</span><span class="tok-punct">:</span> flex<span class="tok-punct">;</span>
+  <span class="tok-property">width</span><span class="tok-punct">:</span> <span class="tok-number">100</span>%<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-comment">/* Icon-only square button */</span>
+<span class="tok-selector">.btn--icon </span><span class="tok-punct">{</span>
+  <span class="tok-property">width</span><span class="tok-punct">:</span> var(<span class="tok-variable">--target-size</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">padding</span><span class="tok-punct">:</span> <span class="tok-number">0</span><span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.btn--icon.btn--sm </span><span class="tok-punct">{</span>
+  <span class="tok-property">width</span><span class="tok-punct">:</span> <span class="tok-number">2.25rem</span><span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-comment">/* ---- Theme toggle ------------------------------------------------------ */</span>
+<span class="tok-selector">.theme-toggle .theme-toggle__dark,
+.theme-toggle[aria-pressed=&quot;true&quot;] .theme-toggle__light </span><span class="tok-punct">{</span>
+  <span class="tok-property">display</span><span class="tok-punct">:</span> none<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.theme-toggle[aria-pressed=&quot;true&quot;] .theme-toggle__dark </span><span class="tok-punct">{</span>
+  <span class="tok-property">display</span><span class="tok-punct">:</span> inline<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-comment">/* ---- Forced colours ---------------------------------------------------- */</span>
+<span class="tok-keyword">@media</span> (forced-colors: active) <span class="tok-punct">{</span>
+  <span class="tok-selector">.btn </span><span class="tok-punct">{</span>
+    <span class="tok-property">border-color</span><span class="tok-punct">:</span> ButtonText<span class="tok-punct">;</span>
+  <span class="tok-punct">}</span>
+
+  <span class="tok-selector">.btn:disabled,
+  .btn[aria-disabled=&quot;true&quot;] </span><span class="tok-punct">{</span>
+    <span class="tok-property">border-color</span><span class="tok-punct">:</span> GrayText<span class="tok-punct">;</span>
+    <span class="tok-property">color</span><span class="tok-punct">:</span> GrayText<span class="tok-punct">;</span>
+  <span class="tok-punct">}</span>
+<span class="tok-punct">}</span></code></pre>
+</div>
+    </section>
+    <section class="tabs__panel" id="tabs-119-6" aria-labelledby="tabs-119-6-h">
+      <h3 class="tabs__heading" id="tabs-119-6-h">data-grid.js</h3>
+      <div class="docs-code">
+  <div class="docs-code__header">
+    <span class="docs-code__label"><span class="docs-code__path">src/assets/js/components/data-grid.js</span></span>
+    <span class="docs-code__actions"><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-text="src/assets/js/components/data-grid.js" data-copy-success="Path copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg> <span data-copy-label>Copy path</span></button><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-target="#code-117" data-copy-success="Code copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy code</span></button></span>
+  </div>
+  <pre tabindex="0" role="region" aria-label="src/assets/js/components/data-grid.js"><code id="code-117"><span class="tok-comment">/**
+ * Data grid: renders a table from JSON with search, filters, sorting,
+ * pagination, CSV export and row actions.
+ *
+ * Markup (abridged; see src/components/data-grid.html):
+ *   &lt;div class=&quot;data-grid&quot; data-grid data-source=&quot;orders&quot; data-page-size=&quot;8&quot; data-label=&quot;orders&quot;&gt;
+ *     &lt;input type=&quot;search&quot; data-grid-search&gt;
+ *     &lt;select data-grid-filter=&quot;status&quot;&gt;…&lt;/select&gt;
+ *     &lt;table class=&quot;table&quot;&gt;
+ *       &lt;thead&gt;&lt;tr&gt;
+ *         &lt;th scope=&quot;col&quot; data-key=&quot;id&quot; data-sort=&quot;text&quot;&gt;Order&lt;/th&gt;
+ *         &lt;th scope=&quot;col&quot; data-key=&quot;total&quot; data-sort=&quot;number&quot; data-format=&quot;currency&quot; class=&quot;num&quot;&gt;Total&lt;/th&gt;
+ *         &lt;th scope=&quot;col&quot; data-key=&quot;status&quot; data-render=&quot;badge&quot;&gt;Status&lt;/th&gt;
+ *         &lt;th scope=&quot;col&quot; data-render=&quot;action&quot; data-action=&quot;view&quot; data-action-label=&quot;View&quot;&gt;
+ *           &lt;span class=&quot;visually-hidden&quot;&gt;Actions&lt;/span&gt;&lt;/th&gt;
+ *       &lt;/tr&gt;&lt;/thead&gt;
+ *       &lt;tbody&gt;…server-rendered rows for no-JS…&lt;/tbody&gt;
+ *     &lt;/table&gt;
+ *     &lt;p data-grid-status&gt;&lt;/p&gt;
+ *     &lt;nav data-grid-pagination aria-label=&quot;Orders pages&quot;&gt;&lt;/nav&gt;
+ *   &lt;/div&gt;
+ *
+ * Column options: data-key, data-format (core/format.js), data-sort
+ * (text | number | date), data-render (badge | person | action), and for
+ * actions data-action / data-action-label. Clicking an action dispatches a
+ * &quot;grid:action&quot; CustomEvent on the grid with { action, row }.
+ *
+ * All cells are written with textContent. CSV export neutralises formula
+ * injection. Search is pre-filled from ?q= in the URL.
+ *
+ * @module components/data-grid
+ */</span>
+<span class="tok-keyword">import</span> { qs, qsa, on, claim, createElement } <span class="tok-keyword">from</span> <span class="tok-string">'../core/dom.js'</span>;
+<span class="tok-keyword">import</span> { loadData } <span class="tok-keyword">from</span> <span class="tok-string">'../core/data.js'</span>;
+<span class="tok-keyword">import</span> { formatValue } <span class="tok-keyword">from</span> <span class="tok-string">'../core/format.js'</span>;
+<span class="tok-keyword">import</span> { announce } <span class="tok-keyword">from</span> <span class="tok-string">'../core/announce.js'</span>;
+
+<span class="tok-keyword">const</span> BADGES = {
+  paid: <span class="tok-string">'success'</span>, delivered: <span class="tok-string">'success'</span>, active: <span class="tok-string">'success'</span>, completed: <span class="tok-string">'success'</span>,
+  pending: <span class="tok-string">'warning'</span>, processing: <span class="tok-string">'warning'</span>, trial: <span class="tok-string">'warning'</span>, <span class="tok-string">'at risk'</span>: <span class="tok-string">'warning'</span>,
+  failed: <span class="tok-string">'danger'</span>, cancelled: <span class="tok-string">'danger'</span>, churned: <span class="tok-string">'danger'</span>, overdue: <span class="tok-string">'danger'</span>,
+  shipped: <span class="tok-string">'primary'</span>, <span class="tok-keyword">new</span>: <span class="tok-string">'primary'</span>, vip: <span class="tok-string">'primary'</span>,
+};
+
+<span class="tok-keyword">const</span> collator = <span class="tok-keyword">new</span> Intl.<span class="tok-function">Collator</span>(<span class="tok-keyword">undefined</span>, { numeric: <span class="tok-keyword">true</span>, sensitivity: <span class="tok-string">'base'</span> });
+
+<span class="tok-keyword">function</span> <span class="tok-function">columnsOf</span>(table) {
+  <span class="tok-keyword">return</span> <span class="tok-function">qsa</span>(<span class="tok-string">'thead th'</span>, table).<span class="tok-function">map</span>((th) =&gt; ({
+    th,
+    key: th.dataset.key || <span class="tok-string">''</span>,
+    label: th.textContent.<span class="tok-function">trim</span>(),
+    format: th.dataset.format || <span class="tok-string">'text'</span>,
+    sort: th.dataset.sort || <span class="tok-string">''</span>,
+    render: th.dataset.render || <span class="tok-string">''</span>,
+    action: th.dataset.action || <span class="tok-string">''</span>,
+    actionLabel: th.dataset.actionLabel || <span class="tok-string">'View'</span>,
+    numeric: th.classList.<span class="tok-function">contains</span>(<span class="tok-string">'num'</span>),
+  }));
+}
+
+<span class="tok-keyword">function</span> <span class="tok-function">sortValue</span>(row, col) {
+  <span class="tok-keyword">const</span> v = row[col.key];
+  <span class="tok-keyword">if</span> (col.sort === <span class="tok-string">'number'</span>) <span class="tok-keyword">return</span> <span class="tok-function">Number</span>(v) || <span class="tok-number">0</span>;
+  <span class="tok-keyword">if</span> (col.sort === <span class="tok-string">'date'</span>) <span class="tok-keyword">return</span> Date.<span class="tok-function">parse</span>(v) || <span class="tok-number">0</span>;
+  <span class="tok-keyword">return</span> <span class="tok-function">String</span>(v ?? <span class="tok-string">''</span>);
+}
+
+<span class="tok-keyword">function</span> <span class="tok-function">initials</span>(name) {
+  <span class="tok-keyword">return</span> <span class="tok-function">String</span>(name || <span class="tok-string">'?'</span>)
+    .<span class="tok-function">split</span>(/\s+/)
+    .<span class="tok-function">slice</span>(<span class="tok-number">0</span>, <span class="tok-number">2</span>)
+    .<span class="tok-function">map</span>((p) =&gt; p.<span class="tok-function">charAt</span>(<span class="tok-number">0</span>).<span class="tok-function">toUpperCase</span>())
+    .<span class="tok-function">join</span>(<span class="tok-string">''</span>);
+}
+
+<span class="tok-keyword">function</span> <span class="tok-function">renderCell</span>(col, row, grid) {
+  <span class="tok-keyword">const</span> td = <span class="tok-function">createElement</span>(<span class="tok-string">'td'</span>, { className: col.numeric ? <span class="tok-string">'num'</span> : <span class="tok-string">''</span> });
+  <span class="tok-keyword">const</span> value = row[col.key];
+
+  <span class="tok-keyword">if</span> (col.render === <span class="tok-string">'badge'</span>) {
+    <span class="tok-keyword">const</span> variant = BADGES[<span class="tok-function">String</span>(value).<span class="tok-function">toLowerCase</span>()] || <span class="tok-string">''</span>;
+    td.<span class="tok-function">append</span>(<span class="tok-function">createElement</span>(<span class="tok-string">'span'</span>, { className: <span class="tok-string">`badge${variant ? `</span> badge--${variant}<span class="tok-string">` : ''}`</span>, text: <span class="tok-function">String</span>(value) }));
+  } <span class="tok-keyword">else</span> <span class="tok-keyword">if</span> (col.render === <span class="tok-string">'person'</span>) {
+    td.<span class="tok-function">append</span>(
+      <span class="tok-function">createElement</span>(<span class="tok-string">'span'</span>, {
+        className: <span class="tok-string">'person'</span>,
+        children: [
+          <span class="tok-function">createElement</span>(<span class="tok-string">'span'</span>, { className: <span class="tok-string">'avatar avatar--sm avatar--soft'</span>, text: <span class="tok-function">initials</span>(value), attrs: { <span class="tok-string">'aria-hidden'</span>: <span class="tok-string">'true'</span> } }),
+          <span class="tok-function">createElement</span>(<span class="tok-string">'span'</span>, {
+            className: <span class="tok-string">'person__text'</span>,
+            children: [
+              <span class="tok-function">createElement</span>(<span class="tok-string">'span'</span>, { className: <span class="tok-string">'person__name'</span>, text: <span class="tok-function">String</span>(value ?? <span class="tok-string">''</span>) }),
+              <span class="tok-function">createElement</span>(<span class="tok-string">'span'</span>, { className: <span class="tok-string">'person__meta'</span>, text: <span class="tok-function">String</span>(row.email ?? <span class="tok-string">''</span>) }),
+            ],
+          }),
+        ],
+      })
+    );
+  } <span class="tok-keyword">else</span> <span class="tok-keyword">if</span> (col.render === <span class="tok-string">'action'</span>) {
+    <span class="tok-keyword">const</span> id = row.id ?? <span class="tok-string">''</span>;
+    <span class="tok-keyword">const</span> button = <span class="tok-function">createElement</span>(<span class="tok-string">'button'</span>, {
+      className: <span class="tok-string">'btn btn--ghost btn--sm'</span>,
+      attrs: { type: <span class="tok-string">'button'</span> },
+      children: [
+        <span class="tok-function">createElement</span>(<span class="tok-string">'span'</span>, { text: col.actionLabel }),
+        <span class="tok-function">createElement</span>(<span class="tok-string">'span'</span>, { className: <span class="tok-string">'visually-hidden'</span>, text: <span class="tok-string">` ${grid.dataset.label ? grid.dataset.label.replace(/s$/, '') : 'row'} ${id}`</span> }),
+      ],
+    });
+    <span class="tok-function">on</span>(button, <span class="tok-string">'click'</span>, () =&gt; {
+      grid.<span class="tok-function">dispatchEvent</span>(<span class="tok-keyword">new</span> <span class="tok-function">CustomEvent</span>(<span class="tok-string">'grid:action'</span>, { bubbles: <span class="tok-keyword">true</span>, detail: { action: col.action, row, trigger: button } }));
+    });
+    td.<span class="tok-function">append</span>(button);
+  } <span class="tok-keyword">else</span> {
+    td.textContent = col.format === <span class="tok-string">'text'</span> ? <span class="tok-function">String</span>(value ?? <span class="tok-string">''</span>) : <span class="tok-function">formatValue</span>(value, col.format, { currency: grid.dataset.currency || <span class="tok-string">'USD'</span> });
+  }
+  <span class="tok-keyword">return</span> td;
+}
+
+<span class="tok-keyword">function</span> <span class="tok-function">csvEscape</span>(value) {
+  <span class="tok-keyword">let</span> s = <span class="tok-function">String</span>(value ?? <span class="tok-string">''</span>);
+  <span class="tok-keyword">if</span> (/^[=+\-@\t\r]/.<span class="tok-function">test</span>(s)) s = <span class="tok-string">`'${s}`</span>; <span class="tok-comment">// neutralise spreadsheet formulas</span>
+  <span class="tok-keyword">return</span> /[<span class="tok-string">&quot;,\n]/.test(s) ? `&quot;</span>${s.<span class="tok-function">replace</span>(/<span class="tok-string">&quot;/g, '&quot;</span><span class="tok-string">&quot;')}&quot;</span><span class="tok-string">` : s;
+}
+
+/**
+ * @param {ParentNode} [root=document]
+ */
+export function init(root = document) {
+  for (const grid of qsa('[data-grid]', root)) {
+    if (!claim(grid, 'grid')) continue;
+    setupGrid(grid);
+  }
+}
+
+function setupGrid(grid) {
+  const table = qs('table', grid);
+  const tbody = table.tBodies[0] || table.appendChild(document.createElement('tbody'));
+  const columns = columnsOf(table);
+  const search = qs('[data-grid-search]', grid);
+  const filters = qsa('[data-grid-filter]', grid);
+  const status = qs('[data-grid-status]', grid);
+  const pagination = qs('[data-grid-pagination]', grid);
+  const exportButton = qs('[data-grid-export]', grid);
+  const pageSize = Number(grid.dataset.pageSize) || 10;
+  const label = grid.dataset.label || 'rows';
+
+  const state = { rows: [], view: [], page: 1, sortKey: '', sortDir: 1, query: '' };
+
+  // Sortable headers become buttons (existing text nodes are moved).
+  for (const col of columns.filter((c) =&gt; c.sort)) {
+    const button = createElement('button', { className: 'table__sort', attrs: { type: 'button' } });
+    button.append(...col.th.childNodes);
+    const icon = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    icon.setAttribute('class', 'icon table__sort-icon');
+    icon.setAttribute('viewBox', '0 0 24 24');
+    icon.setAttribute('aria-hidden', 'true');
+    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    path.setAttribute('d', 'M12 19V5M5 12l7-7 7 7');
+    icon.append(path);
+    button.append(icon);
+    col.th.append(button);
+    on(button, 'click', () =&gt; {
+      state.sortDir = state.sortKey === col.key ? -state.sortDir : 1;
+      state.sortKey = col.key;
+      for (const c of columns) c.th.removeAttribute('aria-sort');
+      col.th.setAttribute('aria-sort', state.sortDir === 1 ? 'ascending' : 'descending');
+      apply({ resetPage: false });
+      announce(`</span>Sorted by ${col.label}, ${state.sortDir === <span class="tok-number">1</span> ? <span class="tok-string">'ascending'</span> : <span class="tok-string">'descending'</span>}.<span class="tok-string">`);
+    });
+  }
+
+  function apply({ resetPage = true } = {}) {
+    const q = state.query.toLowerCase();
+    const active = filters.map((f) =&gt; [f.dataset.gridFilter, f.value]).filter(([, v]) =&gt; v);
+
+    state.view = state.rows.filter((row) =&gt; {
+      if (active.some(([key, v]) =&gt; String(row[key]).toLowerCase() !== v.toLowerCase())) return false;
+      if (!q) return true;
+      return Object.values(row).some((v) =&gt; String(v).toLowerCase().includes(q));
+    });
+
+    if (state.sortKey) {
+      const col = columns.find((c) =&gt; c.key === state.sortKey);
+      state.view.sort((a, b) =&gt; {
+        const va = sortValue(a, col);
+        const vb = sortValue(b, col);
+        const r = typeof va === 'number' ? va - vb : collator.compare(va, vb);
+        return r * state.sortDir;
+      });
+    }
+    if (resetPage) state.page = 1;
+    render();
+  }
+
+  function render() {
+    const total = state.view.length;
+    const pages = Math.max(1, Math.ceil(total / pageSize));
+    state.page = Math.min(state.page, pages);
+    const start = (state.page - 1) * pageSize;
+    const slice = state.view.slice(start, start + pageSize);
+
+    if (!slice.length) {
+      const cell = createElement('td', { className: 'data-grid__empty', text: `</span>No ${label} match your search or filters.<span class="tok-string">`, attrs: { colspan: String(columns.length) } });
+      tbody.replaceChildren(createElement('tr', { children: [cell] }));
+    } else {
+      tbody.replaceChildren(...slice.map((row) =&gt; createElement('tr', { children: columns.map((col) =&gt; renderCell(col, row, grid)) })));
+    }
+
+    if (status) {
+      status.textContent = total
+        ? `</span>Showing ${start + <span class="tok-number">1</span>}–${start + slice.length} <span class="tok-keyword">of</span> ${total} ${label}<span class="tok-string">`
+        : `</span>No ${label} found<span class="tok-string">`;
+    }
+    renderPagination(pages);
+  }
+
+  function renderPagination(pages) {
+    if (!pagination) return;
+    pagination.replaceChildren();
+    if (pages &lt;= 1) return;
+    const list = createElement('ul', { className: 'pagination__list' });
+    const go = (page) =&gt; {
+      state.page = page;
+      render();
+      announce(`</span>Page ${page} <span class="tok-keyword">of</span> ${pages}.<span class="tok-string">`);
+    };
+    const button = (text, page, { current = false, disabled = false, hiddenText = '' } = {}) =&gt; {
+      const b = createElement('button', {
+        className: 'pagination__link',
+        attrs: { type: 'button' },
+        children: [
+          ...(hiddenText ? [createElement('span', { className: 'visually-hidden', text: hiddenText })] : []),
+          createElement('span', { text }),
+        ],
+      });
+      if (current) b.setAttribute('aria-current', 'page');
+      if (disabled) b.disabled = true;
+      else on(b, 'click', () =&gt; go(page));
+      return createElement('li', { children: [b] });
+    };
+
+    list.append(button('‹', state.page - 1, { disabled: state.page === 1, hiddenText: 'Previous page' }));
+    const first = Math.max(1, Math.min(state.page - 2, pages - 4));
+    for (let p = first; p &lt;= Math.min(pages, first + 4); p += 1) {
+      list.append(button(String(p), p, { current: p === state.page, hiddenText: 'Page ' }));
+    }
+    list.append(button('›', state.page + 1, { disabled: state.page === pages, hiddenText: 'Next page' }));
+    pagination.append(list);
+  }
+
+  // Toolbar forms submit to the server without JavaScript; filter in place with it.
+  for (const form of qsa('form', grid)) on(form, 'submit', (event) =&gt; event.preventDefault());
+
+  if (search) {
+    const fromUrl = new URLSearchParams(location.search).get('q');
+    if (fromUrl) search.value = fromUrl.slice(0, 100);
+    state.query = search.value.trim();
+    let timer = 0;
+    on(search, 'input', () =&gt; {
+      window.clearTimeout(timer);
+      timer = window.setTimeout(() =&gt; {
+        state.query = search.value.trim();
+        apply();
+        if (status) announce(status.textContent);
+      }, 200);
+    });
+  }
+  for (const filter of filters) {
+    on(filter, 'change', () =&gt; {
+      apply();
+      if (status) announce(status.textContent);
+    });
+  }
+
+  if (exportButton) {
+    exportButton.hidden = false;
+    on(exportButton, 'click', () =&gt; {
+      const cols = columns.filter((c) =&gt; c.key);
+      const lines = [cols.map((c) =&gt; csvEscape(c.label)).join(',')];
+      for (const row of state.view) lines.push(cols.map((c) =&gt; csvEscape(row[c.key])).join(','));
+      const blob = new Blob([`</span>${lines.<span class="tok-function">join</span>(<span class="tok-string">'\n'</span>)}\n<span class="tok-string">`], { type: 'text/csv;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const link = createElement('a', { attrs: { href: url, download: `</span>${label}.csv<span class="tok-string">` } });
+      document.body.append(link);
+      link.click();
+      link.remove();
+      window.setTimeout(() =&gt; URL.revokeObjectURL(url), 1000);
+      announce(`</span>Exported ${state.view.length} ${label} as CSV.<span class="tok-string">`);
+    });
+  }
+
+  async function load(fresh = false) {
+    grid.setAttribute('aria-busy', 'true');
+    try {
+      const data = await loadData(grid.dataset.source, { path: grid.dataset.path || '', fresh });
+      state.rows = Array.isArray(data) ? data : [];
+      grid.classList.add('data-grid--ready');
+      apply({ resetPage: false });
+    } catch (error) {
+      if (status) status.textContent = `</span>Couldn't load ${label} (${error.message}). Showing the rows rendered by the server.`;
+    } <span class="tok-keyword">finally</span> {
+      grid.<span class="tok-function">removeAttribute</span>(<span class="tok-string">'aria-busy'</span>);
+    }
+  }
+
+  <span class="tok-comment">// Expose a refresh hook for page scripts.</span>
+  grid.<span class="tok-function">addEventListener</span>(<span class="tok-string">'grid:refresh'</span>, () =&gt; <span class="tok-function">load</span>(<span class="tok-keyword">true</span>));
+  <span class="tok-function">on</span>(document, <span class="tok-string">'vr:datachange'</span>, () =&gt; <span class="tok-function">load</span>(<span class="tok-keyword">true</span>));
+  <span class="tok-function">load</span>();
+}</code></pre>
+</div>
+    </section>
+  </div>
+      </section>
+
+      <section class="docs-section" aria-labelledby="files">
+        <h2 class="docs-section__title" id="files">Files</h2>
+        <p class="text-muted">Everything this component needs. Paste these paths into a prompt so an AI agent works with the real files.</p>
+        <ul class="docs-files" role="list">
+          <li><span class="path-chip">src/components/data-grid.html</span> <span class="text-muted text-sm">markup</span> <button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-text="src/components/data-grid.html" data-copy-success="Path copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy</span><span class="visually-hidden"> src/components/data-grid.html</span></button></li>
+          <li><span class="path-chip">src/assets/css/tokens.css</span> <span class="text-muted text-sm">required by everything</span> <button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-text="src/assets/css/tokens.css" data-copy-success="Path copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy</span><span class="visually-hidden"> src/assets/css/tokens.css</span></button></li>
+          <li><span class="path-chip">src/assets/css/themes.css</span> <span class="text-muted text-sm">required by everything</span> <button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-text="src/assets/css/themes.css" data-copy-success="Path copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy</span><span class="visually-hidden"> src/assets/css/themes.css</span></button></li>
+          <li><span class="path-chip">src/assets/css/base.css</span> <span class="text-muted text-sm">required by everything</span> <button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-text="src/assets/css/base.css" data-copy-success="Path copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy</span><span class="visually-hidden"> src/assets/css/base.css</span></button></li>
+          <li><span class="path-chip">src/assets/css/components/table.css</span> <span class="text-muted text-sm">styles</span> <button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-text="src/assets/css/components/table.css" data-copy-success="Path copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy</span><span class="visually-hidden"> src/assets/css/components/table.css</span></button></li>
+          <li><span class="path-chip">src/assets/css/components/form.css</span> <span class="text-muted text-sm">styles</span> <button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-text="src/assets/css/components/form.css" data-copy-success="Path copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy</span><span class="visually-hidden"> src/assets/css/components/form.css</span></button></li>
+          <li><span class="path-chip">src/assets/css/components/navigation.css</span> <span class="text-muted text-sm">styles</span> <button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-text="src/assets/css/components/navigation.css" data-copy-success="Path copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy</span><span class="visually-hidden"> src/assets/css/components/navigation.css</span></button></li>
+          <li><span class="path-chip">src/assets/css/components/feedback.css</span> <span class="text-muted text-sm">styles</span> <button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-text="src/assets/css/components/feedback.css" data-copy-success="Path copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy</span><span class="visually-hidden"> src/assets/css/components/feedback.css</span></button></li>
+          <li><span class="path-chip">src/assets/css/components/button.css</span> <span class="text-muted text-sm">styles</span> <button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-text="src/assets/css/components/button.css" data-copy-success="Path copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy</span><span class="visually-hidden"> src/assets/css/components/button.css</span></button></li>
+          <li><span class="path-chip">src/assets/js/components/data-grid.js</span> <span class="text-muted text-sm">behaviour (loaded by main.js)</span> <button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-text="src/assets/js/components/data-grid.js" data-copy-success="Path copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy</span><span class="visually-hidden"> src/assets/js/components/data-grid.js</span></button></li>
+        </ul>
+      </section>
+
+      <section class="docs-section" aria-labelledby="accessibility">
+        <h2 class="docs-section__title" id="accessibility">Accessibility</h2>
+        <div class="docs-callout"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="4.5" r="1.5"/><path d="M5 8.5 12 10l7-1.5M12 10v4.5M12 14.5 9 21M12 14.5l3 6.5"/></svg><p>Sortable headers are buttons with aria-sort; result counts, sorting and paging are announced; action buttons include the row id in their accessible name; the scroll wrapper is a labelled, focusable region. Status is shown as text badges, not colour alone.</p></div>
+      </section>
+
+      <section class="docs-section" aria-labelledby="usage">
+        <h2 class="docs-section__title" id="usage">Use it in your stack</h2>
+        <div class="tabs docs-tabs" data-tabs>
+    <div class="tabs__list" data-tabs-list data-label="Frameworks" hidden>
+      <button type="button" class="tabs__tab" data-tab="tabs-122-0">HTML page</button>
+      <button type="button" class="tabs__tab" data-tab="tabs-122-1">React / Next.js</button>
+      <button type="button" class="tabs__tab" data-tab="tabs-122-2">ASP.NET Core</button>
+      <button type="button" class="tabs__tab" data-tab="tabs-122-3">Django / Jinja2</button>
+    </div>
+    <section class="tabs__panel" id="tabs-122-0" aria-labelledby="tabs-122-0-h">
+      <h3 class="tabs__heading" id="tabs-122-0-h">HTML page</h3>
+      <p>Add the stylesheets and the module entry point to <code>&lt;head&gt;</code> once, then paste the markup anywhere in <code>&lt;body&gt;</code>. Paths assume <code>src/</code> is your web root.</p>
+<div class="docs-code">
+  <div class="docs-code__header">
+    <span class="docs-code__label">In &lt;head&gt;</span>
+    <span class="docs-code__actions"><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-target="#code-120" data-copy-success="Code copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy code</span></button></span>
+  </div>
+  <pre tabindex="0" role="region" aria-label="In &lt;head&gt;"><code id="code-120"><span class="tok-tag">&lt;link</span> <span class="tok-attr">rel</span><span class="tok-punct">=</span><span class="tok-string">&quot;stylesheet&quot;</span> <span class="tok-attr">href</span><span class="tok-punct">=</span><span class="tok-string">&quot;/assets/css/tokens.css&quot;</span><span class="tok-tag">&gt;</span>
+<span class="tok-tag">&lt;link</span> <span class="tok-attr">rel</span><span class="tok-punct">=</span><span class="tok-string">&quot;stylesheet&quot;</span> <span class="tok-attr">href</span><span class="tok-punct">=</span><span class="tok-string">&quot;/assets/css/themes.css&quot;</span><span class="tok-tag">&gt;</span>
+<span class="tok-tag">&lt;link</span> <span class="tok-attr">rel</span><span class="tok-punct">=</span><span class="tok-string">&quot;stylesheet&quot;</span> <span class="tok-attr">href</span><span class="tok-punct">=</span><span class="tok-string">&quot;/assets/css/base.css&quot;</span><span class="tok-tag">&gt;</span>
+<span class="tok-tag">&lt;link</span> <span class="tok-attr">rel</span><span class="tok-punct">=</span><span class="tok-string">&quot;stylesheet&quot;</span> <span class="tok-attr">href</span><span class="tok-punct">=</span><span class="tok-string">&quot;/assets/css/components/table.css&quot;</span><span class="tok-tag">&gt;</span>
+<span class="tok-tag">&lt;link</span> <span class="tok-attr">rel</span><span class="tok-punct">=</span><span class="tok-string">&quot;stylesheet&quot;</span> <span class="tok-attr">href</span><span class="tok-punct">=</span><span class="tok-string">&quot;/assets/css/components/form.css&quot;</span><span class="tok-tag">&gt;</span>
+<span class="tok-tag">&lt;link</span> <span class="tok-attr">rel</span><span class="tok-punct">=</span><span class="tok-string">&quot;stylesheet&quot;</span> <span class="tok-attr">href</span><span class="tok-punct">=</span><span class="tok-string">&quot;/assets/css/components/navigation.css&quot;</span><span class="tok-tag">&gt;</span>
+<span class="tok-tag">&lt;link</span> <span class="tok-attr">rel</span><span class="tok-punct">=</span><span class="tok-string">&quot;stylesheet&quot;</span> <span class="tok-attr">href</span><span class="tok-punct">=</span><span class="tok-string">&quot;/assets/css/components/feedback.css&quot;</span><span class="tok-tag">&gt;</span>
+<span class="tok-tag">&lt;link</span> <span class="tok-attr">rel</span><span class="tok-punct">=</span><span class="tok-string">&quot;stylesheet&quot;</span> <span class="tok-attr">href</span><span class="tok-punct">=</span><span class="tok-string">&quot;/assets/css/components/button.css&quot;</span><span class="tok-tag">&gt;</span>
+<span class="tok-tag">&lt;script</span> <span class="tok-attr">type</span><span class="tok-punct">=</span><span class="tok-string">&quot;module&quot;</span> <span class="tok-attr">src</span><span class="tok-punct">=</span><span class="tok-string">&quot;/assets/js/main.js&quot;</span><span class="tok-tag">&gt;</span><span class="tok-tag">&lt;/script</span><span class="tok-tag">&gt;</span></code></pre>
+</div>
+    </section>
+    <section class="tabs__panel" id="tabs-122-1" aria-labelledby="tabs-122-1-h">
+      <h3 class="tabs__heading" id="tabs-122-1-h">React / Next.js</h3>
+      <p>Copy <code>src/assets/</code> to <code>ui/</code>, convert the markup to JSX (<code>class</code> → <code>className</code>, <code>for</code> → <code>htmlFor</code>) and call <code>init()</code> after render.</p>
+<div class="docs-code">
+  <div class="docs-code__header">
+    <span class="docs-code__label">JSX</span>
+    <span class="docs-code__actions"><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-target="#code-121" data-copy-success="Code copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy code</span></button></span>
+  </div>
+  <pre tabindex="0" role="region" aria-label="JSX"><code id="code-121"><span class="tok-string">'use client'</span>;
+<span class="tok-keyword">import</span> { useEffect, useRef } <span class="tok-keyword">from</span> <span class="tok-string">'react'</span>;
+<span class="tok-keyword">import</span> <span class="tok-string">'@/ui/css/components/table.css'</span>;
+<span class="tok-keyword">import</span> <span class="tok-string">'@/ui/css/components/form.css'</span>;
+<span class="tok-keyword">import</span> <span class="tok-string">'@/ui/css/components/navigation.css'</span>;
+<span class="tok-keyword">import</span> <span class="tok-string">'@/ui/css/components/feedback.css'</span>;
+<span class="tok-keyword">import</span> <span class="tok-string">'@/ui/css/components/button.css'</span>;
+
+<span class="tok-keyword">export</span> <span class="tok-keyword">function</span> <span class="tok-function">DataGrid</span>() {
+  <span class="tok-keyword">const</span> ref = <span class="tok-function">useRef</span>(<span class="tok-keyword">null</span>);
+  <span class="tok-function">useEffect</span>(() =&gt; {
+    <span class="tok-keyword">import</span>(<span class="tok-string">'@/ui/js/components/data-grid.js'</span>).<span class="tok-function">then</span>((m) =&gt; m.<span class="tok-function">init</span>(ref.current));
+  }, []);
+  <span class="tok-keyword">return</span> &lt;div ref={ref}&gt;{<span class="tok-comment">/* paste the markup, converted to JSX */</span>}&lt;/div&gt;;
+}</code></pre>
+</div>
+    </section>
+    <section class="tabs__panel" id="tabs-122-2" aria-labelledby="tabs-122-2-h">
+      <h3 class="tabs__heading" id="tabs-122-2-h">ASP.NET Core</h3>
+      <p>Save the markup as <code>Pages/Shared/Components/_DataGrid.cshtml</code> (escape a literal <code>@</code> as <code>@@</code>), render it with <code>&lt;partial name="Components/_DataGrid" /&gt;</code>, and reference the stylesheets in <code>_Layout.cshtml</code>.</p>
+    </section>
+    <section class="tabs__panel" id="tabs-122-3" aria-labelledby="tabs-122-3-h">
+      <h3 class="tabs__heading" id="tabs-122-3-h">Django / Jinja2</h3>
+      <p>Save the markup as <code>templates/components/data-grid.html</code> and use <code>{% include "components/data-grid.html" %}</code>. Load the stylesheets in your base template.</p>
+    </section>
+  </div>
+      </section>
+
+      <nav class="docs-pager" aria-label="Previous and next">
+        <a class="docs-pager__link" href="chart.html" rel="prev"><span class="text-sm text-muted">Previous</span> <span>Charts</span></a>
+        <a class="docs-pager__link docs-pager__link--next" href="data-table.html" rel="next"><span class="text-sm text-muted">Next</span> <span>Data table</span></a>
+      </nav>
+    </main>
+    <aside class="docs-toc" aria-labelledby="toc-title">
+      <h2 class="docs-toc__title" id="toc-title">On this page</h2>
+      <ul class="docs-toc__list" role="list">
+        <li><a href="#preview">Preview</a></li>
+        <li><a href="#code">Code</a></li>
+        <li><a href="#files">Files</a></li>
+        <li><a href="#accessibility">Accessibility</a></li>
+        <li><a href="#usage">Use it in your stack</a></li>
+      </ul>
+    </aside>
+  </div>
+
+  <footer class="docs-footer">
+    <p>MIT licensed · Built with plain HTML, CSS and JavaScript · <a href="https://github.com/amuqtadir99/vanilla-responsive-ui">Source on GitHub</a> · Generated by <code>node .claude/skills/generate-doc.js</code></p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!--
+@block: Promo banner
+@category: Commerce
+@description: Store hero: a dark promotional banner with eyebrow, headline, text, two buttons and a product image. Stays dark in both themes.
+@css: blocks.css, components/button.css
+@js: none
+@a11y: Use as the page h1 on a store front, or change it to h2 lower on the page. The product image has meaningful alt text.
+-->
+<section data-block="promo-banner" class="section section--tight" aria-labelledby="promo-title">
+  <div class="container">
+    <div class="promo">
+      <div class="promo__content">
+        <p class="eyebrow">Autumn collection</p>
+        <h1 class="promo__title" id="promo-title">Sound that moves with you</h1>
+        <p class="promo__text">Studio wireless headphones with 40-hour battery life. Now 20% off for a limited time.</p>
+        <div class="hero__actions">
+          <a class="btn btn--lg" href="/shop/headphones">Shop now <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a class="btn btn--lg btn--secondary" href="/shop">Browse all</a>
+        </div>
+      </div>
+      <div class="promo__media">
+        <img src="../assets/images/product-headphones.svg" alt="Studio wireless headphones in indigo" width="480" height="360" fetchpriority="high">
+      </div>
+    </div>
+  </div>
+</section>

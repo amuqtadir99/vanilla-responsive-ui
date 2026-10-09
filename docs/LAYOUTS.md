@@ -7,10 +7,10 @@ Every page in this repository is built from three pieces:
    written once and stamped into every page.
 3. **Content**: components from [`src/components/`](../src/components/).
 
-Try every layout live in the **layout builder**
-([`src/layouts/index.html`](../src/layouts/index.html)): pick a layout,
-preview it at desktop, tablet or phone width in any brand colour, then copy
-the HTML, a CLI command or a prompt for your AI coding agent.
+Preview every layout at desktop, tablet or phone width on the
+[layouts docs page](../src/docs/layouts.html), with its full HTML and the
+CLI command to create a page from it. To compose a page from ready-made
+sections (blocks), use the [page builder](../src/builder/index.html).
 
 ## The eight layouts
 
@@ -128,7 +128,8 @@ validation skills.
 2. Create `src/layouts/your-layout.html` with the metadata header
    (`@layout`, `@description`, `@regions`) and partial markers; copy an
    existing layout as a starting point.
-3. Add it to the builder (`src/layouts/index.html`) and the table above.
+3. Add it to the table above (the docs layouts page and `catalog.json` pick
+   it up automatically when you run `generate-doc.js`).
 4. Run `node .claude/skills/pages.js sync`, `node .claude/skills/generate-doc.js`
    and the validation skills.
 

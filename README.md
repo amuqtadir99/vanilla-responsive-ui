@@ -13,14 +13,22 @@ Zero setup required, deployable anywhere, and ready for AI coding agents.
   assistants and auth flows, linked by shared navigation.
 - **Dynamic theming.** Brand presets, any custom brand colour, density and
   corner style: live in the theme panel, or with one attribute on `<html>`.
-- **Layouts on demand.** Eight responsive layouts, a visual layout builder
-  and a CLI that creates new pages with the right header, footer and styles.
+- **Page builder.** Compose a page from 19 ready-made blocks (heroes, bento
+  features, pricing, FAQ, CTAs…), reorder them, edit text in place, preview
+  at any width and brand colour, then download valid HTML or copy a prompt
+  for your AI agent.
+- **Documentation website.** Every component, block and template page with a
+  live preview at desktop, tablet and phone width, highlighted code with copy
+  buttons, file paths, accessibility notes and framework usage. Template
+  pages break down into their parts, each with its own code.
+- **Layouts on demand.** Eight responsive layouts and a CLI that creates new
+  pages with the right header, footer and styles.
 - **Data and charts.** Interactive SVG charts and data grids fed by JSON:
   sample data included, your API with one setting.
 - **AI interfaces.** Chat panels, a floating support widget, a full-page
   assistant and an agent workspace that stream from your own model.
 - **Built for AI agents.** `CLAUDE.md`, `llms.txt`, a generated
-  `catalog.json` and "Copy path for AI" buttons in the component gallery.
+  `catalog.json` and "Copy path for AI" buttons on every docs page.
 - **Secure.** Strict Content-Security-Policy (no inline scripts, styles or
   handlers) and XSS-safe rendering, including model output.
 
@@ -35,8 +43,17 @@ cd vanilla-responsive-ui
 python3 -m http.server 8080        # or: node tests/lib/server.mjs 8080
 ```
 
-Open <http://localhost:8080/src/>. The bar at the top of every page
-switches between templates and opens the theme panel.
+Open <http://localhost:8080/src/> for the documentation site. The bar at
+the top of every template switches between templates and opens the theme
+panel.
+
+> **Opening files directly from disk does not work.** Browsers block
+> JavaScript modules on `file://` pages, so copy buttons, previews, charts
+> and the page builder stay inactive (a notice explains this). Use a local
+> server as above, or the hosted copy on GitHub Pages:
+> <https://amuqtadir99.github.io/vanilla-responsive-ui/src/> (deployed from
+> `main` by [`.github/workflows/pages.yml`](.github/workflows/pages.yml); in
+> the repository settings, set **Pages → Source** to **GitHub Actions** once).
 
 ## Templates
 
@@ -49,8 +66,9 @@ switches between templates and opens the theme panel.
 | [Landing page](src/templates/landing-page/index.html) (`templates/landing-page`) | Single page | Hero, features, pricing, testimonials, FAQ, newsletter |
 | [Auth](src/templates/auth/index.html) (`templates/auth`) | Sign in, create account, reset password | Accessible validation, password toggle |
 
-Also see the [component gallery](src/components/index.html) (20 components)
-and the [layout builder](src/layouts/index.html).
+Also see the [documentation site](src/index.html), the
+[page builder](src/builder/index.html), the [blocks](src/blocks/) and the
+single-page [component gallery](src/components/index.html).
 
 ## Build pages
 
@@ -87,9 +105,12 @@ CSS into `brand.css`. See [docs/THEMING.md](docs/THEMING.md).
 - [`llms.txt`](llms.txt): a map of the documentation for language models.
 - [`catalog.json`](catalog.json): every component, layout, template page,
   partial, data file and skill with exact file paths (generated).
-- The component gallery's **Copy path for AI** button copies the markup,
-  CSS, JS and docs paths for one component, ready to paste into a prompt;
-  **Copy code** copies the markup itself.
+- Every component, block and template page in the docs has **Copy path for
+  AI** (markup, CSS, JS and docs paths plus accessibility notes, ready to
+  paste into a prompt) and **Copy code**; template pages also copy each of
+  their sections separately.
+- The page builder exports an **AI agent prompt** listing the chosen blocks
+  and their files.
 - Claude Code skills in [`.claude/skills/`](.claude/skills/):
   `validate-w3c`, `audit-a11y`, `generate-doc`, `pages`, `add-component`.
 
@@ -99,14 +120,17 @@ CSS into `brand.css`. See [docs/THEMING.md](docs/THEMING.md).
 .claude/            Claude Code settings and skills (SKILL.md + scripts)
 docs/               Architecture, layouts, theming, data, AI chat, accessibility, security, integration, components
 src/
-├── index.html      Home: links to every template and tool
+├── index.html      Documentation home (generated)
+├── docs/           Documentation site: components, blocks, templates, foundations, guides (generated)
+├── builder/        Page builder app (canvas.html is generated)
+├── blocks/         19 page sections (hero, features, pricing, FAQ, CTA, …)
 ├── assets/
-│   ├── css/        tokens.css, themes.css, base.css, layouts.css, components/
+│   ├── css/        tokens.css, themes.css, base.css, layouts.css, blocks.css, components/
 │   ├── js/         main.js, core/ (dom, data, format, theme, markdown, …), components/, demo/
 │   ├── icons/      SVG icon library
 │   └── images/     Placeholder artwork
 ├── components/     Copy-paste snippets + generated gallery
-├── layouts/        Eight layout pages, the layout builder and partials/
+├── layouts/        Eight layout pages and partials/
 ├── data/           Sample JSON for charts, grids and assistants
 └── templates/      website/, dashboard/, e-commerce/, ai/, landing-page/, auth/
 tests/              Zero-dependency checks + optional Playwright tests

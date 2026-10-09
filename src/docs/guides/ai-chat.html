@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; form-action 'self'; base-uri 'self'; object-src 'none'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>AI chat and agent interfaces — vanilla-responsive-ui docs</title>
+  <meta name="description" content="AI chat guide for vanilla-responsive-ui.">
+  <meta name="color-scheme" content="light dark">
+  <meta name="generator" content="node .claude/skills/generate-doc.js (do not edit by hand)">
+  <link rel="icon" href="../../assets/icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../../assets/css/tokens.css">
+  <link rel="stylesheet" href="../../assets/css/themes.css">
+  <link rel="stylesheet" href="../../assets/css/base.css">
+  <link rel="stylesheet" href="../../assets/css/layouts.css">
+  <link rel="stylesheet" href="../../assets/css/components/button.css">
+  <link rel="stylesheet" href="../../assets/css/components/form.css">
+  <link rel="stylesheet" href="../../assets/css/components/feedback.css">
+  <link rel="stylesheet" href="../../assets/css/components/tabs.css">
+  <link rel="stylesheet" href="../../assets/css/components/table.css">
+  <link rel="stylesheet" href="../../assets/css/components/code.css">
+  <link rel="stylesheet" href="../../assets/css/components/accordion.css">
+  <link rel="stylesheet" href="../../assets/css/components/card.css">
+  <link rel="stylesheet" href="../../assets/css/components/navigation.css">
+  <link rel="stylesheet" href="../../assets/css/blocks.css">
+  <link rel="stylesheet" href="../../docs/assets/foundations.css">
+  <link rel="stylesheet" href="../../docs/assets/docs.css">
+  <script type="module" src="../../assets/js/main.js"></script>
+  <script type="module" src="../../docs/assets/docs.js"></script>
+</head>
+<body class="docs-body">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <p class="needs-server"><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4M12 17h.01"/></svg> <span>You opened this file from disk, so browsers block its JavaScript (copy buttons, previews, the builder). Run <code>python3 -m http.server 8080</code> in the repository folder and open <a href="http://localhost:8080/src/">localhost:8080/src/</a>, or use the <a href="https://amuqtadir99.github.io/vanilla-responsive-ui/src/">hosted docs</a>.</span></p>
+  <header class="docs-topbar">
+    <div class="docs-topbar__inner">
+      <button type="button" class="btn btn--ghost btn--icon docs-topbar__menu" data-disclosure="dismissible" aria-expanded="false" aria-controls="docs-sidebar" hidden>
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        <span class="visually-hidden">Documentation menu</span>
+      </button>
+      <a class="docs-brand" href="../../index.html">
+        <span class="docs-brand__mark"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 2 7l10 5 10-5z"/><path d="m2 17 10 5 10-5M2 12l10 5 10-5"/></svg></span>
+        <span>vanilla-responsive-ui</span>
+      </a>
+      <nav class="docs-topnav" aria-label="Main">
+        <ul class="docs-topnav__list" role="list">
+          <li><a href="../../docs/getting-started.html">Docs</a></li>
+          <li><a href="../../docs/components/site-footer.html">Components</a></li>
+          <li><a href="../../docs/blocks/hero-centered.html">Blocks</a></li>
+          <li><a href="../../docs/templates/index.html">Templates</a></li>
+          <li><a href="../../builder/index.html">Builder</a></li>
+        </ul>
+      </nav>
+      <div class="docs-topbar__actions">
+        <a class="btn btn--ghost btn--sm" href="https://github.com/amuqtadir99/vanilla-responsive-ui"><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m16 18 6-6-6-6M8 6l-6 6 6 6"/></svg> <span class="docs-topbar__label">GitHub</span></a>
+        <button type="button" class="btn btn--ghost btn--icon theme-toggle" data-theme-toggle aria-pressed="false" hidden>
+          <svg class="icon theme-toggle__light" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="icon theme-toggle__dark" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+          <span class="visually-hidden">Dark theme</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="docs-layout">
+    <nav class="docs-sidebar" id="docs-sidebar" aria-label="Documentation">
+      <div class="docs-search" data-docs-search hidden>
+        <label class="visually-hidden" for="docs-search-input">Search the documentation</label>
+        <svg class="icon icon--sm docs-search__icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/></svg>
+        <input class="input docs-search__input" id="docs-search-input" type="search" placeholder="Search…" autocomplete="off" aria-describedby="docs-search-hint">
+        <kbd class="docs-search__kbd" id="docs-search-hint"><span class="visually-hidden">Press </span>/<span class="visually-hidden"> to search</span></kbd>
+        <p class="docs-search__empty text-sm text-muted" role="status" data-docs-search-status></p>
+      </div>
+      <div class="docs-nav__group" data-docs-group>
+        <p class="docs-nav__title" id="nav-get-started">Get started</p>
+        <ul class="docs-nav__list" role="list" aria-labelledby="nav-get-started">
+          <li><a class="docs-nav__link" href="../../index.html">Introduction</a></li>
+          <li><a class="docs-nav__link" href="../../docs/getting-started.html">Getting started</a></li>
+          <li><a class="docs-nav__link" href="../../builder/index.html">Page builder</a></li>
+          <li><a class="docs-nav__link" href="../../docs/ai-agents.html">Working with AI agents</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav__group" data-docs-group>
+        <p class="docs-nav__title" id="nav-templates">Templates</p>
+        <ul class="docs-nav__list" role="list" aria-labelledby="nav-templates">
+          <li><a class="docs-nav__link" href="../../docs/templates/index.html">All templates</a></li>
+          <li><a class="docs-nav__link" href="../../docs/templates/landing-page-index.html">Landing page</a></li>
+          <li><a class="docs-nav__link" href="../../docs/templates/website-index.html">Website</a></li>
+          <li><a class="docs-nav__link" href="../../docs/templates/dashboard-index.html">Dashboard</a></li>
+          <li><a class="docs-nav__link" href="../../docs/templates/e-commerce-index.html">E-commerce</a></li>
+          <li><a class="docs-nav__link" href="../../docs/templates/ai-index.html">AI apps</a></li>
+          <li><a class="docs-nav__link" href="../../docs/templates/auth-index.html">Authentication</a></li>
+          <li><a class="docs-nav__link" href="../../docs/layouts.html">Layouts</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav__group" data-docs-group>
+        <p class="docs-nav__title" id="nav-blocks">Blocks</p>
+        <ul class="docs-nav__list" role="list" aria-labelledby="nav-blocks">
+          <li><a class="docs-nav__link" href="../../docs/blocks/hero-centered.html">Hero centered</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/hero-split.html">Hero split</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/logo-cloud.html">Logo cloud</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/stats-band.html">Stats band</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/testimonials.html">Testimonials</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/feature-bento.html">Feature bento</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/feature-grid.html">Feature grid</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/feature-rows.html">Feature rows</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/steps.html">Steps</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/category-tiles.html">Category tiles</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/perks.html">Perks</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/pricing.html">Pricing</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/promo-banner.html">Promo banner</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/blog-posts.html">Blog posts</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/faq.html">FAQ</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/team.html">Team</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/contact.html">Contact</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/cta-banner.html">CTA banner</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/newsletter.html">Newsletter</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav__group" data-docs-group>
+        <p class="docs-nav__title" id="nav-components">Components</p>
+        <ul class="docs-nav__list" role="list" aria-labelledby="nav-components">
+          <li><a class="docs-nav__link" href="../../docs/components/site-footer.html">Site footer</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/site-header.html">Site header</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/breadcrumb.html">Breadcrumb</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/pagination.html">Pagination</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/tabs.html">Tabs</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/button.html">Button</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/accordion.html">Accordion</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/card.html">Card</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/form-field.html">Form fields</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/alert.html">Alert and badge</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/toast.html">Toast</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/dialog.html">Dialog</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/chart.html">Charts</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/data-grid.html">Data grid</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/data-table.html">Data table</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/chat.html">AI chat</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/chat-message.html">Chat messages</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/chat-widget.html">Chat widget</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/theme-customizer.html">Theme customizer</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/theme-toggle.html">Theme toggle</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav__group" data-docs-group>
+        <p class="docs-nav__title" id="nav-foundations">Foundations</p>
+        <ul class="docs-nav__list" role="list" aria-labelledby="nav-foundations">
+          <li><a class="docs-nav__link" href="../../docs/foundations/colors.html">Colours</a></li>
+          <li><a class="docs-nav__link" href="../../docs/foundations/typography.html">Typography</a></li>
+          <li><a class="docs-nav__link" href="../../docs/foundations/spacing.html">Spacing and shape</a></li>
+          <li><a class="docs-nav__link" href="../../docs/foundations/icons.html">Icons</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav__group" data-docs-group>
+        <p class="docs-nav__title" id="nav-guides">Guides</p>
+        <ul class="docs-nav__list" role="list" aria-labelledby="nav-guides">
+          <li><a class="docs-nav__link" href="../../docs/guides/theming.html">Theming</a></li>
+          <li><a class="docs-nav__link" href="../../docs/guides/layouts.html">Layouts and pages</a></li>
+          <li><a class="docs-nav__link" href="../../docs/guides/data.html">Data and charts</a></li>
+          <li><a class="docs-nav__link" href="../../docs/guides/ai-chat.html" aria-current="page">AI chat</a></li>
+          <li><a class="docs-nav__link" href="../../docs/guides/accessibility.html">Accessibility</a></li>
+          <li><a class="docs-nav__link" href="../../docs/guides/security.html">Security</a></li>
+          <li><a class="docs-nav__link" href="../../docs/guides/integration.html">Framework integration</a></li>
+          <li><a class="docs-nav__link" href="../../docs/guides/architecture.html">Architecture</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <main class="docs-main" id="main" tabindex="-1">
+      <header class="docs-header">
+        <p class="eyebrow">Guide</p>
+        <h1 class="docs-header__title">AI chat and agent interfaces</h1>
+        
+        
+        <div class="docs-header__actions"><a class="btn btn--ghost btn--sm" href="https://github.com/amuqtadir99/vanilla-responsive-ui/blob/main/docs/AI-CHAT.md"><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20h9M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4z"/></svg> Edit AI-CHAT.md on GitHub</a></div>
+      </header>
+
+      <div class="docs-prose">
+<p>Chat components give your product the interaction people expect from AI platforms: streaming replies, Markdown and code, visible tool steps, sources, charts, follow-up suggestions, feedback buttons and saved conversations. They are plain HTML + one ES module, so they work in any stack, and they talk to <strong>your</strong> backend over a simple streaming protocol.</p>
+<h2 id="what-is-included">What is included</h2>
+<div class="table-wrapper" role="region" aria-label="Piece, Where, Persona (demo)" tabindex="0"><table class="table" aria-label="Piece, Where, Persona (demo)"><thead><tr><th scope="col">Piece</th><th scope="col">Where</th><th scope="col">Persona (demo)</th></tr></thead><tbody><tr><td>Embeddable chat panel</td><td>[<code>src/components/chat.html</code>](../src/components/chat.html)</td><td><code>general</code></td></tr><tr><td>Floating support widget</td><td>[<code>src/components/chat-widget.html</code>](../src/components/chat-widget.html), partial <code>chat-widget</code> (website, shop, landing)</td><td><code>support</code></td></tr><tr><td>Static message anatomy</td><td>[<code>src/components/chat-message.html</code>](../src/components/chat-message.html)</td><td>—</td></tr><tr><td>Full-page assistant with saved conversations</td><td>[<code>src/templates/ai/index.html</code>](../src/templates/ai/index.html)</td><td><code>general</code></td></tr><tr><td>Agent workspace with live plan and tool panel</td><td>[<code>src/templates/ai/agent.html</code>](../src/templates/ai/agent.html)</td><td><code>agent</code></td></tr><tr><td>&quot;Ask your data&quot; analyst with charts</td><td>[<code>src/templates/dashboard/assistant.html</code>](../src/templates/dashboard/assistant.html)</td><td><code>analyst</code></td></tr></tbody></table></div>
+<p>Without a backend, a built-in mock (<code>src/assets/js/demo/chat-mock.js</code>) answers from the sample data, so you can explore the UI offline. Replace it before production.</p>
+<h2 id="markup">Markup</h2>
+<div class="docs-code">
+  <div class="docs-code__header">
+    <span class="docs-code__label">HTML</span>
+    <span class="docs-code__actions"><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-target="#code-549" data-copy-success="Code copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy code</span></button></span>
+  </div>
+  <pre tabindex="0" role="region" aria-label="HTML"><code id="code-549"><span class="tok-tag">&lt;section</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;chat&quot;</span> <span class="tok-attr">data-chat</span> <span class="tok-attr">data-chat-endpoint</span><span class="tok-punct">=</span><span class="tok-string">&quot;/api/chat&quot;</span> <span class="tok-attr">data-chat-storage</span><span class="tok-punct">=</span><span class="tok-string">&quot;my-chat&quot;</span> <span class="tok-attr">aria-labelledby</span><span class="tok-punct">=</span><span class="tok-string">&quot;chat-title&quot;</span><span class="tok-tag">&gt;</span>
+  <span class="tok-tag">&lt;header</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;chat__header&quot;</span><span class="tok-tag">&gt;</span>
+    <span class="tok-tag">&lt;div</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;chat__heading&quot;</span><span class="tok-tag">&gt;</span><span class="tok-tag">&lt;h2</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;chat__title&quot;</span> <span class="tok-attr">id</span><span class="tok-punct">=</span><span class="tok-string">&quot;chat-title&quot;</span><span class="tok-tag">&gt;</span>Assistant<span class="tok-tag">&lt;/h2</span><span class="tok-tag">&gt;</span><span class="tok-tag">&lt;/div</span><span class="tok-tag">&gt;</span>
+    <span class="tok-tag">&lt;button</span> <span class="tok-attr">type</span><span class="tok-punct">=</span><span class="tok-string">&quot;button&quot;</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;btn btn--ghost btn--sm&quot;</span> <span class="tok-attr">data-chat-clear</span> <span class="tok-attr">hidden</span><span class="tok-tag">&gt;</span>New chat<span class="tok-tag">&lt;/button</span><span class="tok-tag">&gt;</span>
+  <span class="tok-tag">&lt;/header</span><span class="tok-tag">&gt;</span>
+  <span class="tok-tag">&lt;div</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;chat__log&quot;</span> <span class="tok-attr">role</span><span class="tok-punct">=</span><span class="tok-string">&quot;log&quot;</span> <span class="tok-attr">aria-label</span><span class="tok-punct">=</span><span class="tok-string">&quot;Conversation&quot;</span> <span class="tok-attr">aria-live</span><span class="tok-punct">=</span><span class="tok-string">&quot;off&quot;</span> <span class="tok-attr">tabindex</span><span class="tok-punct">=</span><span class="tok-string">&quot;0&quot;</span> <span class="tok-attr">data-chat-log</span><span class="tok-tag">&gt;</span>
+    <span class="tok-comment">&lt;!-- optional server-rendered greeting or transcript --&gt;</span>
+  <span class="tok-tag">&lt;/div</span><span class="tok-tag">&gt;</span>
+  <span class="tok-tag">&lt;div</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;chat__suggestions&quot;</span> <span class="tok-attr">data-chat-suggestions</span> <span class="tok-attr">hidden</span><span class="tok-tag">&gt;</span>
+    <span class="tok-tag">&lt;button</span> <span class="tok-attr">type</span><span class="tok-punct">=</span><span class="tok-string">&quot;button&quot;</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;chip&quot;</span> <span class="tok-attr">data-chat-suggestion</span><span class="tok-tag">&gt;</span>Summarise this page<span class="tok-tag">&lt;/button</span><span class="tok-tag">&gt;</span>
+  <span class="tok-tag">&lt;/div</span><span class="tok-tag">&gt;</span>
+  <span class="tok-tag">&lt;form</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;chat__composer&quot;</span> <span class="tok-attr">action</span><span class="tok-punct">=</span><span class="tok-string">&quot;/chat&quot;</span> <span class="tok-attr">method</span><span class="tok-punct">=</span><span class="tok-string">&quot;post&quot;</span> <span class="tok-attr">data-chat-form</span><span class="tok-tag">&gt;</span>
+    <span class="tok-tag">&lt;label</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;visually-hidden&quot;</span> <span class="tok-attr">for</span><span class="tok-punct">=</span><span class="tok-string">&quot;chat-input&quot;</span><span class="tok-tag">&gt;</span>Message<span class="tok-tag">&lt;/label</span><span class="tok-tag">&gt;</span>
+    <span class="tok-tag">&lt;textarea</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;chat__input&quot;</span> <span class="tok-attr">id</span><span class="tok-punct">=</span><span class="tok-string">&quot;chat-input&quot;</span> <span class="tok-attr">name</span><span class="tok-punct">=</span><span class="tok-string">&quot;message&quot;</span> <span class="tok-attr">rows</span><span class="tok-punct">=</span><span class="tok-string">&quot;1&quot;</span> <span class="tok-attr">required</span> <span class="tok-attr">data-chat-input</span><span class="tok-tag">&gt;</span><span class="tok-tag">&lt;/textarea</span><span class="tok-tag">&gt;</span>
+    <span class="tok-tag">&lt;div</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;chat__actions&quot;</span><span class="tok-tag">&gt;</span>
+      <span class="tok-tag">&lt;button</span> <span class="tok-attr">type</span><span class="tok-punct">=</span><span class="tok-string">&quot;submit&quot;</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;btn btn--icon btn--sm&quot;</span> <span class="tok-attr">data-chat-send</span><span class="tok-tag">&gt;</span><span class="tok-tag">&lt;span</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;visually-hidden&quot;</span><span class="tok-tag">&gt;</span>Send<span class="tok-tag">&lt;/span</span><span class="tok-tag">&gt;</span>…<span class="tok-tag">&lt;/button</span><span class="tok-tag">&gt;</span>
+      <span class="tok-tag">&lt;button</span> <span class="tok-attr">type</span><span class="tok-punct">=</span><span class="tok-string">&quot;button&quot;</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;btn btn--icon btn--sm btn--secondary&quot;</span> <span class="tok-attr">data-chat-stop</span> <span class="tok-attr">hidden</span><span class="tok-tag">&gt;</span><span class="tok-tag">&lt;span</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;visually-hidden&quot;</span><span class="tok-tag">&gt;</span>Stop generating<span class="tok-tag">&lt;/span</span><span class="tok-tag">&gt;</span>…<span class="tok-tag">&lt;/button</span><span class="tok-tag">&gt;</span>
+    <span class="tok-tag">&lt;/div</span><span class="tok-tag">&gt;</span>
+  <span class="tok-tag">&lt;/form</span><span class="tok-tag">&gt;</span>
+<span class="tok-tag">&lt;/section</span><span class="tok-tag">&gt;</span></code></pre>
+</div>
+<div class="table-wrapper" role="region" aria-label="Attribute, Purpose" tabindex="0"><table class="table" aria-label="Attribute, Purpose"><thead><tr><th scope="col">Attribute</th><th scope="col">Purpose</th></tr></thead><tbody><tr><td><code>data-chat-endpoint</code></td><td>URL that streams replies (see protocol below)</td></tr><tr><td><code>data-chat-transport</code></td><td>Name of a transport registered with <code>registerTransport()</code></td></tr><tr><td><code>data-chat-persona</code></td><td>Sent to your backend (and selects the demo persona)</td></tr><tr><td><code>data-chat-storage</code></td><td>localStorage key to keep the conversation across visits</td></tr></tbody></table></div>
+<p>Add <code>class=&quot;chat--page&quot;</code> for a full-height layout, and the <code>data-chat-attach</code> button + <code>data-chat-file</code> input + <code>data-chat-attachments</code> container to accept files (names are sent with the message; upload them yourself if you need the contents).</p>
+<h2 id="streaming-protocol">Streaming protocol</h2>
+<p>The component <code>POST</code>s JSON to <code>data-chat-endpoint</code>:</p>
+<div class="docs-code">
+  <div class="docs-code__header">
+    <span class="docs-code__label">JSON</span>
+    <span class="docs-code__actions"><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-target="#code-550" data-copy-success="Code copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy code</span></button></span>
+  </div>
+  <pre tabindex="0" role="region" aria-label="JSON"><code id="code-550">{
+  <span class="tok-string">&quot;persona&quot;</span>: <span class="tok-string">&quot;support&quot;</span>,
+  <span class="tok-string">&quot;messages&quot;</span>: [
+    { <span class="tok-string">&quot;role&quot;</span>: <span class="tok-string">&quot;user&quot;</span>, <span class="tok-string">&quot;text&quot;</span>: <span class="tok-string">&quot;Where is my order #1061?&quot;</span>, <span class="tok-string">&quot;files&quot;</span>: [] },
+    { <span class="tok-string">&quot;role&quot;</span>: <span class="tok-string">&quot;assistant&quot;</span>, <span class="tok-string">&quot;text&quot;</span>: <span class="tok-string">&quot;…&quot;</span> },
+    { <span class="tok-string">&quot;role&quot;</span>: <span class="tok-string">&quot;user&quot;</span>, <span class="tok-string">&quot;text&quot;</span>: <span class="tok-string">&quot;And #1063?&quot;</span>, <span class="tok-string">&quot;files&quot;</span>: [] }
+  ]
+}</code></pre>
+</div>
+<p>Respond with a stream of events, one JSON object per line (<code>application/x-ndjson</code>) or per Server-Sent Event <code>data:</code> line (<code>text/event-stream</code>). A <code>text/plain</code> stream is treated as text deltas.</p>
+<div class="table-wrapper" role="region" aria-label="Event, Renders" tabindex="0"><table class="table" aria-label="Event, Renders"><thead><tr><th scope="col">Event</th><th scope="col">Renders</th></tr></thead><tbody><tr><td><code>{&quot;type&quot;:&quot;text&quot;,&quot;delta&quot;:&quot;Hello&quot;}</code></td><td>Appends Markdown text</td></tr><tr><td><code>{&quot;type&quot;:&quot;tool&quot;,&quot;id&quot;:&quot;t1&quot;,&quot;name&quot;:&quot;lookup_order&quot;,&quot;title&quot;:&quot;Looking up order&quot;,&quot;status&quot;:&quot;running&quot;,&quot;input&quot;:{…}}</code></td><td>A collapsible tool step; send again with <code>&quot;status&quot;:&quot;done&quot;</code> (or <code>&quot;error&quot;</code>) and <code>&quot;output&quot;</code></td></tr><tr><td><code>{&quot;type&quot;:&quot;chart&quot;,&quot;viz&quot;:&quot;bar&quot;,&quot;title&quot;:&quot;…&quot;,&quot;x&quot;:&quot;month&quot;,&quot;series&quot;:&quot;revenue:Revenue&quot;,&quot;format&quot;:&quot;currency-compact&quot;,&quot;rows&quot;:[…]}</code></td><td>An accessible SVG chart (same options as <a href="data.html#charts">charts</a>)</td></tr><tr><td><code>{&quot;type&quot;:&quot;sources&quot;,&quot;items&quot;:[{&quot;title&quot;:&quot;Returns policy&quot;,&quot;url&quot;:&quot;https://…&quot;}]}</code></td><td>A numbered source list</td></tr><tr><td><code>{&quot;type&quot;:&quot;suggestions&quot;,&quot;items&quot;:[&quot;Track another order&quot;]}</code></td><td>Follow-up chips</td></tr><tr><td><code>{&quot;type&quot;:&quot;error&quot;,&quot;message&quot;:&quot;…&quot;}</code></td><td>An inline error</td></tr><tr><td><code>{&quot;type&quot;:&quot;done&quot;}</code></td><td>Ends the reply (closing the stream also works)</td></tr></tbody></table></div>
+<p>Any other event type (for example <code>plan</code>, <code>step</code> or <code>artifact</code>) is ignored by the chat but dispatched as a <code>chat:event</code> CustomEvent, so your page can render extra UI. The agent workspace uses this for its run panel.</p>
+<h2 id="backend-examples">Backend examples</h2>
+<p>These examples call Claude through the official Anthropic SDKs and stream text back as NDJSON. They use <code>claude-opus-5-5</code> and opt into server-side <strong>refusal fallbacks</strong> (<code>fallbacks: &quot;default&quot;</code>), so a request declined by a safety classifier is re-run on Anthropic's recommended fallback model instead of failing. A reply that is still declined ends with <code>stop_reason: &quot;refusal&quot;</code>, which the examples turn into an <code>error</code> event. Keep your API key on the server; never send it to the browser.</p>
+<h3 id="nodejs-nodehttp-no-framework">Node.js (<code>node:http</code>, no framework)</h3>
+<div class="docs-code">
+  <div class="docs-code__header">
+    <span class="docs-code__label">JS</span>
+    <span class="docs-code__actions"><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-target="#code-551" data-copy-success="Code copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy code</span></button></span>
+  </div>
+  <pre tabindex="0" role="region" aria-label="JS"><code id="code-551"><span class="tok-comment">// server.mjs — npm install @anthropic-ai/sdk ; ANTHROPIC_API_KEY in the environment</span>
+<span class="tok-keyword">import</span> http <span class="tok-keyword">from</span> <span class="tok-string">'node:http'</span>;
+<span class="tok-keyword">import</span> Anthropic <span class="tok-keyword">from</span> <span class="tok-string">'@anthropic-ai/sdk'</span>;
+
+<span class="tok-keyword">const</span> client = <span class="tok-keyword">new</span> <span class="tok-function">Anthropic</span>();
+
+<span class="tok-keyword">function</span> <span class="tok-function">toClaudeMessages</span>(messages) {
+  <span class="tok-keyword">return</span> messages
+    .<span class="tok-function">filter</span>((m) =&gt; (m.role === <span class="tok-string">'user'</span> || m.role === <span class="tok-string">'assistant'</span>) &amp;&amp; m.text?.<span class="tok-function">trim</span>())
+    .<span class="tok-function">map</span>((m) =&gt; ({ role: m.role, content: m.text }));
+}
+
+http
+  .<span class="tok-function">createServer</span>(<span class="tok-keyword">async</span> (req, res) =&gt; {
+    <span class="tok-keyword">if</span> (req.method !== <span class="tok-string">'POST'</span> || req.url !== <span class="tok-string">'/api/chat'</span>) {
+      res.<span class="tok-function">writeHead</span>(<span class="tok-number">404</span>).<span class="tok-function">end</span>();
+      <span class="tok-keyword">return</span>;
+    }
+    <span class="tok-keyword">let</span> body = <span class="tok-string">''</span>;
+    <span class="tok-keyword">for</span> <span class="tok-keyword">await</span> (<span class="tok-keyword">const</span> chunk <span class="tok-keyword">of</span> req) body += chunk;
+    <span class="tok-keyword">const</span> { messages = [] } = JSON.<span class="tok-function">parse</span>(body || <span class="tok-string">'{}'</span>);
+
+    res.<span class="tok-function">writeHead</span>(<span class="tok-number">200</span>, { <span class="tok-string">'Content-Type'</span>: <span class="tok-string">'application/x-ndjson'</span>, <span class="tok-string">'Cache-Control'</span>: <span class="tok-string">'no-cache'</span> });
+    <span class="tok-keyword">const</span> send = (event) =&gt; res.<span class="tok-function">write</span>(<span class="tok-string">`${JSON.stringify(event)}\n`</span>);
+
+    <span class="tok-keyword">try</span> {
+      <span class="tok-keyword">const</span> stream = client.beta.messages.<span class="tok-function">stream</span>({
+        model: <span class="tok-string">'claude-opus-5-5'</span>,
+        max_tokens: <span class="tok-number">64000</span>,
+        betas: [<span class="tok-string">'server-side-fallback-2026-07-01'</span>],
+        fallbacks: <span class="tok-string">'default'</span>,
+        system: <span class="tok-string">'You are a concise, helpful assistant. Use Markdown.'</span>,
+        messages: <span class="tok-function">toClaudeMessages</span>(messages),
+      });
+      res.<span class="tok-function">on</span>(<span class="tok-string">'close'</span>, () =&gt; {
+        <span class="tok-keyword">if</span> (!res.writableEnded) stream.<span class="tok-function">abort</span>(); <span class="tok-comment">// the user pressed Stop or left</span>
+      });
+
+      <span class="tok-keyword">for</span> <span class="tok-keyword">await</span> (<span class="tok-keyword">const</span> event <span class="tok-keyword">of</span> stream) {
+        <span class="tok-keyword">if</span> (event.type === <span class="tok-string">'content_block_delta'</span> &amp;&amp; event.delta.type === <span class="tok-string">'text_delta'</span>) {
+          <span class="tok-function">send</span>({ type: <span class="tok-string">'text'</span>, delta: event.delta.text });
+        }
+      }
+      <span class="tok-keyword">const</span> final = <span class="tok-keyword">await</span> stream.<span class="tok-function">finalMessage</span>();
+      <span class="tok-keyword">if</span> (final.stop_reason === <span class="tok-string">'refusal'</span>) <span class="tok-function">send</span>({ type: <span class="tok-string">'error'</span>, message: <span class="tok-string">'Sorry, I can’t help with that request.'</span> });
+      <span class="tok-function">send</span>({ type: <span class="tok-string">'done'</span> });
+    } <span class="tok-keyword">catch</span> (error) {
+      <span class="tok-function">send</span>({ type: <span class="tok-string">'error'</span>, message: <span class="tok-string">'The assistant is unavailable. Please try again.'</span> });
+    }
+    res.<span class="tok-function">end</span>();
+  })
+  .<span class="tok-function">listen</span>(<span class="tok-number">8787</span>);</code></pre>
+</div>
+<h3 id="python-fastapi">Python (FastAPI)</h3>
+<div class="docs-code">
+  <div class="docs-code__header">
+    <span class="docs-code__label">PYTHON</span>
+    <span class="docs-code__actions"><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-target="#code-552" data-copy-success="Code copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy code</span></button></span>
+  </div>
+  <pre tabindex="0" role="region" aria-label="PYTHON"><code id="code-552"># app.py — pip install anthropic fastapi uvicorn ; ANTHROPIC_API_KEY in the environment
+import json
+from anthropic import AsyncAnthropic
+from fastapi import FastAPI, Request
+from fastapi.responses import StreamingResponse
+
+app = FastAPI()
+client = AsyncAnthropic()
+
+
+def to_claude_messages(messages):
+    return [
+        {&quot;role&quot;: m[&quot;role&quot;], &quot;content&quot;: m[&quot;text&quot;]}
+        for m in messages
+        if m.get(&quot;role&quot;) in (&quot;user&quot;, &quot;assistant&quot;) and m.get(&quot;text&quot;, &quot;&quot;).strip()
+    ]
+
+
+@app.post(&quot;/api/chat&quot;)
+async def chat(request: Request):
+    payload = await request.json()
+
+    async def events():
+        try:
+            async with client.beta.messages.stream(
+                model=&quot;claude-opus-5-5&quot;,
+                max_tokens=64000,
+                betas=[&quot;server-side-fallback-2026-07-01&quot;],
+                fallbacks=&quot;default&quot;,
+                system=&quot;You are a concise, helpful assistant. Use Markdown.&quot;,
+                messages=to_claude_messages(payload.get(&quot;messages&quot;, [])),
+            ) as stream:
+                async for text in stream.text_stream:
+                    yield json.dumps({&quot;type&quot;: &quot;text&quot;, &quot;delta&quot;: text}) + &quot;\n&quot;
+                final = await stream.get_final_message()
+                if final.stop_reason == &quot;refusal&quot;:
+                    yield json.dumps({&quot;type&quot;: &quot;error&quot;, &quot;message&quot;: &quot;Sorry, I can't help with that request.&quot;}) + &quot;\n&quot;
+        except Exception:
+            yield json.dumps({&quot;type&quot;: &quot;error&quot;, &quot;message&quot;: &quot;The assistant is unavailable. Please try again.&quot;}) + &quot;\n&quot;
+        yield json.dumps({&quot;type&quot;: &quot;done&quot;}) + &quot;\n&quot;
+
+    return StreamingResponse(events(), media_type=&quot;application/x-ndjson&quot;)</code></pre>
+</div>
+<h3 id="tools-and-agents">Tools and agents</h3>
+<p>When your backend runs a tool loop (your own tools, the SDK tool runner or a hosted agent), forward its progress as <code>tool</code> events so people can see what the agent is doing:</p>
+<div class="docs-code">
+  <div class="docs-code__header">
+    <span class="docs-code__label">JS</span>
+    <span class="docs-code__actions"><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-target="#code-553" data-copy-success="Code copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy code</span></button></span>
+  </div>
+  <pre tabindex="0" role="region" aria-label="JS"><code id="code-553"><span class="tok-function">send</span>({ type: <span class="tok-string">'tool'</span>, id: block.id, name: block.name, title: <span class="tok-string">'Searching orders'</span>, status: <span class="tok-string">'running'</span>, input: block.input });
+<span class="tok-comment">// …run the tool…</span>
+<span class="tok-function">send</span>({ type: <span class="tok-string">'tool'</span>, id: block.id, name: block.name, title: <span class="tok-string">'Searching orders'</span>, status: <span class="tok-string">'done'</span>, output: summary });</code></pre>
+</div>
+<p>Send charts as <code>chart</code> events with the rows your tool returned, and links you used as <code>sources</code>. Keep tool outputs short in the UI; the full result belongs in the model's context, not on screen.</p>
+<h3 id="same-origin-and-csp">Same origin and CSP</h3>
+<p>The templates' Content-Security-Policy allows <code>connect-src 'self'</code>. Serve the chat endpoint from the same origin (for example <code>/api/chat</code>), or add your API host to <code>connect-src</code>.</p>
+<h2 id="custom-transports">Custom transports</h2>
+<p>For WebSockets, a vendor SDK in the browser, or a non-standard API, register an async generator that yields the same events:</p>
+<div class="docs-code">
+  <div class="docs-code__header">
+    <span class="docs-code__label">JS</span>
+    <span class="docs-code__actions"><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-target="#code-554" data-copy-success="Code copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy code</span></button></span>
+  </div>
+  <pre tabindex="0" role="region" aria-label="JS"><code id="code-554"><span class="tok-keyword">import</span> { registerTransport } <span class="tok-keyword">from</span> <span class="tok-string">'./assets/js/components/chat.js'</span>;
+
+<span class="tok-function">registerTransport</span>(<span class="tok-string">'my-agent'</span>, <span class="tok-keyword">async</span> <span class="tok-keyword">function</span>* ({ messages, persona, signal }) {
+  <span class="tok-keyword">const</span> socket = <span class="tok-keyword">await</span> <span class="tok-function">openSocket</span>(signal);          <span class="tok-comment">// your code</span>
+  socket.<span class="tok-function">send</span>(JSON.<span class="tok-function">stringify</span>({ messages, persona }));
+  <span class="tok-keyword">for</span> <span class="tok-keyword">await</span> (<span class="tok-keyword">const</span> message <span class="tok-keyword">of</span> socket) <span class="tok-keyword">yield</span> JSON.<span class="tok-function">parse</span>(message);
+});</code></pre>
+</div>
+<div class="docs-code">
+  <div class="docs-code__header">
+    <span class="docs-code__label">HTML</span>
+    <span class="docs-code__actions"><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-target="#code-555" data-copy-success="Code copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy code</span></button></span>
+  </div>
+  <pre tabindex="0" role="region" aria-label="HTML"><code id="code-555"><span class="tok-tag">&lt;section</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;chat&quot;</span> <span class="tok-attr">data-chat</span> <span class="tok-attr">data-chat-transport</span><span class="tok-punct">=</span><span class="tok-string">&quot;my-agent&quot;</span><span class="tok-tag">&gt;</span>…<span class="tok-tag">&lt;/section</span><span class="tok-tag">&gt;</span></code></pre>
+</div>
+<p>Register transports before <code>main.js</code> initialises the page (load your module first), or call <code>init()</code> from <code>components/chat.js</code> afterwards.</p>
+<h2 id="page-integration">Page integration</h2>
+<ul><li><code>chat:event</code> — every stream event (<code>event.detail</code>), for custom panels.</li><li><code>chat:done</code> — a reply finished (<code>event.detail.message</code>).</li><li><code>chat:feedback</code> — thumbs up/down (<code>{ message, value }</code>); send it to your analytics.</li><li><code>chat:clear</code> — the user started a new conversation.</li><li><code>element.chat.send(text)</code>, <code>element.chat.stop()</code>, <code>element.chat.messages</code>.</li></ul>
+<h2 id="accessibility">Accessibility</h2>
+<ul><li>The conversation is a labelled, focusable <code>role=&quot;log&quot;</code> region; each message starts with hidden &quot;You said&quot; / &quot;Assistant said&quot; text.</li><li>Replies are announced <strong>once when complete</strong> through a polite live region, not token by token; tool steps announce when they start and finish.</li><li>Enter sends, Shift+Enter adds a new line, Escape stops a reply (or closes the widget). The widget returns focus to its launcher when closed.</li><li>Every button has a text label; feedback buttons use <code>aria-pressed</code>.</li><li>Motion (typing dots, spinners) respects <code>prefers-reduced-motion</code>.</li></ul>
+<h2 id="security">Security</h2>
+<ul><li>All model output is rendered with <code>textContent</code> / <code>createElement</code> via <code>core/markdown.js</code>; HTML in a reply is shown as text, never executed.</li><li>Links are limited to <code>http(s)</code> and <code>mailto</code>; external links open in a new tab with <code>rel=&quot;noopener noreferrer&quot;</code>.</li><li>Saved conversations live in the visitor's localStorage. Don't enable <code>data-chat-storage</code> for chats that may contain sensitive data, or store history on your server instead.</li><li>Validate, rate-limit and authenticate the chat endpoint like any other API; treat user messages as untrusted input to your tools.</li></ul>
+      </div>
+    </main>
+    <aside class="docs-toc" aria-labelledby="toc-title">
+      <h2 class="docs-toc__title" id="toc-title">On this page</h2>
+      <ul class="docs-toc__list" role="list">
+        <li><a href="#what-is-included">What is included</a></li>
+        <li><a href="#markup">Markup</a></li>
+        <li><a href="#streaming-protocol">Streaming protocol</a></li>
+        <li><a href="#backend-examples">Backend examples</a></li>
+        <li><a href="#custom-transports">Custom transports</a></li>
+        <li><a href="#page-integration">Page integration</a></li>
+        <li><a href="#accessibility">Accessibility</a></li>
+        <li><a href="#security">Security</a></li>
+      </ul>
+    </aside>
+  </div>
+
+  <footer class="docs-footer">
+    <p>MIT licensed · Built with plain HTML, CSS and JavaScript · <a href="https://github.com/amuqtadir99/vanilla-responsive-ui">Source on GitHub</a> · Generated by <code>node .claude/skills/generate-doc.js</code></p>
+  </footer>
+</body>
+</html>

@@ -26,6 +26,7 @@
   <link rel="stylesheet" href="../../assets/css/components/accordion.css">
   <link rel="stylesheet" href="../../assets/css/components/code.css">
   <link rel="stylesheet" href="../../assets/css/components/chat.css">
+  <link rel="stylesheet" href="../../assets/css/blocks.css">
   <link rel="stylesheet" href="./website.css">
   <script type="module" src="../../assets/js/main.js"></script>
 </head>
@@ -36,7 +37,7 @@
   <!-- Demo navigation between templates. Remove this partial in production. -->
   <nav class="demo-bar" aria-label="Template gallery">
     <div class="container demo-bar__inner">
-      <a class="demo-bar__home" href="../../index.html">vanilla-responsive-ui</a>
+      <a class="demo-bar__home" href="../../index.html">vanilla-responsive-ui <span class="visually-hidden">documentation</span></a>
       <ul class="demo-bar__list">
         <li><a href="../../templates/landing-page/index.html" data-section>Landing</a></li>
         <li><a href="../../templates/website/index.html" data-section aria-current="page">Website</a></li>
@@ -44,8 +45,8 @@
         <li><a href="../../templates/e-commerce/index.html" data-section>Shop</a></li>
         <li><a href="../../templates/ai/index.html" data-section>AI assistant</a></li>
         <li><a href="../../templates/auth/index.html" data-section>Auth</a></li>
-        <li><a href="../../components/index.html" data-section>Components</a></li>
-        <li><a href="../../layouts/index.html" data-section>Layouts</a></li>
+        <li><a href="../../docs/templates/index.html">Docs</a></li>
+        <li><a href="../../builder/index.html" data-section>Builder</a></li>
       </ul>
       <div class="demo-bar__actions">
         <button type="button" class="btn btn--ghost btn--sm" commandfor="theme-panel" command="show-modal" data-theme-panel-trigger hidden>
@@ -54,6 +55,7 @@
       </div>
     </div>
   </nav>
+  <p class="needs-server"><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4M12 17h.01"/></svg> <span>This page was opened from disk, so the browser blocks its JavaScript (menus, charts, chat, theme). Run <code>python3 -m http.server 8080</code> in the repository folder and open <a href="http://localhost:8080/src/">localhost:8080/src/</a>.</span></p>
   <!-- @end template-switcher -->
   <!-- @partial site-header -->
   <header class="site-header">
@@ -92,155 +94,225 @@
   <!-- @end site-header -->
 
   <main id="main" tabindex="-1">
-    <section class="site-hero" aria-labelledby="hero-title">
-      <div class="container layout" data-layout="split">
-        <div class="stack stack--lg site-hero__content">
-          <p class="eyebrow">Digital product studio</p>
-          <h1 id="hero-title" class="site-hero__title">We build accessible products people love to use.</h1>
-          <p class="lead">Acme Studio partners with teams to research, design and engineer web apps, dashboards and AI experiences that work for everyone.</p>
-          <div class="cluster">
+    <section data-block="hero-split" class="hero hero--split" aria-labelledby="hero-title">
+      <div class="container hero__inner">
+        <div class="hero__content">
+          <a class="announce" href="about.html"><span class="announce__tag">Hiring</span> We’re looking for two designers <svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <h1 class="hero__title" id="hero-title">We design and build <span class="text-gradient">accessible products</span> people love</h1>
+          <p class="hero__lead">Acme Studio partners with product teams to research, design and engineer web apps, dashboards and AI experiences that work for everyone.</p>
+          <div class="hero__actions">
             <a class="btn btn--lg" href="contact.html">Start a project <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
             <a class="btn btn--lg btn--secondary" href="services.html">Our services</a>
           </div>
+          <ul class="checklist checklist--inline" role="list">
+            <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> 120+ products launched</li>
+            <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> WCAG 2.2 AA by default</li>
+            <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Teams in 14 countries</li>
+          </ul>
         </div>
-        <img class="site-hero__image" src="../../assets/images/hero.svg" width="960" height="720" alt="Illustration of a dashboard with charts and statistic cards" fetchpriority="high" decoding="async">
+        <div class="hero__media">
+          <ul class="showcase" role="list">
+            <li class="showcase__item showcase__item--main"><img src="../../assets/images/case-study.svg" width="800" height="420" alt="Northwind checkout dashboard with conversion rising" fetchpriority="high"></li>
+            <li class="showcase__item"><img src="../../assets/images/blog-design-tokens.svg" width="800" height="450" alt="Design token swatches for the Fabrikam design system" loading="lazy"></li>
+            <li class="showcase__item"><img src="../../assets/images/blog-ai-ux.svg" width="800" height="450" alt="Chat assistant interface built for Lumen" loading="lazy"></li>
+          </ul>
+        </div>
       </div>
     </section>
 
-    <section class="section" aria-labelledby="services-title">
+    <section data-block="logo-cloud" class="section section--tight" aria-labelledby="logos-title">
+      <div class="container logo-cloud">
+        <h2 class="logo-cloud__title" id="logos-title">Partnering with teams at</h2>
+        <ul class="logo-cloud__list" role="list">
+          <li class="logo-cloud__item"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 2 7l10 5 10-5z"/><path d="m2 17 10 5 10-5M2 12l10 5 10-5"/></svg> Northwind</li>
+          <li class="logo-cloud__item"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2 3 14h9l-1 8 10-12h-9z"/></svg> Voltage</li>
+          <li class="logo-cloud__item"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg> Contoso</li>
+          <li class="logo-cloud__item"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg> Fabrikam</li>
+          <li class="logo-cloud__item"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Bastion</li>
+          <li class="logo-cloud__item"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8zM5 2l.6 1.4L7 4l-1.4.6L5 6l-.6-1.4L3 4l1.4-.6z"/></svg> Lumen</li>
+        </ul>
+      </div>
+    </section>
+
+    <section data-block="feature-grid" class="section" aria-labelledby="services-title">
       <div class="container">
-        <header class="section__header section__header--center stack">
-          <p class="eyebrow">What we do</p>
-          <h2 id="services-title">End-to-end product delivery</h2>
-          <p class="lead">From discovery workshops to production code, with accessibility built in at every step.</p>
-        </header>
-        <ul class="grid-auto list-reset" role="list">
-          <li class="card">
-            <div class="card__body">
-              <span class="card__icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span>
-              <h3 class="card__title"><a href="services.html#strategy">Product strategy</a></h3>
-              <p class="card__text">Research, roadmaps and measurable goals that align your team.</p>
-            </div>
+        <div class="block-header block-header--split">
+          <div class="stack stack--xs">
+            <p class="eyebrow">What we do</p>
+            <h2 class="block-header__title" id="services-title">End-to-end product delivery</h2>
+          </div>
+          <p class="block-header__lead">From discovery workshops to production code, with accessibility built in at every step.</p>
+        </div>
+        <ul class="service-grid" role="list">
+          <li class="service-card">
+            <span class="block-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span>
+            <h3 class="service-card__title"><a href="services.html#strategy">Product strategy</a></h3>
+            <p class="text-muted">Research, roadmaps and measurable goals that align your team.</p>
+            <span class="service-card__more" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
           </li>
-          <li class="card">
-            <div class="card__body">
-              <span class="card__icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 19 7-7 3 3-7 7zM18 13l-1.5-7.5L2 2l3.5 14.5L13 18z"/><path d="m2 2 7.59 7.59"/><circle cx="11" cy="11" r="2"/></svg></span>
-              <h3 class="card__title"><a href="services.html#design">Design systems</a></h3>
-              <p class="card__text">Token-driven design systems that scale across products and brands.</p>
-            </div>
+          <li class="service-card">
+            <span class="block-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 19 7-7 3 3-7 7zM18 13l-1.5-7.5L2 2l3.5 14.5L13 18z"/><path d="m2 2 7.59 7.59"/><circle cx="11" cy="11" r="2"/></svg></span>
+            <h3 class="service-card__title"><a href="services.html#design">Design systems</a></h3>
+            <p class="text-muted">Token-driven systems that scale across products and brands.</p>
+            <span class="service-card__more" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
           </li>
-          <li class="card">
-            <div class="card__body">
-              <span class="card__icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m16 18 6-6-6-6M8 6l-6 6 6 6"/></svg></span>
-              <h3 class="card__title"><a href="services.html#engineering">Engineering</a></h3>
-              <p class="card__text">Fast, standards-based front ends for any stack: .NET, React, Django and more.</p>
-            </div>
+          <li class="service-card">
+            <span class="block-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m16 18 6-6-6-6M8 6l-6 6 6 6"/></svg></span>
+            <h3 class="service-card__title"><a href="services.html#engineering">Engineering</a></h3>
+            <p class="text-muted">Fast, standards-based front ends for .NET, React, Django and more.</p>
+            <span class="service-card__more" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
           </li>
-          <li class="card">
-            <div class="card__body">
-              <span class="card__icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8zM5 2l.6 1.4L7 4l-1.4.6L5 6l-.6-1.4L3 4l1.4-.6z"/></svg></span>
-              <h3 class="card__title"><a href="services.html#ai">AI experiences</a></h3>
-              <p class="card__text">Chat assistants and agent workflows with interfaces people can trust.</p>
-            </div>
+          <li class="service-card">
+            <span class="block-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8zM5 2l.6 1.4L7 4l-1.4.6L5 6l-.6-1.4L3 4l1.4-.6z"/></svg></span>
+            <h3 class="service-card__title"><a href="services.html#ai">AI experiences</a></h3>
+            <p class="text-muted">Chat assistants and agent workflows people can trust.</p>
+            <span class="service-card__more" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+          </li>
+          <li class="service-card">
+            <span class="block-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="4.5" r="1.5"/><path d="M5 8.5 12 10l7-1.5M12 10v4.5M12 14.5 9 21M12 14.5l3 6.5"/></svg></span>
+            <h3 class="service-card__title"><a href="services.html#design">Accessibility audits</a></h3>
+            <p class="text-muted">WCAG 2.2 audits with fixes, not just findings.</p>
+            <span class="service-card__more" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+          </li>
+          <li class="service-card">
+            <span class="block-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m23 6-9.5 9.5-5-5L1 18"/><path d="M17 6h6v6"/></svg></span>
+            <h3 class="service-card__title"><a href="services.html#engineering">Growth and CRO</a></h3>
+            <p class="text-muted">Faster pages and clearer flows that convert.</p>
+            <span class="service-card__more" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
           </li>
         </ul>
       </div>
     </section>
 
-    <section class="section section--alt" aria-labelledby="results-title">
+    <section data-block="feature-rows" class="section section--tint" aria-labelledby="case-title">
       <div class="container">
-        <h2 class="visually-hidden" id="results-title">Results</h2>
+        <article class="feature-row">
+          <div class="feature-row__content">
+            <p class="eyebrow">Case study</p>
+            <h2 class="feature-row__title" id="case-title">Northwind doubled checkout conversion</h2>
+            <p class="text-muted">We rebuilt Northwind’s storefront on accessible, dependency-free templates. Pages got three times faster on mid-range phones and checkout conversion rose from 1.9% to 4.1%.</p>
+            <ul class="checklist" role="list">
+              <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> 3× faster Largest Contentful Paint</li>
+              <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Zero critical accessibility issues</li>
+              <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Ported to their Razor Pages stack in two weeks</li>
+            </ul>
+            <a class="btn btn--secondary" href="blog-post.html">Read the case study <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          </div>
+          <div class="feature-row__media">
+            <img class="rounded-media" src="../../assets/images/case-study.svg" width="800" height="420" alt="Bar and line chart showing conversion rising after the redesign" loading="lazy" decoding="async">
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section data-block="stats-band" class="section section--inverse" aria-labelledby="stats-title">
+      <div class="container">
+        <div class="block-header">
+          <p class="eyebrow">By the numbers</p>
+          <h2 class="block-header__title" id="stats-title">A decade of shipping products that last</h2>
+        </div>
         <dl class="stats">
-          <div><dt>Products launched</dt><dd>120+</dd></div>
-          <div><dt>Average Lighthouse score</dt><dd>98</dd></div>
-          <div><dt>WCAG audits passed</dt><dd>100%</dd></div>
-          <div><dt>Client satisfaction</dt><dd>4.9/5</dd></div>
+          <div class="stats__item"><dt class="stats__label">Products launched</dt><dd class="stats__value">120+</dd></div>
+          <div class="stats__item"><dt class="stats__label">Average Lighthouse score</dt><dd class="stats__value">98</dd></div>
+          <div class="stats__item"><dt class="stats__label">Countries we work in</dt><dd class="stats__value">14</dd></div>
+          <div class="stats__item"><dt class="stats__label">Client satisfaction</dt><dd class="stats__value">4.9/5</dd></div>
         </dl>
       </div>
     </section>
 
-    <section class="section" aria-labelledby="case-title">
-      <div class="container layout" data-layout="split">
-        <img class="rounded-media" src="../../assets/images/case-study.svg" width="800" height="420" alt="Bar and line chart showing conversion rising after the redesign" loading="lazy" decoding="async">
-        <div class="stack">
-          <p class="eyebrow">Case study</p>
-          <h2 id="case-title">Northwind doubled checkout conversion</h2>
-          <p>We rebuilt Northwind's storefront on accessible, dependency-free templates. Pages got three times faster on mid-range phones and checkout conversion rose from 1.9% to 4.1%.</p>
-          <ul class="check-list">
-                <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> 3× faster Largest Contentful Paint</li>
-                <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Zero critical accessibility issues</li>
-                <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Ported to their Razor Pages stack in two weeks</li>
-          </ul>
-          <p><a class="btn btn--secondary" href="blog-post.html">Read how we did it</a></p>
+    <section data-block="testimonials" class="section section--tint" aria-labelledby="quotes-title">
+      <div class="container">
+        <div class="block-header block-header--center">
+          <p class="eyebrow">Customers</p>
+          <h2 class="block-header__title" id="quotes-title">What our clients say</h2>
+        </div>
+        <div class="quote-wall">
+          <figure class="quote-card quote-card--featured">
+            <blockquote><p>“We replaced a 400 KB UI kit with these templates and our Lighthouse scores went green overnight.”</p></blockquote>
+            <figcaption class="quote-card__author">
+              <span class="avatar avatar--soft" aria-hidden="true">PR</span>
+              <span><span class="quote-card__name">Priya Raman</span> <span class="text-muted">Frontend Lead, Northwind</span></span>
+            </figcaption>
+          </figure>
+          <figure class="quote-card">
+            <blockquote><p>“Porting the dashboard into our Razor Pages app took an afternoon.”</p></blockquote>
+            <figcaption class="quote-card__author">
+              <span class="avatar avatar--soft" aria-hidden="true">MO</span>
+              <span><span class="quote-card__name">Mateo Ortiz</span> <span class="text-muted">.NET Architect, Contoso</span></span>
+            </figcaption>
+          </figure>
+          <figure class="quote-card">
+            <blockquote><p>“Our accessibility audit came back clean for the first time. Screen reader users noticed the difference.”</p></blockquote>
+            <figcaption class="quote-card__author">
+              <span class="avatar avatar--soft" aria-hidden="true">AK</span>
+              <span><span class="quote-card__name">Amara Kone</span> <span class="text-muted">Product Designer, Fabrikam</span></span>
+            </figcaption>
+          </figure>
+          <figure class="quote-card">
+            <blockquote><p>“The page builder is how our marketing team ships landing pages now. Developers just review the HTML.”</p></blockquote>
+            <figcaption class="quote-card__author">
+              <span class="avatar avatar--soft" aria-hidden="true">LF</span>
+              <span><span class="quote-card__name">Lena Fischer</span> <span class="text-muted">Growth Engineer, Voltage</span></span>
+            </figcaption>
+          </figure>
+          <figure class="quote-card">
+            <blockquote><p>“Finally, AI chat components that respect the CSP and stream properly.”</p></blockquote>
+            <figcaption class="quote-card__author">
+              <span class="avatar avatar--soft" aria-hidden="true">SO</span>
+              <span><span class="quote-card__name">Sam Okafor</span> <span class="text-muted">CTO, Lumen</span></span>
+            </figcaption>
+          </figure>
         </div>
       </div>
     </section>
 
-    <section class="section section--alt" aria-labelledby="quotes-title">
+    <section data-block="blog-posts" class="section" aria-labelledby="posts-title">
       <div class="container">
-        <header class="section__header section__header--center">
-          <h2 id="quotes-title">What clients say</h2>
-        </header>
-        <ul class="grid-auto grid-auto--lg list-reset" role="list">
-          <li>
-            <figure class="card card--flat quote">
-              <blockquote class="quote__text"><p>The team shipped an accessible dashboard our customers actually enjoy. Support tickets dropped by a third.</p></blockquote>
-              <figcaption class="quote__author"><span class="avatar avatar--soft" aria-hidden="true">PR</span><span><strong>Priya Raman</strong><br><span class="text-sm text-muted">VP Product, Northwind</span></span></figcaption>
-            </figure>
+        <div class="block-header block-header--split">
+          <div class="stack stack--xs">
+            <p class="eyebrow">Blog</p>
+            <h2 class="block-header__title" id="posts-title">Latest from the team</h2>
+          </div>
+          <p><a class="btn btn--secondary" href="blog.html">All articles <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></p>
+        </div>
+        <ul class="post-grid" role="list">
+          <li class="post">
+            <div class="post__media"><img src="../../assets/images/blog-accessibility.svg" alt="" width="800" height="450" loading="lazy"></div>
+            <div class="stack stack--xs">
+              <p class="post__meta"><time datetime="2026-10-02">2 Oct 2026</time> · Accessibility</p>
+              <h3 class="post__title"><a href="blog-post.html">A practical guide to WCAG 2.2 for product teams</a></h3>
+            </div>
           </li>
-          <li>
-            <figure class="card card--flat quote">
-              <blockquote class="quote__text"><p>Their AI assistant prototype went from workshop to pilot in four weeks, with UX that earned our users' trust.</p></blockquote>
-              <figcaption class="quote__author"><span class="avatar avatar--soft" aria-hidden="true">MO</span><span><strong>Mateo Ortiz</strong><br><span class="text-sm text-muted">CTO, Contoso</span></span></figcaption>
-            </figure>
+          <li class="post post--row">
+            <div class="post__media"><img src="../../assets/images/blog-design-tokens.svg" alt="" width="320" height="240" loading="lazy"></div>
+            <div class="stack stack--xs">
+              <p class="post__meta"><time datetime="2026-09-18">18 Sep 2026</time> · Design systems</p>
+              <h3 class="post__title"><a href="blog-post.html">Design tokens that survive a rebrand</a></h3>
+            </div>
+          </li>
+          <li class="post post--row">
+            <div class="post__media"><img src="../../assets/images/blog-ai-ux.svg" alt="" width="320" height="240" loading="lazy"></div>
+            <div class="stack stack--xs">
+              <p class="post__meta"><time datetime="2026-09-04">4 Sep 2026</time> · AI</p>
+              <h3 class="post__title"><a href="blog-post.html">Designing chat interfaces for AI agents</a></h3>
+            </div>
           </li>
         </ul>
       </div>
     </section>
 
-    <section class="section" aria-labelledby="latest-title">
+    <section data-block="cta-banner" class="section" aria-labelledby="cta-title">
       <div class="container">
-        <div class="cluster cluster--between section__header">
-          <h2 id="latest-title">Latest articles</h2>
-          <a href="blog.html">All articles</a>
+        <div class="cta-banner">
+          <div>
+            <h2 class="cta-banner__title" id="cta-title">Have a project in mind?</h2>
+            <p class="cta-banner__text">Tell us about it. We reply within one business day.</p>
+          </div>
+          <div class="cta-banner__actions">
+            <a class="btn btn--lg btn--on-brand" href="contact.html">Start a project <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+            <a class="btn btn--lg btn--on-brand-outline" href="about.html">Meet the team</a>
+          </div>
         </div>
-        <ul class="grid-auto list-reset" role="list">
-          <li class="card">
-            <div class="card__inner">
-              <img class="card__media" src="../../assets/images/blog-accessibility.svg" width="800" height="420" alt="" loading="lazy" decoding="async">
-              <div class="card__body">
-                <p class="text-sm text-muted"><time datetime="2026-10-02">2 Oct 2026</time> · Accessibility</p>
-                <h3 class="card__title"><a href="blog-post.html">A practical guide to WCAG 2.2 for product teams</a></h3>
-              </div>
-            </div>
-          </li>
-          <li class="card">
-            <div class="card__inner">
-              <img class="card__media" src="../../assets/images/blog-design-tokens.svg" width="800" height="420" alt="" loading="lazy" decoding="async">
-              <div class="card__body">
-                <p class="text-sm text-muted"><time datetime="2026-09-18">18 Sep 2026</time> · Design systems</p>
-                <h3 class="card__title"><a href="blog.html#post-tokens">Design tokens that survive a rebrand</a></h3>
-              </div>
-            </div>
-          </li>
-          <li class="card">
-            <div class="card__inner">
-              <img class="card__media" src="../../assets/images/blog-ai-ux.svg" width="800" height="420" alt="" loading="lazy" decoding="async">
-              <div class="card__body">
-                <p class="text-sm text-muted"><time datetime="2026-09-04">4 Sep 2026</time> · AI</p>
-                <h3 class="card__title"><a href="blog.html#post-ai">Designing chat interfaces for AI agents</a></h3>
-              </div>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="section cta-band" aria-labelledby="cta-title">
-      <div class="container container--narrow stack text-center">
-        <h2 id="cta-title">Have a project in mind?</h2>
-        <p class="lead">Tell us about it. We reply within one business day.</p>
-        <p class="cluster cluster--center"><a class="btn btn--lg" href="contact.html">Get a quote</a><a class="btn btn--lg btn--secondary" href="about.html">Meet the team</a></p>
       </div>
     </section>
   </main>

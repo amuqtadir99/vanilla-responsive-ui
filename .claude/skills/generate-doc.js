@@ -11,7 +11,16 @@
  *   - src/components/index.html   live gallery with "Copy path for AI" and
  *                                 "Copy code" buttons for every component
  *   - catalog.json                machine-readable index of components,
- *                                 layouts, templates, partials, data and skills
+ *                                 blocks, layouts, templates, partials, data
+ *                                 and skills
+ *   - src/index.html + src/docs/  the documentation website (see docs-site.js):
+ *                                 live previews, highlighted code with copy
+ *                                 buttons, template anatomy, guides, tokens
+ *   - src/builder/canvas.html     every block as a <template> for the page
+ *                                 builder
+ *
+ * Block snippets (src/blocks/*.html) use the same header with @block instead
+ * of @component.
  *
  * Snippet header format (first thing in the file):
  *   <!--
@@ -44,6 +53,9 @@ const GALLERY_FILE = path.join(COMPONENTS_DIR, 'index.html');
 const CATALOG_FILE = path.join(ROOT, 'catalog.json');
 
 const CATEGORY_ORDER = ['Layout', 'Navigation', 'Basics', 'Content', 'Forms', 'Feedback', 'Overlays', 'Data', 'AI', 'Theming'];
+const BLOCK_CATEGORY_ORDER = ['Hero', 'Social proof', 'Features', 'Commerce', 'Content', 'Forms', 'Call to action'];
+const BLOCKS_DIR = path.join(SRC, 'blocks');
+const CANVAS_FILE = path.join(SRC, 'builder', 'canvas.html');
 const BASE_CSS = ['src/assets/css/tokens.css', 'src/assets/css/themes.css', 'src/assets/css/base.css'];
 const REQUIRED_KEYS = ['component', 'category', 'description', 'css', 'js', 'a11y'];
 
@@ -59,7 +71,7 @@ function escapeAttr(text) {
 }
 
 /* ---- Sources ----------------------------------------------------------- */
-function parseSnippet(file) {
+function parseSnippet(file, kind = 'component') {
   const source = fs.readFileSync(file, 'utf8');
   const match = source.match(/^\s*<!--([\s\S]*?)-->\s*/);
   const slug = path.basename(file, '.html');
@@ -70,11 +82,13 @@ function parseSnippet(file) {
     const m = line.match(/^\s*@([a-z0-9-]+):\s*(.*)$/i);
     if (m) meta[m[1].toLowerCase()] = m[2].trim();
   }
-  for (const key of REQUIRED_KEYS) {
+  const keys = kind === 'block' ? REQUIRED_KEYS.map((k) => (k === 'component' ? 'block' : k)) : REQUIRED_KEYS;
+  for (const key of keys) {
     if (!meta[key]) throw new Error(`${slug}.html: missing "@${key}:" in metadata header`);
   }
-  if (!CATEGORY_ORDER.includes(meta.category)) {
-    throw new Error(`${slug}.html: @category must be one of ${CATEGORY_ORDER.join(', ')}`);
+  const order = kind === 'block' ? BLOCK_CATEGORY_ORDER : CATEGORY_ORDER;
+  if (!order.includes(meta.category)) {
+    throw new Error(`${slug}.html: @category must be one of ${order.join(', ')}`);
   }
 
   const list = (value) =>
@@ -87,7 +101,7 @@ function parseSnippet(file) {
 
   return {
     slug,
-    title: meta.component,
+    title: kind === 'block' ? meta.block : meta.component,
     category: meta.category,
     description: meta.description,
     a11y: meta.a11y,
@@ -105,6 +119,84 @@ function loadSnippets() {
     .map((f) => parseSnippet(path.join(COMPONENTS_DIR, f)));
   const rank = (s) => CATEGORY_ORDER.indexOf(s.category);
   return snippets.sort((a, b) => rank(a) - rank(b) || a.title.localeCompare(b.title));
+}
+
+function loadBlocks() {
+  if (!fs.existsSync(BLOCKS_DIR)) return [];
+  const blocks = fs
+    .readdirSync(BLOCKS_DIR)
+    .filter((f) => f.endsWith('.html'))
+    .map((f) => parseSnippet(path.join(BLOCKS_DIR, f), 'block'));
+  for (const b of blocks) {
+    if (!new RegExp(`^<section data-block="${b.slug}"`).test(b.markup)) {
+      throw new Error(`${b.slug}.html: a block must be one <section data-block="${b.slug}"> element`);
+    }
+  }
+  const rank = (b) => BLOCK_CATEGORY_ORDER.indexOf(b.category);
+  return blocks.sort((a, b) => rank(a) - rank(b) || a.title.localeCompare(b.title));
+}
+
+/* ---- src/builder/canvas.html: every block as a <template> --------------- */
+function renderCanvas(blocks) {
+  const css = ['tokens.css', 'themes.css', 'base.css', 'layouts.css']
+    .map((c) => `../assets/css/${c}`)
+    .concat(fs.readdirSync(CSS_COMPONENTS_DIR).filter((c) => c.endsWith('.css')).sort().map((c) => `../assets/css/components/${c}`))
+    .concat(['../assets/css/blocks.css', 'canvas.css']);
+  const templates = blocks
+    .map(
+      (b) => `  <template data-block-template="${b.slug}" data-name="${escapeAttr(b.title)}" data-category="${escapeAttr(b.category)}" data-description="${escapeAttr(b.description)}" data-css="${escapeAttr(b.css.join(','))}">
+${b.markup
+  .split('\n')
+  .map((l) => (l.trim() ? `    ${l}` : ''))
+  .join('\n')}
+  </template>`
+    )
+    .join('\n');
+  // Shared chrome the builder can put around the page.
+  const partials = ['site-header', 'site-footer', 'shop-header', 'shop-footer']
+    .map((name) => {
+      const file = path.join(SRC, 'layouts', 'partials', `${name}.html`);
+      const body = fs.readFileSync(file, 'utf8').replace(/^\s*<!--[\s\S]*?-->\s*/, '').replace(/\{\{root\}\}/g, '../').trimEnd();
+      return `  <template data-partial-template="${name}">
+${body
+  .split('\n')
+  .map((l) => (l.trim() ? `    ${l}` : ''))
+  .join('\n')}
+  </template>`;
+    })
+    .join('\n');
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; form-action 'self'; base-uri 'self'; object-src 'none'">
+  <title>Page builder canvas — vanilla-responsive-ui</title>
+  <meta name="description" content="Preview canvas for the page builder. Holds every block as a template; the builder composes the page here.">
+  <meta name="color-scheme" content="light dark">
+  <meta name="vr-data-base" content="../data/">
+  <meta name="generator" content="node .claude/skills/generate-doc.js (do not edit by hand)">
+  <link rel="icon" href="../assets/icons/favicon.svg" type="image/svg+xml">
+${css.map((c) => `  <link rel="stylesheet" href="${c}">`).join('\n')}
+  <script type="module" src="../assets/js/main.js"></script>
+  <script type="module" src="canvas.js"></script>
+</head>
+<body class="canvas-body">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div data-canvas-header></div>
+  <main id="main" tabindex="-1" class="canvas-main" data-canvas>
+    <h1 class="visually-hidden" data-canvas-placeholder-title>Page preview</h1>
+    <div class="canvas-empty" data-canvas-empty>
+      <p class="canvas-empty__title">Your page is empty</p>
+      <p>Add blocks from the library, or start from a preset.</p>
+    </div>
+  </main>
+  <div data-canvas-footer></div>
+${templates}
+${partials}
+</body>
+</html>
+`;
 }
 
 /** Full file paths a component needs, for humans and agents. */
@@ -351,7 +443,7 @@ ${snippets.map(section).join('\n\n')}
 }
 
 /* ---- catalog.json ------------------------------------------------------ */
-function renderCatalog(snippets) {
+function renderCatalog(snippets, blocks = []) {
   const layouts = fs
     .readdirSync(path.join(SRC, 'layouts'))
     .filter((f) => f.endsWith('.html') && f !== 'index.html')
@@ -444,6 +536,8 @@ function renderCatalog(snippets) {
       accessibility: 'docs/ACCESSIBILITY.md',
       security: 'docs/SECURITY.md',
       integration: 'docs/INTEGRATION_GUIDE.md',
+      site: 'src/index.html (documentation website, generated; serve over HTTP)',
+      builder: 'src/builder/index.html',
     },
     entry: { css: [...BASE_CSS, 'src/assets/css/layouts.css'], js: 'src/assets/js/main.js', tokens: 'src/assets/css/tokens.css', themes: 'src/assets/css/themes.css' },
     components: snippets.map((s) => ({
@@ -453,6 +547,17 @@ function renderCatalog(snippets) {
       description: s.description,
       accessibility: s.a11y,
       ...filesFor(s),
+    })),
+    blocks: blocks.map((b) => ({
+      id: b.slug,
+      name: b.title,
+      category: b.category,
+      description: b.description,
+      accessibility: b.a11y,
+      markup: `src/blocks/${b.slug}.html`,
+      css: ['src/assets/css/tokens.css', 'src/assets/css/themes.css', 'src/assets/css/base.css', ...b.css.map((c) => `src/assets/css/${c}`)],
+      js: b.js.map((j) => `src/assets/js/${j}`),
+      docs: `src/docs/blocks/${b.slug}.html`,
     })),
     layouts,
     templates,
@@ -468,18 +573,36 @@ function renderCatalog(snippets) {
 function main() {
   const check = process.argv.includes('--check');
   const snippets = loadSnippets();
+  const blocks = loadBlocks();
+  const docsSite = require('./docs-site.js');
   const outputs = [
     [DOC_FILE, renderMarkdown(snippets)],
     [GALLERY_FILE, renderGallery(snippets)],
-    [CATALOG_FILE, renderCatalog(snippets)],
+    [CATALOG_FILE, renderCatalog(snippets, blocks)],
+    [CANVAS_FILE, renderCanvas(blocks)],
+    ...docsSite.build({ components: snippets, blocks }),
   ];
 
   let stale = 0;
+  let quiet = 0;
+  // Generated files that are no longer produced (e.g. a removed component).
+  const produced = new Set(outputs.map(([f]) => f));
+  const existing = docsSite.GENERATED_DIRS.flatMap((d) => (fs.existsSync(d) ? walk(d) : [])).concat(docsSite.GENERATED_TOP.filter((f) => fs.existsSync(f)));
+  for (const file of existing) {
+    if (produced.has(file)) continue;
+    if (check) {
+      console.error(`✗ ${rel(file)} is no longer generated. Run: node .claude/skills/generate-doc.js`);
+      stale += 1;
+    } else {
+      fs.unlinkSync(file);
+      console.log(`✗ removed ${rel(file)}`);
+    }
+  }
   for (const [file, content] of outputs) {
     const name = rel(file);
     const current = fs.existsSync(file) ? fs.readFileSync(file, 'utf8') : null;
     if (current === content) {
-      console.log(`✓ ${name} is up to date`);
+      quiet += 1;
       continue;
     }
     if (check) {
@@ -491,7 +614,8 @@ function main() {
       console.log(`✎ wrote ${name}`);
     }
   }
-  console.log(`${snippets.length} components documented.`);
+  console.log(`✓ ${quiet} of ${outputs.length} generated files up to date.`);
+  console.log(`${snippets.length} components and ${blocks.length} blocks documented.`);
   if (stale) process.exit(1);
 }
 

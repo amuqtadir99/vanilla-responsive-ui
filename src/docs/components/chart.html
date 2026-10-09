@@ -1,0 +1,1605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; form-action 'self'; base-uri 'self'; object-src 'none'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>Charts component — vanilla-responsive-ui docs</title>
+  <meta name="description" content="Vector (SVG) line, area, bar, stacked bar, horizontal bar, donut and sparkline charts drawn from JSON — a file, your API or inline data — with tooltips, keyboard exploration, toggleable series and an automatic data table.">
+  <meta name="color-scheme" content="light dark">
+  <meta name="generator" content="node .claude/skills/generate-doc.js (do not edit by hand)">
+  <link rel="icon" href="../../assets/icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../../assets/css/tokens.css">
+  <link rel="stylesheet" href="../../assets/css/themes.css">
+  <link rel="stylesheet" href="../../assets/css/base.css">
+  <link rel="stylesheet" href="../../assets/css/layouts.css">
+  <link rel="stylesheet" href="../../assets/css/components/button.css">
+  <link rel="stylesheet" href="../../assets/css/components/form.css">
+  <link rel="stylesheet" href="../../assets/css/components/feedback.css">
+  <link rel="stylesheet" href="../../assets/css/components/tabs.css">
+  <link rel="stylesheet" href="../../assets/css/components/table.css">
+  <link rel="stylesheet" href="../../assets/css/components/code.css">
+  <link rel="stylesheet" href="../../assets/css/components/accordion.css">
+  <link rel="stylesheet" href="../../assets/css/components/card.css">
+  <link rel="stylesheet" href="../../assets/css/components/navigation.css">
+  <link rel="stylesheet" href="../../assets/css/blocks.css">
+  <link rel="stylesheet" href="../../docs/assets/foundations.css">
+  <link rel="stylesheet" href="../../docs/assets/docs.css">
+  <script type="module" src="../../assets/js/main.js"></script>
+  <script type="module" src="../../docs/assets/docs.js"></script>
+</head>
+<body class="docs-body">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <p class="needs-server"><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4M12 17h.01"/></svg> <span>You opened this file from disk, so browsers block its JavaScript (copy buttons, previews, the builder). Run <code>python3 -m http.server 8080</code> in the repository folder and open <a href="http://localhost:8080/src/">localhost:8080/src/</a>, or use the <a href="https://amuqtadir99.github.io/vanilla-responsive-ui/src/">hosted docs</a>.</span></p>
+  <header class="docs-topbar">
+    <div class="docs-topbar__inner">
+      <button type="button" class="btn btn--ghost btn--icon docs-topbar__menu" data-disclosure="dismissible" aria-expanded="false" aria-controls="docs-sidebar" hidden>
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        <span class="visually-hidden">Documentation menu</span>
+      </button>
+      <a class="docs-brand" href="../../index.html">
+        <span class="docs-brand__mark"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 2 7l10 5 10-5z"/><path d="m2 17 10 5 10-5M2 12l10 5 10-5"/></svg></span>
+        <span>vanilla-responsive-ui</span>
+      </a>
+      <nav class="docs-topnav" aria-label="Main">
+        <ul class="docs-topnav__list" role="list">
+          <li><a href="../../docs/getting-started.html">Docs</a></li>
+          <li><a href="../../docs/components/site-footer.html" aria-current="true">Components</a></li>
+          <li><a href="../../docs/blocks/hero-centered.html">Blocks</a></li>
+          <li><a href="../../docs/templates/index.html">Templates</a></li>
+          <li><a href="../../builder/index.html">Builder</a></li>
+        </ul>
+      </nav>
+      <div class="docs-topbar__actions">
+        <a class="btn btn--ghost btn--sm" href="https://github.com/amuqtadir99/vanilla-responsive-ui"><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m16 18 6-6-6-6M8 6l-6 6 6 6"/></svg> <span class="docs-topbar__label">GitHub</span></a>
+        <button type="button" class="btn btn--ghost btn--icon theme-toggle" data-theme-toggle aria-pressed="false" hidden>
+          <svg class="icon theme-toggle__light" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="icon theme-toggle__dark" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+          <span class="visually-hidden">Dark theme</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="docs-layout">
+    <nav class="docs-sidebar" id="docs-sidebar" aria-label="Documentation">
+      <div class="docs-search" data-docs-search hidden>
+        <label class="visually-hidden" for="docs-search-input">Search the documentation</label>
+        <svg class="icon icon--sm docs-search__icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/></svg>
+        <input class="input docs-search__input" id="docs-search-input" type="search" placeholder="Search…" autocomplete="off" aria-describedby="docs-search-hint">
+        <kbd class="docs-search__kbd" id="docs-search-hint"><span class="visually-hidden">Press </span>/<span class="visually-hidden"> to search</span></kbd>
+        <p class="docs-search__empty text-sm text-muted" role="status" data-docs-search-status></p>
+      </div>
+      <div class="docs-nav__group" data-docs-group>
+        <p class="docs-nav__title" id="nav-get-started">Get started</p>
+        <ul class="docs-nav__list" role="list" aria-labelledby="nav-get-started">
+          <li><a class="docs-nav__link" href="../../index.html">Introduction</a></li>
+          <li><a class="docs-nav__link" href="../../docs/getting-started.html">Getting started</a></li>
+          <li><a class="docs-nav__link" href="../../builder/index.html">Page builder</a></li>
+          <li><a class="docs-nav__link" href="../../docs/ai-agents.html">Working with AI agents</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav__group" data-docs-group>
+        <p class="docs-nav__title" id="nav-templates">Templates</p>
+        <ul class="docs-nav__list" role="list" aria-labelledby="nav-templates">
+          <li><a class="docs-nav__link" href="../../docs/templates/index.html">All templates</a></li>
+          <li><a class="docs-nav__link" href="../../docs/templates/landing-page-index.html">Landing page</a></li>
+          <li><a class="docs-nav__link" href="../../docs/templates/website-index.html">Website</a></li>
+          <li><a class="docs-nav__link" href="../../docs/templates/dashboard-index.html">Dashboard</a></li>
+          <li><a class="docs-nav__link" href="../../docs/templates/e-commerce-index.html">E-commerce</a></li>
+          <li><a class="docs-nav__link" href="../../docs/templates/ai-index.html">AI apps</a></li>
+          <li><a class="docs-nav__link" href="../../docs/templates/auth-index.html">Authentication</a></li>
+          <li><a class="docs-nav__link" href="../../docs/layouts.html">Layouts</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav__group" data-docs-group>
+        <p class="docs-nav__title" id="nav-blocks">Blocks</p>
+        <ul class="docs-nav__list" role="list" aria-labelledby="nav-blocks">
+          <li><a class="docs-nav__link" href="../../docs/blocks/hero-centered.html">Hero centered</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/hero-split.html">Hero split</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/logo-cloud.html">Logo cloud</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/stats-band.html">Stats band</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/testimonials.html">Testimonials</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/feature-bento.html">Feature bento</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/feature-grid.html">Feature grid</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/feature-rows.html">Feature rows</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/steps.html">Steps</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/category-tiles.html">Category tiles</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/perks.html">Perks</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/pricing.html">Pricing</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/promo-banner.html">Promo banner</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/blog-posts.html">Blog posts</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/faq.html">FAQ</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/team.html">Team</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/contact.html">Contact</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/cta-banner.html">CTA banner</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/newsletter.html">Newsletter</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav__group" data-docs-group>
+        <p class="docs-nav__title" id="nav-components">Components</p>
+        <ul class="docs-nav__list" role="list" aria-labelledby="nav-components">
+          <li><a class="docs-nav__link" href="../../docs/components/site-footer.html">Site footer</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/site-header.html">Site header</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/breadcrumb.html">Breadcrumb</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/pagination.html">Pagination</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/tabs.html">Tabs</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/button.html">Button</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/accordion.html">Accordion</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/card.html">Card</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/form-field.html">Form fields</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/alert.html">Alert and badge</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/toast.html">Toast</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/dialog.html">Dialog</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/chart.html" aria-current="page">Charts</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/data-grid.html">Data grid</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/data-table.html">Data table</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/chat.html">AI chat</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/chat-message.html">Chat messages</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/chat-widget.html">Chat widget</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/theme-customizer.html">Theme customizer</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/theme-toggle.html">Theme toggle</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav__group" data-docs-group>
+        <p class="docs-nav__title" id="nav-foundations">Foundations</p>
+        <ul class="docs-nav__list" role="list" aria-labelledby="nav-foundations">
+          <li><a class="docs-nav__link" href="../../docs/foundations/colors.html">Colours</a></li>
+          <li><a class="docs-nav__link" href="../../docs/foundations/typography.html">Typography</a></li>
+          <li><a class="docs-nav__link" href="../../docs/foundations/spacing.html">Spacing and shape</a></li>
+          <li><a class="docs-nav__link" href="../../docs/foundations/icons.html">Icons</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav__group" data-docs-group>
+        <p class="docs-nav__title" id="nav-guides">Guides</p>
+        <ul class="docs-nav__list" role="list" aria-labelledby="nav-guides">
+          <li><a class="docs-nav__link" href="../../docs/guides/theming.html">Theming</a></li>
+          <li><a class="docs-nav__link" href="../../docs/guides/layouts.html">Layouts and pages</a></li>
+          <li><a class="docs-nav__link" href="../../docs/guides/data.html">Data and charts</a></li>
+          <li><a class="docs-nav__link" href="../../docs/guides/ai-chat.html">AI chat</a></li>
+          <li><a class="docs-nav__link" href="../../docs/guides/accessibility.html">Accessibility</a></li>
+          <li><a class="docs-nav__link" href="../../docs/guides/security.html">Security</a></li>
+          <li><a class="docs-nav__link" href="../../docs/guides/integration.html">Framework integration</a></li>
+          <li><a class="docs-nav__link" href="../../docs/guides/architecture.html">Architecture</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <main class="docs-main" id="main" tabindex="-1">
+      <header class="docs-header">
+        <p class="eyebrow">Component · Data</p>
+        <h1 class="docs-header__title">Charts</h1>
+        <p class="docs-header__lead">Vector (SVG) line, area, bar, stacked bar, horizontal bar, donut and sparkline charts drawn from JSON — a file, your API or inline data — with tooltips, keyboard exploration, toggleable series and an automatic data table.</p>
+        <ul class="docs-meta" role="list">
+          <li><span class="badge">Data</span></li>
+          <li><span class="badge badge--primary">HTML + CSS + JS</span></li>
+          <li><span class="path-chip">src/components/chart.html</span></li>
+        </ul>
+        <div class="docs-header__actions"><button type="button" class="btn btn--sm" data-copy data-copy-text="Component: Charts (vanilla-responsive-ui)&#10;Markup: src/components/chart.html&#10;CSS: src/assets/css/tokens.css, src/assets/css/themes.css, src/assets/css/base.css, src/assets/css/components/chart.css, src/assets/css/components/table.css&#10;JS: src/assets/js/components/chart.js (auto-initialised by src/assets/js/main.js)&#10;Docs: src/docs/components/chart.html&#10;Accessibility: The SVG is decorative; each chart gets a generated text summary, a focusable region where arrow keys move between data points (announced through a live region), legend buttons with aria-pressed, and a full data table in a details element. Line series also differ by dash pattern, so colour is never the only cue.&#10;Rules: CLAUDE.md (no dependencies, no inline scripts/styles, WCAG 2.2 AA)" data-copy-success="Reference copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8zM5 2l.6 1.4L7 4l-1.4.6L5 6l-.6-1.4L3 4l1.4-.6z"/></svg> <span data-copy-label>Copy path for AI</span></button>
+          <button type="button" class="btn btn--sm btn--secondary" data-copy data-copy-text="&lt;script type=&quot;application/json&quot; id=&quot;chart-demo-data&quot;&gt;&#10;[&#10;  { &quot;month&quot;: &quot;2026-05&quot;, &quot;revenue&quot;: 39410, &quot;target&quot;: 41500 },&#10;  { &quot;month&quot;: &quot;2026-06&quot;, &quot;revenue&quot;: 40680, &quot;target&quot;: 42600 },&#10;  { &quot;month&quot;: &quot;2026-07&quot;, &quot;revenue&quot;: 41220, &quot;target&quot;: 43700 },&#10;  { &quot;month&quot;: &quot;2026-08&quot;, &quot;revenue&quot;: 42960, &quot;target&quot;: 44800 },&#10;  { &quot;month&quot;: &quot;2026-09&quot;, &quot;revenue&quot;: 42950, &quot;target&quot;: 46000 },&#10;  { &quot;month&quot;: &quot;2026-10&quot;, &quot;revenue&quot;: 48290, &quot;target&quot;: 48100 }&#10;]&#10;&lt;/script&gt;&#10;&#10;&lt;div class=&quot;grid-auto grid-auto--lg&quot;&gt;&#10;  &lt;figure class=&quot;chart&quot; data-viz=&quot;area&quot; data-source=&quot;#chart-demo-data&quot; data-x=&quot;month&quot; data-x-format=&quot;short-month&quot; data-series=&quot;revenue:Revenue,target:Target&quot; data-format=&quot;currency-compact&quot;&gt;&#10;    &lt;figcaption class=&quot;chart__caption&quot;&gt;&#10;      &lt;span class=&quot;chart__title&quot;&gt;Revenue vs target&lt;/span&gt;&#10;      &lt;span class=&quot;chart__subtitle&quot;&gt;Area chart from inline JSON&lt;/span&gt;&#10;    &lt;/figcaption&gt;&#10;    &lt;p class=&quot;chart__fallback&quot;&gt;Revenue grew from $39.4K in May to $48.3K in October 2026.&lt;/p&gt;&#10;  &lt;/figure&gt;&#10;&#10;  &lt;figure class=&quot;chart&quot; data-viz=&quot;bar&quot; data-source=&quot;#chart-demo-data&quot; data-x=&quot;month&quot; data-x-format=&quot;short-month&quot; data-series=&quot;revenue:Revenue&quot; data-format=&quot;currency-compact&quot;&gt;&#10;    &lt;figcaption class=&quot;chart__caption&quot;&gt;&#10;      &lt;span class=&quot;chart__title&quot;&gt;Monthly revenue&lt;/span&gt;&#10;      &lt;span class=&quot;chart__subtitle&quot;&gt;Bar chart&lt;/span&gt;&#10;    &lt;/figcaption&gt;&#10;    &lt;p class=&quot;chart__fallback&quot;&gt;Monthly revenue, May to October 2026.&lt;/p&gt;&#10;  &lt;/figure&gt;&#10;&#10;  &lt;figure class=&quot;chart&quot; data-viz=&quot;donut&quot; data-source=&quot;sales&quot; data-path=&quot;channels&quot; data-x=&quot;channel&quot; data-series=&quot;revenue:Revenue&quot; data-format=&quot;currency-compact&quot;&gt;&#10;    &lt;figcaption class=&quot;chart__caption&quot;&gt;&#10;      &lt;span class=&quot;chart__title&quot;&gt;Revenue by channel&lt;/span&gt;&#10;      &lt;span class=&quot;chart__subtitle&quot;&gt;Donut chart from src/data/sales.json&lt;/span&gt;&#10;    &lt;/figcaption&gt;&#10;    &lt;p class=&quot;chart__fallback&quot;&gt;Organic search is the largest channel at $18.5K.&lt;/p&gt;&#10;  &lt;/figure&gt;&#10;&#10;  &lt;figure class=&quot;chart&quot; data-viz=&quot;hbar&quot; data-source=&quot;sales&quot; data-path=&quot;regions&quot; data-x=&quot;region&quot; data-series=&quot;revenue:Revenue:2&quot; data-format=&quot;currency-compact&quot;&gt;&#10;    &lt;figcaption class=&quot;chart__caption&quot;&gt;&#10;      &lt;span class=&quot;chart__title&quot;&gt;Revenue by region&lt;/span&gt;&#10;      &lt;span class=&quot;chart__subtitle&quot;&gt;Horizontal bar chart&lt;/span&gt;&#10;    &lt;/figcaption&gt;&#10;    &lt;p class=&quot;chart__fallback&quot;&gt;North America leads with $19.8K.&lt;/p&gt;&#10;  &lt;/figure&gt;&#10;&lt;/div&gt;" data-copy-success="Markup copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy HTML</span></button>
+          </div>
+      </header>
+
+      <section class="docs-section" aria-labelledby="preview">
+        <h2 class="docs-section__title" id="preview">Preview</h2>
+        <div class="docs-preview" data-docs-preview data-mode="component" data-device="desktop">
+  <div class="docs-preview__bar">
+    <fieldset class="fieldset docs-device" data-docs-device hidden>
+      <legend class="visually-hidden">Preview width</legend>
+      <div class="segmented">
+        <label class="segmented__option"><input type="radio" name="device-106" value="desktop" checked><span class="segmented__label"><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg> Desktop</span></label>
+        <label class="segmented__option"><input type="radio" name="device-106" value="tablet"><span class="segmented__label"><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M12 18h.01"/></svg> Tablet</span></label>
+        <label class="segmented__option"><input type="radio" name="device-106" value="mobile"><span class="segmented__label"><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg> Mobile</span></label>
+      </div>
+    </fieldset>
+    <a class="btn btn--ghost btn--sm" href="../preview/components/chart.html" target="_blank" rel="noopener noreferrer"><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14 21 3"/></svg> Open in new tab<span class="visually-hidden"> (Charts preview)</span></a>
+  </div>
+  <div class="docs-preview__stage" data-docs-stage>
+    <iframe class="docs-preview__frame" src="../preview/components/chart.html" title="Charts preview" loading="lazy" data-docs-frame></iframe>
+  </div>
+</div>
+      </section>
+
+      <section class="docs-section" aria-labelledby="code">
+        <h2 class="docs-section__title" id="code">Code</h2>
+        <div class="tabs docs-tabs" data-tabs>
+    <div class="tabs__list" data-tabs-list data-label="Charts source" hidden>
+      <button type="button" class="tabs__tab" data-tab="tabs-107-0">HTML</button>
+      <button type="button" class="tabs__tab" data-tab="tabs-107-1">chart.css</button>
+      <button type="button" class="tabs__tab" data-tab="tabs-107-2">table.css</button>
+      <button type="button" class="tabs__tab" data-tab="tabs-107-3">chart.js</button>
+    </div>
+    <section class="tabs__panel" id="tabs-107-0" aria-labelledby="tabs-107-0-h">
+      <h3 class="tabs__heading" id="tabs-107-0-h">HTML</h3>
+      <div class="docs-code">
+  <div class="docs-code__header">
+    <span class="docs-code__label"><span class="docs-code__path">src/components/chart.html</span></span>
+    <span class="docs-code__actions"><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-text="src/components/chart.html" data-copy-success="Path copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg> <span data-copy-label>Copy path</span></button><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-target="#code-102" data-copy-success="Code copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy code</span></button></span>
+  </div>
+  <pre tabindex="0" role="region" aria-label="src/components/chart.html"><code id="code-102"><span class="tok-tag">&lt;script</span> <span class="tok-attr">type</span><span class="tok-punct">=</span><span class="tok-string">&quot;application/json&quot;</span> <span class="tok-attr">id</span><span class="tok-punct">=</span><span class="tok-string">&quot;chart-demo-data&quot;</span><span class="tok-tag">&gt;</span>
+[
+  { &quot;month&quot;: &quot;2026-05&quot;, &quot;revenue&quot;: 39410, &quot;target&quot;: 41500 },
+  { &quot;month&quot;: &quot;2026-06&quot;, &quot;revenue&quot;: 40680, &quot;target&quot;: 42600 },
+  { &quot;month&quot;: &quot;2026-07&quot;, &quot;revenue&quot;: 41220, &quot;target&quot;: 43700 },
+  { &quot;month&quot;: &quot;2026-08&quot;, &quot;revenue&quot;: 42960, &quot;target&quot;: 44800 },
+  { &quot;month&quot;: &quot;2026-09&quot;, &quot;revenue&quot;: 42950, &quot;target&quot;: 46000 },
+  { &quot;month&quot;: &quot;2026-10&quot;, &quot;revenue&quot;: 48290, &quot;target&quot;: 48100 }
+]
+<span class="tok-tag">&lt;/script</span><span class="tok-tag">&gt;</span>
+
+<span class="tok-tag">&lt;div</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;grid-auto grid-auto--lg&quot;</span><span class="tok-tag">&gt;</span>
+  <span class="tok-tag">&lt;figure</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;chart&quot;</span> <span class="tok-attr">data-viz</span><span class="tok-punct">=</span><span class="tok-string">&quot;area&quot;</span> <span class="tok-attr">data-source</span><span class="tok-punct">=</span><span class="tok-string">&quot;#chart-demo-data&quot;</span> <span class="tok-attr">data-x</span><span class="tok-punct">=</span><span class="tok-string">&quot;month&quot;</span> <span class="tok-attr">data-x-format</span><span class="tok-punct">=</span><span class="tok-string">&quot;short-month&quot;</span> <span class="tok-attr">data-series</span><span class="tok-punct">=</span><span class="tok-string">&quot;revenue:Revenue,target:Target&quot;</span> <span class="tok-attr">data-format</span><span class="tok-punct">=</span><span class="tok-string">&quot;currency-compact&quot;</span><span class="tok-tag">&gt;</span>
+    <span class="tok-tag">&lt;figcaption</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;chart__caption&quot;</span><span class="tok-tag">&gt;</span>
+      <span class="tok-tag">&lt;span</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;chart__title&quot;</span><span class="tok-tag">&gt;</span>Revenue vs target<span class="tok-tag">&lt;/span</span><span class="tok-tag">&gt;</span>
+      <span class="tok-tag">&lt;span</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;chart__subtitle&quot;</span><span class="tok-tag">&gt;</span>Area chart from inline JSON<span class="tok-tag">&lt;/span</span><span class="tok-tag">&gt;</span>
+    <span class="tok-tag">&lt;/figcaption</span><span class="tok-tag">&gt;</span>
+    <span class="tok-tag">&lt;p</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;chart__fallback&quot;</span><span class="tok-tag">&gt;</span>Revenue grew from $39.4K in May to $48.3K in October 2026.<span class="tok-tag">&lt;/p</span><span class="tok-tag">&gt;</span>
+  <span class="tok-tag">&lt;/figure</span><span class="tok-tag">&gt;</span>
+
+  <span class="tok-tag">&lt;figure</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;chart&quot;</span> <span class="tok-attr">data-viz</span><span class="tok-punct">=</span><span class="tok-string">&quot;bar&quot;</span> <span class="tok-attr">data-source</span><span class="tok-punct">=</span><span class="tok-string">&quot;#chart-demo-data&quot;</span> <span class="tok-attr">data-x</span><span class="tok-punct">=</span><span class="tok-string">&quot;month&quot;</span> <span class="tok-attr">data-x-format</span><span class="tok-punct">=</span><span class="tok-string">&quot;short-month&quot;</span> <span class="tok-attr">data-series</span><span class="tok-punct">=</span><span class="tok-string">&quot;revenue:Revenue&quot;</span> <span class="tok-attr">data-format</span><span class="tok-punct">=</span><span class="tok-string">&quot;currency-compact&quot;</span><span class="tok-tag">&gt;</span>
+    <span class="tok-tag">&lt;figcaption</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;chart__caption&quot;</span><span class="tok-tag">&gt;</span>
+      <span class="tok-tag">&lt;span</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;chart__title&quot;</span><span class="tok-tag">&gt;</span>Monthly revenue<span class="tok-tag">&lt;/span</span><span class="tok-tag">&gt;</span>
+      <span class="tok-tag">&lt;span</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;chart__subtitle&quot;</span><span class="tok-tag">&gt;</span>Bar chart<span class="tok-tag">&lt;/span</span><span class="tok-tag">&gt;</span>
+    <span class="tok-tag">&lt;/figcaption</span><span class="tok-tag">&gt;</span>
+    <span class="tok-tag">&lt;p</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;chart__fallback&quot;</span><span class="tok-tag">&gt;</span>Monthly revenue, May to October 2026.<span class="tok-tag">&lt;/p</span><span class="tok-tag">&gt;</span>
+  <span class="tok-tag">&lt;/figure</span><span class="tok-tag">&gt;</span>
+
+  <span class="tok-tag">&lt;figure</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;chart&quot;</span> <span class="tok-attr">data-viz</span><span class="tok-punct">=</span><span class="tok-string">&quot;donut&quot;</span> <span class="tok-attr">data-source</span><span class="tok-punct">=</span><span class="tok-string">&quot;sales&quot;</span> <span class="tok-attr">data-path</span><span class="tok-punct">=</span><span class="tok-string">&quot;channels&quot;</span> <span class="tok-attr">data-x</span><span class="tok-punct">=</span><span class="tok-string">&quot;channel&quot;</span> <span class="tok-attr">data-series</span><span class="tok-punct">=</span><span class="tok-string">&quot;revenue:Revenue&quot;</span> <span class="tok-attr">data-format</span><span class="tok-punct">=</span><span class="tok-string">&quot;currency-compact&quot;</span><span class="tok-tag">&gt;</span>
+    <span class="tok-tag">&lt;figcaption</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;chart__caption&quot;</span><span class="tok-tag">&gt;</span>
+      <span class="tok-tag">&lt;span</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;chart__title&quot;</span><span class="tok-tag">&gt;</span>Revenue by channel<span class="tok-tag">&lt;/span</span><span class="tok-tag">&gt;</span>
+      <span class="tok-tag">&lt;span</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;chart__subtitle&quot;</span><span class="tok-tag">&gt;</span>Donut chart from src/data/sales.json<span class="tok-tag">&lt;/span</span><span class="tok-tag">&gt;</span>
+    <span class="tok-tag">&lt;/figcaption</span><span class="tok-tag">&gt;</span>
+    <span class="tok-tag">&lt;p</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;chart__fallback&quot;</span><span class="tok-tag">&gt;</span>Organic search is the largest channel at $18.5K.<span class="tok-tag">&lt;/p</span><span class="tok-tag">&gt;</span>
+  <span class="tok-tag">&lt;/figure</span><span class="tok-tag">&gt;</span>
+
+  <span class="tok-tag">&lt;figure</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;chart&quot;</span> <span class="tok-attr">data-viz</span><span class="tok-punct">=</span><span class="tok-string">&quot;hbar&quot;</span> <span class="tok-attr">data-source</span><span class="tok-punct">=</span><span class="tok-string">&quot;sales&quot;</span> <span class="tok-attr">data-path</span><span class="tok-punct">=</span><span class="tok-string">&quot;regions&quot;</span> <span class="tok-attr">data-x</span><span class="tok-punct">=</span><span class="tok-string">&quot;region&quot;</span> <span class="tok-attr">data-series</span><span class="tok-punct">=</span><span class="tok-string">&quot;revenue:Revenue:2&quot;</span> <span class="tok-attr">data-format</span><span class="tok-punct">=</span><span class="tok-string">&quot;currency-compact&quot;</span><span class="tok-tag">&gt;</span>
+    <span class="tok-tag">&lt;figcaption</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;chart__caption&quot;</span><span class="tok-tag">&gt;</span>
+      <span class="tok-tag">&lt;span</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;chart__title&quot;</span><span class="tok-tag">&gt;</span>Revenue by region<span class="tok-tag">&lt;/span</span><span class="tok-tag">&gt;</span>
+      <span class="tok-tag">&lt;span</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;chart__subtitle&quot;</span><span class="tok-tag">&gt;</span>Horizontal bar chart<span class="tok-tag">&lt;/span</span><span class="tok-tag">&gt;</span>
+    <span class="tok-tag">&lt;/figcaption</span><span class="tok-tag">&gt;</span>
+    <span class="tok-tag">&lt;p</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;chart__fallback&quot;</span><span class="tok-tag">&gt;</span>North America leads with $19.8K.<span class="tok-tag">&lt;/p</span><span class="tok-tag">&gt;</span>
+  <span class="tok-tag">&lt;/figure</span><span class="tok-tag">&gt;</span>
+<span class="tok-tag">&lt;/div</span><span class="tok-tag">&gt;</span></code></pre>
+</div>
+    </section>
+    <section class="tabs__panel" id="tabs-107-1" aria-labelledby="tabs-107-1-h">
+      <h3 class="tabs__heading" id="tabs-107-1-h">chart.css</h3>
+      <div class="docs-code">
+  <div class="docs-code__header">
+    <span class="docs-code__label"><span class="docs-code__path">src/assets/css/components/chart.css</span></span>
+    <span class="docs-code__actions"><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-text="src/assets/css/components/chart.css" data-copy-success="Path copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg> <span data-copy-label>Copy path</span></button><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-target="#code-103" data-copy-success="Code copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy code</span></button></span>
+  </div>
+  <pre tabindex="0" role="region" aria-label="src/assets/css/components/chart.css"><code id="code-103"><span class="tok-comment">/* ==========================================================================
+   Charts (components/chart.js)
+   Series colours come from --chart-1 … --chart-6 in tokens.css, so charts
+   follow the theme (light/dark) without re-rendering.
+   ========================================================================== */</span>
+
+<span class="tok-selector">.chart </span><span class="tok-punct">{</span>
+  <span class="tok-property">display</span><span class="tok-punct">:</span> grid<span class="tok-punct">;</span>
+  <span class="tok-property">align-content</span><span class="tok-punct">:</span> start<span class="tok-punct">;</span>
+  <span class="tok-property">gap</span><span class="tok-punct">:</span> var(<span class="tok-variable">--spacing-xs</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">min-width</span><span class="tok-punct">:</span> <span class="tok-number">0</span><span class="tok-punct">;</span>
+  <span class="tok-property">margin</span><span class="tok-punct">:</span> <span class="tok-number">0</span><span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.chart__caption </span><span class="tok-punct">{</span>
+  <span class="tok-property">display</span><span class="tok-punct">:</span> grid<span class="tok-punct">;</span>
+  <span class="tok-property">gap</span><span class="tok-punct">:</span> <span class="tok-number">0.125rem</span><span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.chart__title </span><span class="tok-punct">{</span>
+  <span class="tok-property">font-size</span><span class="tok-punct">:</span> var(<span class="tok-variable">--font-size-lg</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">font-weight</span><span class="tok-punct">:</span> var(<span class="tok-variable">--font-weight-semibold</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">line-height</span><span class="tok-punct">:</span> var(<span class="tok-variable">--line-height-snug</span>)<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.chart__subtitle </span><span class="tok-punct">{</span>
+  <span class="tok-property">color</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-text-muted</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">font-size</span><span class="tok-punct">:</span> var(<span class="tok-variable">--font-size-sm</span>)<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.chart__canvas </span><span class="tok-punct">{</span>
+  <span class="tok-property">position</span><span class="tok-punct">:</span> relative<span class="tok-punct">;</span>
+  <span class="tok-property">min-width</span><span class="tok-punct">:</span> <span class="tok-number">0</span><span class="tok-punct">;</span>
+  <span class="tok-property">border-radius</span><span class="tok-punct">:</span> var(<span class="tok-variable">--radius-md</span>)<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.chart__canvas:focus-visible </span><span class="tok-punct">{</span>
+  <span class="tok-property">outline</span><span class="tok-punct">:</span> var(<span class="tok-variable">--focus-ring-width</span>) solid var(<span class="tok-variable">--color-focus</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">outline-offset</span><span class="tok-punct">:</span> var(<span class="tok-variable">--focus-ring-offset</span>)<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.chart__svg </span><span class="tok-punct">{</span>
+  <span class="tok-property">display</span><span class="tok-punct">:</span> block<span class="tok-punct">;</span>
+  <span class="tok-property">overflow</span><span class="tok-punct">:</span> visible<span class="tok-punct">;</span>
+  <span class="tok-property">forced-color-adjust</span><span class="tok-punct">:</span> none<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.chart--enhanced .chart__fallback </span><span class="tok-punct">{</span>
+  <span class="tok-property">display</span><span class="tok-punct">:</span> none<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.chart__empty </span><span class="tok-punct">{</span>
+  <span class="tok-property">display</span><span class="tok-punct">:</span> grid<span class="tok-punct">;</span>
+  <span class="tok-property">justify-items</span><span class="tok-punct">:</span> start<span class="tok-punct">;</span>
+  <span class="tok-property">gap</span><span class="tok-punct">:</span> var(<span class="tok-variable">--spacing-2xs</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">padding</span><span class="tok-punct">:</span> var(<span class="tok-variable">--spacing-md</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">color</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-text-muted</span>)<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-comment">/* ---- Series colours ---------------------------------------------------- */</span>
+<span class="tok-selector">.chart__series--1 </span><span class="tok-punct">{</span> <span class="tok-property">--series</span><span class="tok-punct">:</span> var(<span class="tok-variable">--chart-1</span>)<span class="tok-punct">;</span> <span class="tok-punct">}</span>
+<span class="tok-selector">.chart__series--2 </span><span class="tok-punct">{</span> <span class="tok-property">--series</span><span class="tok-punct">:</span> var(<span class="tok-variable">--chart-2</span>)<span class="tok-punct">;</span> <span class="tok-punct">}</span>
+<span class="tok-selector">.chart__series--3 </span><span class="tok-punct">{</span> <span class="tok-property">--series</span><span class="tok-punct">:</span> var(<span class="tok-variable">--chart-3</span>)<span class="tok-punct">;</span> <span class="tok-punct">}</span>
+<span class="tok-selector">.chart__series--4 </span><span class="tok-punct">{</span> <span class="tok-property">--series</span><span class="tok-punct">:</span> var(<span class="tok-variable">--chart-4</span>)<span class="tok-punct">;</span> <span class="tok-punct">}</span>
+<span class="tok-selector">.chart__series--5 </span><span class="tok-punct">{</span> <span class="tok-property">--series</span><span class="tok-punct">:</span> var(<span class="tok-variable">--chart-5</span>)<span class="tok-punct">;</span> <span class="tok-punct">}</span>
+<span class="tok-selector">.chart__series--6 </span><span class="tok-punct">{</span> <span class="tok-property">--series</span><span class="tok-punct">:</span> var(<span class="tok-variable">--chart-6</span>)<span class="tok-punct">;</span> <span class="tok-punct">}</span>
+
+<span class="tok-comment">/* ---- Axes -------------------------------------------------------------- */</span>
+<span class="tok-selector">.chart__grid </span><span class="tok-punct">{</span>
+  <span class="tok-property">stroke</span><span class="tok-punct">:</span> var(<span class="tok-variable">--chart-grid</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">stroke-width</span><span class="tok-punct">:</span> <span class="tok-number">1</span><span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.chart__axis-label </span><span class="tok-punct">{</span>
+  <span class="tok-property">fill</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-text-muted</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">font-size</span><span class="tok-punct">:</span> var(<span class="tok-variable">--font-size-xs</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">font-variant-numeric</span><span class="tok-punct">:</span> tabular-nums<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.chart__axis-label--strong </span><span class="tok-punct">{</span>
+  <span class="tok-property">fill</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-text</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">font-weight</span><span class="tok-punct">:</span> var(<span class="tok-variable">--font-weight-medium</span>)<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-comment">/* ---- Marks ------------------------------------------------------------- */</span>
+<span class="tok-selector">.chart__line </span><span class="tok-punct">{</span>
+  <span class="tok-property">fill</span><span class="tok-punct">:</span> none<span class="tok-punct">;</span>
+  <span class="tok-property">stroke</span><span class="tok-punct">:</span> var(<span class="tok-variable">--series</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">stroke-width</span><span class="tok-punct">:</span> <span class="tok-number">2.5</span><span class="tok-punct">;</span>
+  <span class="tok-property">stroke-linecap</span><span class="tok-punct">:</span> round<span class="tok-punct">;</span>
+  <span class="tok-property">stroke-linejoin</span><span class="tok-punct">:</span> round<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.chart__line--dashed </span><span class="tok-punct">{</span>
+  <span class="tok-property">stroke-dasharray</span><span class="tok-punct">:</span> <span class="tok-number">7</span> <span class="tok-number">5</span><span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.chart__area </span><span class="tok-punct">{</span>
+  <span class="tok-property">fill</span><span class="tok-punct">:</span> var(<span class="tok-variable">--series</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">fill-opacity</span><span class="tok-punct">:</span> <span class="tok-number">0.14</span><span class="tok-punct">;</span>
+  <span class="tok-property">stroke</span><span class="tok-punct">:</span> none<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.chart__point </span><span class="tok-punct">{</span>
+  <span class="tok-property">fill</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-surface-raised</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">stroke</span><span class="tok-punct">:</span> var(<span class="tok-variable">--series</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">stroke-width</span><span class="tok-punct">:</span> <span class="tok-number">2</span><span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.chart__point.is-active,
+.chart__point--end </span><span class="tok-punct">{</span>
+  <span class="tok-property">fill</span><span class="tok-punct">:</span> var(<span class="tok-variable">--series</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">stroke</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-surface-raised</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">stroke-width</span><span class="tok-punct">:</span> <span class="tok-number">2.5</span><span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.chart__bar,
+.chart__slice </span><span class="tok-punct">{</span>
+  <span class="tok-property">fill</span><span class="tok-punct">:</span> var(<span class="tok-variable">--series</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">transition</span><span class="tok-punct">:</span> opacity var(<span class="tok-variable">--duration-fast</span>) var(<span class="tok-variable">--ease-standard</span>)<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.chart__svg.has-active .chart__bar:not(.is-active),
+.chart__svg.has-active .chart__slice:not(.is-active) </span><span class="tok-punct">{</span>
+  <span class="tok-property">opacity</span><span class="tok-punct">:</span> <span class="tok-number">0.45</span><span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.chart__slice.is-active </span><span class="tok-punct">{</span>
+  <span class="tok-property">stroke</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-text</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">stroke-width</span><span class="tok-punct">:</span> <span class="tok-number">2</span><span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.chart__band </span><span class="tok-punct">{</span>
+  <span class="tok-property">fill</span><span class="tok-punct">:</span> transparent<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.chart__band.is-active </span><span class="tok-punct">{</span>
+  <span class="tok-property">fill</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-surface-sunken</span>)<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.chart__guide </span><span class="tok-punct">{</span>
+  <span class="tok-property">stroke</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-border-strong</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">stroke-dasharray</span><span class="tok-punct">:</span> <span class="tok-number">3</span> <span class="tok-number">3</span><span class="tok-punct">;</span>
+  <span class="tok-property">visibility</span><span class="tok-punct">:</span> hidden<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.chart__guide.is-visible </span><span class="tok-punct">{</span>
+  <span class="tok-property">visibility</span><span class="tok-punct">:</span> visible<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.chart__donut-value </span><span class="tok-punct">{</span>
+  <span class="tok-property">fill</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-text</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">font-size</span><span class="tok-punct">:</span> var(<span class="tok-variable">--font-size-xl</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">font-weight</span><span class="tok-punct">:</span> var(<span class="tok-variable">--font-weight-bold</span>)<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-comment">/* ---- Tooltip ----------------------------------------------------------- */</span>
+<span class="tok-selector">.chart__tooltip </span><span class="tok-punct">{</span>
+  <span class="tok-property">position</span><span class="tok-punct">:</span> absolute<span class="tok-punct">;</span>
+  <span class="tok-property">z-index</span><span class="tok-punct">:</span> var(<span class="tok-variable">--z-dropdown</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">display</span><span class="tok-punct">:</span> grid<span class="tok-punct">;</span>
+  <span class="tok-property">gap</span><span class="tok-punct">:</span> <span class="tok-number">0.125rem</span><span class="tok-punct">;</span>
+  <span class="tok-property">min-width</span><span class="tok-punct">:</span> <span class="tok-number">8rem</span><span class="tok-punct">;</span>
+  <span class="tok-property">padding</span><span class="tok-punct">:</span> var(<span class="tok-variable">--spacing-2xs</span>) var(<span class="tok-variable">--spacing-xs</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">border</span><span class="tok-punct">:</span> var(<span class="tok-variable">--border-width</span>) solid var(<span class="tok-variable">--color-border</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">border-radius</span><span class="tok-punct">:</span> var(<span class="tok-variable">--radius-md</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">background-color</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-surface-raised</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">box-shadow</span><span class="tok-punct">:</span> var(<span class="tok-variable">--shadow-md</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">font-size</span><span class="tok-punct">:</span> var(<span class="tok-variable">--font-size-sm</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">white-space</span><span class="tok-punct">:</span> nowrap<span class="tok-punct">;</span>
+  <span class="tok-property">pointer-events</span><span class="tok-punct">:</span> none<span class="tok-punct">;</span>
+  <span class="tok-property">transform</span><span class="tok-punct">:</span> translate(<span class="tok-number">-50</span>%, calc(<span class="tok-number">-100</span>% - <span class="tok-number">0.75rem</span>))<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.chart__tooltip-title </span><span class="tok-punct">{</span>
+  <span class="tok-property">color</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-text-muted</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">font-size</span><span class="tok-punct">:</span> var(<span class="tok-variable">--font-size-xs</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">font-weight</span><span class="tok-punct">:</span> var(<span class="tok-variable">--font-weight-semibold</span>)<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.chart__tooltip-row </span><span class="tok-punct">{</span>
+  <span class="tok-property">display</span><span class="tok-punct">:</span> flex<span class="tok-punct">;</span>
+  <span class="tok-property">align-items</span><span class="tok-punct">:</span> center<span class="tok-punct">;</span>
+  <span class="tok-property">gap</span><span class="tok-punct">:</span> var(<span class="tok-variable">--spacing-3xs</span>)<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-comment">/* ---- Legend ------------------------------------------------------------ */</span>
+<span class="tok-selector">.chart__legend </span><span class="tok-punct">{</span>
+  <span class="tok-property">display</span><span class="tok-punct">:</span> flex<span class="tok-punct">;</span>
+  <span class="tok-property">flex-wrap</span><span class="tok-punct">:</span> wrap<span class="tok-punct">;</span>
+  <span class="tok-property">gap</span><span class="tok-punct">:</span> var(<span class="tok-variable">--spacing-3xs</span>) var(<span class="tok-variable">--spacing-xs</span>)<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.chart__legend:empty </span><span class="tok-punct">{</span>
+  <span class="tok-property">display</span><span class="tok-punct">:</span> none<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.chart__legend-item </span><span class="tok-punct">{</span>
+  <span class="tok-property">display</span><span class="tok-punct">:</span> inline-flex<span class="tok-punct">;</span>
+  <span class="tok-property">align-items</span><span class="tok-punct">:</span> center<span class="tok-punct">;</span>
+  <span class="tok-property">gap</span><span class="tok-punct">:</span> var(<span class="tok-variable">--spacing-3xs</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">min-height</span><span class="tok-punct">:</span> <span class="tok-number">2rem</span><span class="tok-punct">;</span>
+  <span class="tok-property">padding</span><span class="tok-punct">:</span> <span class="tok-number">0</span> var(<span class="tok-variable">--spacing-2xs</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">border</span><span class="tok-punct">:</span> var(<span class="tok-variable">--border-width</span>) solid var(<span class="tok-variable">--color-border</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">border-radius</span><span class="tok-punct">:</span> var(<span class="tok-variable">--radius-pill</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">background</span><span class="tok-punct">:</span> none<span class="tok-punct">;</span>
+  <span class="tok-property">color</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-text</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">font-size</span><span class="tok-punct">:</span> var(<span class="tok-variable">--font-size-sm</span>)<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.chart__legend-item[aria-pressed=&quot;false&quot;] </span><span class="tok-punct">{</span>
+  <span class="tok-property">color</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-text-muted</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">text-decoration</span><span class="tok-punct">:</span> line-through<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.chart__legend-item[aria-pressed=&quot;false&quot;] .chart__swatch </span><span class="tok-punct">{</span>
+  <span class="tok-property">opacity</span><span class="tok-punct">:</span> <span class="tok-number">0.3</span><span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.chart__legend-list </span><span class="tok-punct">{</span>
+  <span class="tok-property">display</span><span class="tok-punct">:</span> grid<span class="tok-punct">;</span>
+  <span class="tok-property">gap</span><span class="tok-punct">:</span> var(<span class="tok-variable">--spacing-3xs</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">width</span><span class="tok-punct">:</span> <span class="tok-number">100</span>%<span class="tok-punct">;</span>
+  <span class="tok-property">margin</span><span class="tok-punct">:</span> <span class="tok-number">0</span><span class="tok-punct">;</span>
+  <span class="tok-property">padding</span><span class="tok-punct">:</span> <span class="tok-number">0</span><span class="tok-punct">;</span>
+  <span class="tok-property">list-style</span><span class="tok-punct">:</span> none<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.chart__legend-entry </span><span class="tok-punct">{</span>
+  <span class="tok-property">display</span><span class="tok-punct">:</span> flex<span class="tok-punct">;</span>
+  <span class="tok-property">align-items</span><span class="tok-punct">:</span> center<span class="tok-punct">;</span>
+  <span class="tok-property">gap</span><span class="tok-punct">:</span> var(<span class="tok-variable">--spacing-2xs</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">font-size</span><span class="tok-punct">:</span> var(<span class="tok-variable">--font-size-sm</span>)<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.chart__legend-value </span><span class="tok-punct">{</span>
+  <span class="tok-property">margin-inline-start</span><span class="tok-punct">:</span> auto<span class="tok-punct">;</span>
+  <span class="tok-property">color</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-text-muted</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">font-variant-numeric</span><span class="tok-punct">:</span> tabular-nums<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.chart__swatch </span><span class="tok-punct">{</span>
+  <span class="tok-property">display</span><span class="tok-punct">:</span> inline-block<span class="tok-punct">;</span>
+  <span class="tok-property">flex-shrink</span><span class="tok-punct">:</span> <span class="tok-number">0</span><span class="tok-punct">;</span>
+  <span class="tok-property">width</span><span class="tok-punct">:</span> <span class="tok-number">0.75rem</span><span class="tok-punct">;</span>
+  <span class="tok-property">height</span><span class="tok-punct">:</span> <span class="tok-number">0.75rem</span><span class="tok-punct">;</span>
+  <span class="tok-property">border-radius</span><span class="tok-punct">:</span> <span class="tok-number">3px</span><span class="tok-punct">;</span>
+  <span class="tok-property">background-color</span><span class="tok-punct">:</span> var(<span class="tok-variable">--series</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">forced-color-adjust</span><span class="tok-punct">:</span> none<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.chart__swatch--dashed </span><span class="tok-punct">{</span>
+  <span class="tok-property">height</span><span class="tok-punct">:</span> <span class="tok-number">0.25rem</span><span class="tok-punct">;</span>
+  <span class="tok-property">background</span><span class="tok-punct">:</span> repeating-linear-gradient(<span class="tok-number">90deg</span>, var(<span class="tok-variable">--series</span>) <span class="tok-number">0</span> <span class="tok-number">4px</span>, transparent <span class="tok-number">4px</span> <span class="tok-number">7px</span>)<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-comment">/* ---- Data table toggle ------------------------------------------------- */</span>
+<span class="tok-selector">.chart__table &gt; summary </span><span class="tok-punct">{</span>
+  <span class="tok-property">width</span><span class="tok-punct">:</span> fit-content<span class="tok-punct">;</span>
+  <span class="tok-property">padding-block</span><span class="tok-punct">:</span> var(<span class="tok-variable">--spacing-3xs</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">color</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-link</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">font-size</span><span class="tok-punct">:</span> var(<span class="tok-variable">--font-size-sm</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">cursor</span><span class="tok-punct">:</span> pointer<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.chart__table &gt; .table-wrapper </span><span class="tok-punct">{</span>
+  <span class="tok-property">margin-block-start</span><span class="tok-punct">:</span> var(<span class="tok-variable">--spacing-2xs</span>)<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-comment">/* Donut: legend beside the ring on wide cards */</span>
+<span class="tok-keyword">@container</span> card (min-width: <span class="tok-number">30rem</span>) <span class="tok-punct">{</span>
+  <span class="tok-selector">.chart--donut </span><span class="tok-punct">{</span>
+    <span class="tok-property">grid-template-columns</span><span class="tok-punct">:</span> minmax(<span class="tok-number">0</span>, <span class="tok-number">1fr</span>) minmax(<span class="tok-number">0</span>, <span class="tok-number">1fr</span>)<span class="tok-punct">;</span>
+    <span class="tok-property">align-items</span><span class="tok-punct">:</span> center<span class="tok-punct">;</span>
+  <span class="tok-punct">}</span>
+
+  <span class="tok-selector">.chart--donut &gt; .chart__caption,
+  .chart--donut &gt; .chart__table,
+  .chart--donut &gt; p </span><span class="tok-punct">{</span>
+    <span class="tok-property">grid-column</span><span class="tok-punct">:</span> <span class="tok-number">1</span> / <span class="tok-number">-1</span><span class="tok-punct">;</span>
+  <span class="tok-punct">}</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-comment">/* ---- Motion ------------------------------------------------------------ */</span>
+<span class="tok-keyword">@media</span> (prefers-reduced-motion: no-preference) <span class="tok-punct">{</span>
+  <span class="tok-selector">.chart__svg--animate .chart__line:not(.chart__line--dashed) </span><span class="tok-punct">{</span>
+    <span class="tok-property">stroke-dasharray</span><span class="tok-punct">:</span> <span class="tok-number">1</span><span class="tok-punct">;</span>
+    <span class="tok-property">stroke-dashoffset</span><span class="tok-punct">:</span> <span class="tok-number">1</span><span class="tok-punct">;</span>
+    <span class="tok-property">animation</span><span class="tok-punct">:</span> chart-draw <span class="tok-number">900ms</span> var(<span class="tok-variable">--ease-standard</span>) forwards<span class="tok-punct">;</span>
+  <span class="tok-punct">}</span>
+
+  <span class="tok-selector">.chart__svg--animate .chart__bar,
+  .chart__svg--animate .chart__slice,
+  .chart__svg--animate .chart__area </span><span class="tok-punct">{</span>
+    <span class="tok-property">animation</span><span class="tok-punct">:</span> chart-fade <span class="tok-number">500ms</span> var(<span class="tok-variable">--ease-standard</span>) both<span class="tok-punct">;</span>
+  <span class="tok-punct">}</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-keyword">@keyframes</span> chart-draw <span class="tok-punct">{</span>
+  <span class="tok-selector">to </span><span class="tok-punct">{</span>
+    <span class="tok-property">stroke-dashoffset</span><span class="tok-punct">:</span> <span class="tok-number">0</span><span class="tok-punct">;</span>
+  <span class="tok-punct">}</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-keyword">@keyframes</span> chart-fade <span class="tok-punct">{</span>
+  <span class="tok-selector">from </span><span class="tok-punct">{</span>
+    <span class="tok-property">opacity</span><span class="tok-punct">:</span> <span class="tok-number">0</span><span class="tok-punct">;</span>
+  <span class="tok-punct">}</span>
+<span class="tok-punct">}</span></code></pre>
+</div>
+    </section>
+    <section class="tabs__panel" id="tabs-107-2" aria-labelledby="tabs-107-2-h">
+      <h3 class="tabs__heading" id="tabs-107-2-h">table.css</h3>
+      <div class="docs-code">
+  <div class="docs-code__header">
+    <span class="docs-code__label"><span class="docs-code__path">src/assets/css/components/table.css</span></span>
+    <span class="docs-code__actions"><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-text="src/assets/css/components/table.css" data-copy-success="Path copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg> <span data-copy-label>Copy path</span></button><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-target="#code-104" data-copy-success="Code copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy code</span></button></span>
+  </div>
+  <pre tabindex="0" role="region" aria-label="src/assets/css/components/table.css"><code id="code-104"><span class="tok-comment">/* ==========================================================================
+   Data table &amp; table-driven bar chart
+   The wrapper is a focusable, labelled region so keyboard users can scroll
+   wide tables horizontally (WCAG 2.1.1 / 1.4.10).
+   ========================================================================== */</span>
+
+<span class="tok-selector">.table-wrapper </span><span class="tok-punct">{</span>
+  <span class="tok-comment">/* Containing block for visually hidden text inside cells, so it is
+     clipped by the scroll area instead of widening the page. */</span>
+  <span class="tok-property">position</span><span class="tok-punct">:</span> relative<span class="tok-punct">;</span>
+  <span class="tok-property">max-width</span><span class="tok-punct">:</span> <span class="tok-number">100</span>%<span class="tok-punct">;</span>
+  <span class="tok-property">overflow-x</span><span class="tok-punct">:</span> auto<span class="tok-punct">;</span>
+  <span class="tok-property">border</span><span class="tok-punct">:</span> var(<span class="tok-variable">--border-width</span>) solid var(<span class="tok-variable">--color-border</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">border-radius</span><span class="tok-punct">:</span> var(<span class="tok-variable">--radius-lg</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">background-color</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-surface-raised</span>)<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.table </span><span class="tok-punct">{</span>
+  <span class="tok-property">width</span><span class="tok-punct">:</span> <span class="tok-number">100</span>%<span class="tok-punct">;</span>
+  <span class="tok-property">font-size</span><span class="tok-punct">:</span> var(<span class="tok-variable">--font-size-sm</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">font-variant-numeric</span><span class="tok-punct">:</span> tabular-nums<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.table caption </span><span class="tok-punct">{</span>
+  <span class="tok-property">padding</span><span class="tok-punct">:</span> var(<span class="tok-variable">--spacing-sm</span>) var(<span class="tok-variable">--spacing-md</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">font-size</span><span class="tok-punct">:</span> var(<span class="tok-variable">--font-size-base</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">font-weight</span><span class="tok-punct">:</span> var(<span class="tok-variable">--font-weight-semibold</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">text-align</span><span class="tok-punct">:</span> start<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.table th,
+.table td </span><span class="tok-punct">{</span>
+  <span class="tok-property">padding</span><span class="tok-punct">:</span> var(<span class="tok-variable">--spacing-xs</span>) var(<span class="tok-variable">--spacing-md</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">border-block-start</span><span class="tok-punct">:</span> var(<span class="tok-variable">--border-width</span>) solid var(<span class="tok-variable">--color-border</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">text-align</span><span class="tok-punct">:</span> start<span class="tok-punct">;</span>
+  <span class="tok-property">vertical-align</span><span class="tok-punct">:</span> middle<span class="tok-punct">;</span>
+  <span class="tok-property">white-space</span><span class="tok-punct">:</span> nowrap<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.table thead th </span><span class="tok-punct">{</span>
+  <span class="tok-property">background-color</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-surface</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">color</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-text-muted</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">font-weight</span><span class="tok-punct">:</span> var(<span class="tok-variable">--font-weight-semibold</span>)<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.table tbody tr:hover </span><span class="tok-punct">{</span>
+  <span class="tok-property">background-color</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-surface</span>)<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.table .num </span><span class="tok-punct">{</span>
+  <span class="tok-property">text-align</span><span class="tok-punct">:</span> end<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-comment">/* ---- Sortable headers (table-sort.js) --------------------------------- */</span>
+<span class="tok-selector">.table__sort </span><span class="tok-punct">{</span>
+  <span class="tok-property">display</span><span class="tok-punct">:</span> inline-flex<span class="tok-punct">;</span>
+  <span class="tok-property">align-items</span><span class="tok-punct">:</span> center<span class="tok-punct">;</span>
+  <span class="tok-property">gap</span><span class="tok-punct">:</span> var(<span class="tok-variable">--spacing-3xs</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">min-height</span><span class="tok-punct">:</span> <span class="tok-number">2rem</span><span class="tok-punct">;</span>
+  <span class="tok-property">margin-inline</span><span class="tok-punct">:</span> calc(var(<span class="tok-variable">--spacing-2xs</span>) * <span class="tok-number">-1</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">padding</span><span class="tok-punct">:</span> var(<span class="tok-variable">--spacing-3xs</span>) var(<span class="tok-variable">--spacing-2xs</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">border</span><span class="tok-punct">:</span> <span class="tok-number">0</span><span class="tok-punct">;</span>
+  <span class="tok-property">border-radius</span><span class="tok-punct">:</span> var(<span class="tok-variable">--radius-sm</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">background</span><span class="tok-punct">:</span> none<span class="tok-punct">;</span>
+  <span class="tok-property">color</span><span class="tok-punct">:</span> inherit<span class="tok-punct">;</span>
+  <span class="tok-property">font-weight</span><span class="tok-punct">:</span> inherit<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.table__sort:hover </span><span class="tok-punct">{</span>
+  <span class="tok-property">background-color</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-surface-sunken</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">color</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-text</span>)<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.table__sort-icon </span><span class="tok-punct">{</span>
+  <span class="tok-property">width</span><span class="tok-punct">:</span> <span class="tok-number">0.9em</span><span class="tok-punct">;</span>
+  <span class="tok-property">height</span><span class="tok-punct">:</span> <span class="tok-number">0.9em</span><span class="tok-punct">;</span>
+  <span class="tok-property">opacity</span><span class="tok-punct">:</span> <span class="tok-number">0.45</span><span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">[aria-sort=&quot;ascending&quot;] .table__sort-icon,
+[aria-sort=&quot;descending&quot;] .table__sort-icon </span><span class="tok-punct">{</span>
+  <span class="tok-property">opacity</span><span class="tok-punct">:</span> <span class="tok-number">1</span><span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">[aria-sort=&quot;descending&quot;] .table__sort-icon </span><span class="tok-punct">{</span>
+  <span class="tok-property">transform</span><span class="tok-punct">:</span> rotate(<span class="tok-number">180deg</span>)<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-comment">/* ---- Table bar chart (data-chart.js) ---------------------------------- */</span>
+<span class="tok-selector">.data-chart--enhanced td[data-value] </span><span class="tok-punct">{</span>
+  <span class="tok-property">min-width</span><span class="tok-punct">:</span> <span class="tok-number">12rem</span><span class="tok-punct">;</span>
+  <span class="tok-property">background-image</span><span class="tok-punct">:</span> linear-gradient(
+    to right,
+    var(<span class="tok-variable">--color-primary-soft</span>) calc(var(<span class="tok-variable">--value</span>, <span class="tok-number">0</span>) * <span class="tok-number">100</span>%),
+    transparent calc(var(<span class="tok-variable">--value</span>, <span class="tok-number">0</span>) * <span class="tok-number">100</span>%)
+  )<span class="tok-punct">;</span>
+  <span class="tok-property">background-repeat</span><span class="tok-punct">:</span> no-repeat<span class="tok-punct">;</span>
+  <span class="tok-property">background-size</span><span class="tok-punct">:</span> calc(<span class="tok-number">100</span>% - <span class="tok-number">2</span> * var(<span class="tok-variable">--spacing-md</span>)) <span class="tok-number">70</span>%<span class="tok-punct">;</span>
+  <span class="tok-property">background-position</span><span class="tok-punct">:</span> var(<span class="tok-variable">--spacing-md</span>) center<span class="tok-punct">;</span>
+  <span class="tok-property">font-weight</span><span class="tok-punct">:</span> var(<span class="tok-variable">--font-weight-semibold</span>)<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-comment">/* ---- Data grid (data-grid.js) ----------------------------------------- */</span>
+<span class="tok-selector">.data-grid </span><span class="tok-punct">{</span>
+  <span class="tok-property">display</span><span class="tok-punct">:</span> grid<span class="tok-punct">;</span>
+  <span class="tok-property">gap</span><span class="tok-punct">:</span> var(<span class="tok-variable">--spacing-sm</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">min-width</span><span class="tok-punct">:</span> <span class="tok-number">0</span><span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.data-grid__toolbar </span><span class="tok-punct">{</span>
+  <span class="tok-property">display</span><span class="tok-punct">:</span> flex<span class="tok-punct">;</span>
+  <span class="tok-property">flex-wrap</span><span class="tok-punct">:</span> wrap<span class="tok-punct">;</span>
+  <span class="tok-property">align-items</span><span class="tok-punct">:</span> flex-end<span class="tok-punct">;</span>
+  <span class="tok-property">gap</span><span class="tok-punct">:</span> var(<span class="tok-variable">--spacing-xs</span>)<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.data-grid__toolbar .field </span><span class="tok-punct">{</span>
+  <span class="tok-property">flex</span><span class="tok-punct">:</span> <span class="tok-number">1</span> <span class="tok-number">1</span> <span class="tok-number">12rem</span><span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.data-grid__toolbar .field--narrow </span><span class="tok-punct">{</span>
+  <span class="tok-property">flex</span><span class="tok-punct">:</span> <span class="tok-number">0</span> <span class="tok-number">1</span> <span class="tok-number">11rem</span><span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.data-grid__footer </span><span class="tok-punct">{</span>
+  <span class="tok-property">display</span><span class="tok-punct">:</span> flex<span class="tok-punct">;</span>
+  <span class="tok-property">flex-wrap</span><span class="tok-punct">:</span> wrap<span class="tok-punct">;</span>
+  <span class="tok-property">align-items</span><span class="tok-punct">:</span> center<span class="tok-punct">;</span>
+  <span class="tok-property">justify-content</span><span class="tok-punct">:</span> space-between<span class="tok-punct">;</span>
+  <span class="tok-property">gap</span><span class="tok-punct">:</span> var(<span class="tok-variable">--spacing-sm</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">color</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-text-muted</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">font-size</span><span class="tok-punct">:</span> var(<span class="tok-variable">--font-size-sm</span>)<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.data-grid__empty </span><span class="tok-punct">{</span>
+  <span class="tok-property">padding</span><span class="tok-punct">:</span> var(<span class="tok-variable">--spacing-xl</span>) var(<span class="tok-variable">--spacing-md</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">color</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-text-muted</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">text-align</span><span class="tok-punct">:</span> center<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.data-grid[aria-busy=&quot;true&quot;] tbody </span><span class="tok-punct">{</span>
+  <span class="tok-property">opacity</span><span class="tok-punct">:</span> <span class="tok-number">0.6</span><span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.pagination__link:disabled </span><span class="tok-punct">{</span>
+  <span class="tok-property">color</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-text-muted</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">cursor</span><span class="tok-punct">:</span> not-allowed<span class="tok-punct">;</span>
+  <span class="tok-property">opacity</span><span class="tok-punct">:</span> <span class="tok-number">0.6</span><span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">button.pagination__link </span><span class="tok-punct">{</span>
+  <span class="tok-property">background</span><span class="tok-punct">:</span> none<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-comment">/* Person cell: avatar + name + email */</span>
+<span class="tok-selector">.person </span><span class="tok-punct">{</span>
+  <span class="tok-property">display</span><span class="tok-punct">:</span> inline-flex<span class="tok-punct">;</span>
+  <span class="tok-property">align-items</span><span class="tok-punct">:</span> center<span class="tok-punct">;</span>
+  <span class="tok-property">gap</span><span class="tok-punct">:</span> var(<span class="tok-variable">--spacing-2xs</span>)<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.person__text </span><span class="tok-punct">{</span>
+  <span class="tok-property">display</span><span class="tok-punct">:</span> grid<span class="tok-punct">;</span>
+  <span class="tok-property">line-height</span><span class="tok-punct">:</span> var(<span class="tok-variable">--line-height-snug</span>)<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.person__name </span><span class="tok-punct">{</span>
+  <span class="tok-property">font-weight</span><span class="tok-punct">:</span> var(<span class="tok-variable">--font-weight-medium</span>)<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.person__meta </span><span class="tok-punct">{</span>
+  <span class="tok-property">color</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-text-muted</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">font-size</span><span class="tok-punct">:</span> var(<span class="tok-variable">--font-size-xs</span>)<span class="tok-punct">;</span>
+<span class="tok-punct">}</span></code></pre>
+</div>
+    </section>
+    <section class="tabs__panel" id="tabs-107-3" aria-labelledby="tabs-107-3-h">
+      <h3 class="tabs__heading" id="tabs-107-3-h">chart.js</h3>
+      <div class="docs-code">
+  <div class="docs-code__header">
+    <span class="docs-code__label"><span class="docs-code__path">src/assets/js/components/chart.js</span></span>
+    <span class="docs-code__actions"><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-text="src/assets/js/components/chart.js" data-copy-success="Path copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg> <span data-copy-label>Copy path</span></button><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-target="#code-105" data-copy-success="Code copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy code</span></button></span>
+  </div>
+  <pre tabindex="0" role="region" aria-label="src/assets/js/components/chart.js"><code id="code-105"><span class="tok-comment">/**
+ * Accessible, dependency-free SVG charts: line, area, bar (grouped or
+ * stacked), horizontal bar, donut and sparkline.
+ *
+ * Markup:
+ *   &lt;figure class=&quot;chart&quot; data-viz=&quot;line&quot; data-source=&quot;sales&quot; data-path=&quot;monthly&quot;
+ *           data-x=&quot;month&quot; data-x-format=&quot;short-month&quot;
+ *           data-series=&quot;revenue:Revenue,orders:Orders&quot; data-format=&quot;currency-compact&quot;&gt;
+ *     &lt;figcaption class=&quot;chart__caption&quot;&gt;
+ *       &lt;span class=&quot;chart__title&quot;&gt;Revenue&lt;/span&gt;
+ *       &lt;span class=&quot;chart__subtitle&quot;&gt;Last 12 months&lt;/span&gt;
+ *     &lt;/figcaption&gt;
+ *     &lt;p class=&quot;chart__fallback&quot;&gt;Optional server-rendered summary or table for no-JS.&lt;/p&gt;
+ *   &lt;/figure&gt;
+ *
+ * Attributes:
+ *   data-viz       line | area | bar | hbar | donut | sparkline
+ *   data-source    data name, URL or #inline-json (see core/data.js)
+ *   data-path      dotted path to the array inside the JSON
+ *   data-x         key for the category / x value         (default &quot;label&quot;)
+ *   data-x-format  format for x labels (see core/format.js) (default &quot;text&quot;)
+ *   data-series    &quot;key:Label[:colour 1-6]&quot; comma-separated (default &quot;value:Value&quot;)
+ *   data-format    value format (number, currency, currency-compact, percent, …)
+ *   data-height    plot height in px (default 260; sparkline 48)
+ *   data-limit     show only the last N rows
+ *   data-stacked   stack bar series
+ *   data-currency  ISO currency code (default USD)
+ *
+ * Accessibility: the SVG is decorative (aria-hidden). Instead each chart
+ * gets (1) an auto-generated text summary, (2) a keyboard-explorable region
+ * (arrow keys, Home/End) that announces each data point through a live
+ * region, (3) toggle buttons for series with aria-pressed, and (4) a full
+ * data table in a &lt;details&gt; element. Line series are also distinguished by
+ * dash pattern, not colour alone.
+ *
+ * Programmatic use:
+ *   import { renderChart } from './components/chart.js';
+ *   renderChart(figureElement, rows);
+ *
+ * @module components/chart
+ */</span>
+<span class="tok-keyword">import</span> { qs, qsa, on, claim, createElement, uniqueId } <span class="tok-keyword">from</span> <span class="tok-string">'../core/dom.js'</span>;
+<span class="tok-keyword">import</span> { loadData } <span class="tok-keyword">from</span> <span class="tok-string">'../core/data.js'</span>;
+<span class="tok-keyword">import</span> { formatValue, percentChange } <span class="tok-keyword">from</span> <span class="tok-string">'../core/format.js'</span>;
+
+<span class="tok-keyword">const</span> NS = <span class="tok-string">'http://www.w3.org/2000/svg'</span>;
+<span class="tok-keyword">const</span> states = <span class="tok-keyword">new</span> <span class="tok-function">WeakMap</span>();
+<span class="tok-keyword">let</span> listening = <span class="tok-keyword">false</span>;
+
+<span class="tok-comment">/* ---- Helpers ----------------------------------------------------------- */</span>
+<span class="tok-keyword">function</span> <span class="tok-function">svg</span>(tag, attrs = {}) {
+  <span class="tok-keyword">const</span> el = document.<span class="tok-function">createElementNS</span>(NS, tag);
+  <span class="tok-keyword">for</span> (<span class="tok-keyword">const</span> [name, value] <span class="tok-keyword">of</span> Object.<span class="tok-function">entries</span>(attrs)) el.<span class="tok-function">setAttribute</span>(name, <span class="tok-function">String</span>(value));
+  <span class="tok-keyword">return</span> el;
+}
+
+<span class="tok-keyword">function</span> <span class="tok-function">parseSeries</span>(spec) {
+  <span class="tok-keyword">return</span> spec.<span class="tok-function">split</span>(<span class="tok-string">','</span>).<span class="tok-function">map</span>((part, i) =&gt; {
+    <span class="tok-keyword">const</span> [key, label, colour] = part.<span class="tok-function">split</span>(<span class="tok-string">':'</span>).<span class="tok-function">map</span>((s) =&gt; s.<span class="tok-function">trim</span>());
+    <span class="tok-keyword">const</span> n = <span class="tok-function">Number</span>(colour);
+    <span class="tok-keyword">return</span> { key, label: label || key, colour: n &gt;= <span class="tok-number">1</span> &amp;&amp; n &lt;= <span class="tok-number">6</span> ? n : (i % <span class="tok-number">6</span>) + <span class="tok-number">1</span>, index: i };
+  });
+}
+
+<span class="tok-keyword">function</span> <span class="tok-function">readConfig</span>(figure) {
+  <span class="tok-keyword">const</span> d = figure.dataset;
+  <span class="tok-keyword">const</span> type = d.viz || <span class="tok-string">'line'</span>;
+  <span class="tok-keyword">return</span> {
+    type,
+    source: d.source || <span class="tok-string">''</span>,
+    path: d.path || <span class="tok-string">''</span>,
+    x: d.x || <span class="tok-string">'label'</span>,
+    xFormat: d.xFormat || <span class="tok-string">'text'</span>,
+    series: <span class="tok-function">parseSeries</span>(d.series || <span class="tok-string">'value:Value'</span>),
+    format: d.format || <span class="tok-string">'number'</span>,
+    height: <span class="tok-function">Number</span>(d.height) || (type === <span class="tok-string">'sparkline'</span> ? <span class="tok-number">48</span> : <span class="tok-number">260</span>),
+    limit: <span class="tok-function">Number</span>(d.limit) || <span class="tok-number">0</span>,
+    stacked: d.stacked !== <span class="tok-keyword">undefined</span>,
+    currency: d.currency || <span class="tok-string">'USD'</span>,
+    title: (<span class="tok-function">qs</span>(<span class="tok-string">'.chart__title'</span>, figure) || <span class="tok-function">qs</span>(<span class="tok-string">'figcaption'</span>, figure) || { textContent: <span class="tok-string">'Chart'</span> }).textContent.<span class="tok-function">trim</span>(),
+  };
+}
+
+<span class="tok-keyword">function</span> <span class="tok-function">niceScale</span>(min, max, ticks = <span class="tok-number">4</span>) {
+  <span class="tok-keyword">if</span> (max === min) max = min + <span class="tok-number">1</span>;
+  <span class="tok-keyword">const</span> rough = (max - min) / ticks;
+  <span class="tok-keyword">const</span> pow = <span class="tok-number">10</span> ** Math.<span class="tok-function">floor</span>(Math.<span class="tok-function">log10</span>(rough));
+  <span class="tok-keyword">const</span> n = rough / pow;
+  <span class="tok-keyword">const</span> step = (n &lt;= <span class="tok-number">1</span> ? <span class="tok-number">1</span> : n &lt;= <span class="tok-number">2</span> ? <span class="tok-number">2</span> : n &lt;= <span class="tok-number">2.5</span> ? <span class="tok-number">2.5</span> : n &lt;= <span class="tok-number">5</span> ? <span class="tok-number">5</span> : <span class="tok-number">10</span>) * pow;
+  <span class="tok-keyword">return</span> { min: Math.<span class="tok-function">floor</span>(min / step) * step, max: Math.<span class="tok-function">ceil</span>(max / step) * step, step };
+}
+
+<span class="tok-keyword">const</span> num = (v) =&gt; (Number.<span class="tok-function">isFinite</span>(<span class="tok-function">Number</span>(v)) ? <span class="tok-function">Number</span>(v) : <span class="tok-number">0</span>);
+
+<span class="tok-comment">/* ---- Setup ------------------------------------------------------------- */</span>
+<span class="tok-keyword">function</span> <span class="tok-function">setup</span>(figure) {
+  <span class="tok-keyword">const</span> cfg = <span class="tok-function">readConfig</span>(figure);
+  <span class="tok-keyword">const</span> interactive = cfg.type !== <span class="tok-string">'sparkline'</span>;
+  figure.classList.<span class="tok-function">add</span>(<span class="tok-string">'chart'</span>, <span class="tok-string">'chart--enhanced'</span>, <span class="tok-string">`chart--${cfg.type}`</span>);
+
+  <span class="tok-keyword">const</span> canvas = <span class="tok-function">qs</span>(<span class="tok-string">'[data-chart-canvas]'</span>, figure) || <span class="tok-function">createElement</span>(<span class="tok-string">'div'</span>, { attrs: { <span class="tok-string">'data-chart-canvas'</span>: <span class="tok-string">''</span> } });
+  canvas.classList.<span class="tok-function">add</span>(<span class="tok-string">'chart__canvas'</span>);
+  <span class="tok-keyword">if</span> (!canvas.isConnected) {
+    <span class="tok-keyword">const</span> caption = <span class="tok-function">qs</span>(<span class="tok-string">'figcaption'</span>, figure);
+    <span class="tok-keyword">if</span> (caption) caption.<span class="tok-function">after</span>(canvas);
+    <span class="tok-keyword">else</span> figure.<span class="tok-function">prepend</span>(canvas);
+  }
+
+  <span class="tok-keyword">const</span> state = { cfg, canvas, rows: [], hidden: <span class="tok-keyword">new</span> <span class="tok-function">Set</span>(), index: -<span class="tok-number">1</span>, geo: <span class="tok-keyword">null</span>, drawnWidth: <span class="tok-number">0</span>, animated: <span class="tok-keyword">false</span> };
+  states.<span class="tok-keyword">set</span>(figure, state);
+
+  <span class="tok-keyword">if</span> (!interactive) {
+    canvas.<span class="tok-function">setAttribute</span>(<span class="tok-string">'aria-hidden'</span>, <span class="tok-string">'true'</span>);
+    <span class="tok-keyword">return</span> state;
+  }
+
+  state.summary = <span class="tok-function">createElement</span>(<span class="tok-string">'p'</span>, { className: <span class="tok-string">'visually-hidden'</span>, attrs: { id: <span class="tok-function">uniqueId</span>(<span class="tok-string">'chart-summary'</span>) } });
+  state.hint = <span class="tok-function">createElement</span>(<span class="tok-string">'p'</span>, {
+    className: <span class="tok-string">'visually-hidden'</span>,
+    attrs: { id: <span class="tok-function">uniqueId</span>(<span class="tok-string">'chart-hint'</span>) },
+    text: <span class="tok-string">'Use the arrow keys to move between data points. A data table follows the chart.'</span>,
+  });
+  state.live = <span class="tok-function">createElement</span>(<span class="tok-string">'p'</span>, { className: <span class="tok-string">'visually-hidden'</span>, attrs: { <span class="tok-string">'aria-live'</span>: <span class="tok-string">'polite'</span>, <span class="tok-string">'aria-atomic'</span>: <span class="tok-string">'true'</span> } });
+  state.tooltip = <span class="tok-function">createElement</span>(<span class="tok-string">'div'</span>, { className: <span class="tok-string">'chart__tooltip'</span>, attrs: { <span class="tok-string">'aria-hidden'</span>: <span class="tok-string">'true'</span> } });
+  state.tooltip.hidden = <span class="tok-keyword">true</span>;
+
+  canvas.tabIndex = <span class="tok-number">0</span>;
+  canvas.<span class="tok-function">setAttribute</span>(<span class="tok-string">'role'</span>, <span class="tok-string">'group'</span>);
+  canvas.<span class="tok-function">setAttribute</span>(<span class="tok-string">'aria-label'</span>, <span class="tok-string">`${cfg.title}, interactive chart`</span>);
+  canvas.<span class="tok-function">setAttribute</span>(<span class="tok-string">'aria-describedby'</span>, <span class="tok-string">`${state.summary.id} ${state.hint.id}`</span>);
+  canvas.<span class="tok-function">after</span>(state.summary, state.hint, state.live);
+
+  state.legend = <span class="tok-function">createElement</span>(<span class="tok-string">'div'</span>, { className: <span class="tok-string">'chart__legend'</span> });
+  canvas.<span class="tok-function">before</span>(state.legend);
+
+  state.table = <span class="tok-function">qs</span>(<span class="tok-string">'details[data-chart-table]'</span>, figure) || <span class="tok-function">createElement</span>(<span class="tok-string">'details'</span>, { className: <span class="tok-string">'chart__table'</span>, attrs: { <span class="tok-string">'data-chart-table'</span>: <span class="tok-string">''</span> } });
+  <span class="tok-keyword">if</span> (!state.table.isConnected) figure.<span class="tok-function">append</span>(state.table);
+
+  <span class="tok-function">on</span>(canvas, <span class="tok-string">'pointermove'</span>, (event) =&gt; {
+    <span class="tok-keyword">const</span> i = <span class="tok-function">indexAt</span>(state, event);
+    <span class="tok-keyword">if</span> (i !== -<span class="tok-number">1</span>) <span class="tok-function">setActive</span>(figure, i, { announce: <span class="tok-keyword">false</span> });
+  });
+  <span class="tok-function">on</span>(canvas, <span class="tok-string">'pointerleave'</span>, () =&gt; {
+    <span class="tok-keyword">if</span> (document.activeElement !== canvas) <span class="tok-function">clearActive</span>(state);
+  });
+  <span class="tok-function">on</span>(canvas, <span class="tok-string">'focus'</span>, () =&gt; {
+    <span class="tok-keyword">if</span> (state.rows.length) <span class="tok-function">setActive</span>(figure, state.index &gt;= <span class="tok-number">0</span> ? state.index : <span class="tok-number">0</span>, { announce: <span class="tok-keyword">true</span> });
+  });
+  <span class="tok-function">on</span>(canvas, <span class="tok-string">'blur'</span>, () =&gt; <span class="tok-function">clearActive</span>(state));
+  <span class="tok-function">on</span>(canvas, <span class="tok-string">'keydown'</span>, (event) =&gt; {
+    <span class="tok-keyword">const</span> n = state.rows.length;
+    <span class="tok-keyword">if</span> (!n) <span class="tok-keyword">return</span>;
+    <span class="tok-keyword">let</span> next = <span class="tok-keyword">null</span>;
+    <span class="tok-keyword">if</span> (event.key === <span class="tok-string">'ArrowRight'</span> || event.key === <span class="tok-string">'ArrowDown'</span>) next = Math.<span class="tok-function">min</span>(n - <span class="tok-number">1</span>, state.index + <span class="tok-number">1</span>);
+    <span class="tok-keyword">else</span> <span class="tok-keyword">if</span> (event.key === <span class="tok-string">'ArrowLeft'</span> || event.key === <span class="tok-string">'ArrowUp'</span>) next = Math.<span class="tok-function">max</span>(<span class="tok-number">0</span>, state.index - <span class="tok-number">1</span>);
+    <span class="tok-keyword">else</span> <span class="tok-keyword">if</span> (event.key === <span class="tok-string">'Home'</span>) next = <span class="tok-number">0</span>;
+    <span class="tok-keyword">else</span> <span class="tok-keyword">if</span> (event.key === <span class="tok-string">'End'</span>) next = n - <span class="tok-number">1</span>;
+    <span class="tok-keyword">else</span> <span class="tok-keyword">if</span> (event.key === <span class="tok-string">'Escape'</span>) {
+      <span class="tok-function">clearActive</span>(state);
+      <span class="tok-keyword">return</span>;
+    }
+    <span class="tok-keyword">if</span> (next !== <span class="tok-keyword">null</span>) {
+      event.<span class="tok-function">preventDefault</span>();
+      <span class="tok-function">setActive</span>(figure, next, { announce: <span class="tok-keyword">true</span> });
+    }
+  });
+
+  <span class="tok-keyword">return</span> state;
+}
+
+<span class="tok-comment">/* ---- Text alternatives ------------------------------------------------- */</span>
+<span class="tok-keyword">function</span> <span class="tok-function">fmt</span>(state, value) {
+  <span class="tok-keyword">return</span> <span class="tok-function">formatValue</span>(value, state.cfg.format, { currency: state.cfg.currency });
+}
+
+<span class="tok-keyword">function</span> <span class="tok-function">xLabel</span>(state, row) {
+  <span class="tok-keyword">return</span> <span class="tok-function">formatValue</span>(row[state.cfg.x], state.cfg.xFormat);
+}
+
+<span class="tok-keyword">function</span> <span class="tok-function">visibleSeries</span>(state) {
+  <span class="tok-keyword">return</span> state.cfg.series.<span class="tok-function">filter</span>((s) =&gt; !state.hidden.<span class="tok-function">has</span>(s.key));
+}
+
+<span class="tok-keyword">function</span> <span class="tok-function">describe</span>(state, i) {
+  <span class="tok-keyword">const</span> row = state.rows[i];
+  <span class="tok-keyword">const</span> { cfg } = state;
+  <span class="tok-keyword">if</span> (cfg.type === <span class="tok-string">'donut'</span>) {
+    <span class="tok-keyword">const</span> key = cfg.series[<span class="tok-number">0</span>].key;
+    <span class="tok-keyword">const</span> total = state.rows.<span class="tok-function">reduce</span>((sum, r) =&gt; sum + <span class="tok-function">num</span>(r[key]), <span class="tok-number">0</span>);
+    <span class="tok-keyword">const</span> share = total ? Math.<span class="tok-function">round</span>((<span class="tok-function">num</span>(row[key]) / total) * <span class="tok-number">1000</span>) / <span class="tok-number">10</span> : <span class="tok-number">0</span>;
+    <span class="tok-keyword">return</span> <span class="tok-string">`${xLabel(state, row)}: ${fmt(state, row[key])}, ${share}% of total. ${i + 1} of ${state.rows.length}.`</span>;
+  }
+  <span class="tok-keyword">const</span> values = <span class="tok-function">visibleSeries</span>(state).<span class="tok-function">map</span>((s) =&gt; <span class="tok-string">`${s.label} ${fmt(state, row[s.key])}`</span>).<span class="tok-function">join</span>(<span class="tok-string">', '</span>);
+  <span class="tok-keyword">return</span> <span class="tok-string">`${xLabel(state, row)}: ${values}. ${i + 1} of ${state.rows.length}.`</span>;
+}
+
+<span class="tok-keyword">function</span> <span class="tok-function">summarize</span>(state) {
+  <span class="tok-keyword">const</span> { cfg, rows } = state;
+  <span class="tok-keyword">if</span> (!rows.length) <span class="tok-keyword">return</span> <span class="tok-string">`${cfg.title}: no data.`</span>;
+  <span class="tok-keyword">const</span> s = <span class="tok-function">visibleSeries</span>(state)[<span class="tok-number">0</span>] || cfg.series[<span class="tok-number">0</span>];
+  <span class="tok-keyword">const</span> values = rows.<span class="tok-function">map</span>((r) =&gt; <span class="tok-function">num</span>(r[s.key]));
+
+  <span class="tok-keyword">if</span> (cfg.type === <span class="tok-string">'donut'</span> || cfg.type === <span class="tok-string">'hbar'</span>) {
+    <span class="tok-keyword">const</span> total = values.<span class="tok-function">reduce</span>((a, b) =&gt; a + b, <span class="tok-number">0</span>);
+    <span class="tok-keyword">const</span> maxI = values.<span class="tok-function">indexOf</span>(Math.<span class="tok-function">max</span>(...values));
+    <span class="tok-keyword">const</span> share = total ? Math.<span class="tok-function">round</span>((values[maxI] / total) * <span class="tok-number">100</span>) : <span class="tok-number">0</span>;
+    <span class="tok-keyword">return</span> <span class="tok-string">`${cfg.title}. ${rows.length} categories totalling ${fmt(state, total)}. Largest: ${xLabel(state, rows[maxI])} with ${fmt(state, values[maxI])} (${share}%).`</span>;
+  }
+
+  <span class="tok-keyword">const</span> maxI = values.<span class="tok-function">indexOf</span>(Math.<span class="tok-function">max</span>(...values));
+  <span class="tok-keyword">const</span> minI = values.<span class="tok-function">indexOf</span>(Math.<span class="tok-function">min</span>(...values));
+  <span class="tok-keyword">const</span> last = values.length - <span class="tok-number">1</span>;
+  <span class="tok-keyword">let</span> text = <span class="tok-string">`${cfg.title}, ${s.label} from ${xLabel(state, rows[0])} to ${xLabel(state, rows[last])}. Highest ${xLabel(state, rows[maxI])} (${fmt(state, values[maxI])}), lowest ${xLabel(state, rows[minI])} (${fmt(state, values[minI])}).`</span>;
+  <span class="tok-keyword">if</span> (last &gt; <span class="tok-number">0</span>) {
+    <span class="tok-keyword">const</span> change = <span class="tok-function">percentChange</span>(values[last], values[last - <span class="tok-number">1</span>]);
+    text += <span class="tok-string">` Latest ${fmt(state, values[last])}, ${change &gt;= 0 ? 'up' : 'down'} ${Math.abs(change)}% on the previous period.`</span>;
+  }
+  <span class="tok-keyword">return</span> text;
+}
+
+<span class="tok-keyword">function</span> <span class="tok-function">buildTable</span>(state) {
+  <span class="tok-keyword">const</span> { cfg, rows, table } = state;
+  <span class="tok-keyword">const</span> head = <span class="tok-function">createElement</span>(<span class="tok-string">'tr'</span>, {
+    children: [
+      <span class="tok-function">createElement</span>(<span class="tok-string">'th'</span>, { text: cfg.type === <span class="tok-string">'donut'</span> || cfg.type === <span class="tok-string">'hbar'</span> ? <span class="tok-string">'Category'</span> : <span class="tok-string">'Period'</span>, attrs: { scope: <span class="tok-string">'col'</span> } }),
+      ...cfg.series.<span class="tok-function">map</span>((s) =&gt; <span class="tok-function">createElement</span>(<span class="tok-string">'th'</span>, { className: <span class="tok-string">'num'</span>, text: s.label, attrs: { scope: <span class="tok-string">'col'</span> } })),
+    ],
+  });
+  <span class="tok-keyword">const</span> body = rows.<span class="tok-function">map</span>((row) =&gt;
+    <span class="tok-function">createElement</span>(<span class="tok-string">'tr'</span>, {
+      children: [
+        <span class="tok-function">createElement</span>(<span class="tok-string">'th'</span>, { text: <span class="tok-function">xLabel</span>(state, row), attrs: { scope: <span class="tok-string">'row'</span> } }),
+        ...cfg.series.<span class="tok-function">map</span>((s) =&gt; <span class="tok-function">createElement</span>(<span class="tok-string">'td'</span>, { className: <span class="tok-string">'num'</span>, text: <span class="tok-function">fmt</span>(state, row[s.key]) })),
+      ],
+    })
+  );
+  <span class="tok-keyword">const</span> tableEl = <span class="tok-function">createElement</span>(<span class="tok-string">'table'</span>, {
+    className: <span class="tok-string">'table'</span>,
+    children: [
+      <span class="tok-function">createElement</span>(<span class="tok-string">'caption'</span>, { className: <span class="tok-string">'visually-hidden'</span>, text: cfg.title }),
+      <span class="tok-function">createElement</span>(<span class="tok-string">'thead'</span>, { children: [head] }),
+      <span class="tok-function">createElement</span>(<span class="tok-string">'tbody'</span>, { children: body }),
+    ],
+  });
+  <span class="tok-keyword">const</span> wrapper = <span class="tok-function">createElement</span>(<span class="tok-string">'div'</span>, {
+    className: <span class="tok-string">'table-wrapper'</span>,
+    attrs: { role: <span class="tok-string">'region'</span>, tabindex: <span class="tok-string">'0'</span>, <span class="tok-string">'aria-label'</span>: <span class="tok-string">`${cfg.title} data`</span> },
+    children: [tableEl],
+  });
+  table.<span class="tok-function">replaceChildren</span>(<span class="tok-function">createElement</span>(<span class="tok-string">'summary'</span>, { text: <span class="tok-string">'Show data table'</span> }), wrapper);
+}
+
+<span class="tok-keyword">function</span> <span class="tok-function">buildLegend</span>(figure, state) {
+  <span class="tok-keyword">const</span> { cfg, legend } = state;
+  <span class="tok-keyword">if</span> (!legend) <span class="tok-keyword">return</span>;
+  legend.<span class="tok-function">replaceChildren</span>();
+
+  <span class="tok-keyword">if</span> (cfg.type === <span class="tok-string">'donut'</span>) {
+    <span class="tok-keyword">const</span> key = cfg.series[<span class="tok-number">0</span>].key;
+    <span class="tok-keyword">const</span> total = state.rows.<span class="tok-function">reduce</span>((sum, r) =&gt; sum + <span class="tok-function">num</span>(r[key]), <span class="tok-number">0</span>);
+    <span class="tok-keyword">const</span> list = <span class="tok-function">createElement</span>(<span class="tok-string">'ul'</span>, { className: <span class="tok-string">'chart__legend-list'</span>, attrs: { role: <span class="tok-string">'list'</span> } });
+    state.rows.<span class="tok-function">forEach</span>((row, i) =&gt; {
+      <span class="tok-keyword">const</span> share = total ? Math.<span class="tok-function">round</span>((<span class="tok-function">num</span>(row[key]) / total) * <span class="tok-number">100</span>) : <span class="tok-number">0</span>;
+      list.<span class="tok-function">append</span>(
+        <span class="tok-function">createElement</span>(<span class="tok-string">'li'</span>, {
+          className: <span class="tok-string">'chart__legend-entry'</span>,
+          children: [
+            <span class="tok-function">createElement</span>(<span class="tok-string">'span'</span>, { className: <span class="tok-string">`chart__swatch chart__series--${(i % 6) + 1}`</span>, attrs: { <span class="tok-string">'aria-hidden'</span>: <span class="tok-string">'true'</span> } }),
+            <span class="tok-function">createElement</span>(<span class="tok-string">'span'</span>, { className: <span class="tok-string">'chart__legend-label'</span>, text: <span class="tok-function">xLabel</span>(state, row) }),
+            <span class="tok-function">createElement</span>(<span class="tok-string">'span'</span>, { className: <span class="tok-string">'chart__legend-value'</span>, text: <span class="tok-string">`${fmt(state, row[key])} · ${share}%`</span> }),
+          ],
+        })
+      );
+    });
+    legend.<span class="tok-function">append</span>(list);
+    <span class="tok-keyword">return</span>;
+  }
+
+  <span class="tok-keyword">if</span> (cfg.series.length &lt; <span class="tok-number">2</span>) <span class="tok-keyword">return</span>;
+  <span class="tok-keyword">for</span> (<span class="tok-keyword">const</span> s <span class="tok-keyword">of</span> cfg.series) {
+    <span class="tok-keyword">const</span> button = <span class="tok-function">createElement</span>(<span class="tok-string">'button'</span>, {
+      className: <span class="tok-string">'chart__legend-item'</span>,
+      attrs: { type: <span class="tok-string">'button'</span>, <span class="tok-string">'aria-pressed'</span>: <span class="tok-function">String</span>(!state.hidden.<span class="tok-function">has</span>(s.key)) },
+      children: [
+        <span class="tok-function">createElement</span>(<span class="tok-string">'span'</span>, { className: <span class="tok-string">`chart__swatch chart__series--${s.colour}${s.index &gt; 0 &amp;&amp; cfg.type !== 'bar' ? ' chart__swatch--dashed' : ''}`</span>, attrs: { <span class="tok-string">'aria-hidden'</span>: <span class="tok-string">'true'</span> } }),
+        <span class="tok-function">createElement</span>(<span class="tok-string">'span'</span>, { text: s.label }),
+      ],
+    });
+    <span class="tok-function">on</span>(button, <span class="tok-string">'click'</span>, () =&gt; {
+      <span class="tok-keyword">const</span> showing = !state.hidden.<span class="tok-function">has</span>(s.key);
+      <span class="tok-keyword">if</span> (showing &amp;&amp; <span class="tok-function">visibleSeries</span>(state).length === <span class="tok-number">1</span>) <span class="tok-keyword">return</span>; <span class="tok-comment">// keep one series visible</span>
+      <span class="tok-keyword">if</span> (showing) state.hidden.<span class="tok-function">add</span>(s.key);
+      <span class="tok-keyword">else</span> state.hidden.<span class="tok-function">delete</span>(s.key);
+      button.<span class="tok-function">setAttribute</span>(<span class="tok-string">'aria-pressed'</span>, <span class="tok-function">String</span>(!showing));
+      state.summary.textContent = <span class="tok-function">summarize</span>(state);
+      <span class="tok-function">draw</span>(figure, state);
+    });
+    legend.<span class="tok-function">append</span>(button);
+  }
+}
+
+<span class="tok-comment">/* ---- Drawing ----------------------------------------------------------- */</span>
+<span class="tok-keyword">function</span> <span class="tok-function">draw</span>(figure, state) {
+  <span class="tok-keyword">const</span> { cfg, canvas, rows } = state;
+  <span class="tok-keyword">const</span> width = Math.<span class="tok-function">max</span>(Math.<span class="tok-function">round</span>(canvas.clientWidth), cfg.type === <span class="tok-string">'sparkline'</span> ? <span class="tok-number">80</span> : <span class="tok-number">240</span>);
+  state.drawnWidth = width;
+
+  <span class="tok-keyword">if</span> (!rows.length) {
+    canvas.<span class="tok-function">replaceChildren</span>(<span class="tok-function">createElement</span>(<span class="tok-string">'p'</span>, { className: <span class="tok-string">'chart__empty'</span>, text: <span class="tok-string">'No data to display.'</span> }));
+    <span class="tok-keyword">return</span>;
+  }
+
+  <span class="tok-keyword">let</span> height = cfg.height;
+  <span class="tok-keyword">if</span> (cfg.type === <span class="tok-string">'hbar'</span>) height = rows.length * <span class="tok-number">40</span> + <span class="tok-number">12</span>;
+  <span class="tok-keyword">if</span> (cfg.type === <span class="tok-string">'donut'</span>) height = Math.<span class="tok-function">min</span>(cfg.height, <span class="tok-number">240</span>);
+
+  <span class="tok-keyword">const</span> root = <span class="tok-function">svg</span>(<span class="tok-string">'svg'</span>, { viewBox: <span class="tok-string">`0 0 ${width} ${height}`</span>, width: <span class="tok-string">'100%'</span>, height, <span class="tok-keyword">class</span>: <span class="tok-string">'chart__svg'</span>, <span class="tok-string">'aria-hidden'</span>: <span class="tok-string">'true'</span> });
+  <span class="tok-keyword">if</span> (!state.animated) root.classList.<span class="tok-function">add</span>(<span class="tok-string">'chart__svg--animate'</span>);
+  state.animated = <span class="tok-keyword">true</span>;
+
+  <span class="tok-keyword">if</span> (cfg.type === <span class="tok-string">'bar'</span>) <span class="tok-function">drawBars</span>(state, root, width, height);
+  <span class="tok-keyword">else</span> <span class="tok-keyword">if</span> (cfg.type === <span class="tok-string">'hbar'</span>) <span class="tok-function">drawHBars</span>(state, root, width, height);
+  <span class="tok-keyword">else</span> <span class="tok-keyword">if</span> (cfg.type === <span class="tok-string">'donut'</span>) <span class="tok-function">drawDonut</span>(state, root, width, height);
+  <span class="tok-keyword">else</span> <span class="tok-keyword">if</span> (cfg.type === <span class="tok-string">'sparkline'</span>) <span class="tok-function">drawSparkline</span>(state, root, width, height);
+  <span class="tok-keyword">else</span> <span class="tok-function">drawXY</span>(state, root, width, height, cfg.type === <span class="tok-string">'area'</span>);
+
+  <span class="tok-keyword">const</span> children = [root];
+  <span class="tok-keyword">if</span> (state.tooltip) children.<span class="tok-function">push</span>(state.tooltip);
+  canvas.<span class="tok-function">replaceChildren</span>(...children);
+  <span class="tok-keyword">if</span> (state.index &gt;= <span class="tok-number">0</span> &amp;&amp; state.tooltip &amp;&amp; !state.tooltip.hidden) <span class="tok-function">setActive</span>(figure, state.index, { announce: <span class="tok-keyword">false</span> });
+}
+
+<span class="tok-keyword">function</span> <span class="tok-function">valueRange</span>(state, series) {
+  <span class="tok-keyword">let</span> min = <span class="tok-number">0</span>;
+  <span class="tok-keyword">let</span> max = <span class="tok-number">0</span>;
+  state.rows.<span class="tok-function">forEach</span>((row) =&gt; {
+    <span class="tok-keyword">if</span> (state.cfg.stacked &amp;&amp; state.cfg.type === <span class="tok-string">'bar'</span>) {
+      <span class="tok-keyword">const</span> total = series.<span class="tok-function">reduce</span>((sum, s) =&gt; sum + <span class="tok-function">num</span>(row[s.key]), <span class="tok-number">0</span>);
+      max = Math.<span class="tok-function">max</span>(max, total);
+    } <span class="tok-keyword">else</span> {
+      <span class="tok-keyword">for</span> (<span class="tok-keyword">const</span> s <span class="tok-keyword">of</span> series) {
+        max = Math.<span class="tok-function">max</span>(max, <span class="tok-function">num</span>(row[s.key]));
+        min = Math.<span class="tok-function">min</span>(min, <span class="tok-function">num</span>(row[s.key]));
+      }
+    }
+  });
+  <span class="tok-keyword">return</span> <span class="tok-function">niceScale</span>(min, max);
+}
+
+<span class="tok-keyword">function</span> <span class="tok-function">drawAxes</span>(state, root, scale, pad, width, height, xPositions) {
+  <span class="tok-keyword">const</span> plotH = height - pad.top - pad.bottom;
+  <span class="tok-keyword">const</span> y = (v) =&gt; pad.top + plotH * (<span class="tok-number">1</span> - (v - scale.min) / (scale.max - scale.min));
+  <span class="tok-keyword">const</span> axis = <span class="tok-function">svg</span>(<span class="tok-string">'g'</span>, { <span class="tok-keyword">class</span>: <span class="tok-string">'chart__axes'</span> });
+  <span class="tok-keyword">for</span> (<span class="tok-keyword">let</span> t = scale.min; t &lt;= scale.max + scale.step / <span class="tok-number">2</span>; t += scale.step) {
+    <span class="tok-keyword">const</span> yy = Math.<span class="tok-function">round</span>(<span class="tok-function">y</span>(t)) + <span class="tok-number">0.5</span>;
+    axis.<span class="tok-function">append</span>(<span class="tok-function">svg</span>(<span class="tok-string">'line'</span>, { x1: pad.left, x2: width - pad.right, y1: yy, y2: yy, <span class="tok-keyword">class</span>: <span class="tok-string">'chart__grid'</span> }));
+    <span class="tok-keyword">const</span> label = <span class="tok-function">svg</span>(<span class="tok-string">'text'</span>, { x: pad.left - <span class="tok-number">8</span>, y: yy, <span class="tok-keyword">class</span>: <span class="tok-string">'chart__axis-label'</span>, <span class="tok-string">'text-anchor'</span>: <span class="tok-string">'end'</span>, <span class="tok-string">'dominant-baseline'</span>: <span class="tok-string">'middle'</span> });
+    label.textContent = <span class="tok-function">formatValue</span>(t, state.cfg.format.<span class="tok-function">replace</span>(<span class="tok-string">'currency'</span>, <span class="tok-string">'currency-compact'</span>).<span class="tok-function">replace</span>(<span class="tok-string">'compact-compact'</span>, <span class="tok-string">'compact'</span>), { currency: state.cfg.currency });
+    axis.<span class="tok-function">append</span>(label);
+  }
+  <span class="tok-keyword">const</span> minGap = state.cfg.type === <span class="tok-string">'bar'</span> ? <span class="tok-number">44</span> : <span class="tok-number">64</span>;
+  <span class="tok-keyword">const</span> maxLabels = Math.<span class="tok-function">max</span>(<span class="tok-number">2</span>, Math.<span class="tok-function">floor</span>((width - pad.left - pad.right) / minGap));
+  <span class="tok-keyword">const</span> every = Math.<span class="tok-function">ceil</span>(xPositions.length / maxLabels);
+  xPositions.<span class="tok-function">forEach</span>((x, i) =&gt; {
+    <span class="tok-keyword">if</span> (i % every !== <span class="tok-number">0</span> &amp;&amp; i !== xPositions.length - <span class="tok-number">1</span>) <span class="tok-keyword">return</span>;
+    <span class="tok-keyword">if</span> (i === xPositions.length - <span class="tok-number">1</span> &amp;&amp; i % every !== <span class="tok-number">0</span> &amp;&amp; xPositions.length &gt; <span class="tok-number">1</span> &amp;&amp; x - xPositions[i - (i % every)] &lt; <span class="tok-number">48</span>) <span class="tok-keyword">return</span>;
+    <span class="tok-keyword">const</span> label = <span class="tok-function">svg</span>(<span class="tok-string">'text'</span>, { x, y: height - <span class="tok-number">8</span>, <span class="tok-keyword">class</span>: <span class="tok-string">'chart__axis-label'</span>, <span class="tok-string">'text-anchor'</span>: <span class="tok-string">'middle'</span> });
+    <span class="tok-comment">// Truncate long category labels to the space available; the tooltip,</span>
+    <span class="tok-comment">// summary and data table always carry the full text.</span>
+    <span class="tok-keyword">const</span> full = <span class="tok-function">xLabel</span>(state, state.rows[i]);
+    <span class="tok-keyword">const</span> room = Math.<span class="tok-function">max</span>(<span class="tok-number">3</span>, Math.<span class="tok-function">floor</span>(((width - pad.left - pad.right) / xPositions.length) * every / <span class="tok-number">6.8</span>));
+    label.textContent = full.length &gt; room ? <span class="tok-string">`${full.slice(0, room - 1).trimEnd()}…`</span> : full;
+    axis.<span class="tok-function">append</span>(label);
+  });
+  root.<span class="tok-function">append</span>(axis);
+  <span class="tok-keyword">return</span> y;
+}
+
+<span class="tok-keyword">function</span> <span class="tok-function">leftPad</span>(state, scale) {
+  <span class="tok-keyword">const</span> sample = <span class="tok-function">formatValue</span>(scale.max, state.cfg.format.<span class="tok-function">replace</span>(<span class="tok-string">'currency'</span>, <span class="tok-string">'currency-compact'</span>).<span class="tok-function">replace</span>(<span class="tok-string">'compact-compact'</span>, <span class="tok-string">'compact'</span>), { currency: state.cfg.currency });
+  <span class="tok-keyword">return</span> Math.<span class="tok-function">max</span>(<span class="tok-number">36</span>, sample.length * <span class="tok-number">7.5</span> + <span class="tok-number">14</span>);
+}
+
+<span class="tok-keyword">function</span> <span class="tok-function">drawXY</span>(state, root, width, height, area) {
+  <span class="tok-keyword">const</span> series = <span class="tok-function">visibleSeries</span>(state);
+  <span class="tok-keyword">const</span> scale = <span class="tok-function">valueRange</span>(state, series);
+  <span class="tok-keyword">const</span> pad = { top: <span class="tok-number">14</span>, right: <span class="tok-number">16</span>, bottom: <span class="tok-number">30</span>, left: <span class="tok-function">leftPad</span>(state, scale) };
+  <span class="tok-keyword">const</span> n = state.rows.length;
+  <span class="tok-keyword">const</span> plotW = width - pad.left - pad.right;
+  <span class="tok-keyword">const</span> xs = state.rows.<span class="tok-function">map</span>((_, i) =&gt; (n === <span class="tok-number">1</span> ? pad.left + plotW / <span class="tok-number">2</span> : pad.left + (plotW * i) / (n - <span class="tok-number">1</span>)));
+  <span class="tok-keyword">const</span> y = <span class="tok-function">drawAxes</span>(state, root, scale, pad, width, height, xs);
+
+  <span class="tok-keyword">const</span> guide = <span class="tok-function">svg</span>(<span class="tok-string">'line'</span>, { x1: <span class="tok-number">0</span>, x2: <span class="tok-number">0</span>, y1: pad.top, y2: height - pad.bottom, <span class="tok-keyword">class</span>: <span class="tok-string">'chart__guide'</span> });
+  root.<span class="tok-function">append</span>(guide);
+
+  <span class="tok-keyword">const</span> pointGroups = [];
+  <span class="tok-keyword">for</span> (<span class="tok-keyword">const</span> s <span class="tok-keyword">of</span> series) {
+    <span class="tok-keyword">const</span> pts = state.rows.<span class="tok-function">map</span>((row, i) =&gt; [xs[i], <span class="tok-function">y</span>(<span class="tok-function">num</span>(row[s.key]))]);
+    <span class="tok-keyword">const</span> d = pts.<span class="tok-function">map</span>(([px, py], i) =&gt; <span class="tok-string">`${i ? 'L' : 'M'}${px.toFixed(1)},${py.toFixed(1)}`</span>).<span class="tok-function">join</span>(<span class="tok-string">' '</span>);
+    <span class="tok-keyword">const</span> g = <span class="tok-function">svg</span>(<span class="tok-string">'g'</span>, { <span class="tok-keyword">class</span>: <span class="tok-string">`chart__series chart__series--${s.colour}`</span> });
+    <span class="tok-keyword">if</span> (area &amp;&amp; s === series[<span class="tok-number">0</span>]) {
+      <span class="tok-keyword">const</span> base = <span class="tok-function">y</span>(Math.<span class="tok-function">max</span>(scale.min, <span class="tok-number">0</span>));
+      g.<span class="tok-function">append</span>(<span class="tok-function">svg</span>(<span class="tok-string">'path'</span>, { d: <span class="tok-string">`${d} L${xs[n - 1].toFixed(1)},${base} L${xs[0].toFixed(1)},${base} Z`</span>, <span class="tok-keyword">class</span>: <span class="tok-string">'chart__area'</span> }));
+    }
+    <span class="tok-comment">// pathLength normalises the draw-in animation; dashed lines skip it so</span>
+    <span class="tok-comment">// their dash pattern stays in pixels.</span>
+    g.<span class="tok-function">append</span>(<span class="tok-function">svg</span>(<span class="tok-string">'path'</span>, s.index &gt; <span class="tok-number">0</span> ? { d, <span class="tok-keyword">class</span>: <span class="tok-string">'chart__line chart__line--dashed'</span> } : { d, <span class="tok-keyword">class</span>: <span class="tok-string">'chart__line'</span>, pathLength: <span class="tok-number">1</span> }));
+    <span class="tok-keyword">const</span> points = pts.<span class="tok-function">map</span>(([px, py]) =&gt; <span class="tok-function">svg</span>(<span class="tok-string">'circle'</span>, { cx: px, cy: py, r: n &gt; <span class="tok-number">40</span> ? <span class="tok-number">2</span> : <span class="tok-number">3.5</span>, <span class="tok-keyword">class</span>: <span class="tok-string">'chart__point'</span> }));
+    g.<span class="tok-function">append</span>(...points);
+    pointGroups.<span class="tok-function">push</span>(points);
+    root.<span class="tok-function">append</span>(g);
+  }
+  state.geo = { kind: <span class="tok-string">'x'</span>, xs, pad, guide, pointGroups, width, height, tooltipY: () =&gt; pad.top };
+}
+
+<span class="tok-keyword">function</span> <span class="tok-function">drawBars</span>(state, root, width, height) {
+  <span class="tok-keyword">const</span> series = <span class="tok-function">visibleSeries</span>(state);
+  <span class="tok-keyword">const</span> scale = <span class="tok-function">valueRange</span>(state, series);
+  <span class="tok-keyword">const</span> pad = { top: <span class="tok-number">14</span>, right: <span class="tok-number">12</span>, bottom: <span class="tok-number">30</span>, left: <span class="tok-function">leftPad</span>(state, scale) };
+  <span class="tok-keyword">const</span> n = state.rows.length;
+  <span class="tok-keyword">const</span> band = (width - pad.left - pad.right) / n;
+  <span class="tok-keyword">const</span> inner = band * <span class="tok-number">0.72</span>;
+  <span class="tok-keyword">const</span> centers = state.rows.<span class="tok-function">map</span>((_, i) =&gt; pad.left + band * i + band / <span class="tok-number">2</span>);
+  <span class="tok-keyword">const</span> y = <span class="tok-function">drawAxes</span>(state, root, scale, pad, width, height, centers);
+  <span class="tok-keyword">const</span> zero = <span class="tok-function">y</span>(Math.<span class="tok-function">max</span>(<span class="tok-number">0</span>, scale.min));
+
+  <span class="tok-keyword">const</span> bands = state.rows.<span class="tok-function">map</span>((_, i) =&gt;
+    <span class="tok-function">svg</span>(<span class="tok-string">'rect'</span>, { x: pad.left + band * i, y: pad.top, width: band, height: height - pad.top - pad.bottom, <span class="tok-keyword">class</span>: <span class="tok-string">'chart__band'</span> })
+  );
+  root.<span class="tok-function">append</span>(...bands);
+
+  <span class="tok-keyword">const</span> barGroups = state.rows.<span class="tok-function">map</span>(() =&gt; []);
+  series.<span class="tok-function">forEach</span>((s, si) =&gt; {
+    <span class="tok-keyword">const</span> g = <span class="tok-function">svg</span>(<span class="tok-string">'g'</span>, { <span class="tok-keyword">class</span>: <span class="tok-string">`chart__series chart__series--${s.colour}`</span> });
+    state.rows.<span class="tok-function">forEach</span>((row, i) =&gt; {
+      <span class="tok-keyword">const</span> value = <span class="tok-function">num</span>(row[s.key]);
+      <span class="tok-keyword">let</span> x;
+      <span class="tok-keyword">let</span> w;
+      <span class="tok-keyword">let</span> top;
+      <span class="tok-keyword">let</span> bottom;
+      <span class="tok-keyword">if</span> (state.cfg.stacked) {
+        <span class="tok-keyword">const</span> below = series.<span class="tok-function">slice</span>(<span class="tok-number">0</span>, si).<span class="tok-function">reduce</span>((sum, p) =&gt; sum + <span class="tok-function">num</span>(row[p.key]), <span class="tok-number">0</span>);
+        x = centers[i] - inner / <span class="tok-number">2</span>;
+        w = inner;
+        top = <span class="tok-function">y</span>(below + value);
+        bottom = <span class="tok-function">y</span>(below);
+      } <span class="tok-keyword">else</span> {
+        w = inner / series.length;
+        x = centers[i] - inner / <span class="tok-number">2</span> + w * si;
+        top = Math.<span class="tok-function">min</span>(<span class="tok-function">y</span>(value), zero);
+        bottom = Math.<span class="tok-function">max</span>(<span class="tok-function">y</span>(value), zero);
+      }
+      <span class="tok-keyword">const</span> rect = <span class="tok-function">svg</span>(<span class="tok-string">'rect'</span>, { x: x + <span class="tok-number">1</span>, y: top, width: Math.<span class="tok-function">max</span>(<span class="tok-number">1</span>, w - <span class="tok-number">2</span>), height: Math.<span class="tok-function">max</span>(<span class="tok-number">0</span>, bottom - top), rx: <span class="tok-number">3</span>, <span class="tok-keyword">class</span>: <span class="tok-string">'chart__bar'</span> });
+      g.<span class="tok-function">append</span>(rect);
+      barGroups[i].<span class="tok-function">push</span>(rect);
+    });
+    root.<span class="tok-function">append</span>(g);
+  });
+  state.geo = { kind: <span class="tok-string">'band'</span>, band, pad, centers, bands, barGroups, width, height };
+}
+
+<span class="tok-keyword">function</span> <span class="tok-function">drawHBars</span>(state, root, width, height) {
+  <span class="tok-keyword">const</span> s = <span class="tok-function">visibleSeries</span>(state)[<span class="tok-number">0</span>];
+  <span class="tok-keyword">const</span> values = state.rows.<span class="tok-function">map</span>((r) =&gt; <span class="tok-function">num</span>(r[s.key]));
+  <span class="tok-keyword">const</span> max = Math.<span class="tok-function">max</span>(...values, <span class="tok-number">0</span>) || <span class="tok-number">1</span>;
+  <span class="tok-keyword">const</span> labelW = Math.<span class="tok-function">min</span>(width * <span class="tok-number">0.38</span>, Math.<span class="tok-function">max</span>(...state.rows.<span class="tok-function">map</span>((r) =&gt; <span class="tok-function">xLabel</span>(state, r).length)) * <span class="tok-number">7.5</span> + <span class="tok-number">12</span>);
+  <span class="tok-keyword">const</span> valueW = <span class="tok-number">64</span>;
+  <span class="tok-keyword">const</span> rowH = <span class="tok-number">40</span>;
+  <span class="tok-keyword">const</span> barArea = width - labelW - valueW;
+  <span class="tok-keyword">const</span> g = <span class="tok-function">svg</span>(<span class="tok-string">'g'</span>, { <span class="tok-keyword">class</span>: <span class="tok-string">`chart__series chart__series--${s.colour}`</span> });
+  <span class="tok-keyword">const</span> bars = [];
+  <span class="tok-keyword">const</span> bands = [];
+  state.rows.<span class="tok-function">forEach</span>((row, i) =&gt; {
+    <span class="tok-keyword">const</span> yTop = <span class="tok-number">6</span> + i * rowH;
+    bands.<span class="tok-function">push</span>(<span class="tok-function">svg</span>(<span class="tok-string">'rect'</span>, { x: <span class="tok-number">0</span>, y: yTop, width, height: rowH, <span class="tok-keyword">class</span>: <span class="tok-string">'chart__band'</span> }));
+    <span class="tok-keyword">const</span> label = <span class="tok-function">svg</span>(<span class="tok-string">'text'</span>, { x: <span class="tok-number">0</span>, y: yTop + rowH / <span class="tok-number">2</span>, <span class="tok-keyword">class</span>: <span class="tok-string">'chart__axis-label chart__axis-label--strong'</span>, <span class="tok-string">'dominant-baseline'</span>: <span class="tok-string">'middle'</span> });
+    label.textContent = <span class="tok-function">xLabel</span>(state, row);
+    <span class="tok-keyword">const</span> w = Math.<span class="tok-function">max</span>(<span class="tok-number">2</span>, (values[i] / max) * barArea);
+    <span class="tok-keyword">const</span> bar = <span class="tok-function">svg</span>(<span class="tok-string">'rect'</span>, { x: labelW, y: yTop + <span class="tok-number">10</span>, width: w, height: rowH - <span class="tok-number">20</span>, rx: <span class="tok-number">4</span>, <span class="tok-keyword">class</span>: <span class="tok-string">'chart__bar'</span> });
+    <span class="tok-keyword">const</span> value = <span class="tok-function">svg</span>(<span class="tok-string">'text'</span>, { x: labelW + w + <span class="tok-number">8</span>, y: yTop + rowH / <span class="tok-number">2</span>, <span class="tok-keyword">class</span>: <span class="tok-string">'chart__axis-label'</span>, <span class="tok-string">'dominant-baseline'</span>: <span class="tok-string">'middle'</span> });
+    value.textContent = <span class="tok-function">fmt</span>(state, values[i]);
+    g.<span class="tok-function">append</span>(label, bar, value);
+    bars.<span class="tok-function">push</span>([bar]);
+  });
+  root.<span class="tok-function">append</span>(...bands, g);
+  state.geo = { kind: <span class="tok-string">'row'</span>, rowH, bands, barGroups: bars, width, height, labelW };
+}
+
+<span class="tok-keyword">function</span> <span class="tok-function">drawDonut</span>(state, root, width, height) {
+  <span class="tok-keyword">const</span> key = state.cfg.series[<span class="tok-number">0</span>].key;
+  <span class="tok-keyword">const</span> values = state.rows.<span class="tok-function">map</span>((r) =&gt; Math.<span class="tok-function">max</span>(<span class="tok-number">0</span>, <span class="tok-function">num</span>(r[key])));
+  <span class="tok-keyword">const</span> total = values.<span class="tok-function">reduce</span>((a, b) =&gt; a + b, <span class="tok-number">0</span>) || <span class="tok-number">1</span>;
+  <span class="tok-keyword">const</span> r = Math.<span class="tok-function">min</span>(width, height) / <span class="tok-number">2</span> - <span class="tok-number">6</span>;
+  <span class="tok-keyword">const</span> cx = width / <span class="tok-number">2</span>;
+  <span class="tok-keyword">const</span> cy = height / <span class="tok-number">2</span>;
+  <span class="tok-keyword">const</span> thickness = Math.<span class="tok-function">max</span>(<span class="tok-number">18</span>, r * <span class="tok-number">0.32</span>);
+  <span class="tok-keyword">let</span> angle = -Math.PI / <span class="tok-number">2</span>;
+  <span class="tok-keyword">const</span> slices = [];
+
+  values.<span class="tok-function">forEach</span>((v, i) =&gt; {
+    <span class="tok-keyword">const</span> sweep = (v / total) * Math.PI * <span class="tok-number">2</span>;
+    <span class="tok-keyword">const</span> a0 = angle;
+    <span class="tok-keyword">const</span> a1 = angle + Math.<span class="tok-function">max</span>(sweep - <span class="tok-number">0.012</span>, <span class="tok-number">0.001</span>);
+    angle += sweep;
+    <span class="tok-keyword">const</span> large = a1 - a0 &gt; Math.PI ? <span class="tok-number">1</span> : <span class="tok-number">0</span>;
+    <span class="tok-keyword">const</span> ro = r;
+    <span class="tok-keyword">const</span> ri = r - thickness;
+    <span class="tok-keyword">const</span> p = (rad, a) =&gt; <span class="tok-string">`${(cx + rad * Math.cos(a)).toFixed(2)},${(cy + rad * Math.sin(a)).toFixed(2)}`</span>;
+    <span class="tok-keyword">const</span> d = <span class="tok-string">`M${p(ro, a0)} A${ro},${ro} 0 ${large} 1 ${p(ro, a1)} L${p(ri, a1)} A${ri},${ri} 0 ${large} 0 ${p(ri, a0)} Z`</span>;
+    <span class="tok-keyword">const</span> slice = <span class="tok-function">svg</span>(<span class="tok-string">'path'</span>, { d, <span class="tok-keyword">class</span>: <span class="tok-string">`chart__slice chart__series--${(i % 6) + 1}`</span> });
+    slices.<span class="tok-function">push</span>({ el: slice, a0, a1: a0 + sweep });
+    root.<span class="tok-function">append</span>(slice);
+  });
+
+  <span class="tok-keyword">const</span> totalLabel = <span class="tok-function">svg</span>(<span class="tok-string">'text'</span>, { x: cx, y: cy - <span class="tok-number">6</span>, <span class="tok-keyword">class</span>: <span class="tok-string">'chart__donut-value'</span>, <span class="tok-string">'text-anchor'</span>: <span class="tok-string">'middle'</span>, <span class="tok-string">'dominant-baseline'</span>: <span class="tok-string">'middle'</span> });
+  totalLabel.textContent = <span class="tok-function">fmt</span>(state, total);
+  <span class="tok-keyword">const</span> caption = <span class="tok-function">svg</span>(<span class="tok-string">'text'</span>, { x: cx, y: cy + <span class="tok-number">16</span>, <span class="tok-keyword">class</span>: <span class="tok-string">'chart__axis-label'</span>, <span class="tok-string">'text-anchor'</span>: <span class="tok-string">'middle'</span>, <span class="tok-string">'dominant-baseline'</span>: <span class="tok-string">'middle'</span> });
+  caption.textContent = <span class="tok-string">'Total'</span>;
+  root.<span class="tok-function">append</span>(totalLabel, caption);
+  state.geo = { kind: <span class="tok-string">'donut'</span>, slices, cx, cy, r, thickness, totalLabel, caption, total, width, height };
+}
+
+<span class="tok-keyword">function</span> <span class="tok-function">drawSparkline</span>(state, root, width, height) {
+  <span class="tok-keyword">const</span> s = state.cfg.series[<span class="tok-number">0</span>];
+  <span class="tok-keyword">const</span> values = state.rows.<span class="tok-function">map</span>((r) =&gt; <span class="tok-function">num</span>(r[s.key]));
+  <span class="tok-keyword">const</span> min = Math.<span class="tok-function">min</span>(...values);
+  <span class="tok-keyword">const</span> max = Math.<span class="tok-function">max</span>(...values);
+  <span class="tok-keyword">const</span> pad = <span class="tok-number">4</span>;
+  <span class="tok-keyword">const</span> n = values.length;
+  <span class="tok-keyword">const</span> x = (i) =&gt; pad + ((width - pad * <span class="tok-number">2</span>) * i) / Math.<span class="tok-function">max</span>(<span class="tok-number">1</span>, n - <span class="tok-number">1</span>);
+  <span class="tok-keyword">const</span> y = (v) =&gt; pad + (height - pad * <span class="tok-number">2</span>) * (<span class="tok-number">1</span> - (v - min) / (max - min || <span class="tok-number">1</span>));
+  <span class="tok-keyword">const</span> d = values.<span class="tok-function">map</span>((v, i) =&gt; <span class="tok-string">`${i ? 'L' : 'M'}${x(i).toFixed(1)},${y(v).toFixed(1)}`</span>).<span class="tok-function">join</span>(<span class="tok-string">' '</span>);
+  <span class="tok-keyword">const</span> g = <span class="tok-function">svg</span>(<span class="tok-string">'g'</span>, { <span class="tok-keyword">class</span>: <span class="tok-string">`chart__series chart__series--${s.colour}`</span> });
+  g.<span class="tok-function">append</span>(
+    <span class="tok-function">svg</span>(<span class="tok-string">'path'</span>, { d: <span class="tok-string">`${d} L${x(n - 1)},${height} L${x(0)},${height} Z`</span>, <span class="tok-keyword">class</span>: <span class="tok-string">'chart__area'</span> }),
+    <span class="tok-function">svg</span>(<span class="tok-string">'path'</span>, { d, <span class="tok-keyword">class</span>: <span class="tok-string">'chart__line'</span>, pathLength: <span class="tok-number">1</span> }),
+    <span class="tok-function">svg</span>(<span class="tok-string">'circle'</span>, { cx: <span class="tok-function">x</span>(n - <span class="tok-number">1</span>), cy: <span class="tok-function">y</span>(values[n - <span class="tok-number">1</span>]), r: <span class="tok-number">3</span>, <span class="tok-keyword">class</span>: <span class="tok-string">'chart__point chart__point--end'</span> })
+  );
+  root.<span class="tok-function">append</span>(g);
+}
+
+<span class="tok-comment">/* ---- Interaction ------------------------------------------------------- */</span>
+<span class="tok-keyword">function</span> <span class="tok-function">indexAt</span>(state, event) {
+  <span class="tok-keyword">const</span> geo = state.geo;
+  <span class="tok-keyword">if</span> (!geo) <span class="tok-keyword">return</span> -<span class="tok-number">1</span>;
+  <span class="tok-keyword">const</span> rect = state.canvas.<span class="tok-function">getBoundingClientRect</span>();
+  <span class="tok-keyword">const</span> scale = geo.width / rect.width;
+  <span class="tok-keyword">const</span> px = (event.clientX - rect.left) * scale;
+  <span class="tok-keyword">const</span> py = (event.clientY - rect.top) * scale;
+  <span class="tok-keyword">const</span> n = state.rows.length;
+
+  <span class="tok-keyword">if</span> (geo.kind === <span class="tok-string">'x'</span>) {
+    <span class="tok-keyword">let</span> best = <span class="tok-number">0</span>;
+    geo.xs.<span class="tok-function">forEach</span>((x, i) =&gt; {
+      <span class="tok-keyword">if</span> (Math.<span class="tok-function">abs</span>(x - px) &lt; Math.<span class="tok-function">abs</span>(geo.xs[best] - px)) best = i;
+    });
+    <span class="tok-keyword">return</span> best;
+  }
+  <span class="tok-keyword">if</span> (geo.kind === <span class="tok-string">'band'</span>) {
+    <span class="tok-keyword">const</span> i = Math.<span class="tok-function">floor</span>((px - geo.pad.left) / geo.band);
+    <span class="tok-keyword">return</span> i &gt;= <span class="tok-number">0</span> &amp;&amp; i &lt; n ? i : -<span class="tok-number">1</span>;
+  }
+  <span class="tok-keyword">if</span> (geo.kind === <span class="tok-string">'row'</span>) {
+    <span class="tok-keyword">const</span> i = Math.<span class="tok-function">floor</span>((py - <span class="tok-number">6</span>) / geo.rowH);
+    <span class="tok-keyword">return</span> i &gt;= <span class="tok-number">0</span> &amp;&amp; i &lt; n ? i : -<span class="tok-number">1</span>;
+  }
+  <span class="tok-keyword">if</span> (geo.kind === <span class="tok-string">'donut'</span>) {
+    <span class="tok-keyword">const</span> dx = px - geo.cx;
+    <span class="tok-keyword">const</span> dy = py - geo.cy;
+    <span class="tok-keyword">const</span> dist = Math.<span class="tok-function">hypot</span>(dx, dy);
+    <span class="tok-keyword">if</span> (dist &gt; geo.r || dist &lt; geo.r - geo.thickness) <span class="tok-keyword">return</span> -<span class="tok-number">1</span>;
+    <span class="tok-keyword">let</span> a = Math.<span class="tok-function">atan2</span>(dy, dx);
+    <span class="tok-keyword">if</span> (a &lt; -Math.PI / <span class="tok-number">2</span>) a += Math.PI * <span class="tok-number">2</span>;
+    <span class="tok-keyword">return</span> geo.slices.<span class="tok-function">findIndex</span>((s) =&gt; a &gt;= s.a0 &amp;&amp; a &lt; s.a1);
+  }
+  <span class="tok-keyword">return</span> -<span class="tok-number">1</span>;
+}
+
+<span class="tok-keyword">function</span> <span class="tok-function">clearActive</span>(state) {
+  <span class="tok-keyword">if</span> (state.tooltip) state.tooltip.hidden = <span class="tok-keyword">true</span>;
+  <span class="tok-keyword">const</span> svgEl = <span class="tok-function">qs</span>(<span class="tok-string">'svg'</span>, state.canvas);
+  <span class="tok-keyword">if</span> (svgEl) svgEl.classList.<span class="tok-function">remove</span>(<span class="tok-string">'has-active'</span>);
+  <span class="tok-keyword">for</span> (<span class="tok-keyword">const</span> el <span class="tok-keyword">of</span> <span class="tok-function">qsa</span>(<span class="tok-string">'.is-active'</span>, state.canvas)) el.classList.<span class="tok-function">remove</span>(<span class="tok-string">'is-active'</span>);
+  <span class="tok-keyword">if</span> (state.geo &amp;&amp; state.geo.guide) state.geo.guide.classList.<span class="tok-function">remove</span>(<span class="tok-string">'is-visible'</span>);
+  <span class="tok-keyword">if</span> (state.geo &amp;&amp; state.geo.kind === <span class="tok-string">'donut'</span>) {
+    state.geo.totalLabel.textContent = <span class="tok-function">fmt</span>(state, state.geo.total);
+    state.geo.caption.textContent = <span class="tok-string">'Total'</span>;
+  }
+}
+
+<span class="tok-keyword">function</span> <span class="tok-function">setActive</span>(figure, i, { announce }) {
+  <span class="tok-keyword">const</span> state = states.<span class="tok-keyword">get</span>(figure);
+  <span class="tok-keyword">const</span> { geo, tooltip, cfg } = state;
+  <span class="tok-keyword">if</span> (!geo || !tooltip) <span class="tok-keyword">return</span>;
+  <span class="tok-function">clearActive</span>(state);
+  state.index = i;
+  <span class="tok-keyword">const</span> svgEl = <span class="tok-function">qs</span>(<span class="tok-string">'svg'</span>, state.canvas);
+  svgEl.classList.<span class="tok-function">add</span>(<span class="tok-string">'has-active'</span>);
+  <span class="tok-keyword">const</span> row = state.rows[i];
+
+  <span class="tok-keyword">let</span> anchorX = <span class="tok-number">0</span>;
+  <span class="tok-keyword">let</span> anchorY = <span class="tok-number">0</span>;
+  <span class="tok-keyword">if</span> (geo.kind === <span class="tok-string">'x'</span>) {
+    anchorX = geo.xs[i];
+    geo.guide.<span class="tok-function">setAttribute</span>(<span class="tok-string">'x1'</span>, anchorX);
+    geo.guide.<span class="tok-function">setAttribute</span>(<span class="tok-string">'x2'</span>, anchorX);
+    geo.guide.classList.<span class="tok-function">add</span>(<span class="tok-string">'is-visible'</span>);
+    geo.pointGroups.<span class="tok-function">forEach</span>((points) =&gt; points[i].classList.<span class="tok-function">add</span>(<span class="tok-string">'is-active'</span>));
+    anchorY = Math.<span class="tok-function">min</span>(...geo.pointGroups.<span class="tok-function">map</span>((points) =&gt; <span class="tok-function">Number</span>(points[i].<span class="tok-function">getAttribute</span>(<span class="tok-string">'cy'</span>))));
+  } <span class="tok-keyword">else</span> <span class="tok-keyword">if</span> (geo.kind === <span class="tok-string">'band'</span> || geo.kind === <span class="tok-string">'row'</span>) {
+    geo.bands[i].classList.<span class="tok-function">add</span>(<span class="tok-string">'is-active'</span>);
+    geo.barGroups[i].<span class="tok-function">forEach</span>((bar) =&gt; bar.classList.<span class="tok-function">add</span>(<span class="tok-string">'is-active'</span>));
+    anchorX = geo.kind === <span class="tok-string">'band'</span> ? geo.centers[i] : Math.<span class="tok-function">min</span>(geo.width - <span class="tok-number">80</span>, geo.labelW + <span class="tok-function">Number</span>(geo.barGroups[i][<span class="tok-number">0</span>].<span class="tok-function">getAttribute</span>(<span class="tok-string">'width'</span>)) / <span class="tok-number">2</span>);
+    anchorY = Math.<span class="tok-function">min</span>(...geo.barGroups[i].<span class="tok-function">map</span>((bar) =&gt; <span class="tok-function">Number</span>(bar.<span class="tok-function">getAttribute</span>(<span class="tok-string">'y'</span>))));
+  } <span class="tok-keyword">else</span> <span class="tok-keyword">if</span> (geo.kind === <span class="tok-string">'donut'</span>) {
+    geo.slices[i].el.classList.<span class="tok-function">add</span>(<span class="tok-string">'is-active'</span>);
+    geo.totalLabel.textContent = <span class="tok-function">fmt</span>(state, row[cfg.series[<span class="tok-number">0</span>].key]);
+    geo.caption.textContent = <span class="tok-function">xLabel</span>(state, row);
+    anchorX = geo.cx;
+    anchorY = geo.cy - geo.r;
+  }
+
+  <span class="tok-comment">// Tooltip: plain text built with textContent.</span>
+  <span class="tok-keyword">const</span> lines = [<span class="tok-function">createElement</span>(<span class="tok-string">'p'</span>, { className: <span class="tok-string">'chart__tooltip-title'</span>, text: <span class="tok-function">xLabel</span>(state, row) })];
+  <span class="tok-keyword">if</span> (geo.kind === <span class="tok-string">'donut'</span>) {
+    lines.<span class="tok-function">push</span>(<span class="tok-function">createElement</span>(<span class="tok-string">'p'</span>, { text: <span class="tok-function">describe</span>(state, i).<span class="tok-function">split</span>(<span class="tok-string">': '</span>)[<span class="tok-number">1</span>].<span class="tok-function">replace</span>(/ \d+ <span class="tok-keyword">of</span> \d+\.$/, <span class="tok-string">''</span>) }));
+  } <span class="tok-keyword">else</span> {
+    <span class="tok-keyword">for</span> (<span class="tok-keyword">const</span> s <span class="tok-keyword">of</span> <span class="tok-function">visibleSeries</span>(state)) {
+      lines.<span class="tok-function">push</span>(
+        <span class="tok-function">createElement</span>(<span class="tok-string">'p'</span>, {
+          className: <span class="tok-string">'chart__tooltip-row'</span>,
+          children: [
+            <span class="tok-function">createElement</span>(<span class="tok-string">'span'</span>, { className: <span class="tok-string">`chart__swatch chart__series--${s.colour}`</span> }),
+            <span class="tok-function">createElement</span>(<span class="tok-string">'span'</span>, { text: <span class="tok-string">`${s.label}: `</span> }),
+            <span class="tok-function">createElement</span>(<span class="tok-string">'strong'</span>, { text: <span class="tok-function">fmt</span>(state, row[s.key]) }),
+          ],
+        })
+      );
+    }
+  }
+  tooltip.<span class="tok-function">replaceChildren</span>(...lines);
+  tooltip.hidden = <span class="tok-keyword">false</span>;
+  <span class="tok-keyword">const</span> rect = state.canvas.<span class="tok-function">getBoundingClientRect</span>();
+  <span class="tok-keyword">const</span> ratio = rect.width / geo.width;
+  <span class="tok-keyword">const</span> left = Math.<span class="tok-function">min</span>(Math.<span class="tok-function">max</span>(anchorX * ratio, <span class="tok-number">70</span>), rect.width - <span class="tok-number">70</span>);
+  tooltip.style.<span class="tok-function">setProperty</span>(<span class="tok-string">'left'</span>, <span class="tok-string">`${left}px`</span>);
+  tooltip.style.<span class="tok-function">setProperty</span>(<span class="tok-string">'top'</span>, <span class="tok-string">`${Math.max(anchorY * ratio, 0)}px`</span>);
+
+  <span class="tok-keyword">if</span> (announce) state.live.textContent = <span class="tok-function">describe</span>(state, i);
+}
+
+<span class="tok-comment">/* ---- Public API -------------------------------------------------------- */</span>
+
+<span class="tok-comment">/**
+ * Render a chart from rows you already have (e.g. from your own API call).
+ * @param {HTMLElement} figure - element with data-viz and other attributes
+ * @param {Array&lt;object&gt;} rows
+ */</span>
+<span class="tok-keyword">export</span> <span class="tok-keyword">function</span> <span class="tok-function">renderChart</span>(figure, rows) {
+  <span class="tok-keyword">let</span> state = states.<span class="tok-keyword">get</span>(figure);
+  <span class="tok-keyword">if</span> (!state) {
+    <span class="tok-function">claim</span>(figure, <span class="tok-string">'viz'</span>);
+    state = <span class="tok-function">setup</span>(figure);
+  }
+  state.cfg = { ...<span class="tok-function">readConfig</span>(figure) };
+  <span class="tok-keyword">const</span> data = Array.<span class="tok-function">isArray</span>(rows) ? rows : [];
+  state.rows = state.cfg.limit ? data.<span class="tok-function">slice</span>(-state.cfg.limit) : data.<span class="tok-function">slice</span>();
+  state.index = -<span class="tok-number">1</span>;
+  <span class="tok-keyword">if</span> (state.summary) state.summary.textContent = <span class="tok-function">summarize</span>(state);
+  <span class="tok-keyword">if</span> (state.legend) <span class="tok-function">buildLegend</span>(figure, state);
+  <span class="tok-keyword">if</span> (state.table) <span class="tok-function">buildTable</span>(state);
+  <span class="tok-function">draw</span>(figure, state);
+  figure.<span class="tok-function">removeAttribute</span>(<span class="tok-string">'aria-busy'</span>);
+}
+
+<span class="tok-comment">/**
+ * Reload a chart's data-source (after changing data-limit, data-source, …).
+ * @param {HTMLElement} figure
+ * @param {{ fresh?: boolean }} [options]
+ */</span>
+<span class="tok-keyword">export</span> <span class="tok-keyword">async</span> <span class="tok-keyword">function</span> <span class="tok-function">refresh</span>(figure, { fresh = <span class="tok-keyword">false</span> } = {}) {
+  <span class="tok-keyword">const</span> state = states.<span class="tok-keyword">get</span>(figure) || <span class="tok-function">setup</span>(figure);
+  <span class="tok-keyword">const</span> cfg = <span class="tok-function">readConfig</span>(figure);
+  <span class="tok-keyword">if</span> (!cfg.source) <span class="tok-keyword">return</span>;
+  figure.<span class="tok-function">setAttribute</span>(<span class="tok-string">'aria-busy'</span>, <span class="tok-string">'true'</span>);
+  <span class="tok-keyword">try</span> {
+    <span class="tok-keyword">const</span> data = <span class="tok-keyword">await</span> <span class="tok-function">loadData</span>(cfg.source, { path: cfg.path, fresh });
+    <span class="tok-function">renderChart</span>(figure, data);
+  } <span class="tok-keyword">catch</span> (error) {
+    figure.<span class="tok-function">removeAttribute</span>(<span class="tok-string">'aria-busy'</span>);
+    <span class="tok-keyword">const</span> retry = <span class="tok-function">createElement</span>(<span class="tok-string">'button'</span>, { className: <span class="tok-string">'btn btn--sm btn--secondary'</span>, text: <span class="tok-string">'Try again'</span>, attrs: { type: <span class="tok-string">'button'</span> } });
+    <span class="tok-function">on</span>(retry, <span class="tok-string">'click'</span>, () =&gt; <span class="tok-function">refresh</span>(figure, { fresh: <span class="tok-keyword">true</span> }));
+    state.canvas.<span class="tok-function">replaceChildren</span>(
+      <span class="tok-function">createElement</span>(<span class="tok-string">'div'</span>, {
+        className: <span class="tok-string">'chart__empty'</span>,
+        children: [<span class="tok-function">createElement</span>(<span class="tok-string">'p'</span>, { text: <span class="tok-string">`Couldn't load chart data (${error.message}).`</span> }), retry],
+      })
+    );
+  }
+}
+
+<span class="tok-comment">/**
+ * @param {ParentNode} [root=document]
+ */</span>
+<span class="tok-keyword">export</span> <span class="tok-keyword">function</span> <span class="tok-function">init</span>(root = document) {
+  <span class="tok-keyword">for</span> (<span class="tok-keyword">const</span> figure <span class="tok-keyword">of</span> <span class="tok-function">qsa</span>(<span class="tok-string">'[data-viz]'</span>, root)) {
+    <span class="tok-keyword">if</span> (!<span class="tok-function">claim</span>(figure, <span class="tok-string">'viz'</span>)) <span class="tok-keyword">continue</span>;
+    <span class="tok-keyword">const</span> state = <span class="tok-function">setup</span>(figure);
+    <span class="tok-function">refresh</span>(figure);
+
+    <span class="tok-keyword">if</span> (<span class="tok-string">'ResizeObserver'</span> <span class="tok-keyword">in</span> window) {
+      <span class="tok-keyword">let</span> frame = <span class="tok-number">0</span>;
+      <span class="tok-keyword">const</span> observer = <span class="tok-keyword">new</span> <span class="tok-function">ResizeObserver</span>(() =&gt; {
+        window.<span class="tok-function">cancelAnimationFrame</span>(frame);
+        frame = window.<span class="tok-function">requestAnimationFrame</span>(() =&gt; {
+          <span class="tok-keyword">if</span> (state.rows.length &amp;&amp; Math.<span class="tok-function">abs</span>(state.canvas.clientWidth - state.drawnWidth) &gt; <span class="tok-number">4</span>) <span class="tok-function">draw</span>(figure, state);
+        });
+      });
+      observer.<span class="tok-function">observe</span>(state.canvas);
+    }
+  }
+
+  <span class="tok-keyword">if</span> (listening) <span class="tok-keyword">return</span>;
+  listening = <span class="tok-keyword">true</span>;
+  <span class="tok-function">on</span>(document, <span class="tok-string">'vr:datachange'</span>, () =&gt; {
+    <span class="tok-keyword">for</span> (<span class="tok-keyword">const</span> figure <span class="tok-keyword">of</span> <span class="tok-function">qsa</span>(<span class="tok-string">'[data-viz][data-source]'</span>)) <span class="tok-function">refresh</span>(figure, { fresh: <span class="tok-keyword">true</span> });
+  });
+}</code></pre>
+</div>
+    </section>
+  </div>
+      </section>
+
+      <section class="docs-section" aria-labelledby="files">
+        <h2 class="docs-section__title" id="files">Files</h2>
+        <p class="text-muted">Everything this component needs. Paste these paths into a prompt so an AI agent works with the real files.</p>
+        <ul class="docs-files" role="list">
+          <li><span class="path-chip">src/components/chart.html</span> <span class="text-muted text-sm">markup</span> <button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-text="src/components/chart.html" data-copy-success="Path copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy</span><span class="visually-hidden"> src/components/chart.html</span></button></li>
+          <li><span class="path-chip">src/assets/css/tokens.css</span> <span class="text-muted text-sm">required by everything</span> <button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-text="src/assets/css/tokens.css" data-copy-success="Path copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy</span><span class="visually-hidden"> src/assets/css/tokens.css</span></button></li>
+          <li><span class="path-chip">src/assets/css/themes.css</span> <span class="text-muted text-sm">required by everything</span> <button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-text="src/assets/css/themes.css" data-copy-success="Path copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy</span><span class="visually-hidden"> src/assets/css/themes.css</span></button></li>
+          <li><span class="path-chip">src/assets/css/base.css</span> <span class="text-muted text-sm">required by everything</span> <button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-text="src/assets/css/base.css" data-copy-success="Path copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy</span><span class="visually-hidden"> src/assets/css/base.css</span></button></li>
+          <li><span class="path-chip">src/assets/css/components/chart.css</span> <span class="text-muted text-sm">styles</span> <button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-text="src/assets/css/components/chart.css" data-copy-success="Path copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy</span><span class="visually-hidden"> src/assets/css/components/chart.css</span></button></li>
+          <li><span class="path-chip">src/assets/css/components/table.css</span> <span class="text-muted text-sm">styles</span> <button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-text="src/assets/css/components/table.css" data-copy-success="Path copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy</span><span class="visually-hidden"> src/assets/css/components/table.css</span></button></li>
+          <li><span class="path-chip">src/assets/js/components/chart.js</span> <span class="text-muted text-sm">behaviour (loaded by main.js)</span> <button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-text="src/assets/js/components/chart.js" data-copy-success="Path copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy</span><span class="visually-hidden"> src/assets/js/components/chart.js</span></button></li>
+        </ul>
+      </section>
+
+      <section class="docs-section" aria-labelledby="accessibility">
+        <h2 class="docs-section__title" id="accessibility">Accessibility</h2>
+        <div class="docs-callout"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="4.5" r="1.5"/><path d="M5 8.5 12 10l7-1.5M12 10v4.5M12 14.5 9 21M12 14.5l3 6.5"/></svg><p>The SVG is decorative; each chart gets a generated text summary, a focusable region where arrow keys move between data points (announced through a live region), legend buttons with aria-pressed, and a full data table in a details element. Line series also differ by dash pattern, so colour is never the only cue.</p></div>
+      </section>
+
+      <section class="docs-section" aria-labelledby="usage">
+        <h2 class="docs-section__title" id="usage">Use it in your stack</h2>
+        <div class="tabs docs-tabs" data-tabs>
+    <div class="tabs__list" data-tabs-list data-label="Frameworks" hidden>
+      <button type="button" class="tabs__tab" data-tab="tabs-110-0">HTML page</button>
+      <button type="button" class="tabs__tab" data-tab="tabs-110-1">React / Next.js</button>
+      <button type="button" class="tabs__tab" data-tab="tabs-110-2">ASP.NET Core</button>
+      <button type="button" class="tabs__tab" data-tab="tabs-110-3">Django / Jinja2</button>
+    </div>
+    <section class="tabs__panel" id="tabs-110-0" aria-labelledby="tabs-110-0-h">
+      <h3 class="tabs__heading" id="tabs-110-0-h">HTML page</h3>
+      <p>Add the stylesheets and the module entry point to <code>&lt;head&gt;</code> once, then paste the markup anywhere in <code>&lt;body&gt;</code>. Paths assume <code>src/</code> is your web root.</p>
+<div class="docs-code">
+  <div class="docs-code__header">
+    <span class="docs-code__label">In &lt;head&gt;</span>
+    <span class="docs-code__actions"><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-target="#code-108" data-copy-success="Code copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy code</span></button></span>
+  </div>
+  <pre tabindex="0" role="region" aria-label="In &lt;head&gt;"><code id="code-108"><span class="tok-tag">&lt;link</span> <span class="tok-attr">rel</span><span class="tok-punct">=</span><span class="tok-string">&quot;stylesheet&quot;</span> <span class="tok-attr">href</span><span class="tok-punct">=</span><span class="tok-string">&quot;/assets/css/tokens.css&quot;</span><span class="tok-tag">&gt;</span>
+<span class="tok-tag">&lt;link</span> <span class="tok-attr">rel</span><span class="tok-punct">=</span><span class="tok-string">&quot;stylesheet&quot;</span> <span class="tok-attr">href</span><span class="tok-punct">=</span><span class="tok-string">&quot;/assets/css/themes.css&quot;</span><span class="tok-tag">&gt;</span>
+<span class="tok-tag">&lt;link</span> <span class="tok-attr">rel</span><span class="tok-punct">=</span><span class="tok-string">&quot;stylesheet&quot;</span> <span class="tok-attr">href</span><span class="tok-punct">=</span><span class="tok-string">&quot;/assets/css/base.css&quot;</span><span class="tok-tag">&gt;</span>
+<span class="tok-tag">&lt;link</span> <span class="tok-attr">rel</span><span class="tok-punct">=</span><span class="tok-string">&quot;stylesheet&quot;</span> <span class="tok-attr">href</span><span class="tok-punct">=</span><span class="tok-string">&quot;/assets/css/components/chart.css&quot;</span><span class="tok-tag">&gt;</span>
+<span class="tok-tag">&lt;link</span> <span class="tok-attr">rel</span><span class="tok-punct">=</span><span class="tok-string">&quot;stylesheet&quot;</span> <span class="tok-attr">href</span><span class="tok-punct">=</span><span class="tok-string">&quot;/assets/css/components/table.css&quot;</span><span class="tok-tag">&gt;</span>
+<span class="tok-tag">&lt;script</span> <span class="tok-attr">type</span><span class="tok-punct">=</span><span class="tok-string">&quot;module&quot;</span> <span class="tok-attr">src</span><span class="tok-punct">=</span><span class="tok-string">&quot;/assets/js/main.js&quot;</span><span class="tok-tag">&gt;</span><span class="tok-tag">&lt;/script</span><span class="tok-tag">&gt;</span></code></pre>
+</div>
+    </section>
+    <section class="tabs__panel" id="tabs-110-1" aria-labelledby="tabs-110-1-h">
+      <h3 class="tabs__heading" id="tabs-110-1-h">React / Next.js</h3>
+      <p>Copy <code>src/assets/</code> to <code>ui/</code>, convert the markup to JSX (<code>class</code> → <code>className</code>, <code>for</code> → <code>htmlFor</code>) and call <code>init()</code> after render.</p>
+<div class="docs-code">
+  <div class="docs-code__header">
+    <span class="docs-code__label">JSX</span>
+    <span class="docs-code__actions"><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-target="#code-109" data-copy-success="Code copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy code</span></button></span>
+  </div>
+  <pre tabindex="0" role="region" aria-label="JSX"><code id="code-109"><span class="tok-string">'use client'</span>;
+<span class="tok-keyword">import</span> { useEffect, useRef } <span class="tok-keyword">from</span> <span class="tok-string">'react'</span>;
+<span class="tok-keyword">import</span> <span class="tok-string">'@/ui/css/components/chart.css'</span>;
+<span class="tok-keyword">import</span> <span class="tok-string">'@/ui/css/components/table.css'</span>;
+
+<span class="tok-keyword">export</span> <span class="tok-keyword">function</span> <span class="tok-function">Chart</span>() {
+  <span class="tok-keyword">const</span> ref = <span class="tok-function">useRef</span>(<span class="tok-keyword">null</span>);
+  <span class="tok-function">useEffect</span>(() =&gt; {
+    <span class="tok-keyword">import</span>(<span class="tok-string">'@/ui/js/components/chart.js'</span>).<span class="tok-function">then</span>((m) =&gt; m.<span class="tok-function">init</span>(ref.current));
+  }, []);
+  <span class="tok-keyword">return</span> &lt;div ref={ref}&gt;{<span class="tok-comment">/* paste the markup, converted to JSX */</span>}&lt;/div&gt;;
+}</code></pre>
+</div>
+    </section>
+    <section class="tabs__panel" id="tabs-110-2" aria-labelledby="tabs-110-2-h">
+      <h3 class="tabs__heading" id="tabs-110-2-h">ASP.NET Core</h3>
+      <p>Save the markup as <code>Pages/Shared/Components/_Chart.cshtml</code> (escape a literal <code>@</code> as <code>@@</code>), render it with <code>&lt;partial name="Components/_Chart" /&gt;</code>, and reference the stylesheets in <code>_Layout.cshtml</code>.</p>
+    </section>
+    <section class="tabs__panel" id="tabs-110-3" aria-labelledby="tabs-110-3-h">
+      <h3 class="tabs__heading" id="tabs-110-3-h">Django / Jinja2</h3>
+      <p>Save the markup as <code>templates/components/chart.html</code> and use <code>{% include "components/chart.html" %}</code>. Load the stylesheets in your base template.</p>
+    </section>
+  </div>
+      </section>
+
+      <nav class="docs-pager" aria-label="Previous and next">
+        <a class="docs-pager__link" href="dialog.html" rel="prev"><span class="text-sm text-muted">Previous</span> <span>Dialog</span></a>
+        <a class="docs-pager__link docs-pager__link--next" href="data-grid.html" rel="next"><span class="text-sm text-muted">Next</span> <span>Data grid</span></a>
+      </nav>
+    </main>
+    <aside class="docs-toc" aria-labelledby="toc-title">
+      <h2 class="docs-toc__title" id="toc-title">On this page</h2>
+      <ul class="docs-toc__list" role="list">
+        <li><a href="#preview">Preview</a></li>
+        <li><a href="#code">Code</a></li>
+        <li><a href="#files">Files</a></li>
+        <li><a href="#accessibility">Accessibility</a></li>
+        <li><a href="#usage">Use it in your stack</a></li>
+      </ul>
+    </aside>
+  </div>
+
+  <footer class="docs-footer">
+    <p>MIT licensed · Built with plain HTML, CSS and JavaScript · <a href="https://github.com/amuqtadir99/vanilla-responsive-ui">Source on GitHub</a> · Generated by <code>node .claude/skills/generate-doc.js</code></p>
+  </footer>
+</body>
+</html>

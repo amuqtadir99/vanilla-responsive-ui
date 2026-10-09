@@ -974,7 +974,7 @@ Rules: CLAUDE.md (no dependencies, no inline scripts/styles, WCAG 2.2 AA)
     <p class="chart__fallback">Monthly revenue, May to October 2026.</p>
   </figure>
 
-  <figure class="chart" data-viz="donut" data-source="../data/sales.json" data-path="channels" data-x="channel" data-series="revenue:Revenue" data-format="currency-compact">
+  <figure class="chart" data-viz="donut" data-source="sales" data-path="channels" data-x="channel" data-series="revenue:Revenue" data-format="currency-compact">
     <figcaption class="chart__caption">
       <span class="chart__title">Revenue by channel</span>
       <span class="chart__subtitle">Donut chart from src/data/sales.json</span>
@@ -982,7 +982,7 @@ Rules: CLAUDE.md (no dependencies, no inline scripts/styles, WCAG 2.2 AA)
     <p class="chart__fallback">Organic search is the largest channel at $18.5K.</p>
   </figure>
 
-  <figure class="chart" data-viz="hbar" data-source="../data/sales.json" data-path="regions" data-x="region" data-series="revenue:Revenue:2" data-format="currency-compact">
+  <figure class="chart" data-viz="hbar" data-source="sales" data-path="regions" data-x="region" data-series="revenue:Revenue:2" data-format="currency-compact">
     <figcaption class="chart__caption">
       <span class="chart__title">Revenue by region</span>
       <span class="chart__subtitle">Horizontal bar chart</span>
@@ -1050,7 +1050,7 @@ Rules: CLAUDE.md (no dependencies, no inline scripts/styles, WCAG 2.2 AA)
 <script type="module" src="/assets/js/main.js"></script>
 
 <!-- In <body> -->
-<div class="data-grid" data-grid data-source="../data/orders.json" data-page-size="5" data-label="orders">
+<div class="data-grid" data-grid data-source="orders" data-page-size="5" data-label="orders">
   <form class="data-grid__toolbar" action="/orders" method="get">
     <div class="field">
       <label class="field__label" for="grid-demo-search">Search orders</label>

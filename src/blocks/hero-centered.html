@@ -1,0 +1,45 @@
+<!--
+@block: Hero centered
+@category: Hero
+@description: Centered hero with soft colour glows, announcement pill, display headline, two calls to action, a short checklist and a large framed product mock below.
+@css: blocks.css, components/button.css
+@js: none
+@a11y: The page h1. The checklist is a real list; the product mock is a single role="img" with a description.
+-->
+<section data-block="hero-centered" class="hero hero--centered" aria-labelledby="hero-centered-title">
+  <div class="container">
+    <div class="hero__content">
+      <a class="announce" href="/changelog"><span class="announce__tag">v2.0</span> Page builder and live docs <svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      <h1 class="hero__title" id="hero-centered-title">The <span class="text-gradient">dependency-free</span> UI kit for every stack</h1>
+      <p class="hero__lead">Copy a component, compose a page in the builder, or start from a template. It all runs on plain HTML, CSS and JavaScript.</p>
+      <div class="hero__actions">
+        <a class="btn btn--lg" href="/signup">Get started free</a>
+        <a class="btn btn--lg btn--secondary" href="/docs"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m16 18 6-6-6-6M8 6l-6 6 6 6"/></svg> Read the docs</a>
+      </div>
+      <ul class="checklist checklist--inline" role="list">
+        <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> No build step</li>
+        <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Works with React, .NET and Django</li>
+        <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> MIT licensed</li>
+      </ul>
+    </div>
+    <div class="hero__media">
+      <div class="hero__plate">
+        <div class="mock" role="img" aria-label="Acme dashboard showing revenue, orders and a rising monthly chart">
+          <div class="mock__bar"><span></span><span></span><span></span><span class="mock__url"></span></div>
+          <div class="mock__body">
+            <div class="mock__nav"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+            <div class="mock__main">
+              <div class="mock__kpis">
+                <div class="mock__kpi"><span></span><strong>$48.2k</strong><em>+12%</em></div>
+                <div class="mock__kpi"><span></span><strong>1,284</strong><em>+8%</em></div>
+                <div class="mock__kpi"><span></span><strong>4.1%</strong><em>+0.6</em></div>
+              </div>
+              <div class="mock__chart"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+              <div class="mock__rows"><span></span><span></span><span></span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

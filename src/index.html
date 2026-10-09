@@ -3,241 +3,268 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; form-action 'self'; base-uri 'self'; object-src 'none'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; form-action 'self'; base-uri 'self'; object-src 'none'">
   <meta name="referrer" content="strict-origin-when-cross-origin">
-  <title>vanilla-responsive-ui — Templates</title>
-  <meta name="description" content="Dependency-free, accessible responsive UI templates and components built with plain HTML, CSS and JavaScript.">
+  <title>Introduction — vanilla-responsive-ui docs</title>
+  <meta name="description" content="Dependency-free, accessible UI components, blocks and templates in plain HTML, CSS and JavaScript, with a page builder and live documentation.">
   <meta name="color-scheme" content="light dark">
-  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#0e1116" media="(prefers-color-scheme: dark)">
+  <meta name="generator" content="node .claude/skills/generate-doc.js (do not edit by hand)">
   <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="assets/css/tokens.css">
   <link rel="stylesheet" href="assets/css/themes.css">
   <link rel="stylesheet" href="assets/css/base.css">
   <link rel="stylesheet" href="assets/css/layouts.css">
   <link rel="stylesheet" href="assets/css/components/button.css">
-  <link rel="stylesheet" href="assets/css/components/header.css">
-  <link rel="stylesheet" href="assets/css/components/card.css">
-  <link rel="stylesheet" href="assets/css/components/dialog.css">
   <link rel="stylesheet" href="assets/css/components/form.css">
   <link rel="stylesheet" href="assets/css/components/feedback.css">
+  <link rel="stylesheet" href="assets/css/components/tabs.css">
+  <link rel="stylesheet" href="assets/css/components/table.css">
   <link rel="stylesheet" href="assets/css/components/code.css">
+  <link rel="stylesheet" href="assets/css/components/accordion.css">
+  <link rel="stylesheet" href="assets/css/components/card.css">
+  <link rel="stylesheet" href="assets/css/components/navigation.css">
+  <link rel="stylesheet" href="assets/css/blocks.css">
+  <link rel="stylesheet" href="docs/assets/foundations.css">
+  <link rel="stylesheet" href="docs/assets/docs.css">
   <script type="module" src="assets/js/main.js"></script>
+  <script type="module" src="docs/assets/docs.js"></script>
 </head>
-<body>
-  <a class="skip-link" href="#main">Skip to main content</a>
-
-  <!-- @partial template-switcher -->
-  <!-- Demo navigation between templates. Remove this partial in production. -->
-  <nav class="demo-bar" aria-label="Template gallery">
-    <div class="container demo-bar__inner">
-      <a class="demo-bar__home" href="index.html" aria-current="page">vanilla-responsive-ui</a>
-      <ul class="demo-bar__list">
-        <li><a href="templates/landing-page/index.html" data-section>Landing</a></li>
-        <li><a href="templates/website/index.html" data-section>Website</a></li>
-        <li><a href="templates/dashboard/index.html" data-section>Dashboard</a></li>
-        <li><a href="templates/e-commerce/index.html" data-section>Shop</a></li>
-        <li><a href="templates/ai/index.html" data-section>AI assistant</a></li>
-        <li><a href="templates/auth/index.html" data-section>Auth</a></li>
-        <li><a href="components/index.html" data-section>Components</a></li>
-        <li><a href="layouts/index.html" data-section>Layouts</a></li>
-      </ul>
-      <div class="demo-bar__actions">
-        <button type="button" class="btn btn--ghost btn--sm" commandfor="theme-panel" command="show-modal" data-theme-panel-trigger hidden>
-          <svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></svg> Theme
+<body class="docs-body docs-home">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <p class="needs-server"><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4M12 17h.01"/></svg> <span>You opened this file from disk, so browsers block its JavaScript (copy buttons, previews, the builder). Run <code>python3 -m http.server 8080</code> in the repository folder and open <a href="http://localhost:8080/src/">localhost:8080/src/</a>, or use the <a href="https://amuqtadir99.github.io/vanilla-responsive-ui/src/">hosted docs</a>.</span></p>
+  <header class="docs-topbar">
+    <div class="docs-topbar__inner">
+      <button type="button" class="btn btn--ghost btn--icon docs-topbar__menu" data-disclosure="dismissible" aria-expanded="false" aria-controls="docs-sidebar" hidden>
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        <span class="visually-hidden">Documentation menu</span>
+      </button>
+      <a class="docs-brand" href="index.html">
+        <span class="docs-brand__mark"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 2 7l10 5 10-5z"/><path d="m2 17 10 5 10-5M2 12l10 5 10-5"/></svg></span>
+        <span>vanilla-responsive-ui</span>
+      </a>
+      <nav class="docs-topnav" aria-label="Main">
+        <ul class="docs-topnav__list" role="list">
+          <li><a href="docs/getting-started.html">Docs</a></li>
+          <li><a href="docs/components/site-footer.html">Components</a></li>
+          <li><a href="docs/blocks/hero-centered.html">Blocks</a></li>
+          <li><a href="docs/templates/index.html">Templates</a></li>
+          <li><a href="builder/index.html">Builder</a></li>
+        </ul>
+      </nav>
+      <div class="docs-topbar__actions">
+        <a class="btn btn--ghost btn--sm" href="https://github.com/amuqtadir99/vanilla-responsive-ui"><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m16 18 6-6-6-6M8 6l-6 6 6 6"/></svg> <span class="docs-topbar__label">GitHub</span></a>
+        <button type="button" class="btn btn--ghost btn--icon theme-toggle" data-theme-toggle aria-pressed="false" hidden>
+          <svg class="icon theme-toggle__light" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="icon theme-toggle__dark" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+          <span class="visually-hidden">Dark theme</span>
         </button>
       </div>
     </div>
-  </nav>
-  <!-- @end template-switcher -->
+  </header>
 
-  <main id="main" tabindex="-1">
-    <section class="section" aria-labelledby="intro-title">
-      <div class="container stack stack--lg">
-        <p class="eyebrow">Zero dependencies · WCAG 2.2 AA · CSP friendly · AI-agent ready</p>
-        <h1 id="intro-title">Responsive UI templates</h1>
-        <p class="lead">Plain HTML5, modular CSS and vanilla JavaScript. No build step, no framework, no package manager. Copy a template into ASP.NET Core, React, Django or anything else, or let your coding agent assemble pages from the catalog.</p>
-        <div class="cluster">
-          <a class="btn btn--lg" href="templates/website/index.html">Explore the templates</a>
-          <a class="btn btn--lg btn--secondary" href="layouts/index.html">Open the layout builder</a>
-          <button type="button" class="btn btn--lg btn--ghost" commandfor="theme-panel" command="show-modal" data-theme-panel-trigger hidden><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></svg> Customize theme</button>
+  <div class="docs-layout docs-layout--wide">
+    <nav class="docs-sidebar" id="docs-sidebar" aria-label="Documentation">
+      <div class="docs-search" data-docs-search hidden>
+        <label class="visually-hidden" for="docs-search-input">Search the documentation</label>
+        <svg class="icon icon--sm docs-search__icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/></svg>
+        <input class="input docs-search__input" id="docs-search-input" type="search" placeholder="Search…" autocomplete="off" aria-describedby="docs-search-hint">
+        <kbd class="docs-search__kbd" id="docs-search-hint"><span class="visually-hidden">Press </span>/<span class="visually-hidden"> to search</span></kbd>
+        <p class="docs-search__empty text-sm text-muted" role="status" data-docs-search-status></p>
+      </div>
+      <div class="docs-nav__group" data-docs-group>
+        <p class="docs-nav__title" id="nav-get-started">Get started</p>
+        <ul class="docs-nav__list" role="list" aria-labelledby="nav-get-started">
+          <li><a class="docs-nav__link" href="index.html" aria-current="page">Introduction</a></li>
+          <li><a class="docs-nav__link" href="docs/getting-started.html">Getting started</a></li>
+          <li><a class="docs-nav__link" href="builder/index.html">Page builder</a></li>
+          <li><a class="docs-nav__link" href="docs/ai-agents.html">Working with AI agents</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav__group" data-docs-group>
+        <p class="docs-nav__title" id="nav-templates">Templates</p>
+        <ul class="docs-nav__list" role="list" aria-labelledby="nav-templates">
+          <li><a class="docs-nav__link" href="docs/templates/index.html">All templates</a></li>
+          <li><a class="docs-nav__link" href="docs/templates/landing-page-index.html">Landing page</a></li>
+          <li><a class="docs-nav__link" href="docs/templates/website-index.html">Website</a></li>
+          <li><a class="docs-nav__link" href="docs/templates/dashboard-index.html">Dashboard</a></li>
+          <li><a class="docs-nav__link" href="docs/templates/e-commerce-index.html">E-commerce</a></li>
+          <li><a class="docs-nav__link" href="docs/templates/ai-index.html">AI apps</a></li>
+          <li><a class="docs-nav__link" href="docs/templates/auth-index.html">Authentication</a></li>
+          <li><a class="docs-nav__link" href="docs/layouts.html">Layouts</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav__group" data-docs-group>
+        <p class="docs-nav__title" id="nav-blocks">Blocks</p>
+        <ul class="docs-nav__list" role="list" aria-labelledby="nav-blocks">
+          <li><a class="docs-nav__link" href="docs/blocks/hero-centered.html">Hero centered</a></li>
+          <li><a class="docs-nav__link" href="docs/blocks/hero-split.html">Hero split</a></li>
+          <li><a class="docs-nav__link" href="docs/blocks/logo-cloud.html">Logo cloud</a></li>
+          <li><a class="docs-nav__link" href="docs/blocks/stats-band.html">Stats band</a></li>
+          <li><a class="docs-nav__link" href="docs/blocks/testimonials.html">Testimonials</a></li>
+          <li><a class="docs-nav__link" href="docs/blocks/feature-bento.html">Feature bento</a></li>
+          <li><a class="docs-nav__link" href="docs/blocks/feature-grid.html">Feature grid</a></li>
+          <li><a class="docs-nav__link" href="docs/blocks/feature-rows.html">Feature rows</a></li>
+          <li><a class="docs-nav__link" href="docs/blocks/steps.html">Steps</a></li>
+          <li><a class="docs-nav__link" href="docs/blocks/category-tiles.html">Category tiles</a></li>
+          <li><a class="docs-nav__link" href="docs/blocks/perks.html">Perks</a></li>
+          <li><a class="docs-nav__link" href="docs/blocks/pricing.html">Pricing</a></li>
+          <li><a class="docs-nav__link" href="docs/blocks/promo-banner.html">Promo banner</a></li>
+          <li><a class="docs-nav__link" href="docs/blocks/blog-posts.html">Blog posts</a></li>
+          <li><a class="docs-nav__link" href="docs/blocks/faq.html">FAQ</a></li>
+          <li><a class="docs-nav__link" href="docs/blocks/team.html">Team</a></li>
+          <li><a class="docs-nav__link" href="docs/blocks/contact.html">Contact</a></li>
+          <li><a class="docs-nav__link" href="docs/blocks/cta-banner.html">CTA banner</a></li>
+          <li><a class="docs-nav__link" href="docs/blocks/newsletter.html">Newsletter</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav__group" data-docs-group>
+        <p class="docs-nav__title" id="nav-components">Components</p>
+        <ul class="docs-nav__list" role="list" aria-labelledby="nav-components">
+          <li><a class="docs-nav__link" href="docs/components/site-footer.html">Site footer</a></li>
+          <li><a class="docs-nav__link" href="docs/components/site-header.html">Site header</a></li>
+          <li><a class="docs-nav__link" href="docs/components/breadcrumb.html">Breadcrumb</a></li>
+          <li><a class="docs-nav__link" href="docs/components/pagination.html">Pagination</a></li>
+          <li><a class="docs-nav__link" href="docs/components/tabs.html">Tabs</a></li>
+          <li><a class="docs-nav__link" href="docs/components/button.html">Button</a></li>
+          <li><a class="docs-nav__link" href="docs/components/accordion.html">Accordion</a></li>
+          <li><a class="docs-nav__link" href="docs/components/card.html">Card</a></li>
+          <li><a class="docs-nav__link" href="docs/components/form-field.html">Form fields</a></li>
+          <li><a class="docs-nav__link" href="docs/components/alert.html">Alert and badge</a></li>
+          <li><a class="docs-nav__link" href="docs/components/toast.html">Toast</a></li>
+          <li><a class="docs-nav__link" href="docs/components/dialog.html">Dialog</a></li>
+          <li><a class="docs-nav__link" href="docs/components/chart.html">Charts</a></li>
+          <li><a class="docs-nav__link" href="docs/components/data-grid.html">Data grid</a></li>
+          <li><a class="docs-nav__link" href="docs/components/data-table.html">Data table</a></li>
+          <li><a class="docs-nav__link" href="docs/components/chat.html">AI chat</a></li>
+          <li><a class="docs-nav__link" href="docs/components/chat-message.html">Chat messages</a></li>
+          <li><a class="docs-nav__link" href="docs/components/chat-widget.html">Chat widget</a></li>
+          <li><a class="docs-nav__link" href="docs/components/theme-customizer.html">Theme customizer</a></li>
+          <li><a class="docs-nav__link" href="docs/components/theme-toggle.html">Theme toggle</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav__group" data-docs-group>
+        <p class="docs-nav__title" id="nav-foundations">Foundations</p>
+        <ul class="docs-nav__list" role="list" aria-labelledby="nav-foundations">
+          <li><a class="docs-nav__link" href="docs/foundations/colors.html">Colours</a></li>
+          <li><a class="docs-nav__link" href="docs/foundations/typography.html">Typography</a></li>
+          <li><a class="docs-nav__link" href="docs/foundations/spacing.html">Spacing and shape</a></li>
+          <li><a class="docs-nav__link" href="docs/foundations/icons.html">Icons</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav__group" data-docs-group>
+        <p class="docs-nav__title" id="nav-guides">Guides</p>
+        <ul class="docs-nav__list" role="list" aria-labelledby="nav-guides">
+          <li><a class="docs-nav__link" href="docs/guides/theming.html">Theming</a></li>
+          <li><a class="docs-nav__link" href="docs/guides/layouts.html">Layouts and pages</a></li>
+          <li><a class="docs-nav__link" href="docs/guides/data.html">Data and charts</a></li>
+          <li><a class="docs-nav__link" href="docs/guides/ai-chat.html">AI chat</a></li>
+          <li><a class="docs-nav__link" href="docs/guides/accessibility.html">Accessibility</a></li>
+          <li><a class="docs-nav__link" href="docs/guides/security.html">Security</a></li>
+          <li><a class="docs-nav__link" href="docs/guides/integration.html">Framework integration</a></li>
+          <li><a class="docs-nav__link" href="docs/guides/architecture.html">Architecture</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <main class="docs-main" id="main" tabindex="-1">
+      <section class="docs-hero" aria-labelledby="home-title">
+        <a class="announce" href="builder/index.html"><span class="announce__tag">New</span> Page builder and live docs <svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        <h1 class="docs-hero__title" id="home-title">Accessible UI in <span class="text-gradient">plain HTML, CSS and JavaScript</span></h1>
+        <p class="docs-hero__lead">Components, page blocks and complete templates with zero dependencies. Copy the code, compose pages in the builder, or hand exact file paths to your AI agent.</p>
+        <div class="hero__actions">
+          <a class="btn btn--lg" href="docs/getting-started.html">Get started <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a class="btn btn--lg btn--secondary" href="builder/index.html"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg> Open the page builder</a>
         </div>
-      </div>
-    </section>
+        <dl class="docs-stats">
+          <div><dt>Components</dt><dd>20</dd></div>
+          <div><dt>Blocks</dt><dd>19</dd></div>
+          <div><dt>Template pages</dt><dd>21</dd></div>
+          <div><dt>Dependencies</dt><dd>0</dd></div>
+        </dl>
+      </section>
 
-    <section class="section section--alt" aria-labelledby="templates-title">
-      <div class="container">
-        <h2 class="section__header" id="templates-title">Templates</h2>
-        <ul class="grid-auto list-reset" role="list">
-          <li class="card">
-            <div class="card__body">
-              <span class="card__icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span>
-              <h3 class="card__title"><a href="templates/website/index.html">Website</a></h3>
-              <p class="text-sm text-muted">6 pages</p>
-              <p class="card__text">Home, about, services, blog, article and contact, each on a different layout, with a support chat widget.</p>
+      <section class="docs-section" aria-labelledby="home-templates">
+        <div class="docs-section__head">
+          <h2 class="docs-section__title" id="home-templates">Live templates</h2>
+          <a class="btn btn--ghost btn--sm" href="docs/templates/index.html">All 21 pages <svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+        <ul class="docs-cards" role="list">
+          <li class="docs-card">
+            <div class="docs-thumb" aria-hidden="true" data-docs-thumb><iframe src="templates/landing-page/index.html" title="Landing page template thumbnail" loading="lazy" tabindex="-1"></iframe></div>
+            <div class="docs-card__body">
+              <h3 class="docs-card__title"><a href="docs/templates/landing-page-index.html">Landing page</a></h3>
+              <p class="text-sm text-muted">1 page · Landing page template: hero, features, pricing, testimonials, FAQ and newsletter signup. Dependency-free HTML, CSS and JavaScript.</p>
             </div>
           </li>
-          <li class="card">
-            <div class="card__body">
-              <span class="card__icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20V10M18 20V4M6 20v-4"/></svg></span>
-              <h3 class="card__title"><a href="templates/dashboard/index.html">Dashboard</a></h3>
-              <p class="text-sm text-muted">7 pages</p>
-              <p class="card__text">Overview, analytics with SVG charts, orders and customers grids, settings with data sources, and an AI analyst.</p>
+          <li class="docs-card">
+            <div class="docs-thumb" aria-hidden="true" data-docs-thumb><iframe src="templates/website/index.html" title="Website template thumbnail" loading="lazy" tabindex="-1"></iframe></div>
+            <div class="docs-card__body">
+              <h3 class="docs-card__title"><a href="docs/templates/website-index.html">Website</a></h3>
+              <p class="text-sm text-muted">6 pages · Multi-page website template: home page with hero, services, results, case study, testimonials, latest articles and a call to action.</p>
             </div>
           </li>
-          <li class="card">
-            <div class="card__body">
-              <span class="card__icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 3h3l2.4 12.2a2 2 0 0 0 2 1.6h8.2a2 2 0 0 0 2-1.6L21 7H6"/></svg></span>
-              <h3 class="card__title"><a href="templates/e-commerce/index.html">E-commerce</a></h3>
-              <p class="text-sm text-muted">3 pages</p>
-              <p class="card__text">Product listing with filters, product detail with gallery and reviews chart, and a working cart.</p>
+          <li class="docs-card">
+            <div class="docs-thumb" aria-hidden="true" data-docs-thumb><iframe src="templates/dashboard/index.html" title="Dashboard template thumbnail" loading="lazy" tabindex="-1"></iframe></div>
+            <div class="docs-card__body">
+              <h3 class="docs-card__title"><a href="docs/templates/dashboard-index.html">Dashboard</a></h3>
+              <p class="text-sm text-muted">6 pages · Admin dashboard template: KPI cards with sparklines, revenue and channel charts, recent orders grid, workspace tabs and a report dialog.</p>
             </div>
           </li>
-          <li class="card">
-            <div class="card__body">
-              <span class="card__icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8zM5 2l.6 1.4L7 4l-1.4.6L5 6l-.6-1.4L3 4l1.4-.6z"/></svg></span>
-              <h3 class="card__title"><a href="templates/ai/index.html">AI assistant</a></h3>
-              <p class="text-sm text-muted">2 pages</p>
-              <p class="card__text">Full-page chat with saved conversations, and an agent workspace with a live plan and tool-call panel.</p>
+          <li class="docs-card">
+            <div class="docs-thumb" aria-hidden="true" data-docs-thumb><iframe src="templates/e-commerce/index.html" title="E-commerce template thumbnail" loading="lazy" tabindex="-1"></iframe></div>
+            <div class="docs-card__body">
+              <h3 class="docs-card__title"><a href="docs/templates/e-commerce-index.html">E-commerce</a></h3>
+              <p class="text-sm text-muted">3 pages · E-commerce product listing template: filters, sorting, product cards with lazy-loaded images, cart counter and pagination.</p>
             </div>
           </li>
-          <li class="card">
-            <div class="card__body">
-              <span class="card__icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2 3 14h9l-1 8 10-12h-9z"/></svg></span>
-              <h3 class="card__title"><a href="templates/landing-page/index.html">Landing page</a></h3>
-              <p class="text-sm text-muted">1 page</p>
-              <p class="card__text">Single-page marketing site: hero, features, pricing, testimonials, FAQ and newsletter.</p>
+          <li class="docs-card">
+            <div class="docs-thumb" aria-hidden="true" data-docs-thumb><iframe src="templates/ai/index.html" title="AI apps template thumbnail" loading="lazy" tabindex="-1"></iframe></div>
+            <div class="docs-card__body">
+              <h3 class="docs-card__title"><a href="docs/templates/ai-index.html">AI apps</a></h3>
+              <p class="text-sm text-muted">2 pages · Full-page AI assistant template: streaming replies, Markdown and code blocks, tool steps, sources, file attachments, message actions and saved conversations.</p>
             </div>
           </li>
-          <li class="card">
-            <div class="card__body">
-              <span class="card__icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>
-              <h3 class="card__title"><a href="templates/auth/index.html">Auth</a></h3>
-              <p class="text-sm text-muted">3 pages</p>
-              <p class="card__text">Sign in, create account and reset password with accessible validation.</p>
+          <li class="docs-card">
+            <div class="docs-thumb" aria-hidden="true" data-docs-thumb><iframe src="templates/auth/index.html" title="Authentication template thumbnail" loading="lazy" tabindex="-1"></iframe></div>
+            <div class="docs-card__body">
+              <h3 class="docs-card__title"><a href="docs/templates/auth-index.html">Authentication</a></h3>
+              <p class="text-sm text-muted">3 pages · Sign-in page template with accessible validation, password visibility toggle and remember-me option.</p>
             </div>
           </li>
         </ul>
-      </div>
-    </section>
+      </section>
 
-    <section class="section" aria-labelledby="tools-title">
-      <div class="container">
-        <h2 class="section__header" id="tools-title">Build your own</h2>
-        <ul class="grid-auto list-reset" role="list">
-          <li class="card card--flat">
-            <div class="card__body">
-              <span class="card__icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></span>
-              <h3 class="card__title"><a href="layouts/index.html">Layout builder</a></h3>
-              <p class="card__text">Preview 8 responsive layouts at any width and brand colour, then copy the HTML, a CLI command or an AI prompt.</p>
-            </div>
-          </li>
-          <li class="card card--flat">
-            <div class="card__body">
-              <span class="card__icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></span>
-              <h3 class="card__title"><a href="components/index.html">Component gallery</a></h3>
-              <p class="card__text">Every component live, with buttons to copy its file paths for an AI agent or copy the code itself.</p>
-            </div>
-          </li>
-          <li class="card card--flat">
-            <div class="card__body">
-              <span class="card__icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></svg></span>
-              <h3 class="card__title"><a href="templates/dashboard/settings.html">Theme and data</a></h3>
-              <p class="card__text">Switch brand colours, density and corners live; point charts and grids at your own API.</p>
-            </div>
-          </li>
+      <section class="docs-section" aria-labelledby="home-explore">
+        <h2 class="docs-section__title" id="home-explore">Explore</h2>
+        <ul class="docs-features" role="list">
+          <li class="docs-feature"><span class="block-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></span><h3 class="docs-feature__title"><a href="docs/components/site-footer.html">Components</a></h3><p class="text-sm text-muted">20 accessible UI components with live previews, code and framework usage.</p></li>
+          <li class="docs-feature"><span class="block-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 2 7l10 5 10-5z"/><path d="m2 17 10 5 10-5M2 12l10 5 10-5"/></svg></span><h3 class="docs-feature__title"><a href="docs/blocks/hero-centered.html">Blocks</a></h3><p class="text-sm text-muted">19 page sections: heroes, features, pricing, FAQ, CTAs and more.</p></li>
+          <li class="docs-feature"><span class="block-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></span><h3 class="docs-feature__title"><a href="builder/index.html">Page builder</a></h3><p class="text-sm text-muted">Compose a page from blocks, preview it at any width and download the HTML.</p></li>
+          <li class="docs-feature"><span class="block-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></svg></span><h3 class="docs-feature__title"><a href="docs/foundations/colors.html">Foundations</a></h3><p class="text-sm text-muted">Colours, type, spacing, shape and icons, all as design tokens.</p></li>
+          <li class="docs-feature"><span class="block-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg></span><h3 class="docs-feature__title"><a href="docs/guides/theming.html">Guides</a></h3><p class="text-sm text-muted">Theming, layouts, data and charts, AI chat, accessibility and security.</p></li>
+          <li class="docs-feature"><span class="block-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="8" width="18" height="12" rx="3"/><path d="M12 8V4M8 2h8M9 13v2M15 13v2"/></svg></span><h3 class="docs-feature__title"><a href="docs/ai-agents.html">AI agents</a></h3><p class="text-sm text-muted">Rules, a catalog of every file and copy-ready references for prompts.</p></li>
         </ul>
-      </div>
-    </section>
+      </section>
 
-    <section class="section section--alt" aria-labelledby="agents-title">
-      <div class="container stack">
-        <h2 id="agents-title">Ready for AI coding agents</h2>
-        <p class="lead">Point Claude Code or any coding agent at this repository. It finds what it needs without guessing:</p>
-        <ul class="check-list">
-          <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> <span><code>llms.txt</code> and <code>catalog.json</code> list every component, layout and template with file paths</span></li>
-          <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> <span><code>CLAUDE.md</code> sets the rules; skills in <code>.claude/skills/</code> validate, audit and scaffold pages</span></li>
-          <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> <span>Chat components stream replies from your own model or agent backend</span></li>
-        </ul>
-      </div>
-    </section>
-  </main>
+      <section class="docs-section" aria-labelledby="home-quick">
+        <h2 class="docs-section__title" id="home-quick">Quick start</h2>
+        <div class="docs-code">
+  <div class="docs-code__header">
+    <span class="docs-code__label">Terminal</span>
+    <span class="docs-code__actions"><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-target="#code-1" data-copy-success="Code copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy code</span></button></span>
+  </div>
+  <pre tabindex="0" role="region" aria-label="Terminal"><code id="code-1">git clone https://github.com/amuqtadir99/vanilla-responsive-ui.git
+cd vanilla-responsive-ui
+python3 -m http.server 8080
+# open http://localhost:8080/src/</code></pre>
+</div>
+      </section>
+    </main>
+    
+  </div>
 
-  <footer class="section">
-    <div class="container cluster cluster--between text-sm text-muted">
-      <p>MIT License · Built on W3C standards and MDN best practices.</p>
-      <p><a href="https://github.com/amuqtadir99/vanilla-responsive-ui">Source on GitHub</a></p>
-    </div>
+  <footer class="docs-footer">
+    <p>MIT licensed · Built with plain HTML, CSS and JavaScript · <a href="https://github.com/amuqtadir99/vanilla-responsive-ui">Source on GitHub</a> · Generated by <code>node .claude/skills/generate-doc.js</code></p>
   </footer>
-
-  <!-- @partial theme-panel -->
-  <dialog class="dialog drawer" id="theme-panel" aria-labelledby="theme-panel-title" closedby="any">
-    <div class="dialog__header">
-      <h2 class="dialog__title" id="theme-panel-title">Customize theme</h2>
-      <button type="button" class="btn btn--ghost btn--icon" commandfor="theme-panel" command="close">
-        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
-        <span class="visually-hidden">Close theme panel</span>
-      </button>
-    </div>
-    <form class="dialog__body form" data-theme-customizer>
-      <fieldset class="fieldset">
-        <legend class="fieldset__legend">Mode</legend>
-        <div class="segmented">
-          <label class="segmented__option"><input type="radio" name="mode" value="system"><span class="segmented__label">System</span></label>
-          <label class="segmented__option"><input type="radio" name="mode" value="light"><span class="segmented__label"><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg> Light</span></label>
-          <label class="segmented__option"><input type="radio" name="mode" value="dark"><span class="segmented__label"><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg> Dark</span></label>
-        </div>
-      </fieldset>
-
-      <fieldset class="fieldset">
-        <legend class="fieldset__legend">Brand colour</legend>
-        <div class="swatches">
-          <label class="swatch"><input type="radio" name="brand" value="indigo"><span class="swatch__chip swatch__chip--indigo"></span> Indigo</label>
-          <label class="swatch"><input type="radio" name="brand" value="teal"><span class="swatch__chip swatch__chip--teal"></span> Teal</label>
-          <label class="swatch"><input type="radio" name="brand" value="violet"><span class="swatch__chip swatch__chip--violet"></span> Violet</label>
-          <label class="swatch"><input type="radio" name="brand" value="rose"><span class="swatch__chip swatch__chip--rose"></span> Rose</label>
-          <label class="swatch"><input type="radio" name="brand" value="amber"><span class="swatch__chip swatch__chip--amber"></span> Amber</label>
-          <label class="swatch"><input type="radio" name="brand" value="slate"><span class="swatch__chip swatch__chip--slate"></span> Slate</label>
-        </div>
-      </fieldset>
-
-      <div class="field">
-        <label class="field__label" for="theme-custom-color">Or pick any brand colour</label>
-        <p class="field__hint" id="theme-custom-hint">Shades are adjusted automatically to keep text readable in both themes.</p>
-        <input class="color-input" id="theme-custom-color" name="custom" type="color" value="#2a4fcf" aria-describedby="theme-custom-hint">
-      </div>
-
-      <p class="text-sm text-muted" role="status" data-theme-contrast></p>
-
-      <fieldset class="fieldset">
-        <legend class="fieldset__legend">Density</legend>
-        <div class="segmented">
-          <label class="segmented__option"><input type="radio" name="density" value="compact"><span class="segmented__label">Compact</span></label>
-          <label class="segmented__option"><input type="radio" name="density" value="default"><span class="segmented__label">Default</span></label>
-          <label class="segmented__option"><input type="radio" name="density" value="comfortable"><span class="segmented__label">Comfortable</span></label>
-        </div>
-      </fieldset>
-
-      <fieldset class="fieldset">
-        <legend class="fieldset__legend">Corners</legend>
-        <div class="segmented">
-          <label class="segmented__option"><input type="radio" name="radius" value="sharp"><span class="segmented__label">Sharp</span></label>
-          <label class="segmented__option"><input type="radio" name="radius" value="default"><span class="segmented__label">Default</span></label>
-          <label class="segmented__option"><input type="radio" name="radius" value="round"><span class="segmented__label">Round</span></label>
-        </div>
-      </fieldset>
-
-      <div class="field">
-        <label class="field__label" for="theme-css-output">CSS for your project</label>
-        <textarea class="textarea textarea--code" id="theme-css-output" readonly rows="8" data-theme-output></textarea>
-      </div>
-
-      <div class="form-actions">
-        <button type="button" class="btn btn--sm" data-copy data-copy-target="#theme-css-output" hidden><span data-copy-label>Copy CSS</span></button>
-        <button type="button" class="btn btn--sm btn--ghost" data-theme-reset>Reset to defaults</button>
-      </div>
-    </form>
-  </dialog>
-  <!-- @end theme-panel -->
 </body>
 </html>

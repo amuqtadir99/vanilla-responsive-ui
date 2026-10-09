@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; form-action 'self'; base-uri 'self'; object-src 'none'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>Accessibility — vanilla-responsive-ui docs</title>
+  <meta name="description" content="Accessibility guide for vanilla-responsive-ui.">
+  <meta name="color-scheme" content="light dark">
+  <meta name="generator" content="node .claude/skills/generate-doc.js (do not edit by hand)">
+  <link rel="icon" href="../../assets/icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../../assets/css/tokens.css">
+  <link rel="stylesheet" href="../../assets/css/themes.css">
+  <link rel="stylesheet" href="../../assets/css/base.css">
+  <link rel="stylesheet" href="../../assets/css/layouts.css">
+  <link rel="stylesheet" href="../../assets/css/components/button.css">
+  <link rel="stylesheet" href="../../assets/css/components/form.css">
+  <link rel="stylesheet" href="../../assets/css/components/feedback.css">
+  <link rel="stylesheet" href="../../assets/css/components/tabs.css">
+  <link rel="stylesheet" href="../../assets/css/components/table.css">
+  <link rel="stylesheet" href="../../assets/css/components/code.css">
+  <link rel="stylesheet" href="../../assets/css/components/accordion.css">
+  <link rel="stylesheet" href="../../assets/css/components/card.css">
+  <link rel="stylesheet" href="../../assets/css/components/navigation.css">
+  <link rel="stylesheet" href="../../assets/css/blocks.css">
+  <link rel="stylesheet" href="../../docs/assets/foundations.css">
+  <link rel="stylesheet" href="../../docs/assets/docs.css">
+  <script type="module" src="../../assets/js/main.js"></script>
+  <script type="module" src="../../docs/assets/docs.js"></script>
+</head>
+<body class="docs-body">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <p class="needs-server"><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4M12 17h.01"/></svg> <span>You opened this file from disk, so browsers block its JavaScript (copy buttons, previews, the builder). Run <code>python3 -m http.server 8080</code> in the repository folder and open <a href="http://localhost:8080/src/">localhost:8080/src/</a>, or use the <a href="https://amuqtadir99.github.io/vanilla-responsive-ui/src/">hosted docs</a>.</span></p>
+  <header class="docs-topbar">
+    <div class="docs-topbar__inner">
+      <button type="button" class="btn btn--ghost btn--icon docs-topbar__menu" data-disclosure="dismissible" aria-expanded="false" aria-controls="docs-sidebar" hidden>
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        <span class="visually-hidden">Documentation menu</span>
+      </button>
+      <a class="docs-brand" href="../../index.html">
+        <span class="docs-brand__mark"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 2 7l10 5 10-5z"/><path d="m2 17 10 5 10-5M2 12l10 5 10-5"/></svg></span>
+        <span>vanilla-responsive-ui</span>
+      </a>
+      <nav class="docs-topnav" aria-label="Main">
+        <ul class="docs-topnav__list" role="list">
+          <li><a href="../../docs/getting-started.html">Docs</a></li>
+          <li><a href="../../docs/components/site-footer.html">Components</a></li>
+          <li><a href="../../docs/blocks/hero-centered.html">Blocks</a></li>
+          <li><a href="../../docs/templates/index.html">Templates</a></li>
+          <li><a href="../../builder/index.html">Builder</a></li>
+        </ul>
+      </nav>
+      <div class="docs-topbar__actions">
+        <a class="btn btn--ghost btn--sm" href="https://github.com/amuqtadir99/vanilla-responsive-ui"><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m16 18 6-6-6-6M8 6l-6 6 6 6"/></svg> <span class="docs-topbar__label">GitHub</span></a>
+        <button type="button" class="btn btn--ghost btn--icon theme-toggle" data-theme-toggle aria-pressed="false" hidden>
+          <svg class="icon theme-toggle__light" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="icon theme-toggle__dark" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+          <span class="visually-hidden">Dark theme</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="docs-layout">
+    <nav class="docs-sidebar" id="docs-sidebar" aria-label="Documentation">
+      <div class="docs-search" data-docs-search hidden>
+        <label class="visually-hidden" for="docs-search-input">Search the documentation</label>
+        <svg class="icon icon--sm docs-search__icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/></svg>
+        <input class="input docs-search__input" id="docs-search-input" type="search" placeholder="Search…" autocomplete="off" aria-describedby="docs-search-hint">
+        <kbd class="docs-search__kbd" id="docs-search-hint"><span class="visually-hidden">Press </span>/<span class="visually-hidden"> to search</span></kbd>
+        <p class="docs-search__empty text-sm text-muted" role="status" data-docs-search-status></p>
+      </div>
+      <div class="docs-nav__group" data-docs-group>
+        <p class="docs-nav__title" id="nav-get-started">Get started</p>
+        <ul class="docs-nav__list" role="list" aria-labelledby="nav-get-started">
+          <li><a class="docs-nav__link" href="../../index.html">Introduction</a></li>
+          <li><a class="docs-nav__link" href="../../docs/getting-started.html">Getting started</a></li>
+          <li><a class="docs-nav__link" href="../../builder/index.html">Page builder</a></li>
+          <li><a class="docs-nav__link" href="../../docs/ai-agents.html">Working with AI agents</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav__group" data-docs-group>
+        <p class="docs-nav__title" id="nav-templates">Templates</p>
+        <ul class="docs-nav__list" role="list" aria-labelledby="nav-templates">
+          <li><a class="docs-nav__link" href="../../docs/templates/index.html">All templates</a></li>
+          <li><a class="docs-nav__link" href="../../docs/templates/landing-page-index.html">Landing page</a></li>
+          <li><a class="docs-nav__link" href="../../docs/templates/website-index.html">Website</a></li>
+          <li><a class="docs-nav__link" href="../../docs/templates/dashboard-index.html">Dashboard</a></li>
+          <li><a class="docs-nav__link" href="../../docs/templates/e-commerce-index.html">E-commerce</a></li>
+          <li><a class="docs-nav__link" href="../../docs/templates/ai-index.html">AI apps</a></li>
+          <li><a class="docs-nav__link" href="../../docs/templates/auth-index.html">Authentication</a></li>
+          <li><a class="docs-nav__link" href="../../docs/layouts.html">Layouts</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav__group" data-docs-group>
+        <p class="docs-nav__title" id="nav-blocks">Blocks</p>
+        <ul class="docs-nav__list" role="list" aria-labelledby="nav-blocks">
+          <li><a class="docs-nav__link" href="../../docs/blocks/hero-centered.html">Hero centered</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/hero-split.html">Hero split</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/logo-cloud.html">Logo cloud</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/stats-band.html">Stats band</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/testimonials.html">Testimonials</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/feature-bento.html">Feature bento</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/feature-grid.html">Feature grid</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/feature-rows.html">Feature rows</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/steps.html">Steps</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/category-tiles.html">Category tiles</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/perks.html">Perks</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/pricing.html">Pricing</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/promo-banner.html">Promo banner</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/blog-posts.html">Blog posts</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/faq.html">FAQ</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/team.html">Team</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/contact.html">Contact</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/cta-banner.html">CTA banner</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/newsletter.html">Newsletter</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav__group" data-docs-group>
+        <p class="docs-nav__title" id="nav-components">Components</p>
+        <ul class="docs-nav__list" role="list" aria-labelledby="nav-components">
+          <li><a class="docs-nav__link" href="../../docs/components/site-footer.html">Site footer</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/site-header.html">Site header</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/breadcrumb.html">Breadcrumb</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/pagination.html">Pagination</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/tabs.html">Tabs</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/button.html">Button</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/accordion.html">Accordion</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/card.html">Card</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/form-field.html">Form fields</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/alert.html">Alert and badge</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/toast.html">Toast</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/dialog.html">Dialog</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/chart.html">Charts</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/data-grid.html">Data grid</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/data-table.html">Data table</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/chat.html">AI chat</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/chat-message.html">Chat messages</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/chat-widget.html">Chat widget</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/theme-customizer.html">Theme customizer</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/theme-toggle.html">Theme toggle</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav__group" data-docs-group>
+        <p class="docs-nav__title" id="nav-foundations">Foundations</p>
+        <ul class="docs-nav__list" role="list" aria-labelledby="nav-foundations">
+          <li><a class="docs-nav__link" href="../../docs/foundations/colors.html">Colours</a></li>
+          <li><a class="docs-nav__link" href="../../docs/foundations/typography.html">Typography</a></li>
+          <li><a class="docs-nav__link" href="../../docs/foundations/spacing.html">Spacing and shape</a></li>
+          <li><a class="docs-nav__link" href="../../docs/foundations/icons.html">Icons</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav__group" data-docs-group>
+        <p class="docs-nav__title" id="nav-guides">Guides</p>
+        <ul class="docs-nav__list" role="list" aria-labelledby="nav-guides">
+          <li><a class="docs-nav__link" href="../../docs/guides/theming.html">Theming</a></li>
+          <li><a class="docs-nav__link" href="../../docs/guides/layouts.html">Layouts and pages</a></li>
+          <li><a class="docs-nav__link" href="../../docs/guides/data.html">Data and charts</a></li>
+          <li><a class="docs-nav__link" href="../../docs/guides/ai-chat.html">AI chat</a></li>
+          <li><a class="docs-nav__link" href="../../docs/guides/accessibility.html" aria-current="page">Accessibility</a></li>
+          <li><a class="docs-nav__link" href="../../docs/guides/security.html">Security</a></li>
+          <li><a class="docs-nav__link" href="../../docs/guides/integration.html">Framework integration</a></li>
+          <li><a class="docs-nav__link" href="../../docs/guides/architecture.html">Architecture</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <main class="docs-main" id="main" tabindex="-1">
+      <header class="docs-header">
+        <p class="eyebrow">Guide</p>
+        <h1 class="docs-header__title">Accessibility</h1>
+        
+        
+        <div class="docs-header__actions"><a class="btn btn--ghost btn--sm" href="https://github.com/amuqtadir99/vanilla-responsive-ui/blob/main/docs/ACCESSIBILITY.md"><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20h9M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4z"/></svg> Edit ACCESSIBILITY.md on GitHub</a></div>
+      </header>
+
+      <div class="docs-prose">
+<p>Target: <strong>WCAG 2.2 Level AA</strong>. Accessibility is a release requirement, not a follow-up task. This document lists the patterns the templates use, how they are tested, and the manual checks that automation cannot replace.</p>
+<h2 id="principles">Principles</h2>
+<ol><li><strong>Native HTML first.</strong> <code>&lt;button&gt;</code>, <code>&lt;a href&gt;</code>, <code>&lt;details&gt;</code>, <code>&lt;dialog&gt;</code>, <code>&lt;fieldset&gt;</code>/<code>&lt;legend&gt;</code>, <code>&lt;label&gt;</code>, <code>&lt;table&gt;</code> with <code>&lt;caption&gt;</code> and <code>scope</code>. ARIA is added only where HTML has no equivalent (tabs, toggle state, live regions).</li><li><strong>Progressive enhancement.</strong> Content and navigation work without JavaScript. Controls that need JavaScript ship with the <code>hidden</code> attribute and are revealed by their module.</li><li><strong>Never colour alone.</strong> Status uses text and icons as well as colour (badges, alerts, form errors, trend indicators).</li><li><strong>Respect user settings.</strong> Browser zoom and text size (<code>rem</code>, fluid <code>clamp()</code>), <code>prefers-reduced-motion</code>, <code>prefers-color-scheme</code>, <code>forced-colors</code> (Windows High Contrast).</li></ol>
+<h2 id="page-structure">Page structure</h2>
+<p>Every template follows the same skeleton:</p>
+<div class="docs-code">
+  <div class="docs-code__header">
+    <span class="docs-code__label">HTML</span>
+    <span class="docs-code__actions"><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-target="#code-556" data-copy-success="Code copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy code</span></button></span>
+  </div>
+  <pre tabindex="0" role="region" aria-label="HTML"><code id="code-556"><span class="tok-tag">&lt;body</span><span class="tok-tag">&gt;</span>
+  <span class="tok-tag">&lt;a</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;skip-link&quot;</span> <span class="tok-attr">href</span><span class="tok-punct">=</span><span class="tok-string">&quot;#main&quot;</span><span class="tok-tag">&gt;</span>Skip to main content<span class="tok-tag">&lt;/a</span><span class="tok-tag">&gt;</span>
+  <span class="tok-tag">&lt;header</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;site-header&quot;</span><span class="tok-tag">&gt;</span>… <span class="tok-tag">&lt;nav</span> <span class="tok-attr">aria-label</span><span class="tok-punct">=</span><span class="tok-string">&quot;Primary&quot;</span><span class="tok-tag">&gt;</span>…<span class="tok-tag">&lt;/nav</span><span class="tok-tag">&gt;</span> …<span class="tok-tag">&lt;/header</span><span class="tok-tag">&gt;</span>
+  <span class="tok-tag">&lt;main</span> <span class="tok-attr">id</span><span class="tok-punct">=</span><span class="tok-string">&quot;main&quot;</span> <span class="tok-attr">tabindex</span><span class="tok-punct">=</span><span class="tok-string">&quot;-1&quot;</span><span class="tok-tag">&gt;</span>
+    <span class="tok-tag">&lt;h1</span><span class="tok-tag">&gt;</span>Exactly one per page<span class="tok-tag">&lt;/h1</span><span class="tok-tag">&gt;</span>
+    <span class="tok-tag">&lt;section</span> <span class="tok-attr">aria-labelledby</span><span class="tok-punct">=</span><span class="tok-string">&quot;section-title&quot;</span><span class="tok-tag">&gt;</span>
+      <span class="tok-tag">&lt;h2</span> <span class="tok-attr">id</span><span class="tok-punct">=</span><span class="tok-string">&quot;section-title&quot;</span><span class="tok-tag">&gt;</span>…<span class="tok-tag">&lt;/h2</span><span class="tok-tag">&gt;</span>
+    <span class="tok-tag">&lt;/section</span><span class="tok-tag">&gt;</span>
+  <span class="tok-tag">&lt;/main</span><span class="tok-tag">&gt;</span>
+  <span class="tok-tag">&lt;footer</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;site-footer&quot;</span><span class="tok-tag">&gt;</span>… <span class="tok-tag">&lt;nav</span> <span class="tok-attr">aria-labelledby</span><span class="tok-punct">=</span><span class="tok-string">&quot;footer-heading&quot;</span><span class="tok-tag">&gt;</span>…<span class="tok-tag">&lt;/nav</span><span class="tok-tag">&gt;</span><span class="tok-tag">&lt;/footer</span><span class="tok-tag">&gt;</span>
+<span class="tok-tag">&lt;/body</span><span class="tok-tag">&gt;</span></code></pre>
+</div>
+<ul><li>The skip link is the first focusable element and targets <code>&lt;main&gt;</code> (<code>tabindex=&quot;-1&quot;</code> so focus lands there in every browser). (2.4.1)</li><li>One <code>&lt;h1&gt;</code>; heading levels never skip. (1.3.1, 2.4.6)</li><li>Multiple <code>&lt;nav&gt;</code> landmarks are labelled so they can be told apart.</li><li><code>&lt;html lang=&quot;en&quot;&gt;</code> is set; change it when you translate. (3.1.1)</li><li>Every page has a unique, descriptive <code>&lt;title&gt;</code>. (2.4.2)</li></ul>
+<h2 id="component-patterns">Component patterns</h2>
+<div class="table-wrapper" role="region" aria-label="Component, Pattern, Key details" tabindex="0"><table class="table" aria-label="Component, Pattern, Key details"><thead><tr><th scope="col">Component</th><th scope="col">Pattern</th><th scope="col">Key details</th></tr></thead><tbody><tr><td>Mobile menu / sidebar</td><td><a href="https://www.w3.org/WAI/ARIA/apg/patterns/disclosure/">APG Disclosure</a></td><td><code>aria-expanded</code>, <code>aria-controls</code>; Escape closes and returns focus</td></tr><tr><td>Accordion</td><td>Native <code>&lt;details&gt;</code>/<code>&lt;summary&gt;</code></td><td>No ARIA needed; no interactive content inside <code>&lt;summary&gt;</code></td></tr><tr><td>Tabs</td><td><a href="https://www.w3.org/WAI/ARIA/apg/patterns/tabs/">APG Tabs</a> (automatic activation)</td><td>Roles added by JS, roving <code>tabindex</code>, Arrow/Home/End keys, panels focusable</td></tr><tr><td>Dialog</td><td>Native <code>&lt;dialog&gt;</code> + <code>showModal()</code></td><td>Focus moves in, background inert, Escape closes, focus returns to the trigger; labelled by its heading</td></tr><tr><td>Forms</td><td>Labels + <code>aria-describedby</code></td><td>Visible labels; hints and errors linked; <code>aria-invalid</code>; focus moves to the first error; error count announced</td></tr><tr><td>Password toggle</td><td>Toggle button</td><td>Constant name (&quot;Show password&quot;) + <code>aria-pressed</code></td></tr><tr><td>Theme toggle</td><td>Toggle button</td><td>Constant name (&quot;Dark theme&quot;) + <code>aria-pressed</code></td></tr><tr><td>Toast</td><td>Live region (<code>role=&quot;status&quot;</code>)</td><td>Polite; pauses on hover/focus; dismiss button; never the only source of critical info</td></tr><tr><td>Sortable table</td><td><a href="https://www.w3.org/WAI/ARIA/apg/patterns/table/examples/sortable-table/">APG Sortable Table</a></td><td>Header buttons; <code>aria-sort</code> on the sorted column; change announced</td></tr><tr><td>Table chart</td><td>Data table</td><td>The table <em>is</em> the chart: values stay readable; bars are decoration</td></tr><tr><td>SVG charts</td><td><code>&lt;figure&gt;</code> + focusable <code>role=&quot;group&quot;</code> plot + text alternatives</td><td>The SVG drawing is decorative; the figure has a caption, a generated summary (high, low, latest, change) and a &quot;Show data table&quot; disclosure. The plot is focusable: Arrow keys, Home and End move between points and each value is announced through a polite live region. Legend items are <code>aria-pressed</code> buttons. Series colours are ≥ 3:1 against cards, and lines also differ by dash pattern, so colour is never the only cue (1.4.1, 1.4.11)</td></tr><tr><td>Data grid</td><td>Table + toolbar + pagination</td><td>Native <code>&lt;table&gt;</code> with caption and <code>scope</code>; search and filters are labelled; sort buttons set <code>aria-sort</code>; result count announced (&quot;Showing 1–10 of 48 orders&quot;); pagination uses buttons with <code>aria-current=&quot;page&quot;</code>; row actions are named per row (&quot;View order #1061&quot;)</td></tr><tr><td>Chat / assistants</td><td><code>role=&quot;log&quot;</code> + labelled composer</td><td>Focusable, labelled log; hidden &quot;You said&quot; / &quot;Assistant said&quot; prefixes; a reply is announced once when complete, not token by token; tool steps are <code>&lt;details&gt;</code>; Enter sends, Shift+Enter adds a line, Escape stops a reply or closes the widget; the widget returns focus to its launcher; feedback buttons use <code>aria-pressed</code></td></tr><tr><td>Theme customizer</td><td>Drawer <code>&lt;dialog&gt;</code> + <code>&lt;fieldset&gt;</code> radio groups</td><td>Native radios for mode, brand, density and radius; the colour input is labelled; the contrast report is a <code>role=&quot;status&quot;</code> region; custom colours are adjusted until text reaches 4.5:1</td></tr><tr><td>App shell sidebar</td><td>Disclosure below <code>64em</code></td><td>The menu button has <code>aria-expanded</code>; the sidebar nav marks the current page with <code>aria-current=&quot;page&quot;</code> and the current section with <code>aria-current=&quot;true&quot;</code></td></tr><tr><td>Documentation previews</td><td><code>&lt;iframe&gt;</code> with a title + device radio group</td><td>Each preview has a descriptive title and an &quot;Open in new tab&quot; link to the standalone page; the width switch is a labelled radio group; decorative thumbnails are <code>aria-hidden</code> with <code>tabindex=&quot;-1&quot;</code> and their documents are made inert</td></tr><tr><td>Page builder</td><td>Toolbar, panels, outline list</td><td>Every block action is a named button (&quot;Move Pricing up&quot;, &quot;Remove FAQ&quot;); reordering works with buttons and Alt+Arrow keys, not only drag and drop; changes are announced; undo with Ctrl+Z; the &quot;Page checks&quot; panel warns about missing or duplicate h1s, duplicate ids and missing alt text before export</td></tr><tr><td>Copy buttons</td><td>Button + announcement</td><td>Constant name (&quot;Copy code&quot;, &quot;Copy path for AI&quot;); success is announced and shown as text, not only as an icon change</td></tr><tr><td>Scrollable tables</td><td>Region</td><td><code>role=&quot;region&quot;</code>, label, <code>tabindex=&quot;0&quot;</code> so keyboard users can scroll</td></tr><tr><td>Breadcrumb / pagination</td><td>Labelled <code>&lt;nav&gt;</code></td><td><code>aria-current=&quot;page&quot;</code>; visually hidden &quot;Page&quot; prefix</td></tr><tr><td>Cards</td><td>Stretched link</td><td>One link per card; the whole card is clickable; footer controls remain separate targets</td></tr><tr><td>Icons</td><td>Inline SVG</td><td><code>aria-hidden=&quot;true&quot;</code>; icon-only controls carry visually hidden text</td></tr></tbody></table></div>
+<h2 id="visual-design-requirements">Visual design requirements</h2>
+<ul><li><strong>Contrast.</strong> Text ≥ 4.5:1, large text and UI boundaries/focus ≥ 3:1 (1.4.3, 1.4.11). All token pairs are verified in light and dark themes by <code>tests/checks/contrast.mjs</code>. Run it after any colour change.</li><li><strong>Focus visible.</strong> A 3 px <code>:focus-visible</code> outline with offset on every interactive element, using <code>--color-focus</code>. Never remove an outline without a replacement; the CSS suite rejects it. (2.4.7, 2.4.11)</li><li><strong>Focus not obscured.</strong> <code>scroll-padding-top</code> accounts for the sticky header. (2.4.11)</li><li><strong>Target size.</strong> Interactive controls are at least 44×44 px (<code>--target-size</code>), beyond the 24×24 px minimum. (2.5.8)</li><li><strong>Reflow.</strong> No horizontal scrolling at 320 CSS px; verified in the browser tests. (1.4.10)</li><li><strong>Text spacing and zoom.</strong> No fixed heights on text containers; all font sizes in <code>rem</code>. (1.4.4, 1.4.12)</li><li><strong>Motion.</strong> All transitions and animations are disabled under <code>prefers-reduced-motion: reduce</code>. (2.3.3)</li><li><strong>Forced colours.</strong> Components add borders or system colours where backgrounds would disappear in High Contrast mode.</li></ul>
+<h2 id="forms-checklist">Forms checklist</h2>
+<ul><li>Every control has a visible <code>&lt;label&gt;</code> (placeholders are not labels).</li><li>Required fields: <code>required</code> attribute plus a visible marker, explained once at the top of the form.</li><li>Use <code>autocomplete</code> tokens (<code>email</code>, <code>username</code>, <code>current-password</code>, <code>new-password</code>, <code>given-name</code>, …). (1.3.5)</li><li>Group radios/checkboxes in <code>&lt;fieldset&gt;</code> with <code>&lt;legend&gt;</code>.</li><li>Errors: specific, linked via <code>aria-describedby</code>, set <code>aria-invalid</code>, shown on submit or after the user leaves a field they typed in, never while they are still typing. (3.3.1, 3.3.3)</li><li>Do not block paste into password fields; offer show/hide. (3.3.8)</li></ul>
+<h2 id="automated-testing">Automated testing</h2>
+<div class="docs-code">
+  <div class="docs-code__header">
+    <span class="docs-code__label">BASH</span>
+    <span class="docs-code__actions"><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-target="#code-557" data-copy-success="Code copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy code</span></button></span>
+  </div>
+  <pre tabindex="0" role="region" aria-label="BASH"><code id="code-557">bash .claude/skills/audit-a11y.sh        # static audit + contrast + browser checks</code></pre>
+</div>
+<p>The static audit (<code>tests/checks/a11y.mjs</code>) checks accessible names for buttons and links, labels for form controls, <code>alt</code> on images, decorative SVGs, ARIA value types, positive <code>tabindex</code>, focusable content inside <code>aria-hidden</code>, nested interactive elements, fieldset legends, table captions and header scope, labelled dialogs and landmarks, and the progressive-enhancement conventions above.</p>
+<p>The contrast suite (<code>tests/checks/contrast.mjs</code>) checks every token pair, the chart palette and every brand preset in light, system-dark and explicit-dark themes; the unit suite checks that <code>generateBrand()</code> returns AA-compliant palettes for arbitrary colours.</p>
+<p>The browser tests (<code>tests/browser/smoke.mjs</code>, Playwright) load every page and verify keyboard operation of the menu, tabs, dialog, sortable table, forms, charts, data grids, chat and the theme panel; focus management; the no-JavaScript baseline; and reflow at 320 px.</p>
+<h2 id="manual-testing-required-before-release">Manual testing (required before release)</h2>
+<p>Automated tools catch roughly a third of WCAG failures. For every new or changed template:</p>
+<ol><li><strong>Keyboard only.</strong> Tab through the whole page. Is every control reachable, in a logical order, with a visible focus ring? Can you operate everything with Enter, Space, Arrow keys and Escape? Is focus ever lost or trapped (outside of open dialogs)?</li><li><strong>Screen readers.</strong> At minimum NVDA + Firefox or Chrome (Windows) and VoiceOver + Safari (macOS and iOS). Navigate by landmarks, headings and form controls. Are names, roles and states announced correctly? Are errors and toasts announced?</li><li><strong>Zoom.</strong> 200% and 400% browser zoom: nothing overlaps, nothing is cut off, no horizontal scrolling at 400%.</li><li><strong>High Contrast.</strong> Windows High Contrast / forced colours: all controls, focus rings and states remain visible.</li><li><strong>Reduced motion.</strong> With reduced motion enabled, nothing animates.</li></ol>
+<h2 id="known-considerations">Known considerations</h2>
+<ul><li>Lists styled with <code>list-style: none</code> keep an explicit <code>role=&quot;list&quot;</code> because Safari/VoiceOver otherwise drops list semantics. The Nu checker reports this as an informational note, which <code>tests/vnu-filters.txt</code> filters.</li><li>The dashboard top bar shows the search field below the action buttons on small screens while it precedes them in the DOM. The items are independent, so the meaning of the sequence is preserved (2.4.3).</li><li>Streaming chat replies are not read out as they arrive; screen reader users hear the full reply once it is complete, and can stop a long reply with Escape. Review this if your product relies on very long replies.</li><li>Charts announce one point at a time; the data table is the complete alternative and is one keypress away.</li><li>Demo forms (<code>data-demo-submit</code>) intercept successful submissions to show a message. Remove the attribute in production so forms post to your server, and always validate on the server too.</li></ul>
+      </div>
+    </main>
+    <aside class="docs-toc" aria-labelledby="toc-title">
+      <h2 class="docs-toc__title" id="toc-title">On this page</h2>
+      <ul class="docs-toc__list" role="list">
+        <li><a href="#principles">Principles</a></li>
+        <li><a href="#page-structure">Page structure</a></li>
+        <li><a href="#component-patterns">Component patterns</a></li>
+        <li><a href="#visual-design-requirements">Visual design requirements</a></li>
+        <li><a href="#forms-checklist">Forms checklist</a></li>
+        <li><a href="#automated-testing">Automated testing</a></li>
+        <li><a href="#manual-testing-required-before-release">Manual testing (required before release)</a></li>
+        <li><a href="#known-considerations">Known considerations</a></li>
+      </ul>
+    </aside>
+  </div>
+
+  <footer class="docs-footer">
+    <p>MIT licensed · Built with plain HTML, CSS and JavaScript · <a href="https://github.com/amuqtadir99/vanilla-responsive-ui">Source on GitHub</a> · Generated by <code>node .claude/skills/generate-doc.js</code></p>
+  </footer>
+</body>
+</html>

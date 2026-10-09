@@ -1,0 +1,70 @@
+<!--
+@block: Pricing
+@category: Commerce
+@description: Three pricing plans with a monthly/yearly toggle (CSS only, via :has()), a highlighted plan and feature checklists. Browsers without :has() show monthly prices and no toggle.
+@css: blocks.css, components/button.css, components/form.css, components/feedback.css
+@js: none
+@a11y: The billing toggle is a fieldset of native radio buttons with a legend; prices are text. Each plan is a list item with an h3, and the featured plan is marked with a visible text badge, not colour alone.
+-->
+<section data-block="pricing" class="section pricing" id="pricing" aria-labelledby="pricing-title">
+  <div class="container">
+    <div class="block-header block-header--center">
+      <p class="eyebrow">Pricing</p>
+      <h2 class="block-header__title" id="pricing-title">Simple pricing that grows with you</h2>
+      <p class="block-header__lead">Start free. Upgrade when your team does. Cancel anytime.</p>
+    </div>
+    <div class="pricing__toggle">
+      <fieldset class="fieldset">
+        <legend class="visually-hidden">Billing period</legend>
+        <div class="segmented">
+          <label class="segmented__option"><input type="radio" name="billing" value="monthly" checked><span class="segmented__label">Monthly</span></label>
+          <label class="segmented__option"><input type="radio" name="billing" value="yearly"><span class="segmented__label">Yearly <span class="pricing__save">−20%</span></span></label>
+        </div>
+      </fieldset>
+    </div>
+    <ul class="plans" role="list">
+      <li class="plan">
+        <div class="plan__head">
+          <h3 class="plan__name">Starter</h3>
+          <p class="plan__price plan__price--monthly"><span class="plan__amount">$0</span> <span class="text-muted">per month</span></p>
+          <p class="plan__price plan__price--yearly"><span class="plan__amount">$0</span> <span class="text-muted">per month, billed yearly</span></p>
+          <p class="text-muted">For side projects and prototypes.</p>
+        </div>
+        <ul class="checklist" role="list">
+            <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> 3 projects</li>
+            <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> All components</li>
+            <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Community support</li>
+        </ul>
+        <a class="btn btn--secondary btn--block" href="/signup">Start for free</a>
+      </li>
+      <li class="plan plan--featured">
+        <div class="plan__head">
+          <h3 class="plan__name">Team <span class="badge badge--primary">Most popular</span></h3>
+          <p class="plan__price plan__price--monthly"><span class="plan__amount">$29</span> <span class="text-muted">per month</span></p>
+          <p class="plan__price plan__price--yearly"><span class="plan__amount">$23</span> <span class="text-muted">per month, billed yearly</span></p>
+          <p class="text-muted">For growing product teams.</p>
+        </div>
+        <ul class="checklist" role="list">
+            <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Unlimited projects</li>
+            <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Page builder</li>
+            <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Priority email support</li>
+            <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Accessibility reports</li>
+        </ul>
+        <a class="btn btn--block" href="/signup">Start 14-day trial</a>
+      </li>
+      <li class="plan">
+        <div class="plan__head">
+          <h3 class="plan__name">Enterprise</h3>
+          <p class="plan__price"><span class="plan__amount">Custom</span></p>
+          <p class="text-muted">For organisations with compliance needs.</p>
+        </div>
+        <ul class="checklist" role="list">
+            <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> SSO and audit logs</li>
+            <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Dedicated success manager</li>
+            <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> VPAT and security review</li>
+        </ul>
+        <a class="btn btn--secondary btn--block" href="/signup">Contact sales</a>
+      </li>
+    </ul>
+  </div>
+</section>

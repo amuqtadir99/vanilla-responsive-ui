@@ -38,7 +38,7 @@
   <!-- Demo navigation between templates. Remove this partial in production. -->
   <nav class="demo-bar" aria-label="Template gallery">
     <div class="container demo-bar__inner">
-      <a class="demo-bar__home" href="../index.html">vanilla-responsive-ui</a>
+      <a class="demo-bar__home" href="../index.html">vanilla-responsive-ui <span class="visually-hidden">documentation</span></a>
       <ul class="demo-bar__list">
         <li><a href="../templates/landing-page/index.html" data-section>Landing</a></li>
         <li><a href="../templates/website/index.html" data-section>Website</a></li>
@@ -46,8 +46,8 @@
         <li><a href="../templates/e-commerce/index.html" data-section>Shop</a></li>
         <li><a href="../templates/ai/index.html" data-section>AI assistant</a></li>
         <li><a href="../templates/auth/index.html" data-section>Auth</a></li>
-        <li><a href="../components/index.html" data-section aria-current="page">Components</a></li>
-        <li><a href="../layouts/index.html" data-section>Layouts</a></li>
+        <li><a href="../docs/templates/index.html">Docs</a></li>
+        <li><a href="../builder/index.html" data-section>Builder</a></li>
       </ul>
       <div class="demo-bar__actions">
         <button type="button" class="btn btn--ghost btn--sm" commandfor="theme-panel" command="show-modal" data-theme-panel-trigger hidden>
@@ -56,6 +56,7 @@
       </div>
     </div>
   </nav>
+  <p class="needs-server"><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4M12 17h.01"/></svg> <span>This page was opened from disk, so the browser blocks its JavaScript (menus, charts, chat, theme). Run <code>python3 -m http.server 8080</code> in the repository folder and open <a href="http://localhost:8080/src/">localhost:8080/src/</a>.</span></p>
   <!-- @end template-switcher -->
 
   <main id="main" tabindex="-1">
@@ -958,7 +959,7 @@
                 <p class="chart__fallback">Monthly revenue, May to October 2026.</p>
               </figure>
 
-              <figure class="chart" data-viz="donut" data-source="../data/sales.json" data-path="channels" data-x="channel" data-series="revenue:Revenue" data-format="currency-compact">
+              <figure class="chart" data-viz="donut" data-source="sales" data-path="channels" data-x="channel" data-series="revenue:Revenue" data-format="currency-compact">
                 <figcaption class="chart__caption">
                   <span class="chart__title">Revenue by channel</span>
                   <span class="chart__subtitle">Donut chart from src/data/sales.json</span>
@@ -966,7 +967,7 @@
                 <p class="chart__fallback">Organic search is the largest channel at $18.5K.</p>
               </figure>
 
-              <figure class="chart" data-viz="hbar" data-source="../data/sales.json" data-path="regions" data-x="region" data-series="revenue:Revenue:2" data-format="currency-compact">
+              <figure class="chart" data-viz="hbar" data-source="sales" data-path="regions" data-x="region" data-series="revenue:Revenue:2" data-format="currency-compact">
                 <figcaption class="chart__caption">
                   <span class="chart__title">Revenue by region</span>
                   <span class="chart__subtitle">Horizontal bar chart</span>
@@ -1007,7 +1008,7 @@
     &lt;p class=&quot;chart__fallback&quot;&gt;Monthly revenue, May to October 2026.&lt;/p&gt;
   &lt;/figure&gt;
 
-  &lt;figure class=&quot;chart&quot; data-viz=&quot;donut&quot; data-source=&quot;../data/sales.json&quot; data-path=&quot;channels&quot; data-x=&quot;channel&quot; data-series=&quot;revenue:Revenue&quot; data-format=&quot;currency-compact&quot;&gt;
+  &lt;figure class=&quot;chart&quot; data-viz=&quot;donut&quot; data-source=&quot;sales&quot; data-path=&quot;channels&quot; data-x=&quot;channel&quot; data-series=&quot;revenue:Revenue&quot; data-format=&quot;currency-compact&quot;&gt;
     &lt;figcaption class=&quot;chart__caption&quot;&gt;
       &lt;span class=&quot;chart__title&quot;&gt;Revenue by channel&lt;/span&gt;
       &lt;span class=&quot;chart__subtitle&quot;&gt;Donut chart from src/data/sales.json&lt;/span&gt;
@@ -1015,7 +1016,7 @@
     &lt;p class=&quot;chart__fallback&quot;&gt;Organic search is the largest channel at $18.5K.&lt;/p&gt;
   &lt;/figure&gt;
 
-  &lt;figure class=&quot;chart&quot; data-viz=&quot;hbar&quot; data-source=&quot;../data/sales.json&quot; data-path=&quot;regions&quot; data-x=&quot;region&quot; data-series=&quot;revenue:Revenue:2&quot; data-format=&quot;currency-compact&quot;&gt;
+  &lt;figure class=&quot;chart&quot; data-viz=&quot;hbar&quot; data-source=&quot;sales&quot; data-path=&quot;regions&quot; data-x=&quot;region&quot; data-series=&quot;revenue:Revenue:2&quot; data-format=&quot;currency-compact&quot;&gt;
     &lt;figcaption class=&quot;chart__caption&quot;&gt;
       &lt;span class=&quot;chart__title&quot;&gt;Revenue by region&lt;/span&gt;
       &lt;span class=&quot;chart__subtitle&quot;&gt;Horizontal bar chart&lt;/span&gt;
@@ -1040,7 +1041,7 @@
             </div>
           </div>
           <div class="gallery__demo stack">
-            <div class="data-grid" data-grid data-source="../data/orders.json" data-page-size="5" data-label="orders">
+            <div class="data-grid" data-grid data-source="orders" data-page-size="5" data-label="orders">
               <form class="data-grid__toolbar" action="/orders" method="get">
                 <div class="field">
                   <label class="field__label" for="grid-demo-search">Search orders</label>
@@ -1090,7 +1091,7 @@
             <summary>View code</summary>
             <div class="code-block">
               <div class="code-block__header"><span>HTML</span></div>
-              <pre tabindex="0" role="region" aria-label="Data grid markup"><code id="code-data-grid">&lt;div class=&quot;data-grid&quot; data-grid data-source=&quot;../data/orders.json&quot; data-page-size=&quot;5&quot; data-label=&quot;orders&quot;&gt;
+              <pre tabindex="0" role="region" aria-label="Data grid markup"><code id="code-data-grid">&lt;div class=&quot;data-grid&quot; data-grid data-source=&quot;orders&quot; data-page-size=&quot;5&quot; data-label=&quot;orders&quot;&gt;
   &lt;form class=&quot;data-grid__toolbar&quot; action=&quot;/orders&quot; method=&quot;get&quot;&gt;
     &lt;div class=&quot;field&quot;&gt;
       &lt;label class=&quot;field__label&quot; for=&quot;grid-demo-search&quot;&gt;Search orders&lt;/label&gt;

@@ -17,7 +17,7 @@ generated in [COMPONENTS.md](COMPONENTS.md).
 2. **Link the CSS** in your base layout, in this order: `tokens.css`,
    `themes.css` (optional presets), `base.css`, `layouts.css` (if you use
    `data-layout` or the app shell), then the component stylesheets you use,
-   then page CSS.
+   then `blocks.css` (if you use blocks), then page CSS.
 3. **Load `main.js` once** as a module: `<script type="module" src=".../assets/js/main.js"></script>`.
    It initialises every component present on the page.
 4. **Split the template** into a layout (head, skip link, header, footer)
@@ -41,7 +41,7 @@ generated in [COMPONENTS.md](COMPONENTS.md).
 | Template | Layout parts (partials) | Page-specific files | Server responsibilities |
 | --- | --- | --- | --- |
 | `website` | `site-header`, `site-footer`, `chat-widget` | `website.css` | Contact form (`POST /contact`), blog content, chat endpoint |
-| `landing-page` | `site-header`, `site-footer`, `chat-widget` | `landing.css` | Newsletter endpoint (`POST /newsletter`) |
+| `landing-page` | Inline header and footer, `chat-widget` | none (built from blocks in `blocks.css`) | Sign-up links, sales contact |
 | `dashboard` | `app-topbar`, `app-sidebar` in the `.app-shell` | `dashboard.css`, `dashboard.js` | JSON for `sales`, `orders` and `customers` (same shapes as `src/data/`); order actions; settings; analyst chat endpoint |
 | `e-commerce` | `shop-header` (cart count), `shop-footer`, `chat-widget` | `shop.css`, `shop.js`, `cart-store.js` | Filter query (`GET ?category=&price=`), pagination, product data, cart and promo-code API (the demo cart lives in localStorage) |
 | `ai` | `ai-topbar` | `ai.css`, `ai.js` | Streaming chat endpoint; conversation storage if history must follow the user; agent run events |
