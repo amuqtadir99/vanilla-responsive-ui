@@ -57,6 +57,17 @@ Before opening a pull request:
    `docs/COMPONENTS.md` and the gallery.
 5. Cover its keyboard behaviour in `tests/browser/smoke.mjs`.
 
+## Adding a block
+
+1. Create `src/blocks/<name>.html` with the header (`@block`, `@category`
+   — Hero, Social proof, Features, Commerce, Content, Forms or Call to
+   action — `@description`, `@css`, `@js`, `@a11y`) followed by one
+   `<section data-block="<name>">`. Use `h2` headings (`h1` only in heroes),
+   relative paths from `src/blocks/`, and placeholder links like `/signup`.
+2. Add styles to `src/assets/css/blocks.css` using tokens only.
+3. Run `node .claude/skills/generate-doc.js`: the block gets a docs page, a
+   preview page, a catalog entry and a place in the page builder.
+
 ## Adding a page or layout
 
 Use the pages CLI rather than copying a page by hand, so the partials,

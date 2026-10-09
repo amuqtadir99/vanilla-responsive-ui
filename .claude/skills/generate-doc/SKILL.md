@@ -1,31 +1,36 @@
 ---
 name: generate-doc
-description: Regenerate component documentation from the snippets in src/components - docs/COMPONENTS.md, the live gallery src/components/index.html and the machine-readable catalog.json used by AI agents. Use after adding or editing any component snippet, layout or template page, or when tests report generated docs are stale.
+description: Regenerate everything built from source - the documentation website (src/index.html and src/docs/ with live previews, highlighted code, template anatomy, guides and tokens), docs/COMPONENTS.md, the component gallery, catalog.json for AI agents and the page builder canvas. Use after adding or editing any component, block, layout, template page, design token, icon or docs/*.md guide, or when tests report generated docs are stale.
 allowed-tools: Bash(node .claude/skills/generate-doc.js:*)
 ---
 
-# Generate component documentation
+# Generate documentation
 
 ```bash
 node .claude/skills/generate-doc.js          # write the generated files
-node .claude/skills/generate-doc.js --check  # exit 1 if they are stale
+node .claude/skills/generate-doc.js --check  # exit 1 if any is stale
 ```
 
-Never edit `docs/COMPONENTS.md`, `src/components/index.html` or
-`catalog.json` by hand: they are rebuilt from source.
+Generated (never edit by hand): `docs/COMPONENTS.md`,
+`src/components/index.html`, `catalog.json`, `src/index.html`, everything
+under `src/docs/` except `src/docs/assets/docs.css`, `docs.js` and
+`preview.css`, and `src/builder/canvas.html`. To change them, edit the
+generator: `.claude/skills/generate-doc.js` (sources, catalog, canvas) and
+`.claude/skills/docs-site.js` (the docs website). Files that are no longer
+produced are deleted automatically.
 
-Each snippet in `src/components/<name>.html` must start with a metadata
-header:
+Each component (`src/components/<name>.html`) and block
+(`src/blocks/<name>.html`) starts with a metadata header:
 
 ```html
 <!--
-@component: Tabs
-@description: One sentence describing the component.
+@component: Tabs                     (blocks use @block: Hero split)
+@category: Navigation                (blocks: Hero, Social proof, Features, Commerce, Content, Forms, Call to action)
+@description: One sentence describing it.
 @css: components/tabs.css            (comma-separated, relative to src/assets/css)
 @js: components/tabs.js              (or: none; relative to src/assets/js)
 @a11y: Keyboard, ARIA and screen reader notes.
 -->
 ```
 
-Optional keys: `@category:` (groups the gallery, e.g. "AI", "Data") and
-`@demo-css:` / `@demo-js:` for files only the gallery needs.
+A block's markup must be exactly one `<section data-block="<name>">`.

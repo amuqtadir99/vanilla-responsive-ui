@@ -1,0 +1,42 @@
+<!--
+@block: Blog posts
+@category: Content
+@description: Latest articles: one featured post with a large image beside a list of compact posts. Each post is a single stretched link.
+@css: blocks.css
+@js: none
+@a11y: One link per post (the title) stretched over the card, so each post is a single tab stop announced by its title; images are decorative (alt="").
+-->
+<section data-block="blog-posts" class="section" aria-labelledby="posts-title">
+  <div class="container">
+    <div class="block-header block-header--split">
+      <div class="stack stack--xs">
+        <p class="eyebrow">Blog</p>
+        <h2 class="block-header__title" id="posts-title">Latest from the team</h2>
+      </div>
+      <p><a class="btn btn--secondary" href="/blog">All articles <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></p>
+    </div>
+    <ul class="post-grid" role="list">
+      <li class="post">
+        <div class="post__media"><img src="../assets/images/blog-accessibility.svg" alt="" width="800" height="450" loading="lazy"></div>
+        <div class="stack stack--xs">
+          <p class="post__meta"><time datetime="2026-10-02">2 Oct 2026</time> · Accessibility</p>
+          <h3 class="post__title"><a href="/blog/accessibility">A practical guide to WCAG 2.2 for product teams</a></h3>
+        </div>
+      </li>
+      <li class="post post--row">
+        <div class="post__media"><img src="../assets/images/blog-design-tokens.svg" alt="" width="320" height="240" loading="lazy"></div>
+        <div class="stack stack--xs">
+          <p class="post__meta"><time datetime="2026-09-18">18 Sep 2026</time> · Design systems</p>
+          <h3 class="post__title"><a href="/blog/design-tokens">Design tokens that survive a rebrand</a></h3>
+        </div>
+      </li>
+      <li class="post post--row">
+        <div class="post__media"><img src="../assets/images/blog-ai-ux.svg" alt="" width="320" height="240" loading="lazy"></div>
+        <div class="stack stack--xs">
+          <p class="post__meta"><time datetime="2026-09-04">4 Sep 2026</time> · AI</p>
+          <h3 class="post__title"><a href="/blog/ai-ux">Designing chat interfaces for AI agents</a></h3>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>

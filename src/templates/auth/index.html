@@ -20,6 +20,7 @@
   <link rel="stylesheet" href="../../assets/css/components/form.css">
   <link rel="stylesheet" href="../../assets/css/components/dialog.css">
   <link rel="stylesheet" href="../../assets/css/components/feedback.css">
+  <link rel="stylesheet" href="../../assets/css/blocks.css">
   <link rel="stylesheet" href="./auth.css">
   <script type="module" src="../../assets/js/main.js"></script>
 </head>
@@ -30,7 +31,7 @@
   <!-- Demo navigation between templates. Remove this partial in production. -->
   <nav class="demo-bar" aria-label="Template gallery">
     <div class="container demo-bar__inner">
-      <a class="demo-bar__home" href="../../index.html">vanilla-responsive-ui</a>
+      <a class="demo-bar__home" href="../../index.html">vanilla-responsive-ui <span class="visually-hidden">documentation</span></a>
       <ul class="demo-bar__list">
         <li><a href="../../templates/landing-page/index.html" data-section>Landing</a></li>
         <li><a href="../../templates/website/index.html" data-section>Website</a></li>
@@ -38,8 +39,8 @@
         <li><a href="../../templates/e-commerce/index.html" data-section>Shop</a></li>
         <li><a href="../../templates/ai/index.html" data-section>AI assistant</a></li>
         <li><a href="../../templates/auth/index.html" data-section aria-current="page">Auth</a></li>
-        <li><a href="../../components/index.html" data-section>Components</a></li>
-        <li><a href="../../layouts/index.html" data-section>Layouts</a></li>
+        <li><a href="../../docs/templates/index.html">Docs</a></li>
+        <li><a href="../../builder/index.html" data-section>Builder</a></li>
       </ul>
       <div class="demo-bar__actions">
         <button type="button" class="btn btn--ghost btn--sm" commandfor="theme-panel" command="show-modal" data-theme-panel-trigger hidden>
@@ -48,6 +49,7 @@
       </div>
     </div>
   </nav>
+  <p class="needs-server"><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4M12 17h.01"/></svg> <span>This page was opened from disk, so the browser blocks its JavaScript (menus, charts, chat, theme). Run <code>python3 -m http.server 8080</code> in the repository folder and open <a href="http://localhost:8080/src/">localhost:8080/src/</a>.</span></p>
   <!-- @end template-switcher -->
   <!-- @partial auth-header -->
   <header class="auth__header">
@@ -102,6 +104,33 @@
 
       <p class="text-center text-muted">Don’t have an account? <a href="register.html">Create one</a></p>
     </div>
+    <aside class="auth__aside" aria-label="Customer story">
+      <div class="auth__aside-inner">
+        <ul class="checklist" role="list">
+          <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Free for side projects</li>
+          <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> WCAG 2.2 AA on every page</li>
+          <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> No credit card required</li>
+        </ul>
+        <figure class="auth__quote">
+          <blockquote><p>“Signing in used to be the worst part of our product. Now it’s the fastest page we have.”</p></blockquote>
+          <figcaption class="quote-card__author">
+            <span class="avatar" aria-hidden="true">PR</span>
+            <span><span class="quote-card__name">Priya Raman</span> Frontend Lead, Northwind</span>
+          </figcaption>
+        </figure>
+        <div class="mock" role="img" aria-label="Acme dashboard preview with revenue and order statistics">
+          <div class="mock__bar"><span></span><span></span><span></span><span class="mock__url"></span></div>
+          <div class="mock__main">
+            <div class="mock__kpis">
+              <div class="mock__kpi"><span></span><strong>$48.2k</strong><em>+12%</em></div>
+              <div class="mock__kpi"><span></span><strong>1,284</strong><em>+8%</em></div>
+              <div class="mock__kpi"><span></span><strong>4.1%</strong><em>+0.6</em></div>
+            </div>
+            <div class="mock__chart"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+          </div>
+        </div>
+      </div>
+    </aside>
   </main>
 
   <!-- @partial auth-footer -->

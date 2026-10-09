@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; form-action 'self'; base-uri 'self'; object-src 'none'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>Integration guide — vanilla-responsive-ui docs</title>
+  <meta name="description" content="Framework integration guide for vanilla-responsive-ui.">
+  <meta name="color-scheme" content="light dark">
+  <meta name="generator" content="node .claude/skills/generate-doc.js (do not edit by hand)">
+  <link rel="icon" href="../../assets/icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../../assets/css/tokens.css">
+  <link rel="stylesheet" href="../../assets/css/themes.css">
+  <link rel="stylesheet" href="../../assets/css/base.css">
+  <link rel="stylesheet" href="../../assets/css/layouts.css">
+  <link rel="stylesheet" href="../../assets/css/components/button.css">
+  <link rel="stylesheet" href="../../assets/css/components/form.css">
+  <link rel="stylesheet" href="../../assets/css/components/feedback.css">
+  <link rel="stylesheet" href="../../assets/css/components/tabs.css">
+  <link rel="stylesheet" href="../../assets/css/components/table.css">
+  <link rel="stylesheet" href="../../assets/css/components/code.css">
+  <link rel="stylesheet" href="../../assets/css/components/accordion.css">
+  <link rel="stylesheet" href="../../assets/css/components/card.css">
+  <link rel="stylesheet" href="../../assets/css/components/navigation.css">
+  <link rel="stylesheet" href="../../assets/css/blocks.css">
+  <link rel="stylesheet" href="../../docs/assets/foundations.css">
+  <link rel="stylesheet" href="../../docs/assets/docs.css">
+  <script type="module" src="../../assets/js/main.js"></script>
+  <script type="module" src="../../docs/assets/docs.js"></script>
+</head>
+<body class="docs-body">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <p class="needs-server"><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4M12 17h.01"/></svg> <span>You opened this file from disk, so browsers block its JavaScript (copy buttons, previews, the builder). Run <code>python3 -m http.server 8080</code> in the repository folder and open <a href="http://localhost:8080/src/">localhost:8080/src/</a>, or use the <a href="https://amuqtadir99.github.io/vanilla-responsive-ui/src/">hosted docs</a>.</span></p>
+  <header class="docs-topbar">
+    <div class="docs-topbar__inner">
+      <button type="button" class="btn btn--ghost btn--icon docs-topbar__menu" data-disclosure="dismissible" aria-expanded="false" aria-controls="docs-sidebar" hidden>
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        <span class="visually-hidden">Documentation menu</span>
+      </button>
+      <a class="docs-brand" href="../../index.html">
+        <span class="docs-brand__mark"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 2 7l10 5 10-5z"/><path d="m2 17 10 5 10-5M2 12l10 5 10-5"/></svg></span>
+        <span>vanilla-responsive-ui</span>
+      </a>
+      <nav class="docs-topnav" aria-label="Main">
+        <ul class="docs-topnav__list" role="list">
+          <li><a href="../../docs/getting-started.html">Docs</a></li>
+          <li><a href="../../docs/components/site-footer.html">Components</a></li>
+          <li><a href="../../docs/blocks/hero-centered.html">Blocks</a></li>
+          <li><a href="../../docs/templates/index.html">Templates</a></li>
+          <li><a href="../../builder/index.html">Builder</a></li>
+        </ul>
+      </nav>
+      <div class="docs-topbar__actions">
+        <a class="btn btn--ghost btn--sm" href="https://github.com/amuqtadir99/vanilla-responsive-ui"><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m16 18 6-6-6-6M8 6l-6 6 6 6"/></svg> <span class="docs-topbar__label">GitHub</span></a>
+        <button type="button" class="btn btn--ghost btn--icon theme-toggle" data-theme-toggle aria-pressed="false" hidden>
+          <svg class="icon theme-toggle__light" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="icon theme-toggle__dark" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+          <span class="visually-hidden">Dark theme</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="docs-layout">
+    <nav class="docs-sidebar" id="docs-sidebar" aria-label="Documentation">
+      <div class="docs-search" data-docs-search hidden>
+        <label class="visually-hidden" for="docs-search-input">Search the documentation</label>
+        <svg class="icon icon--sm docs-search__icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/></svg>
+        <input class="input docs-search__input" id="docs-search-input" type="search" placeholder="Search…" autocomplete="off" aria-describedby="docs-search-hint">
+        <kbd class="docs-search__kbd" id="docs-search-hint"><span class="visually-hidden">Press </span>/<span class="visually-hidden"> to search</span></kbd>
+        <p class="docs-search__empty text-sm text-muted" role="status" data-docs-search-status></p>
+      </div>
+      <div class="docs-nav__group" data-docs-group>
+        <p class="docs-nav__title" id="nav-get-started">Get started</p>
+        <ul class="docs-nav__list" role="list" aria-labelledby="nav-get-started">
+          <li><a class="docs-nav__link" href="../../index.html">Introduction</a></li>
+          <li><a class="docs-nav__link" href="../../docs/getting-started.html">Getting started</a></li>
+          <li><a class="docs-nav__link" href="../../builder/index.html">Page builder</a></li>
+          <li><a class="docs-nav__link" href="../../docs/ai-agents.html">Working with AI agents</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav__group" data-docs-group>
+        <p class="docs-nav__title" id="nav-templates">Templates</p>
+        <ul class="docs-nav__list" role="list" aria-labelledby="nav-templates">
+          <li><a class="docs-nav__link" href="../../docs/templates/index.html">All templates</a></li>
+          <li><a class="docs-nav__link" href="../../docs/templates/landing-page-index.html">Landing page</a></li>
+          <li><a class="docs-nav__link" href="../../docs/templates/website-index.html">Website</a></li>
+          <li><a class="docs-nav__link" href="../../docs/templates/dashboard-index.html">Dashboard</a></li>
+          <li><a class="docs-nav__link" href="../../docs/templates/e-commerce-index.html">E-commerce</a></li>
+          <li><a class="docs-nav__link" href="../../docs/templates/ai-index.html">AI apps</a></li>
+          <li><a class="docs-nav__link" href="../../docs/templates/auth-index.html">Authentication</a></li>
+          <li><a class="docs-nav__link" href="../../docs/layouts.html">Layouts</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav__group" data-docs-group>
+        <p class="docs-nav__title" id="nav-blocks">Blocks</p>
+        <ul class="docs-nav__list" role="list" aria-labelledby="nav-blocks">
+          <li><a class="docs-nav__link" href="../../docs/blocks/hero-centered.html">Hero centered</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/hero-split.html">Hero split</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/logo-cloud.html">Logo cloud</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/stats-band.html">Stats band</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/testimonials.html">Testimonials</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/feature-bento.html">Feature bento</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/feature-grid.html">Feature grid</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/feature-rows.html">Feature rows</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/steps.html">Steps</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/category-tiles.html">Category tiles</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/perks.html">Perks</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/pricing.html">Pricing</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/promo-banner.html">Promo banner</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/blog-posts.html">Blog posts</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/faq.html">FAQ</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/team.html">Team</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/contact.html">Contact</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/cta-banner.html">CTA banner</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/newsletter.html">Newsletter</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav__group" data-docs-group>
+        <p class="docs-nav__title" id="nav-components">Components</p>
+        <ul class="docs-nav__list" role="list" aria-labelledby="nav-components">
+          <li><a class="docs-nav__link" href="../../docs/components/site-footer.html">Site footer</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/site-header.html">Site header</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/breadcrumb.html">Breadcrumb</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/pagination.html">Pagination</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/tabs.html">Tabs</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/button.html">Button</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/accordion.html">Accordion</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/card.html">Card</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/form-field.html">Form fields</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/alert.html">Alert and badge</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/toast.html">Toast</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/dialog.html">Dialog</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/chart.html">Charts</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/data-grid.html">Data grid</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/data-table.html">Data table</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/chat.html">AI chat</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/chat-message.html">Chat messages</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/chat-widget.html">Chat widget</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/theme-customizer.html">Theme customizer</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/theme-toggle.html">Theme toggle</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav__group" data-docs-group>
+        <p class="docs-nav__title" id="nav-foundations">Foundations</p>
+        <ul class="docs-nav__list" role="list" aria-labelledby="nav-foundations">
+          <li><a class="docs-nav__link" href="../../docs/foundations/colors.html">Colours</a></li>
+          <li><a class="docs-nav__link" href="../../docs/foundations/typography.html">Typography</a></li>
+          <li><a class="docs-nav__link" href="../../docs/foundations/spacing.html">Spacing and shape</a></li>
+          <li><a class="docs-nav__link" href="../../docs/foundations/icons.html">Icons</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav__group" data-docs-group>
+        <p class="docs-nav__title" id="nav-guides">Guides</p>
+        <ul class="docs-nav__list" role="list" aria-labelledby="nav-guides">
+          <li><a class="docs-nav__link" href="../../docs/guides/theming.html">Theming</a></li>
+          <li><a class="docs-nav__link" href="../../docs/guides/layouts.html">Layouts and pages</a></li>
+          <li><a class="docs-nav__link" href="../../docs/guides/data.html">Data and charts</a></li>
+          <li><a class="docs-nav__link" href="../../docs/guides/ai-chat.html">AI chat</a></li>
+          <li><a class="docs-nav__link" href="../../docs/guides/accessibility.html">Accessibility</a></li>
+          <li><a class="docs-nav__link" href="../../docs/guides/security.html">Security</a></li>
+          <li><a class="docs-nav__link" href="../../docs/guides/integration.html" aria-current="page">Framework integration</a></li>
+          <li><a class="docs-nav__link" href="../../docs/guides/architecture.html">Architecture</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <main class="docs-main" id="main" tabindex="-1">
+      <header class="docs-header">
+        <p class="eyebrow">Guide</p>
+        <h1 class="docs-header__title">Integration guide</h1>
+        
+        
+        <div class="docs-header__actions"><a class="btn btn--ghost btn--sm" href="https://github.com/amuqtadir99/vanilla-responsive-ui/blob/main/docs/INTEGRATION_GUIDE.md"><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20h9M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4z"/></svg> Edit INTEGRATION_GUIDE.md on GitHub</a></div>
+      </header>
+
+      <div class="docs-prose">
+<p>The templates are plain HTML, CSS and ES modules, so integrating them is mostly a matter of <strong>copying the assets</strong>, <strong>splitting each page into a layout and partials</strong>, and **calling <code>init()</code> after your framework renders markup**. This guide covers ASP.NET Core (Razor Pages, MVC, Blazor), React/Next.js, Vue, Svelte, Angular, Astro, Django, Flask, FastAPI, Laravel and Rails.</p>
+<p>Per-component snippets for vanilla HTML, Razor, React and Django are generated in <a href="../components/button.html">COMPONENTS.md</a>.</p>
+<h2 id="1-the-universal-recipe">1. The universal recipe</h2>
+<ol><li>**Copy <code>src/assets/</code>** into your static files directory. Keep the folder structure: modules import each other with relative paths.</li><li><strong>Link the CSS</strong> in your base layout, in this order: <code>tokens.css</code>, <code>themes.css</code> (optional presets), <code>base.css</code>, <code>layouts.css</code> (if you use <code>data-layout</code> or the app shell), then the component stylesheets you use, then <code>blocks.css</code> (if you use blocks), then page CSS.</li><li>**Load <code>main.js</code> once** as a module: <code>&lt;script type=&quot;module&quot; src=&quot;.../assets/js/main.js&quot;&gt;&lt;/script&gt;</code>. It initialises every component present on the page.</li><li><strong>Split the template</strong> into a layout (head, skip link, header, footer) and page bodies. The shared pieces already exist as files in <code>src/layouts/partials/</code> (the text between <code>&lt;!-- @partial name --&gt;</code> markers in each page): turn each into a partial view, include or component. Leave out <code>template-switcher</code>, which is demo navigation.</li><li><strong>After client-side rendering or navigation</strong>, call <code>initAll(container)</code> from <code>main.js</code>, or <code>init(container)</code> from a single component module. Initialisation is idempotent, so calling it twice is safe.</li><li><strong>Move the CSP to an HTTP header</strong> (see <a href="#security-headers">Security headers</a>) and add CSRF protection to forms.</li><li>**Remove <code>data-demo-submit</code>** from forms so they post to your endpoints.</li><li><strong>Point data and chat at your API</strong>: set <code>&lt;meta name=&quot;vr-data-base&quot;&gt;</code> (or <code>data-source</code> URLs) for charts and grids (<a href="data.html">DATA.md</a>), and <code>data-chat-endpoint</code> for assistants (<a href="ai-chat.html">AI-CHAT.md</a>). Remove <code>assets/js/demo/</code> once a real endpoint is configured.</li></ol>
+<h3 id="mapping-the-templates">Mapping the templates</h3>
+<div class="table-wrapper" role="region" aria-label="Template, Layout parts (partials), Page-specific files, Server responsibilities" tabindex="0"><table class="table" aria-label="Template, Layout parts (partials), Page-specific files, Server responsibilities"><thead><tr><th scope="col">Template</th><th scope="col">Layout parts (partials)</th><th scope="col">Page-specific files</th><th scope="col">Server responsibilities</th></tr></thead><tbody><tr><td><code>website</code></td><td><code>site-header</code>, <code>site-footer</code>, <code>chat-widget</code></td><td><code>website.css</code></td><td>Contact form (<code>POST /contact</code>), blog content, chat endpoint</td></tr><tr><td><code>landing-page</code></td><td>Inline header and footer, <code>chat-widget</code></td><td>none (built from blocks in <code>blocks.css</code>)</td><td>Sign-up links, sales contact</td></tr><tr><td><code>dashboard</code></td><td><code>app-topbar</code>, <code>app-sidebar</code> in the <code>.app-shell</code></td><td><code>dashboard.css</code>, <code>dashboard.js</code></td><td>JSON for <code>sales</code>, <code>orders</code> and <code>customers</code> (same shapes as <code>src/data/</code>); order actions; settings; analyst chat endpoint</td></tr><tr><td><code>e-commerce</code></td><td><code>shop-header</code> (cart count), <code>shop-footer</code>, <code>chat-widget</code></td><td><code>shop.css</code>, <code>shop.js</code>, <code>cart-store.js</code></td><td>Filter query (<code>GET ?category=&amp;price=</code>), pagination, product data, cart and promo-code API (the demo cart lives in localStorage)</td></tr><tr><td><code>ai</code></td><td><code>ai-topbar</code></td><td><code>ai.css</code>, <code>ai.js</code></td><td>Streaming chat endpoint; conversation storage if history must follow the user; agent run events</td></tr><tr><td><code>auth</code></td><td><code>auth-header</code>, <code>auth-footer</code></td><td><code>auth.css</code></td><td><code>POST /account/sign-in</code>, <code>POST /account/register</code>, <code>POST /account/forgot-password</code>, CSRF, rate limiting</td></tr></tbody></table></div>
+<h3 id="theme-without-a-flash">Theme without a flash</h3>
+<p><code>core/theme.js</code> stores the visitor's choices in <code>localStorage</code>, and the mode in a <code>vr_theme</code> cookie (<code>light</code> or <code>dark</code>). To render the right theme on the very first paint, read the cookie on the server and print it: <code>&lt;html lang=&quot;en&quot; data-theme=&quot;dark&quot;&gt;</code>. Accept only the two known values; a cookie is user-controlled input.</p>
+<p>Brand, density and corner presets are attributes too (<code>data-brand=&quot;teal&quot; data-density=&quot;compact&quot; data-radius=&quot;round&quot;</code>): render them per tenant or per user from your own settings, or ship a <code>brand.css</code> generated by the theme panel's <strong>Copy CSS</strong> button. See <a href="theming.html">THEMING.md</a>.</p>
+<p>---</p>
+<h2 id="2-aspnet-core">2. ASP.NET Core</h2>
+<h3 id="files">Files</h3>
+<div class="docs-code">
+  <div class="docs-code__header">
+    <span class="docs-code__label">TEXT</span>
+    <span class="docs-code__actions"><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-target="#code-560" data-copy-success="Code copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy code</span></button></span>
+  </div>
+  <pre tabindex="0" role="region" aria-label="TEXT"><code id="code-560">wwwroot/
+└── assets/            ← copy of src/assets
+Pages/ (or Views/)
+├── Shared/
+│   ├── _Layout.cshtml
+│   ├── _SiteHeader.cshtml
+│   ├── _SiteFooter.cshtml
+│   └── Components/    ← partials made from src/components/*.html
+└── Index.cshtml       ← body of a template</code></pre>
+</div>
+<h3 id="layout-pagessharedlayoutcshtml">Layout (<code>Pages/Shared/_Layout.cshtml</code>)</h3>
+<div class="docs-code">
+  <div class="docs-code__header">
+    <span class="docs-code__label">CSHTML</span>
+    <span class="docs-code__actions"><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-target="#code-561" data-copy-success="Code copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy code</span></button></span>
+  </div>
+  <pre tabindex="0" role="region" aria-label="CSHTML"><code id="code-561"><span class="tok-tag">&lt;!DOCTYPE</span> <span class="tok-attr">html</span><span class="tok-tag">&gt;</span>
+@{
+  var theme = Context.Request.Cookies[&quot;vr_theme&quot;];
+  theme = theme is &quot;light&quot; or &quot;dark&quot; ? theme : null;  // null omits the attribute
+}
+<span class="tok-tag">&lt;html</span> <span class="tok-attr">lang</span><span class="tok-punct">=</span><span class="tok-string">&quot;en&quot;</span> <span class="tok-attr">data-theme</span><span class="tok-punct">=</span><span class="tok-string">&quot;@theme&quot;</span><span class="tok-tag">&gt;</span>
+<span class="tok-tag">&lt;head</span><span class="tok-tag">&gt;</span>
+  <span class="tok-tag">&lt;meta</span> <span class="tok-attr">charset</span><span class="tok-punct">=</span><span class="tok-string">&quot;utf-8&quot;</span><span class="tok-tag">&gt;</span>
+  <span class="tok-tag">&lt;meta</span> <span class="tok-attr">name</span><span class="tok-punct">=</span><span class="tok-string">&quot;viewport&quot;</span> <span class="tok-attr">content</span><span class="tok-punct">=</span><span class="tok-string">&quot;width=device-width, initial-scale=1&quot;</span><span class="tok-tag">&gt;</span>
+  <span class="tok-tag">&lt;title</span><span class="tok-tag">&gt;</span>@ViewData[&quot;Title&quot;] — Acme<span class="tok-tag">&lt;/title</span><span class="tok-tag">&gt;</span>
+  <span class="tok-tag">&lt;link</span> <span class="tok-attr">rel</span><span class="tok-punct">=</span><span class="tok-string">&quot;stylesheet&quot;</span> <span class="tok-attr">href</span><span class="tok-punct">=</span><span class="tok-string">&quot;~/assets/css/tokens.css&quot;</span> <span class="tok-attr">asp-append-version</span><span class="tok-punct">=</span><span class="tok-string">&quot;true&quot;</span><span class="tok-tag">&gt;</span>
+  <span class="tok-tag">&lt;link</span> <span class="tok-attr">rel</span><span class="tok-punct">=</span><span class="tok-string">&quot;stylesheet&quot;</span> <span class="tok-attr">href</span><span class="tok-punct">=</span><span class="tok-string">&quot;~/assets/css/base.css&quot;</span> <span class="tok-attr">asp-append-version</span><span class="tok-punct">=</span><span class="tok-string">&quot;true&quot;</span><span class="tok-tag">&gt;</span>
+  <span class="tok-tag">&lt;link</span> <span class="tok-attr">rel</span><span class="tok-punct">=</span><span class="tok-string">&quot;stylesheet&quot;</span> <span class="tok-attr">href</span><span class="tok-punct">=</span><span class="tok-string">&quot;~/assets/css/components/button.css&quot;</span> <span class="tok-attr">asp-append-version</span><span class="tok-punct">=</span><span class="tok-string">&quot;true&quot;</span><span class="tok-tag">&gt;</span>
+  <span class="tok-tag">&lt;link</span> <span class="tok-attr">rel</span><span class="tok-punct">=</span><span class="tok-string">&quot;stylesheet&quot;</span> <span class="tok-attr">href</span><span class="tok-punct">=</span><span class="tok-string">&quot;~/assets/css/components/header.css&quot;</span> <span class="tok-attr">asp-append-version</span><span class="tok-punct">=</span><span class="tok-string">&quot;true&quot;</span><span class="tok-tag">&gt;</span>
+  <span class="tok-tag">&lt;link</span> <span class="tok-attr">rel</span><span class="tok-punct">=</span><span class="tok-string">&quot;stylesheet&quot;</span> <span class="tok-attr">href</span><span class="tok-punct">=</span><span class="tok-string">&quot;~/assets/css/components/footer.css&quot;</span> <span class="tok-attr">asp-append-version</span><span class="tok-punct">=</span><span class="tok-string">&quot;true&quot;</span><span class="tok-tag">&gt;</span>
+  @await RenderSectionAsync(&quot;Styles&quot;, required: false)
+  <span class="tok-tag">&lt;script</span> <span class="tok-attr">type</span><span class="tok-punct">=</span><span class="tok-string">&quot;module&quot;</span> <span class="tok-attr">src</span><span class="tok-punct">=</span><span class="tok-string">&quot;~/assets/js/main.js&quot;</span> <span class="tok-attr">asp-append-version</span><span class="tok-punct">=</span><span class="tok-string">&quot;true&quot;</span><span class="tok-tag">&gt;</span><span class="tok-tag">&lt;/script</span><span class="tok-tag">&gt;</span>
+  @await RenderSectionAsync(&quot;Scripts&quot;, required: false)
+<span class="tok-tag">&lt;/head</span><span class="tok-tag">&gt;</span>
+<span class="tok-tag">&lt;body</span><span class="tok-tag">&gt;</span>
+  <span class="tok-tag">&lt;a</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;skip-link&quot;</span> <span class="tok-attr">href</span><span class="tok-punct">=</span><span class="tok-string">&quot;#main&quot;</span><span class="tok-tag">&gt;</span>Skip to main content<span class="tok-tag">&lt;/a</span><span class="tok-tag">&gt;</span>
+  <span class="tok-tag">&lt;partial</span> <span class="tok-attr">name</span><span class="tok-punct">=</span><span class="tok-string">&quot;_SiteHeader&quot;</span> <span class="tok-tag">/&gt;</span>
+  <span class="tok-tag">&lt;main</span> <span class="tok-attr">id</span><span class="tok-punct">=</span><span class="tok-string">&quot;main&quot;</span> <span class="tok-attr">tabindex</span><span class="tok-punct">=</span><span class="tok-string">&quot;-1&quot;</span><span class="tok-tag">&gt;</span>
+    @RenderBody()
+  <span class="tok-tag">&lt;/main</span><span class="tok-tag">&gt;</span>
+  <span class="tok-tag">&lt;partial</span> <span class="tok-attr">name</span><span class="tok-punct">=</span><span class="tok-string">&quot;_SiteFooter&quot;</span> <span class="tok-tag">/&gt;</span>
+<span class="tok-tag">&lt;/body</span><span class="tok-tag">&gt;</span>
+<span class="tok-tag">&lt;/html</span><span class="tok-tag">&gt;</span></code></pre>
+</div>
+<blockquote><p><code>asp-append-version</code> adds a content hash for cache busting. Note that module imports inside <code>main.js</code> are not versioned; serve <code>/assets/js</code> with <code>Cache-Control: no-cache</code> (revalidate) or add your own versioned folder name.</p></blockquote>
+<h3 id="a-page-pagesdashboardcshtml">A page (<code>Pages/Dashboard.cshtml</code>)</h3>
+<div class="docs-code">
+  <div class="docs-code__header">
+    <span class="docs-code__label">CSHTML</span>
+    <span class="docs-code__actions"><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-target="#code-562" data-copy-success="Code copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy code</span></button></span>
+  </div>
+  <pre tabindex="0" role="region" aria-label="CSHTML"><code id="code-562">@page
+@model DashboardModel
+@{ ViewData[&quot;Title&quot;] = &quot;Overview&quot;; }
+
+@section Styles {
+  <span class="tok-tag">&lt;link</span> <span class="tok-attr">rel</span><span class="tok-punct">=</span><span class="tok-string">&quot;stylesheet&quot;</span> <span class="tok-attr">href</span><span class="tok-punct">=</span><span class="tok-string">&quot;~/assets/css/components/table.css&quot;</span> <span class="tok-attr">asp-append-version</span><span class="tok-punct">=</span><span class="tok-string">&quot;true&quot;</span><span class="tok-tag">&gt;</span>
+  <span class="tok-tag">&lt;link</span> <span class="tok-attr">rel</span><span class="tok-punct">=</span><span class="tok-string">&quot;stylesheet&quot;</span> <span class="tok-attr">href</span><span class="tok-punct">=</span><span class="tok-string">&quot;~/templates/dashboard/dashboard.css&quot;</span> <span class="tok-attr">asp-append-version</span><span class="tok-punct">=</span><span class="tok-string">&quot;true&quot;</span><span class="tok-tag">&gt;</span>
+}
+
+<span class="tok-tag">&lt;h1</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;dashboard__title&quot;</span><span class="tok-tag">&gt;</span>Overview<span class="tok-tag">&lt;/h1</span><span class="tok-tag">&gt;</span>
+
+<span class="tok-tag">&lt;div</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;table-wrapper&quot;</span> <span class="tok-attr">role</span><span class="tok-punct">=</span><span class="tok-string">&quot;region&quot;</span> <span class="tok-attr">aria-labelledby</span><span class="tok-punct">=</span><span class="tok-string">&quot;orders-caption&quot;</span> <span class="tok-attr">tabindex</span><span class="tok-punct">=</span><span class="tok-string">&quot;0&quot;</span><span class="tok-tag">&gt;</span>
+  <span class="tok-tag">&lt;table</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;table&quot;</span> <span class="tok-attr">data-sortable</span><span class="tok-tag">&gt;</span>
+    <span class="tok-tag">&lt;caption</span> <span class="tok-attr">id</span><span class="tok-punct">=</span><span class="tok-string">&quot;orders-caption&quot;</span><span class="tok-tag">&gt;</span>Recent orders<span class="tok-tag">&lt;/caption</span><span class="tok-tag">&gt;</span>
+    <span class="tok-tag">&lt;thead</span><span class="tok-tag">&gt;</span>
+      <span class="tok-tag">&lt;tr</span><span class="tok-tag">&gt;</span>
+        <span class="tok-tag">&lt;th</span> <span class="tok-attr">scope</span><span class="tok-punct">=</span><span class="tok-string">&quot;col&quot;</span> <span class="tok-attr">data-sort</span><span class="tok-punct">=</span><span class="tok-string">&quot;text&quot;</span><span class="tok-tag">&gt;</span>Customer<span class="tok-tag">&lt;/th</span><span class="tok-tag">&gt;</span>
+        <span class="tok-tag">&lt;th</span> <span class="tok-attr">scope</span><span class="tok-punct">=</span><span class="tok-string">&quot;col&quot;</span> <span class="tok-attr">data-sort</span><span class="tok-punct">=</span><span class="tok-string">&quot;number&quot;</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;num&quot;</span><span class="tok-tag">&gt;</span>Amount<span class="tok-tag">&lt;/th</span><span class="tok-tag">&gt;</span>
+      <span class="tok-tag">&lt;/tr</span><span class="tok-tag">&gt;</span>
+    <span class="tok-tag">&lt;/thead</span><span class="tok-tag">&gt;</span>
+    <span class="tok-tag">&lt;tbody</span><span class="tok-tag">&gt;</span>
+      @foreach (var order in Model.Orders)
+      {
+        <span class="tok-tag">&lt;tr</span><span class="tok-tag">&gt;</span>
+          <span class="tok-tag">&lt;td</span><span class="tok-tag">&gt;</span>@order.Customer<span class="tok-tag">&lt;/td</span><span class="tok-tag">&gt;</span>
+          <span class="tok-tag">&lt;td</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;num&quot;</span> <span class="tok-attr">data-sort-value</span><span class="tok-punct">=</span><span class="tok-string">&quot;@order.Amount&quot;</span><span class="tok-tag">&gt;</span>@order.Amount.ToString(&quot;C&quot;)<span class="tok-tag">&lt;/td</span><span class="tok-tag">&gt;</span>
+        <span class="tok-tag">&lt;/tr</span><span class="tok-tag">&gt;</span>
+      }
+    <span class="tok-tag">&lt;/tbody</span><span class="tok-tag">&gt;</span>
+  <span class="tok-tag">&lt;/table</span><span class="tok-tag">&gt;</span>
+<span class="tok-tag">&lt;/div</span><span class="tok-tag">&gt;</span></code></pre>
+</div>
+<p>Razor HTML-encodes <code>@</code> expressions by default, which keeps dynamic values safe. Escape literal <code>@</code> characters in copied markup as <code>@@</code>.</p>
+<h3 id="forms-and-antiforgery">Forms and antiforgery</h3>
+<p>The form tag helper adds an antiforgery token automatically to <code>method=&quot;post&quot;</code> forms in Razor Pages and MVC. Keep the markup from the auth template and bind the inputs:</p>
+<div class="docs-code">
+  <div class="docs-code__header">
+    <span class="docs-code__label">CSHTML</span>
+    <span class="docs-code__actions"><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-target="#code-563" data-copy-success="Code copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy code</span></button></span>
+  </div>
+  <pre tabindex="0" role="region" aria-label="CSHTML"><code id="code-563"><span class="tok-tag">&lt;form</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;form&quot;</span> <span class="tok-attr">method</span><span class="tok-punct">=</span><span class="tok-string">&quot;post&quot;</span> <span class="tok-attr">data-validate</span><span class="tok-tag">&gt;</span>
+  <span class="tok-tag">&lt;div</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;field&quot;</span><span class="tok-tag">&gt;</span>
+    <span class="tok-tag">&lt;label</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;field__label&quot;</span> <span class="tok-attr">asp-for</span><span class="tok-punct">=</span><span class="tok-string">&quot;Input.Email&quot;</span><span class="tok-tag">&gt;</span>Email address<span class="tok-tag">&lt;/label</span><span class="tok-tag">&gt;</span>
+    <span class="tok-tag">&lt;input</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;input&quot;</span> <span class="tok-attr">asp-for</span><span class="tok-punct">=</span><span class="tok-string">&quot;Input.Email&quot;</span> <span class="tok-attr">autocomplete</span><span class="tok-punct">=</span><span class="tok-string">&quot;username&quot;</span> <span class="tok-attr">aria-describedby</span><span class="tok-punct">=</span><span class="tok-string">&quot;email-error&quot;</span><span class="tok-tag">&gt;</span>
+    <span class="tok-tag">&lt;p</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;field__error&quot;</span> <span class="tok-attr">id</span><span class="tok-punct">=</span><span class="tok-string">&quot;email-error&quot;</span><span class="tok-tag">&gt;</span><span class="tok-tag">&lt;span</span> <span class="tok-attr">asp-validation-for</span><span class="tok-punct">=</span><span class="tok-string">&quot;Input.Email&quot;</span><span class="tok-tag">&gt;</span><span class="tok-tag">&lt;/span</span><span class="tok-tag">&gt;</span><span class="tok-tag">&lt;/p</span><span class="tok-tag">&gt;</span>
+  <span class="tok-tag">&lt;/div</span><span class="tok-tag">&gt;</span>
+  <span class="tok-tag">&lt;button</span> <span class="tok-attr">type</span><span class="tok-punct">=</span><span class="tok-string">&quot;submit&quot;</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;btn btn--block&quot;</span><span class="tok-tag">&gt;</span>Sign in<span class="tok-tag">&lt;/button</span><span class="tok-tag">&gt;</span>
+<span class="tok-tag">&lt;/form</span><span class="tok-tag">&gt;</span></code></pre>
+</div>
+<p>Server-side validation messages render into the same <code>.field__error</code> element the client script uses. Set <code>aria-invalid=&quot;true&quot;</code> on the input when <code>ModelState</code> has an error for it.</p>
+<h3 id="theme-tokens-from-configuration">Theme tokens from configuration</h3>
+<div class="docs-code">
+  <div class="docs-code__header">
+    <span class="docs-code__label">CSHTML</span>
+    <span class="docs-code__actions"><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-target="#code-564" data-copy-success="Code copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy code</span></button></span>
+  </div>
+  <pre tabindex="0" role="region" aria-label="CSHTML"><code id="code-564">@inject IConfiguration Config
+<span class="tok-tag">&lt;link</span> <span class="tok-attr">rel</span><span class="tok-punct">=</span><span class="tok-string">&quot;stylesheet&quot;</span> <span class="tok-attr">href</span><span class="tok-punct">=</span><span class="tok-string">&quot;~/assets/css/tokens.css&quot;</span><span class="tok-tag">&gt;</span>
+<span class="tok-tag">&lt;link</span> <span class="tok-attr">rel</span><span class="tok-punct">=</span><span class="tok-string">&quot;stylesheet&quot;</span> <span class="tok-attr">href</span><span class="tok-punct">=</span><span class="tok-string">&quot;~/css/brand.css&quot;</span><span class="tok-tag">&gt;</span>  @* overrides --color-primary etc. *@</code></pre>
+</div>
+<p>For per-tenant themes, render a stylesheet endpoint (<code>/theme.css</code>) that outputs <code>:root { --color-primary: …; }</code> from settings. Avoid inline <code>&lt;style&gt;</code> so the CSP stays strict.</p>
+<h3 id="blazor">Blazor</h3>
+<p>Static markup goes straight into <code>.razor</code> components. Initialise behaviour after render with JS interop:</p>
+<div class="docs-code">
+  <div class="docs-code__header">
+    <span class="docs-code__label">RAZOR</span>
+    <span class="docs-code__actions"><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-target="#code-565" data-copy-success="Code copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy code</span></button></span>
+  </div>
+  <pre tabindex="0" role="region" aria-label="RAZOR"><code id="code-565">@inject IJSRuntime JS
+@implements IAsyncDisposable
+
+<span class="tok-tag">&lt;div</span> <span class="tok-attr">@ref</span><span class="tok-punct">=</span><span class="tok-string">&quot;root&quot;</span><span class="tok-tag">&gt;</span>
+  <span class="tok-tag">&lt;div</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;tabs&quot;</span> <span class="tok-attr">data-tabs</span><span class="tok-tag">&gt;</span>…<span class="tok-tag">&lt;/div</span><span class="tok-tag">&gt;</span>
+<span class="tok-tag">&lt;/div</span><span class="tok-tag">&gt;</span>
+
+@code {
+  private ElementReference root;
+  private IJSObjectReference? module;
+
+  protected override async Task OnAfterRenderAsync(bool firstRender)
+  {
+    if (!firstRender) return;
+    module = await JS.InvokeAsync<span class="tok-tag">&lt;IJSObjectReference</span><span class="tok-tag">&gt;</span>(&quot;import&quot;, &quot;./assets/js/components/tabs.js&quot;);
+    await module.InvokeVoidAsync(&quot;init&quot;, root);
+  }
+
+  public async ValueTask DisposeAsync()
+  {
+    if (module is not null) await module.DisposeAsync();
+  }
+}</code></pre>
+</div>
+<p>---</p>
+<h2 id="3-react-and-nextjs">3. React and Next.js</h2>
+<h3 id="files-1">Files</h3>
+<div class="docs-code">
+  <div class="docs-code__header">
+    <span class="docs-code__label">TEXT</span>
+    <span class="docs-code__actions"><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-target="#code-566" data-copy-success="Code copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy code</span></button></span>
+  </div>
+  <pre tabindex="0" role="region" aria-label="TEXT"><code id="code-566">ui/                     ← copy of src/assets (css/, js/, icons/, images/)
+app/
+├── layout.tsx
+└── dashboard/page.tsx
+components/
+└── Tabs.tsx</code></pre>
+</div>
+<p>Add a path alias (<code>&quot;@/ui/*&quot;: [&quot;./ui/*&quot;]</code> in <code>tsconfig.json</code>/<code>jsconfig.json</code>) and move <code>ui/images</code> to <code>public/</code> if you serve images statically.</p>
+<h3 id="root-layout-applayouttsx">Root layout (<code>app/layout.tsx</code>)</h3>
+<div class="docs-code">
+  <div class="docs-code__header">
+    <span class="docs-code__label">TSX</span>
+    <span class="docs-code__actions"><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-target="#code-567" data-copy-success="Code copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy code</span></button></span>
+  </div>
+  <pre tabindex="0" role="region" aria-label="TSX"><code id="code-567"><span class="tok-keyword">import</span> <span class="tok-string">'@/ui/css/tokens.css'</span>;
+<span class="tok-keyword">import</span> <span class="tok-string">'@/ui/css/base.css'</span>;
+<span class="tok-keyword">import</span> <span class="tok-string">'@/ui/css/components/button.css'</span>;
+<span class="tok-keyword">import</span> <span class="tok-string">'@/ui/css/components/header.css'</span>;
+
+<span class="tok-keyword">export</span> <span class="tok-keyword">default</span> <span class="tok-keyword">function</span> <span class="tok-function">RootLayout</span>({ children }: { children: React.ReactNode }) {
+  <span class="tok-keyword">return</span> (
+    &lt;html lang=<span class="tok-string">&quot;en&quot;</span>&gt;
+      &lt;body&gt;
+        &lt;a className=<span class="tok-string">&quot;skip-link&quot;</span> href=<span class="tok-string">&quot;#main&quot;</span>&gt;Skip to main content&lt;/a&gt;
+        &lt;SiteHeader /&gt;
+        &lt;main id=<span class="tok-string">&quot;main&quot;</span> tabIndex={-<span class="tok-number">1</span>}&gt;{children}&lt;/main&gt;
+        &lt;SiteFooter /&gt;
+      &lt;/body&gt;
+    &lt;/html&gt;
+  );
+}</code></pre>
+</div>
+<h3 id="converting-markup-to-jsx">Converting markup to JSX</h3>
+<div class="table-wrapper" role="region" aria-label="HTML, JSX" tabindex="0"><table class="table" aria-label="HTML, JSX"><thead><tr><th scope="col">HTML</th><th scope="col">JSX</th></tr></thead><tbody><tr><td><code>class=&quot;btn&quot;</code></td><td><code>className=&quot;btn&quot;</code></td></tr><tr><td><code>for=&quot;email&quot;</code></td><td><code>htmlFor=&quot;email&quot;</code></td></tr><tr><td><code>tabindex=&quot;-1&quot;</code></td><td><code>tabIndex={-1}</code></td></tr><tr><td><code>aria-*</code>, <code>data-*</code></td><td>unchanged</td></tr><tr><td><code>hidden</code></td><td><code>hidden</code></td></tr><tr><td><code>autocomplete=&quot;email&quot;</code></td><td><code>autoComplete=&quot;email&quot;</code></td></tr><tr><td><code>minlength=&quot;12&quot;</code> / <code>maxlength</code></td><td><code>minLength={12}</code> / <code>maxLength</code></td></tr><tr><td><code>fetchpriority=&quot;high&quot;</code></td><td><code>fetchPriority=&quot;high&quot;</code></td></tr><tr><td><code>&lt;svg …&gt;&lt;path d=&quot;…&quot;/&gt;&lt;/svg&gt;</code></td><td>unchanged (attributes like <code>stroke-width</code> become <code>strokeWidth</code>; the <code>.icon</code> class avoids them)</td></tr><tr><td><code>commandfor</code>, <code>command</code>, <code>closedby</code></td><td>write as-is; React passes unknown attributes to the DOM</td></tr></tbody></table></div>
+<h3 id="behaviour-call-init-in-an-effect">Behaviour: call <code>init()</code> in an effect</h3>
+<div class="docs-code">
+  <div class="docs-code__header">
+    <span class="docs-code__label">TSX</span>
+    <span class="docs-code__actions"><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-target="#code-568" data-copy-success="Code copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy code</span></button></span>
+  </div>
+  <pre tabindex="0" role="region" aria-label="TSX"><code id="code-568"><span class="tok-string">'use client'</span>;
+<span class="tok-keyword">import</span> { useEffect, useRef } <span class="tok-keyword">from</span> <span class="tok-string">'react'</span>;
+<span class="tok-keyword">import</span> <span class="tok-string">'@/ui/css/components/tabs.css'</span>;
+
+<span class="tok-keyword">export</span> <span class="tok-keyword">function</span> <span class="tok-function">Tabs</span>() {
+  <span class="tok-keyword">const</span> ref = useRef&lt;HTMLDivElement&gt;(<span class="tok-keyword">null</span>);
+
+  <span class="tok-function">useEffect</span>(() =&gt; {
+    <span class="tok-keyword">import</span>(<span class="tok-string">'@/ui/js/components/tabs.js'</span>).<span class="tok-function">then</span>((m) =&gt; m.<span class="tok-function">init</span>(ref.current));
+  }, []);
+
+  <span class="tok-keyword">return</span> (
+    &lt;div ref={ref}&gt;
+      &lt;div className=<span class="tok-string">&quot;tabs&quot;</span> data-tabs&gt;
+        &lt;div className=<span class="tok-string">&quot;tabs__list&quot;</span> data-tabs-list data-label=<span class="tok-string">&quot;Account&quot;</span> hidden&gt;
+          &lt;button type=<span class="tok-string">&quot;button&quot;</span> className=<span class="tok-string">&quot;tabs__tab&quot;</span> data-tab=<span class="tok-string">&quot;panel-profile&quot;</span>&gt;Profile&lt;/button&gt;
+          &lt;button type=<span class="tok-string">&quot;button&quot;</span> className=<span class="tok-string">&quot;tabs__tab&quot;</span> data-tab=<span class="tok-string">&quot;panel-billing&quot;</span>&gt;Billing&lt;/button&gt;
+        &lt;/div&gt;
+        &lt;section className=<span class="tok-string">&quot;tabs__panel&quot;</span> id=<span class="tok-string">&quot;panel-profile&quot;</span> aria-labelledby=<span class="tok-string">&quot;panel-profile-h&quot;</span>&gt;
+          &lt;h3 className=<span class="tok-string">&quot;tabs__heading&quot;</span> id=<span class="tok-string">&quot;panel-profile-h&quot;</span>&gt;Profile&lt;/h3&gt;
+        &lt;/section&gt;
+        &lt;section className=<span class="tok-string">&quot;tabs__panel&quot;</span> id=<span class="tok-string">&quot;panel-billing&quot;</span> aria-labelledby=<span class="tok-string">&quot;panel-billing-h&quot;</span>&gt;
+          &lt;h3 className=<span class="tok-string">&quot;tabs__heading&quot;</span> id=<span class="tok-string">&quot;panel-billing-h&quot;</span>&gt;Billing&lt;/h3&gt;
+        &lt;/section&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  );
+}</code></pre>
+</div>
+<p>The modules only touch <code>window</code>/<code>document</code> inside functions, so importing them during server rendering is safe; <code>useEffect</code> guarantees <code>init</code> runs in the browser. Under React Strict Mode the effect runs twice in development; <code>init</code> is idempotent, so nothing binds twice.</p>
+<p><strong>Who owns state?</strong> The vanilla modules write ARIA attributes and <code>hidden</code> directly. That is fine for markup React does not re-render (static structure). If React needs to own the state (for example the selected tab comes from the URL), port the module's logic into a hook instead and keep the same markup, classes and ARIA, so the CSS and accessibility behaviour are unchanged.</p>
+<p>Use <code>useId()</code> to generate the ids that <code>aria-labelledby</code>, <code>aria-controls</code> and <code>htmlFor</code> reference when a component can appear more than once.</p>
+<h3 id="toasts-from-react">Toasts from React</h3>
+<div class="docs-code">
+  <div class="docs-code__header">
+    <span class="docs-code__label">TSX</span>
+    <span class="docs-code__actions"><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-target="#code-569" data-copy-success="Code copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy code</span></button></span>
+  </div>
+  <pre tabindex="0" role="region" aria-label="TSX"><code id="code-569"><span class="tok-keyword">import</span> { showToast } <span class="tok-keyword">from</span> <span class="tok-string">'@/ui/js/components/toast.js'</span>;
+
+&lt;button type=<span class="tok-string">&quot;button&quot;</span> className=<span class="tok-string">&quot;btn&quot;</span> onClick={() =&gt; <span class="tok-function">showToast</span>(<span class="tok-string">'Saved'</span>, { variant: <span class="tok-string">'success'</span> })}&gt;
+  Save
+&lt;/button&gt;</code></pre>
+</div>
+<h3 id="security-headers-in-nextjs">Security headers in Next.js</h3>
+<div class="docs-code">
+  <div class="docs-code__header">
+    <span class="docs-code__label">JS</span>
+    <span class="docs-code__actions"><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-target="#code-570" data-copy-success="Code copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy code</span></button></span>
+  </div>
+  <pre tabindex="0" role="region" aria-label="JS"><code id="code-570"><span class="tok-comment">// next.config.mjs</span>
+<span class="tok-keyword">const</span> csp = [
+  <span class="tok-string">&quot;default-src 'self'&quot;</span>,
+  <span class="tok-string">&quot;script-src 'self'&quot;</span>,
+  <span class="tok-string">&quot;style-src 'self'&quot;</span>,
+  <span class="tok-string">&quot;img-src 'self' data:&quot;</span>,
+  <span class="tok-string">&quot;object-src 'none'&quot;</span>,
+  <span class="tok-string">&quot;base-uri 'self'&quot;</span>,
+  <span class="tok-string">&quot;form-action 'self'&quot;</span>,
+  <span class="tok-string">&quot;frame-ancestors 'none'&quot;</span>,
+].<span class="tok-function">join</span>(<span class="tok-string">'; '</span>);
+
+<span class="tok-keyword">export</span> <span class="tok-keyword">default</span> {
+  <span class="tok-keyword">async</span> <span class="tok-function">headers</span>() {
+    <span class="tok-keyword">return</span> [{ source: <span class="tok-string">'/(.*)'</span>, headers: [{ key: <span class="tok-string">'Content-Security-Policy'</span>, value: csp }] }];
+  },
+};</code></pre>
+</div>
+<p>Next.js injects inline scripts for hydration; production apps typically need a per-request nonce (set in middleware) added to <code>script-src</code>.</p>
+<p>---</p>
+<h2 id="4-vue-svelte-angular-and-astro">4. Vue, Svelte, Angular and Astro</h2>
+<p>All follow the same rule: render the markup, then call <code>init(element)</code> once the element is in the DOM.</p>
+<p><strong>Vue 3</strong></p>
+<div class="docs-code">
+  <div class="docs-code__header">
+    <span class="docs-code__label">VUE</span>
+    <span class="docs-code__actions"><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-target="#code-571" data-copy-success="Code copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy code</span></button></span>
+  </div>
+  <pre tabindex="0" role="region" aria-label="VUE"><code id="code-571"><span class="tok-tag">&lt;script</span> <span class="tok-attr">setup</span><span class="tok-tag">&gt;</span>
+import { onMounted, ref } from 'vue';
+import { init } from '@/ui/js/components/tabs.js';
+const root = ref(null);
+onMounted(() =&gt; init(root.value));
+<span class="tok-tag">&lt;/script</span><span class="tok-tag">&gt;</span>
+
+<span class="tok-tag">&lt;template</span><span class="tok-tag">&gt;</span>
+  <span class="tok-tag">&lt;div</span> <span class="tok-attr">ref</span><span class="tok-punct">=</span><span class="tok-string">&quot;root&quot;</span><span class="tok-tag">&gt;</span><span class="tok-comment">&lt;!-- tabs markup, unchanged (Vue uses class/for as-is) --&gt;</span><span class="tok-tag">&lt;/div</span><span class="tok-tag">&gt;</span>
+<span class="tok-tag">&lt;/template</span><span class="tok-tag">&gt;</span></code></pre>
+</div>
+<p><strong>Svelte 5</strong></p>
+<div class="docs-code">
+  <div class="docs-code__header">
+    <span class="docs-code__label">SVELTE</span>
+    <span class="docs-code__actions"><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-target="#code-572" data-copy-success="Code copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy code</span></button></span>
+  </div>
+  <pre tabindex="0" role="region" aria-label="SVELTE"><code id="code-572"><span class="tok-tag">&lt;script</span><span class="tok-tag">&gt;</span>
+  import { init } from '$lib/ui/js/components/tabs.js';
+  let root;
+  $effect(() =&gt; { init(root); });
+<span class="tok-tag">&lt;/script</span><span class="tok-tag">&gt;</span>
+
+<span class="tok-tag">&lt;div</span> <span class="tok-attr">bind:this</span><span class="tok-punct">=</span><span class="tok-string">{root}</span><span class="tok-tag">&gt;</span><span class="tok-comment">&lt;!-- tabs markup, unchanged --&gt;</span><span class="tok-tag">&lt;/div</span><span class="tok-tag">&gt;</span></code></pre>
+</div>
+<p><strong>Angular</strong></p>
+<div class="docs-code">
+  <div class="docs-code__header">
+    <span class="docs-code__label">TS</span>
+    <span class="docs-code__actions"><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-target="#code-573" data-copy-success="Code copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy code</span></button></span>
+  </div>
+  <pre tabindex="0" role="region" aria-label="TS"><code id="code-573">@<span class="tok-function">Component</span>({ selector: <span class="tok-string">'app-tabs'</span>, templateUrl: <span class="tok-string">'./tabs.html'</span> })
+<span class="tok-keyword">export</span> <span class="tok-keyword">class</span> TabsComponent implements AfterViewInit {
+  <span class="tok-function">constructor</span>(private host: ElementRef&lt;HTMLElement&gt;) {}
+  <span class="tok-keyword">async</span> <span class="tok-function">ngAfterViewInit</span>() {
+    <span class="tok-keyword">const</span> { init } = <span class="tok-keyword">await</span> <span class="tok-keyword">import</span>(<span class="tok-string">'../../ui/js/components/tabs.js'</span>);
+    <span class="tok-function">init</span>(<span class="tok-keyword">this</span>.host.nativeElement);
+  }
+}</code></pre>
+</div>
+<p>Add the stylesheets to <code>angular.json</code> → <code>styles</code>, in token → base → component order.</p>
+<p><strong>Astro</strong></p>
+<div class="docs-code">
+  <div class="docs-code__header">
+    <span class="docs-code__label">ASTRO</span>
+    <span class="docs-code__actions"><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-target="#code-574" data-copy-success="Code copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy code</span></button></span>
+  </div>
+  <pre tabindex="0" role="region" aria-label="ASTRO"><code id="code-574">---
+import '../ui/css/components/tabs.css';
+---
+<span class="tok-tag">&lt;div</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;tabs&quot;</span> <span class="tok-attr">data-tabs</span><span class="tok-tag">&gt;</span><span class="tok-comment">&lt;!-- markup --&gt;</span><span class="tok-tag">&lt;/div</span><span class="tok-tag">&gt;</span>
+<span class="tok-tag">&lt;script</span><span class="tok-tag">&gt;</span>
+  import { initAll } from '../ui/js/main.js';
+  document.addEventListener('astro:page-load', () =&gt; initAll());
+<span class="tok-tag">&lt;/script</span><span class="tok-tag">&gt;</span></code></pre>
+</div>
+<p>Astro bundles the <code>&lt;script&gt;</code> as an external module, so the CSP stays strict.</p>
+<p>---</p>
+<h2 id="5-django-and-jinja2">5. Django and Jinja2</h2>
+<h3 id="files-2">Files</h3>
+<div class="docs-code">
+  <div class="docs-code__header">
+    <span class="docs-code__label">TEXT</span>
+    <span class="docs-code__actions"><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-target="#code-575" data-copy-success="Code copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy code</span></button></span>
+  </div>
+  <pre tabindex="0" role="region" aria-label="TEXT"><code id="code-575">static/assets/                ← copy of src/assets
+templates/
+├── base.html
+├── partials/site_header.html
+├── partials/site_footer.html
+├── components/               ← src/components/*.html
+└── shop/product_list.html    ← body of the e-commerce template</code></pre>
+</div>
+<h3 id="base-template-templatesbasehtml">Base template (<code>templates/base.html</code>)</h3>
+<div class="docs-code">
+  <div class="docs-code__header">
+    <span class="docs-code__label">DJANGO</span>
+    <span class="docs-code__actions"><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-target="#code-576" data-copy-success="Code copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy code</span></button></span>
+  </div>
+  <pre tabindex="0" role="region" aria-label="DJANGO"><code id="code-576">{% load static %}
+<span class="tok-tag">&lt;!DOCTYPE</span> <span class="tok-attr">html</span><span class="tok-tag">&gt;</span>
+<span class="tok-tag">&lt;html</span> <span class="tok-attr">lang</span><span class="tok-punct">=</span><span class="tok-string">&quot;en&quot;</span><span class="tok-attr">{%</span> <span class="tok-attr">if</span> <span class="tok-attr">request.COOKIES.vr_theme</span> == <span class="tok-attr">&quot;light&quot;</span> <span class="tok-attr">or</span> <span class="tok-attr">request.COOKIES.vr_theme</span> == <span class="tok-attr">&quot;dark&quot;</span> <span class="tok-attr">%}</span> <span class="tok-attr">data-theme</span><span class="tok-punct">=</span><span class="tok-string">&quot;{{ request.COOKIES.vr_theme }}&quot;</span><span class="tok-attr">{%</span> <span class="tok-attr">endif</span> <span class="tok-attr">%}</span><span class="tok-tag">&gt;</span>
+<span class="tok-tag">&lt;head</span><span class="tok-tag">&gt;</span>
+  <span class="tok-tag">&lt;meta</span> <span class="tok-attr">charset</span><span class="tok-punct">=</span><span class="tok-string">&quot;utf-8&quot;</span><span class="tok-tag">&gt;</span>
+  <span class="tok-tag">&lt;meta</span> <span class="tok-attr">name</span><span class="tok-punct">=</span><span class="tok-string">&quot;viewport&quot;</span> <span class="tok-attr">content</span><span class="tok-punct">=</span><span class="tok-string">&quot;width=device-width, initial-scale=1&quot;</span><span class="tok-tag">&gt;</span>
+  <span class="tok-tag">&lt;title</span><span class="tok-tag">&gt;</span>{% block title %}Acme{% endblock %}<span class="tok-tag">&lt;/title</span><span class="tok-tag">&gt;</span>
+  <span class="tok-tag">&lt;link</span> <span class="tok-attr">rel</span><span class="tok-punct">=</span><span class="tok-string">&quot;stylesheet&quot;</span> <span class="tok-attr">href</span><span class="tok-punct">=</span><span class="tok-string">&quot;{% static 'assets/css/tokens.css' %}&quot;</span><span class="tok-tag">&gt;</span>
+  <span class="tok-tag">&lt;link</span> <span class="tok-attr">rel</span><span class="tok-punct">=</span><span class="tok-string">&quot;stylesheet&quot;</span> <span class="tok-attr">href</span><span class="tok-punct">=</span><span class="tok-string">&quot;{% static 'assets/css/base.css' %}&quot;</span><span class="tok-tag">&gt;</span>
+  <span class="tok-tag">&lt;link</span> <span class="tok-attr">rel</span><span class="tok-punct">=</span><span class="tok-string">&quot;stylesheet&quot;</span> <span class="tok-attr">href</span><span class="tok-punct">=</span><span class="tok-string">&quot;{% static 'assets/css/components/button.css' %}&quot;</span><span class="tok-tag">&gt;</span>
+  <span class="tok-tag">&lt;link</span> <span class="tok-attr">rel</span><span class="tok-punct">=</span><span class="tok-string">&quot;stylesheet&quot;</span> <span class="tok-attr">href</span><span class="tok-punct">=</span><span class="tok-string">&quot;{% static 'assets/css/components/header.css' %}&quot;</span><span class="tok-tag">&gt;</span>
+  <span class="tok-tag">&lt;link</span> <span class="tok-attr">rel</span><span class="tok-punct">=</span><span class="tok-string">&quot;stylesheet&quot;</span> <span class="tok-attr">href</span><span class="tok-punct">=</span><span class="tok-string">&quot;{% static 'assets/css/components/footer.css' %}&quot;</span><span class="tok-tag">&gt;</span>
+  {% block styles %}{% endblock %}
+  <span class="tok-tag">&lt;script</span> <span class="tok-attr">type</span><span class="tok-punct">=</span><span class="tok-string">&quot;module&quot;</span> <span class="tok-attr">src</span><span class="tok-punct">=</span><span class="tok-string">&quot;{% static 'assets/js/main.js' %}&quot;</span><span class="tok-tag">&gt;</span><span class="tok-tag">&lt;/script</span><span class="tok-tag">&gt;</span>
+  {% block scripts %}{% endblock %}
+<span class="tok-tag">&lt;/head</span><span class="tok-tag">&gt;</span>
+<span class="tok-tag">&lt;body</span><span class="tok-tag">&gt;</span>
+  <span class="tok-tag">&lt;a</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;skip-link&quot;</span> <span class="tok-attr">href</span><span class="tok-punct">=</span><span class="tok-string">&quot;#main&quot;</span><span class="tok-tag">&gt;</span>Skip to main content<span class="tok-tag">&lt;/a</span><span class="tok-tag">&gt;</span>
+  {% include &quot;partials/site_header.html&quot; %}
+  <span class="tok-tag">&lt;main</span> <span class="tok-attr">id</span><span class="tok-punct">=</span><span class="tok-string">&quot;main&quot;</span> <span class="tok-attr">tabindex</span><span class="tok-punct">=</span><span class="tok-string">&quot;-1&quot;</span><span class="tok-tag">&gt;</span>
+    {% block content %}{% endblock %}
+  <span class="tok-tag">&lt;/main</span><span class="tok-tag">&gt;</span>
+  {% include &quot;partials/site_footer.html&quot; %}
+<span class="tok-tag">&lt;/body</span><span class="tok-tag">&gt;</span>
+<span class="tok-tag">&lt;/html</span><span class="tok-tag">&gt;</span></code></pre>
+</div>
+<blockquote><p>With <code>ManifestStaticFilesStorage</code>, only the files referenced through <code>{% static %}</code> get hashed names; relative <code>import</code> statements inside the modules still point at the original names. Either keep un-hashed copies (the default <code>collectstatic</code> keeps both) or exclude <code>assets/js</code> from hashing.</p></blockquote>
+<h3 id="a-page-templatesshopproductlisthtml">A page (<code>templates/shop/product_list.html</code>)</h3>
+<div class="docs-code">
+  <div class="docs-code__header">
+    <span class="docs-code__label">DJANGO</span>
+    <span class="docs-code__actions"><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-target="#code-577" data-copy-success="Code copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy code</span></button></span>
+  </div>
+  <pre tabindex="0" role="region" aria-label="DJANGO"><code id="code-577">{% extends &quot;base.html&quot; %}
+{% load static %}
+
+{% block title %}Shop all products — {{ block.super }}{% endblock %}
+
+{% block styles %}
+  <span class="tok-tag">&lt;link</span> <span class="tok-attr">rel</span><span class="tok-punct">=</span><span class="tok-string">&quot;stylesheet&quot;</span> <span class="tok-attr">href</span><span class="tok-punct">=</span><span class="tok-string">&quot;{% static 'assets/css/components/card.css' %}&quot;</span><span class="tok-tag">&gt;</span>
+  <span class="tok-tag">&lt;link</span> <span class="tok-attr">rel</span><span class="tok-punct">=</span><span class="tok-string">&quot;stylesheet&quot;</span> <span class="tok-attr">href</span><span class="tok-punct">=</span><span class="tok-string">&quot;{% static 'templates/e-commerce/shop.css' %}&quot;</span><span class="tok-tag">&gt;</span>
+{% endblock %}
+
+{% block content %}
+  <span class="tok-tag">&lt;h1</span><span class="tok-tag">&gt;</span>Shop all products<span class="tok-tag">&lt;/h1</span><span class="tok-tag">&gt;</span>
+  <span class="tok-tag">&lt;ul</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;product-grid list-reset&quot;</span> <span class="tok-attr">role</span><span class="tok-punct">=</span><span class="tok-string">&quot;list&quot;</span> <span class="tok-attr">data-product-list</span><span class="tok-tag">&gt;</span>
+    {% for product in products %}
+      <span class="tok-tag">&lt;li</span> <span class="tok-attr">data-product</span> <span class="tok-attr">data-category</span><span class="tok-punct">=</span><span class="tok-string">&quot;{{ product.category }}&quot;</span> <span class="tok-attr">data-price</span><span class="tok-punct">=</span><span class="tok-string">&quot;{{ product.price }}&quot;</span><span class="tok-tag">&gt;</span>
+        <span class="tok-tag">&lt;article</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;card product&quot;</span><span class="tok-tag">&gt;</span>
+          <span class="tok-tag">&lt;img</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;card__media&quot;</span> <span class="tok-attr">src</span><span class="tok-punct">=</span><span class="tok-string">&quot;{{ product.image.url }}&quot;</span> <span class="tok-attr">width</span><span class="tok-punct">=</span><span class="tok-string">&quot;400&quot;</span> <span class="tok-attr">height</span><span class="tok-punct">=</span><span class="tok-string">&quot;300&quot;</span> <span class="tok-attr">alt</span><span class="tok-punct">=</span><span class="tok-string">&quot;&quot;</span> <span class="tok-attr">loading</span><span class="tok-punct">=</span><span class="tok-string">&quot;lazy&quot;</span> <span class="tok-attr">decoding</span><span class="tok-punct">=</span><span class="tok-string">&quot;async&quot;</span><span class="tok-tag">&gt;</span>
+          <span class="tok-tag">&lt;div</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;card__body&quot;</span><span class="tok-tag">&gt;</span>
+            <span class="tok-tag">&lt;h3</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;card__title&quot;</span><span class="tok-tag">&gt;</span><span class="tok-tag">&lt;a</span> <span class="tok-attr">href</span><span class="tok-punct">=</span><span class="tok-string">&quot;{{ product.get_absolute_url }}&quot;</span><span class="tok-tag">&gt;</span>{{ product.name }}<span class="tok-tag">&lt;/a</span><span class="tok-tag">&gt;</span><span class="tok-tag">&lt;/h3</span><span class="tok-tag">&gt;</span>
+            <span class="tok-tag">&lt;p</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;product__price&quot;</span><span class="tok-tag">&gt;</span>{{ product.price }}<span class="tok-tag">&lt;/p</span><span class="tok-tag">&gt;</span>
+          <span class="tok-tag">&lt;/div</span><span class="tok-tag">&gt;</span>
+        <span class="tok-tag">&lt;/article</span><span class="tok-tag">&gt;</span>
+      <span class="tok-tag">&lt;/li</span><span class="tok-tag">&gt;</span>
+    {% empty %}
+      <span class="tok-tag">&lt;li</span><span class="tok-tag">&gt;</span><span class="tok-tag">&lt;p</span><span class="tok-tag">&gt;</span>No products found.<span class="tok-tag">&lt;/p</span><span class="tok-tag">&gt;</span><span class="tok-tag">&lt;/li</span><span class="tok-tag">&gt;</span>
+    {% endfor %}
+  <span class="tok-tag">&lt;/ul</span><span class="tok-tag">&gt;</span>
+{% endblock %}</code></pre>
+</div>
+<p>Django auto-escapes variables. Add <code>{% csrf_token %}</code> inside every <code>method=&quot;post&quot;</code> form.</p>
+<h3 id="flask-and-fastapi-jinja2">Flask and FastAPI (Jinja2)</h3>
+<p>The same templates work in Jinja2. Replace <code>{% static 'x' %}</code> with <code>{{ url_for('static', filename='x') }}</code> (Flask) or <code>{{ url_for('static', path='x') }}</code> (FastAPI with <code>app.mount(&quot;/static&quot;, StaticFiles(directory=&quot;static&quot;), name=&quot;static&quot;)</code>). Use Flask-WTF or your own token for CSRF.</p>
+<p>---</p>
+<h2 id="6-laravel-blade">6. Laravel (Blade)</h2>
+<div class="docs-code">
+  <div class="docs-code__header">
+    <span class="docs-code__label">BLADE</span>
+    <span class="docs-code__actions"><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-target="#code-578" data-copy-success="Code copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy code</span></button></span>
+  </div>
+  <pre tabindex="0" role="region" aria-label="BLADE"><code id="code-578">{{-- resources/views/layouts/app.blade.php --}}
+<span class="tok-tag">&lt;!DOCTYPE</span> <span class="tok-attr">html</span><span class="tok-tag">&gt;</span>
+<span class="tok-tag">&lt;html</span> <span class="tok-attr">lang</span><span class="tok-punct">=</span><span class="tok-string">&quot;{{ str_replace('_', '-', app()-&gt;getLocale()) }}&quot;</span><span class="tok-tag">&gt;</span>
+<span class="tok-tag">&lt;head</span><span class="tok-tag">&gt;</span>
+  <span class="tok-tag">&lt;meta</span> <span class="tok-attr">charset</span><span class="tok-punct">=</span><span class="tok-string">&quot;utf-8&quot;</span><span class="tok-tag">&gt;</span>
+  <span class="tok-tag">&lt;meta</span> <span class="tok-attr">name</span><span class="tok-punct">=</span><span class="tok-string">&quot;viewport&quot;</span> <span class="tok-attr">content</span><span class="tok-punct">=</span><span class="tok-string">&quot;width=device-width, initial-scale=1&quot;</span><span class="tok-tag">&gt;</span>
+  <span class="tok-tag">&lt;title</span><span class="tok-tag">&gt;</span>@yield('title', 'Acme')<span class="tok-tag">&lt;/title</span><span class="tok-tag">&gt;</span>
+  <span class="tok-tag">&lt;link</span> <span class="tok-attr">rel</span><span class="tok-punct">=</span><span class="tok-string">&quot;stylesheet&quot;</span> <span class="tok-attr">href</span><span class="tok-punct">=</span><span class="tok-string">&quot;{{ asset('assets/css/tokens.css') }}&quot;</span><span class="tok-tag">&gt;</span>
+  <span class="tok-tag">&lt;link</span> <span class="tok-attr">rel</span><span class="tok-punct">=</span><span class="tok-string">&quot;stylesheet&quot;</span> <span class="tok-attr">href</span><span class="tok-punct">=</span><span class="tok-string">&quot;{{ asset('assets/css/base.css') }}&quot;</span><span class="tok-tag">&gt;</span>
+  @stack('styles')
+  <span class="tok-tag">&lt;script</span> <span class="tok-attr">type</span><span class="tok-punct">=</span><span class="tok-string">&quot;module&quot;</span> <span class="tok-attr">src</span><span class="tok-punct">=</span><span class="tok-string">&quot;{{ asset('assets/js/main.js') }}&quot;</span><span class="tok-tag">&gt;</span><span class="tok-tag">&lt;/script</span><span class="tok-tag">&gt;</span>
+<span class="tok-tag">&lt;/head</span><span class="tok-tag">&gt;</span>
+<span class="tok-tag">&lt;body</span><span class="tok-tag">&gt;</span>
+  <span class="tok-tag">&lt;a</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;skip-link&quot;</span> <span class="tok-attr">href</span><span class="tok-punct">=</span><span class="tok-string">&quot;#main&quot;</span><span class="tok-tag">&gt;</span>Skip to main content<span class="tok-tag">&lt;/a</span><span class="tok-tag">&gt;</span>
+  @include('partials.site-header')
+  <span class="tok-tag">&lt;main</span> <span class="tok-attr">id</span><span class="tok-punct">=</span><span class="tok-string">&quot;main&quot;</span> <span class="tok-attr">tabindex</span><span class="tok-punct">=</span><span class="tok-string">&quot;-1&quot;</span><span class="tok-tag">&gt;</span>@yield('content')<span class="tok-tag">&lt;/main</span><span class="tok-tag">&gt;</span>
+  @include('partials.site-footer')
+<span class="tok-tag">&lt;/body</span><span class="tok-tag">&gt;</span>
+<span class="tok-tag">&lt;/html</span><span class="tok-tag">&gt;</span></code></pre>
+</div>
+<p>Copy <code>src/assets</code> to <code>public/assets</code>. Use <code>@csrf</code> in POST forms and <code>{{ }}</code> (escaped) for all dynamic values. Blade treats <code>@</code> as a directive prefix; escape literal ones as <code>@@</code>.</p>
+<h2 id="7-ruby-on-rails">7. Ruby on Rails</h2>
+<p>Copy <code>src/assets</code> to <code>public/ui/</code> (so it bypasses the asset pipeline and relative module imports keep working) and reference it from the layout:</p>
+<div class="docs-code">
+  <div class="docs-code__header">
+    <span class="docs-code__label">ERB</span>
+    <span class="docs-code__actions"><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-target="#code-579" data-copy-success="Code copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy code</span></button></span>
+  </div>
+  <pre tabindex="0" role="region" aria-label="ERB"><code id="code-579">&lt;%# app/views/layouts/application.html.erb %&gt;
+<span class="tok-tag">&lt;link</span> <span class="tok-attr">rel</span><span class="tok-punct">=</span><span class="tok-string">&quot;stylesheet&quot;</span> <span class="tok-attr">href</span><span class="tok-punct">=</span><span class="tok-string">&quot;/ui/css/tokens.css&quot;</span><span class="tok-tag">&gt;</span>
+<span class="tok-tag">&lt;link</span> <span class="tok-attr">rel</span><span class="tok-punct">=</span><span class="tok-string">&quot;stylesheet&quot;</span> <span class="tok-attr">href</span><span class="tok-punct">=</span><span class="tok-string">&quot;/ui/css/base.css&quot;</span><span class="tok-tag">&gt;</span>
+<span class="tok-tag">&lt;script</span> <span class="tok-attr">type</span><span class="tok-punct">=</span><span class="tok-string">&quot;module&quot;</span> <span class="tok-attr">src</span><span class="tok-punct">=</span><span class="tok-string">&quot;/ui/js/main.js&quot;</span><span class="tok-tag">&gt;</span><span class="tok-tag">&lt;/script</span><span class="tok-tag">&gt;</span>
+...
+<span class="tok-tag">&lt;main</span> <span class="tok-attr">id</span><span class="tok-punct">=</span><span class="tok-string">&quot;main&quot;</span> <span class="tok-attr">tabindex</span><span class="tok-punct">=</span><span class="tok-string">&quot;-1&quot;</span><span class="tok-tag">&gt;</span>&lt;%= yield %&gt;<span class="tok-tag">&lt;/main</span><span class="tok-tag">&gt;</span></code></pre>
+</div>
+<p>Turn snippets into partials (<code>app/views/components/_tabs.html.erb</code>, rendered with <code>&lt;%= render &quot;components/tabs&quot; %&gt;</code>). With Turbo, re-initialise after navigation:</p>
+<div class="docs-code">
+  <div class="docs-code__header">
+    <span class="docs-code__label">JS</span>
+    <span class="docs-code__actions"><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-target="#code-580" data-copy-success="Code copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy code</span></button></span>
+  </div>
+  <pre tabindex="0" role="region" aria-label="JS"><code id="code-580"><span class="tok-comment">// public/ui/js/turbo-init.js</span>
+<span class="tok-keyword">import</span> { initAll } <span class="tok-keyword">from</span> <span class="tok-string">'./main.js'</span>;
+document.<span class="tok-function">addEventListener</span>(<span class="tok-string">'turbo:load'</span>, () =&gt; <span class="tok-function">initAll</span>());</code></pre>
+</div>
+<p>Rails forms built with <code>form_with</code> include the authenticity token.</p>
+<p>---</p>
+<h2 id="security-headers">Security headers</h2>
+<p>Send the CSP and related headers from the server in production (a <code>&lt;meta&gt;</code> CSP cannot set <code>frame-ancestors</code>). The policy below matches the templates. If charts, grids or the chat call an API on another origin, add that origin to <code>connect-src</code> (for example <code>connect-src 'self' https://api.example.com</code>):</p>
+<div class="docs-code">
+  <div class="docs-code__header">
+    <span class="docs-code__label">TEXT</span>
+    <span class="docs-code__actions"><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-target="#code-581" data-copy-success="Code copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy code</span></button></span>
+  </div>
+  <pre tabindex="0" role="region" aria-label="TEXT"><code id="code-581">default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; form-action 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'</code></pre>
+</div>
+<p><strong>ASP.NET Core</strong> (<code>Program.cs</code>)</p>
+<div class="docs-code">
+  <div class="docs-code__header">
+    <span class="docs-code__label">CSHARP</span>
+    <span class="docs-code__actions"><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-target="#code-582" data-copy-success="Code copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy code</span></button></span>
+  </div>
+  <pre tabindex="0" role="region" aria-label="CSHARP"><code id="code-582">app.Use(async (context, next) =&gt;
+{
+    var headers = context.Response.Headers;
+    headers[&quot;Content-Security-Policy&quot;] = &quot;default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'&quot;;
+    headers[&quot;X-Content-Type-Options&quot;] = &quot;nosniff&quot;;
+    headers[&quot;Referrer-Policy&quot;] = &quot;strict-origin-when-cross-origin&quot;;
+    await next();
+});</code></pre>
+</div>
+<p><strong>Django</strong> (a small middleware, works on every version)</p>
+<div class="docs-code">
+  <div class="docs-code__header">
+    <span class="docs-code__label">PYTHON</span>
+    <span class="docs-code__actions"><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-target="#code-583" data-copy-success="Code copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy code</span></button></span>
+  </div>
+  <pre tabindex="0" role="region" aria-label="PYTHON"><code id="code-583"># myproject/middleware.py
+CSP = &quot;default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'&quot;
+
+class SecurityHeadersMiddleware:
+    def __init__(self, get_response):
+        self.get_response = get_response
+
+    def __call__(self, request):
+        response = self.get_response(request)
+        response.setdefault(&quot;Content-Security-Policy&quot;, CSP)
+        return response</code></pre>
+</div>
+<p><strong>Flask</strong></p>
+<div class="docs-code">
+  <div class="docs-code__header">
+    <span class="docs-code__label">PYTHON</span>
+    <span class="docs-code__actions"><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-target="#code-584" data-copy-success="Code copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy code</span></button></span>
+  </div>
+  <pre tabindex="0" role="region" aria-label="PYTHON"><code id="code-584">@app.after_request
+def security_headers(response):
+    response.headers.setdefault(&quot;Content-Security-Policy&quot;, CSP)
+    response.headers.setdefault(&quot;X-Content-Type-Options&quot;, &quot;nosniff&quot;)
+    return response</code></pre>
+</div>
+<p><strong>nginx</strong> (static hosting)</p>
+<div class="docs-code">
+  <div class="docs-code__header">
+    <span class="docs-code__label">NGINX</span>
+    <span class="docs-code__actions"><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-target="#code-585" data-copy-success="Code copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy code</span></button></span>
+  </div>
+  <pre tabindex="0" role="region" aria-label="NGINX"><code id="code-585">add_header Content-Security-Policy &quot;default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'&quot; always;
+add_header X-Content-Type-Options &quot;nosniff&quot; always;</code></pre>
+</div>
+<p>ES modules must be served with a JavaScript MIME type (<code>text/javascript</code>); most servers already do this.</p>
+      </div>
+    </main>
+    <aside class="docs-toc" aria-labelledby="toc-title">
+      <h2 class="docs-toc__title" id="toc-title">On this page</h2>
+      <ul class="docs-toc__list" role="list">
+        <li><a href="#1-the-universal-recipe">1. The universal recipe</a></li>
+        <li><a href="#2-aspnet-core">2. ASP.NET Core</a></li>
+        <li><a href="#3-react-and-nextjs">3. React and Next.js</a></li>
+        <li><a href="#4-vue-svelte-angular-and-astro">4. Vue, Svelte, Angular and Astro</a></li>
+        <li><a href="#5-django-and-jinja2">5. Django and Jinja2</a></li>
+        <li><a href="#6-laravel-blade">6. Laravel (Blade)</a></li>
+        <li><a href="#7-ruby-on-rails">7. Ruby on Rails</a></li>
+        <li><a href="#security-headers">Security headers</a></li>
+      </ul>
+    </aside>
+  </div>
+
+  <footer class="docs-footer">
+    <p>MIT licensed · Built with plain HTML, CSS and JavaScript · <a href="https://github.com/amuqtadir99/vanilla-responsive-ui">Source on GitHub</a> · Generated by <code>node .claude/skills/generate-doc.js</code></p>
+  </footer>
+</body>
+</html>

@@ -45,6 +45,31 @@
   --color-overlay: rgb(10 12 16 / 0.55);
   --color-selection: #c9d6fb;
 
+  /* Accent + decorative colour (gradients, glows, inverse bands) */
+  --color-accent: #6d28d9;
+  --color-accent-soft: #f1eafe;
+  --color-glow-1: rgb(42 79 207 / 0.16);
+  --color-glow-2: rgb(109 40 217 / 0.12);
+  --color-glow-3: rgb(13 125 114 / 0.1);
+  --color-sheen: rgb(255 255 255 / 0.16);
+  --color-inverse-bg: #0f1424;
+  --color-inverse-surface: #182037;
+  --color-inverse-text: #f3f5fa;
+  --color-inverse-muted: #b3bccd;
+  --color-inverse-border: #2b3552;
+  --color-inverse-accent: #a8bdff;
+
+  /* Syntax highlighting. Code blocks sit on --color-inverse-bg in both
+     themes, so these need no dark-mode override. */
+  --code-tag: #8fb4ff;
+  --code-attr: #e3b5ff;
+  --code-string: #9be9a8;
+  --code-comment: #9ba7bd;
+  --code-keyword: #ffa8cc;
+  --code-number: #ffc285;
+  --code-function: #7fd8ff;
+  --code-variable: #ffd27a;
+
   /* Categorical chart palette (marks need 3:1 against surfaces) */
   --chart-1: #2a4fcf;
   --chart-2: #0d7d72;
@@ -53,6 +78,11 @@
   --chart-5: #996000;
   --chart-6: #c8236f;
   --chart-grid: #e3e7ee;
+
+  /* Gradients compose the colour tokens above, so brand presets and custom
+     brand colours flow through automatically. */
+  --gradient-brand: linear-gradient(120deg, var(--color-primary) 15%, var(--color-accent) 85%);
+  --gradient-cta: linear-gradient(135deg, var(--color-primary), var(--color-primary-hover));
 
   /* ---- Typography ------------------------------------------------------ */
   --font-main: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
@@ -69,17 +99,21 @@
   --font-size-2xl: clamp(1.5rem, 1.25rem + 1.25vw, 2rem);
   --font-size-3xl: clamp(1.875rem, 1.45rem + 2.1vw, 2.75rem);
   --font-size-4xl: clamp(2.25rem, 1.6rem + 3.25vw, 3.75rem);
+  --font-size-5xl: clamp(2.5rem, 1.6rem + 4.5vw, 4.75rem); /* display */
 
   --font-weight-regular: 400;
   --font-weight-medium: 500;
   --font-weight-semibold: 600;
   --font-weight-bold: 700;
 
+  --line-height-display: 1.05;
   --line-height-tight: 1.2;
   --line-height-snug: 1.35;
   --line-height-normal: 1.6;
 
   --measure: 65ch;
+  --letter-spacing-tight: -0.02em;
+  --letter-spacing-display: -0.035em;
 
   /* ---- Spacing (4px base, rem so it scales with user font size) -------- */
   --spacing-3xs: 0.25rem;
@@ -96,7 +130,8 @@
   --spacing-section: clamp(3rem, 2rem + 5vw, 6rem);
 
   /* ---- Layout ---------------------------------------------------------- */
-  --container-max: 75rem;
+  --container-max: 80rem;
+  --container-wide: 90rem;
   --container-narrow: 42rem;
   --container-padding: clamp(1rem, 0.5rem + 2.5vw, 2rem);
   --header-height: 4rem;
@@ -107,6 +142,7 @@
   --radius-md: 0.5rem;
   --radius-lg: 0.75rem;
   --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
   --radius-pill: 999px;
 
   --border-width: 1px;
@@ -114,6 +150,7 @@
   --shadow-sm: 0 1px 2px rgb(16 24 40 / 0.06), 0 1px 3px rgb(16 24 40 / 0.1);
   --shadow-md: 0 4px 8px -2px rgb(16 24 40 / 0.1), 0 2px 4px -2px rgb(16 24 40 / 0.06);
   --shadow-lg: 0 12px 24px -4px rgb(16 24 40 / 0.12), 0 4px 8px -4px rgb(16 24 40 / 0.08);
+  --shadow-xl: 0 32px 64px -16px rgb(16 24 40 / 0.22), 0 12px 24px -8px rgb(16 24 40 / 0.1);
 
   /* ---- Focus ----------------------------------------------------------- */
   --focus-ring-width: 3px;
@@ -166,6 +203,19 @@
     --color-overlay: rgb(0 0 0 / 0.7);
     --color-selection: #2c3f7a;
 
+    --color-accent: #c4a5ff;
+    --color-accent-soft: #2a1d47;
+    --color-glow-1: rgb(134 163 255 / 0.14);
+    --color-glow-2: rgb(196 165 255 / 0.1);
+    --color-glow-3: rgb(45 212 191 / 0.07);
+    --color-sheen: rgb(255 255 255 / 0.2);
+    --color-inverse-bg: #161c2e;
+    --color-inverse-surface: #1f2740;
+    --color-inverse-text: #f3f5fa;
+    --color-inverse-muted: #b3bccd;
+    --color-inverse-border: #2f3a5a;
+    --color-inverse-accent: #a8bdff;
+
     --chart-1: #86a3ff;
     --chart-2: #2dd4bf;
     --chart-3: #fb923c;
@@ -177,6 +227,7 @@
     --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4);
     --shadow-md: 0 4px 10px -2px rgb(0 0 0 / 0.5);
     --shadow-lg: 0 12px 28px -4px rgb(0 0 0 / 0.6);
+    --shadow-xl: 0 32px 64px -16px rgb(0 0 0 / 0.7);
   }
 }
 
@@ -212,6 +263,20 @@
   --color-overlay: rgb(0 0 0 / 0.7);
   --color-selection: #2c3f7a;
 
+
+  --color-accent: #c4a5ff;
+  --color-accent-soft: #2a1d47;
+  --color-glow-1: rgb(134 163 255 / 0.14);
+  --color-glow-2: rgb(196 165 255 / 0.1);
+  --color-glow-3: rgb(45 212 191 / 0.07);
+  --color-sheen: rgb(255 255 255 / 0.2);
+  --color-inverse-bg: #161c2e;
+  --color-inverse-surface: #1f2740;
+  --color-inverse-text: #f3f5fa;
+  --color-inverse-muted: #b3bccd;
+  --color-inverse-border: #2f3a5a;
+  --color-inverse-accent: #a8bdff;
+
   --chart-1: #86a3ff;
   --chart-2: #2dd4bf;
   --chart-3: #fb923c;
@@ -223,6 +288,7 @@
   --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4);
   --shadow-md: 0 4px 10px -2px rgb(0 0 0 / 0.5);
   --shadow-lg: 0 12px 28px -4px rgb(0 0 0 / 0.6);
+  --shadow-xl: 0 32px 64px -16px rgb(0 0 0 / 0.7);
 }
 
 :root[data-theme="light"] {

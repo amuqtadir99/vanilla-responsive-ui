@@ -14,7 +14,9 @@
     "aiChat": "docs/AI-CHAT.md",
     "accessibility": "docs/ACCESSIBILITY.md",
     "security": "docs/SECURITY.md",
-    "integration": "docs/INTEGRATION_GUIDE.md"
+    "integration": "docs/INTEGRATION_GUIDE.md",
+    "site": "src/index.html (documentation website, generated; serve over HTTP)",
+    "builder": "src/builder/index.html"
   },
   "entry": {
     "css": [
@@ -402,6 +404,332 @@
       "docs": "docs/COMPONENTS.md#theme-toggle"
     }
   ],
+  "blocks": [
+    {
+      "id": "hero-centered",
+      "name": "Hero centered",
+      "category": "Hero",
+      "description": "Centered hero with soft colour glows, announcement pill, display headline, two calls to action, a short checklist and a large framed product mock below.",
+      "accessibility": "The page h1. The checklist is a real list; the product mock is a single role=\"img\" with a description.",
+      "markup": "src/blocks/hero-centered.html",
+      "css": [
+        "src/assets/css/tokens.css",
+        "src/assets/css/themes.css",
+        "src/assets/css/base.css",
+        "src/assets/css/blocks.css",
+        "src/assets/css/components/button.css"
+      ],
+      "js": [],
+      "docs": "src/docs/blocks/hero-centered.html"
+    },
+    {
+      "id": "hero-split",
+      "name": "Hero split",
+      "category": "Hero",
+      "description": "Two-column hero: announcement pill, display headline with a gradient phrase, lead, two calls to action and a trust row, beside a product mock with floating stat cards. Stacks on small screens.",
+      "accessibility": "The page h1. The product mock is one role=\"img\" with a text description; floating cards are decorative duplicates of that description and hidden from small screens. Avatars are decorative initials next to a text rating.",
+      "markup": "src/blocks/hero-split.html",
+      "css": [
+        "src/assets/css/tokens.css",
+        "src/assets/css/themes.css",
+        "src/assets/css/base.css",
+        "src/assets/css/blocks.css",
+        "src/assets/css/components/button.css",
+        "src/assets/css/components/feedback.css"
+      ],
+      "js": [],
+      "docs": "src/docs/blocks/hero-split.html"
+    },
+    {
+      "id": "logo-cloud",
+      "name": "Logo cloud",
+      "category": "Social proof",
+      "description": "A row of customer logos with a short heading. Logos are icon-and-wordmark pairs that wrap on small screens.",
+      "accessibility": "Each logo is a list item with the company name as text, so screen readers announce the names; icons are decorative.",
+      "markup": "src/blocks/logo-cloud.html",
+      "css": [
+        "src/assets/css/tokens.css",
+        "src/assets/css/themes.css",
+        "src/assets/css/base.css",
+        "src/assets/css/blocks.css"
+      ],
+      "js": [],
+      "docs": "src/docs/blocks/logo-cloud.html"
+    },
+    {
+      "id": "stats-band",
+      "name": "Stats band",
+      "category": "Social proof",
+      "description": "Dark band with a short statement and four large figures. Uses the inverse theme, which stays readable in light and dark mode.",
+      "accessibility": "Figures are a description list (dd value, dt label) so each number is announced with its meaning.",
+      "markup": "src/blocks/stats-band.html",
+      "css": [
+        "src/assets/css/tokens.css",
+        "src/assets/css/themes.css",
+        "src/assets/css/base.css",
+        "src/assets/css/blocks.css"
+      ],
+      "js": [],
+      "docs": "src/docs/blocks/stats-band.html"
+    },
+    {
+      "id": "testimonials",
+      "name": "Testimonials",
+      "category": "Social proof",
+      "description": "Masonry wall of customer quotes with one featured quote on the brand gradient. One column on phones, up to three on desktop.",
+      "accessibility": "Each quote is a figure with blockquote and figcaption, so the author is associated with the quote. Avatars are decorative initials.",
+      "markup": "src/blocks/testimonials.html",
+      "css": [
+        "src/assets/css/tokens.css",
+        "src/assets/css/themes.css",
+        "src/assets/css/base.css",
+        "src/assets/css/blocks.css",
+        "src/assets/css/components/feedback.css"
+      ],
+      "js": [],
+      "docs": "src/docs/blocks/testimonials.html"
+    },
+    {
+      "id": "feature-bento",
+      "name": "Feature bento",
+      "category": "Features",
+      "description": "Bento grid of features in mixed sizes (wide, tall and standard cells) with small visuals: a token swatch row, an accessibility score meter, a code peek and framework chips. Collapses to one or two columns.",
+      "accessibility": "Each cell is a list item with an h3. Visuals are decorative (aria-hidden) except the meter values, which are also given as text.",
+      "markup": "src/blocks/feature-bento.html",
+      "css": [
+        "src/assets/css/tokens.css",
+        "src/assets/css/themes.css",
+        "src/assets/css/base.css",
+        "src/assets/css/blocks.css"
+      ],
+      "js": [],
+      "docs": "src/docs/blocks/feature-bento.html"
+    },
+    {
+      "id": "feature-grid",
+      "name": "Feature grid",
+      "category": "Features",
+      "description": "Three-column grid of features, each with an icon, title and one sentence. Columns adapt to the available width.",
+      "accessibility": "A list of features; each title is an h3 and icons are decorative.",
+      "markup": "src/blocks/feature-grid.html",
+      "css": [
+        "src/assets/css/tokens.css",
+        "src/assets/css/themes.css",
+        "src/assets/css/base.css",
+        "src/assets/css/blocks.css"
+      ],
+      "js": [],
+      "docs": "src/docs/blocks/feature-grid.html"
+    },
+    {
+      "id": "feature-rows",
+      "name": "Feature rows",
+      "category": "Features",
+      "description": "Alternating rows of copy and media: a heading, paragraph, checklist and link beside a framed product visual. Rows swap sides on wide screens and stack on small ones.",
+      "accessibility": "Source order is always copy then media, so reading order is the same on every screen size; only the visual order changes on wide screens.",
+      "markup": "src/blocks/feature-rows.html",
+      "css": [
+        "src/assets/css/tokens.css",
+        "src/assets/css/themes.css",
+        "src/assets/css/base.css",
+        "src/assets/css/blocks.css",
+        "src/assets/css/components/button.css"
+      ],
+      "js": [],
+      "docs": "src/docs/blocks/feature-rows.html"
+    },
+    {
+      "id": "steps",
+      "name": "Steps",
+      "category": "Features",
+      "description": "Numbered three-step process with dashed connectors, for onboarding, \"how it works\" or checkout explanations.",
+      "accessibility": "An ordered list, so the step numbers are announced; the visual numbers come from a CSS counter.",
+      "markup": "src/blocks/steps.html",
+      "css": [
+        "src/assets/css/tokens.css",
+        "src/assets/css/themes.css",
+        "src/assets/css/base.css",
+        "src/assets/css/blocks.css"
+      ],
+      "js": [],
+      "docs": "src/docs/blocks/steps.html"
+    },
+    {
+      "id": "category-tiles",
+      "name": "Category tiles",
+      "category": "Commerce",
+      "description": "Grid of shop categories with icons and product counts; each tile is one stretched link.",
+      "accessibility": "Each tile is a list item with one link (the category name) stretched over the tile, so it is one tab stop with a clear name; counts are plain text.",
+      "markup": "src/blocks/category-tiles.html",
+      "css": [
+        "src/assets/css/tokens.css",
+        "src/assets/css/themes.css",
+        "src/assets/css/base.css",
+        "src/assets/css/blocks.css"
+      ],
+      "js": [],
+      "docs": "src/docs/blocks/category-tiles.html"
+    },
+    {
+      "id": "perks",
+      "name": "Perks",
+      "category": "Commerce",
+      "description": "Strip of service promises (shipping, returns, warranty, support) with icons, for store fronts and checkout pages.",
+      "accessibility": "A list; icons are decorative and each perk has a bold title and description.",
+      "markup": "src/blocks/perks.html",
+      "css": [
+        "src/assets/css/tokens.css",
+        "src/assets/css/themes.css",
+        "src/assets/css/base.css",
+        "src/assets/css/blocks.css"
+      ],
+      "js": [],
+      "docs": "src/docs/blocks/perks.html"
+    },
+    {
+      "id": "pricing",
+      "name": "Pricing",
+      "category": "Commerce",
+      "description": "Three pricing plans with a monthly/yearly toggle (CSS only, via :has()), a highlighted plan and feature checklists. Browsers without :has() show monthly prices and no toggle.",
+      "accessibility": "The billing toggle is a fieldset of native radio buttons with a legend; prices are text. Each plan is a list item with an h3, and the featured plan is marked with a visible text badge, not colour alone.",
+      "markup": "src/blocks/pricing.html",
+      "css": [
+        "src/assets/css/tokens.css",
+        "src/assets/css/themes.css",
+        "src/assets/css/base.css",
+        "src/assets/css/blocks.css",
+        "src/assets/css/components/button.css",
+        "src/assets/css/components/form.css",
+        "src/assets/css/components/feedback.css"
+      ],
+      "js": [],
+      "docs": "src/docs/blocks/pricing.html"
+    },
+    {
+      "id": "promo-banner",
+      "name": "Promo banner",
+      "category": "Commerce",
+      "description": "Store hero: a dark promotional banner with eyebrow, headline, text, two buttons and a product image. Stays dark in both themes.",
+      "accessibility": "Use as the page h1 on a store front, or change it to h2 lower on the page. The product image has meaningful alt text.",
+      "markup": "src/blocks/promo-banner.html",
+      "css": [
+        "src/assets/css/tokens.css",
+        "src/assets/css/themes.css",
+        "src/assets/css/base.css",
+        "src/assets/css/blocks.css",
+        "src/assets/css/components/button.css"
+      ],
+      "js": [],
+      "docs": "src/docs/blocks/promo-banner.html"
+    },
+    {
+      "id": "blog-posts",
+      "name": "Blog posts",
+      "category": "Content",
+      "description": "Latest articles: one featured post with a large image beside a list of compact posts. Each post is a single stretched link.",
+      "accessibility": "One link per post (the title) stretched over the card, so each post is a single tab stop announced by its title; images are decorative (alt=\"\").",
+      "markup": "src/blocks/blog-posts.html",
+      "css": [
+        "src/assets/css/tokens.css",
+        "src/assets/css/themes.css",
+        "src/assets/css/base.css",
+        "src/assets/css/blocks.css"
+      ],
+      "js": [],
+      "docs": "src/docs/blocks/blog-posts.html"
+    },
+    {
+      "id": "faq",
+      "name": "FAQ",
+      "category": "Content",
+      "description": "Two-column FAQ: a sticky introduction with a help card on the left and an exclusive accordion on the right. Works without JavaScript.",
+      "accessibility": "Native details/summary elements: keyboard and screen reader support come from the browser. The name attribute makes them exclusive where supported.",
+      "markup": "src/blocks/faq.html",
+      "css": [
+        "src/assets/css/tokens.css",
+        "src/assets/css/themes.css",
+        "src/assets/css/base.css",
+        "src/assets/css/blocks.css",
+        "src/assets/css/components/accordion.css",
+        "src/assets/css/components/button.css"
+      ],
+      "js": [],
+      "docs": "src/docs/blocks/faq.html"
+    },
+    {
+      "id": "team",
+      "name": "Team",
+      "category": "Content",
+      "description": "Team grid with initials portraits on soft gradients, names and roles.",
+      "accessibility": "Portraits are decorative initials (aria-hidden); names are h3 headings followed by roles.",
+      "markup": "src/blocks/team.html",
+      "css": [
+        "src/assets/css/tokens.css",
+        "src/assets/css/themes.css",
+        "src/assets/css/base.css",
+        "src/assets/css/blocks.css"
+      ],
+      "js": [],
+      "docs": "src/docs/blocks/team.html"
+    },
+    {
+      "id": "contact",
+      "name": "Contact",
+      "category": "Forms",
+      "description": "Contact section: contact details on one side and a validated enquiry form in a raised card on the other.",
+      "accessibility": "Labelled fields with autocomplete tokens, required markers explained in text, inline errors linked with aria-describedby and focus moved to the first error.",
+      "markup": "src/blocks/contact.html",
+      "css": [
+        "src/assets/css/tokens.css",
+        "src/assets/css/themes.css",
+        "src/assets/css/base.css",
+        "src/assets/css/blocks.css",
+        "src/assets/css/components/form.css",
+        "src/assets/css/components/button.css"
+      ],
+      "js": [
+        "src/assets/js/components/form-validation.js"
+      ],
+      "docs": "src/docs/blocks/contact.html"
+    },
+    {
+      "id": "cta-banner",
+      "name": "CTA banner",
+      "category": "Call to action",
+      "description": "Rounded call-to-action card on the brand gradient with a headline, supporting text and two buttons. Text colour follows the brand preset, so contrast holds for every theme.",
+      "accessibility": "Buttons on the gradient use on-brand variants with AA contrast and a matching focus ring colour.",
+      "markup": "src/blocks/cta-banner.html",
+      "css": [
+        "src/assets/css/tokens.css",
+        "src/assets/css/themes.css",
+        "src/assets/css/base.css",
+        "src/assets/css/blocks.css",
+        "src/assets/css/components/button.css"
+      ],
+      "js": [],
+      "docs": "src/docs/blocks/cta-banner.html"
+    },
+    {
+      "id": "newsletter",
+      "name": "Newsletter",
+      "category": "Call to action",
+      "description": "Newsletter sign-up card: heading and promise on one side, a labelled email field and button on the other.",
+      "accessibility": "Visible label, autocomplete=\"email\", inline validation errors linked with aria-describedby. Remove data-demo-submit in production.",
+      "markup": "src/blocks/newsletter.html",
+      "css": [
+        "src/assets/css/tokens.css",
+        "src/assets/css/themes.css",
+        "src/assets/css/base.css",
+        "src/assets/css/blocks.css",
+        "src/assets/css/components/form.css",
+        "src/assets/css/components/button.css"
+      ],
+      "js": [
+        "src/assets/js/components/form-validation.js"
+      ],
+      "docs": "src/docs/blocks/newsletter.html"
+    }
+  ],
   "layouts": [
     {
       "id": "app-shell",
@@ -731,9 +1059,7 @@
           ]
         }
       ],
-      "assets": [
-        "src/templates/landing-page/landing.css"
-      ]
+      "assets": []
     },
     {
       "family": "website",
@@ -803,9 +1129,7 @@
           "file": "src/templates/website/index.html",
           "title": "Strategy, design and engineering — Acme Studio",
           "description": "Multi-page website template: home page with hero, services, results, case study, testimonials, latest articles and a call to action.",
-          "layouts": [
-            "split"
-          ],
+          "layouts": [],
           "partials": [
             "template-switcher",
             "site-header",
@@ -1007,7 +1331,7 @@
     },
     {
       "name": "generate-doc",
-      "description": "Regenerate component documentation from the snippets in src/components - docs/COMPONENTS.md, the live gallery src/components/index.html and the machine-readable catalog.json used by AI agents. Use after adding or editing any component snippet, layout or template page, or when tests report generated docs are stale.",
+      "description": "Regenerate everything built from source - the documentation website (src/index.html and src/docs/ with live previews, highlighted code, template anatomy, guides and tokens), docs/COMPONENTS.md, the component gallery, catalog.json for AI agents and the page builder canvas. Use after adding or editing any component, block, layout, template page, design token, icon or docs/*.md guide, or when tests report generated docs are stale.",
       "file": ".claude/skills/generate-doc/SKILL.md"
     },
     {

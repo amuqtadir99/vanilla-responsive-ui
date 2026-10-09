@@ -1,0 +1,39 @@
+<!--
+@block: Team
+@category: Content
+@description: Team grid with initials portraits on soft gradients, names and roles.
+@css: blocks.css
+@js: none
+@a11y: Portraits are decorative initials (aria-hidden); names are h3 headings followed by roles.
+-->
+<section data-block="team" class="section" aria-labelledby="team-title">
+  <div class="container">
+    <div class="block-header">
+      <p class="eyebrow">Our team</p>
+      <h2 class="block-header__title" id="team-title">The people behind the work</h2>
+      <p class="block-header__lead">A small, senior team of designers, engineers and accessibility specialists.</p>
+    </div>
+    <ul class="team" role="list">
+      <li class="team__member">
+        <span class="team__portrait" aria-hidden="true">PR</span>
+        <h3 class="team__name">Priya Raman</h3>
+        <p class="team__role">Founder & CEO</p>
+      </li>
+      <li class="team__member">
+        <span class="team__portrait" aria-hidden="true">MO</span>
+        <h3 class="team__name">Mateo Ortiz</h3>
+        <p class="team__role">Head of Engineering</p>
+      </li>
+      <li class="team__member">
+        <span class="team__portrait" aria-hidden="true">AK</span>
+        <h3 class="team__name">Amara Kone</h3>
+        <p class="team__role">Design Lead</p>
+      </li>
+      <li class="team__member">
+        <span class="team__portrait" aria-hidden="true">LF</span>
+        <h3 class="team__name">Lena Fischer</h3>
+        <p class="team__role">Accessibility Specialist</p>
+      </li>
+    </ul>
+  </div>
+</section>

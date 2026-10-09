@@ -1,0 +1,53 @@
+<!--
+@block: Testimonials
+@category: Social proof
+@description: Masonry wall of customer quotes with one featured quote on the brand gradient. One column on phones, up to three on desktop.
+@css: blocks.css, components/feedback.css
+@js: none
+@a11y: Each quote is a figure with blockquote and figcaption, so the author is associated with the quote. Avatars are decorative initials.
+-->
+<section data-block="testimonials" class="section section--tint" aria-labelledby="quotes-title">
+  <div class="container">
+    <div class="block-header block-header--center">
+      <p class="eyebrow">Customers</p>
+      <h2 class="block-header__title" id="quotes-title">Loved by teams who care about quality</h2>
+    </div>
+    <div class="quote-wall">
+      <figure class="quote-card quote-card--featured">
+        <blockquote><p>“We replaced a 400 KB UI kit with these templates and our Lighthouse scores went green overnight.”</p></blockquote>
+        <figcaption class="quote-card__author">
+          <span class="avatar avatar--soft" aria-hidden="true">PR</span>
+          <span><span class="quote-card__name">Priya Raman</span> <span class="text-muted">Frontend Lead, Northwind</span></span>
+        </figcaption>
+      </figure>
+      <figure class="quote-card">
+        <blockquote><p>“Porting the dashboard into our Razor Pages app took an afternoon.”</p></blockquote>
+        <figcaption class="quote-card__author">
+          <span class="avatar avatar--soft" aria-hidden="true">MO</span>
+          <span><span class="quote-card__name">Mateo Ortiz</span> <span class="text-muted">.NET Architect, Contoso</span></span>
+        </figcaption>
+      </figure>
+      <figure class="quote-card">
+        <blockquote><p>“Our accessibility audit came back clean for the first time. Screen reader users noticed the difference.”</p></blockquote>
+        <figcaption class="quote-card__author">
+          <span class="avatar avatar--soft" aria-hidden="true">AK</span>
+          <span><span class="quote-card__name">Amara Kone</span> <span class="text-muted">Product Designer, Fabrikam</span></span>
+        </figcaption>
+      </figure>
+      <figure class="quote-card">
+        <blockquote><p>“The page builder is how our marketing team ships landing pages now. Developers just review the HTML.”</p></blockquote>
+        <figcaption class="quote-card__author">
+          <span class="avatar avatar--soft" aria-hidden="true">LF</span>
+          <span><span class="quote-card__name">Lena Fischer</span> <span class="text-muted">Growth Engineer, Voltage</span></span>
+        </figcaption>
+      </figure>
+      <figure class="quote-card">
+        <blockquote><p>“Finally, AI chat components that respect the CSP and stream properly.”</p></blockquote>
+        <figcaption class="quote-card__author">
+          <span class="avatar avatar--soft" aria-hidden="true">SO</span>
+          <span><span class="quote-card__name">Sam Okafor</span> <span class="text-muted">CTO, Lumen</span></span>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</section>

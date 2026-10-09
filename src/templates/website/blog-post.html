@@ -36,7 +36,7 @@
   <!-- Demo navigation between templates. Remove this partial in production. -->
   <nav class="demo-bar" aria-label="Template gallery">
     <div class="container demo-bar__inner">
-      <a class="demo-bar__home" href="../../index.html">vanilla-responsive-ui</a>
+      <a class="demo-bar__home" href="../../index.html">vanilla-responsive-ui <span class="visually-hidden">documentation</span></a>
       <ul class="demo-bar__list">
         <li><a href="../../templates/landing-page/index.html" data-section>Landing</a></li>
         <li><a href="../../templates/website/index.html" data-section aria-current="true">Website</a></li>
@@ -44,8 +44,8 @@
         <li><a href="../../templates/e-commerce/index.html" data-section>Shop</a></li>
         <li><a href="../../templates/ai/index.html" data-section>AI assistant</a></li>
         <li><a href="../../templates/auth/index.html" data-section>Auth</a></li>
-        <li><a href="../../components/index.html" data-section>Components</a></li>
-        <li><a href="../../layouts/index.html" data-section>Layouts</a></li>
+        <li><a href="../../docs/templates/index.html">Docs</a></li>
+        <li><a href="../../builder/index.html" data-section>Builder</a></li>
       </ul>
       <div class="demo-bar__actions">
         <button type="button" class="btn btn--ghost btn--sm" commandfor="theme-panel" command="show-modal" data-theme-panel-trigger hidden>
@@ -54,6 +54,7 @@
       </div>
     </div>
   </nav>
+  <p class="needs-server"><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4M12 17h.01"/></svg> <span>This page was opened from disk, so the browser blocks its JavaScript (menus, charts, chat, theme). Run <code>python3 -m http.server 8080</code> in the repository folder and open <a href="http://localhost:8080/src/">localhost:8080/src/</a>.</span></p>
   <!-- @end template-switcher -->
   <!-- @partial site-header -->
   <header class="site-header">

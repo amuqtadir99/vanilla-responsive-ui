@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; form-action 'self'; base-uri 'self'; object-src 'none'">
+  <title>Page builder canvas — vanilla-responsive-ui</title>
+  <meta name="description" content="Preview canvas for the page builder. Holds every block as a template; the builder composes the page here.">
+  <meta name="color-scheme" content="light dark">
+  <meta name="vr-data-base" content="../data/">
+  <meta name="generator" content="node .claude/skills/generate-doc.js (do not edit by hand)">
+  <link rel="icon" href="../assets/icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../assets/css/tokens.css">
+  <link rel="stylesheet" href="../assets/css/themes.css">
+  <link rel="stylesheet" href="../assets/css/base.css">
+  <link rel="stylesheet" href="../assets/css/layouts.css">
+  <link rel="stylesheet" href="../assets/css/components/accordion.css">
+  <link rel="stylesheet" href="../assets/css/components/button.css">
+  <link rel="stylesheet" href="../assets/css/components/card.css">
+  <link rel="stylesheet" href="../assets/css/components/chart.css">
+  <link rel="stylesheet" href="../assets/css/components/chat.css">
+  <link rel="stylesheet" href="../assets/css/components/code.css">
+  <link rel="stylesheet" href="../assets/css/components/dialog.css">
+  <link rel="stylesheet" href="../assets/css/components/feedback.css">
+  <link rel="stylesheet" href="../assets/css/components/footer.css">
+  <link rel="stylesheet" href="../assets/css/components/form.css">
+  <link rel="stylesheet" href="../assets/css/components/header.css">
+  <link rel="stylesheet" href="../assets/css/components/navigation.css">
+  <link rel="stylesheet" href="../assets/css/components/table.css">
+  <link rel="stylesheet" href="../assets/css/components/tabs.css">
+  <link rel="stylesheet" href="../assets/css/blocks.css">
+  <link rel="stylesheet" href="canvas.css">
+  <script type="module" src="../assets/js/main.js"></script>
+  <script type="module" src="canvas.js"></script>
+</head>
+<body class="canvas-body">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div data-canvas-header></div>
+  <main id="main" tabindex="-1" class="canvas-main" data-canvas>
+    <h1 class="visually-hidden" data-canvas-placeholder-title>Page preview</h1>
+    <div class="canvas-empty" data-canvas-empty>
+      <p class="canvas-empty__title">Your page is empty</p>
+      <p>Add blocks from the library, or start from a preset.</p>
+    </div>
+  </main>
+  <div data-canvas-footer></div>
+  <template data-block-template="hero-centered" data-name="Hero centered" data-category="Hero" data-description="Centered hero with soft colour glows, announcement pill, display headline, two calls to action, a short checklist and a large framed product mock below." data-css="blocks.css,components/button.css">
+    <section data-block="hero-centered" class="hero hero--centered" aria-labelledby="hero-centered-title">
+      <div class="container">
+        <div class="hero__content">
+          <a class="announce" href="/changelog"><span class="announce__tag">v2.0</span> Page builder and live docs <svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <h1 class="hero__title" id="hero-centered-title">The <span class="text-gradient">dependency-free</span> UI kit for every stack</h1>
+          <p class="hero__lead">Copy a component, compose a page in the builder, or start from a template. It all runs on plain HTML, CSS and JavaScript.</p>
+          <div class="hero__actions">
+            <a class="btn btn--lg" href="/signup">Get started free</a>
+            <a class="btn btn--lg btn--secondary" href="/docs"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m16 18 6-6-6-6M8 6l-6 6 6 6"/></svg> Read the docs</a>
+          </div>
+          <ul class="checklist checklist--inline" role="list">
+            <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> No build step</li>
+            <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Works with React, .NET and Django</li>
+            <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> MIT licensed</li>
+          </ul>
+        </div>
+        <div class="hero__media">
+          <div class="hero__plate">
+            <div class="mock" role="img" aria-label="Acme dashboard showing revenue, orders and a rising monthly chart">
+              <div class="mock__bar"><span></span><span></span><span></span><span class="mock__url"></span></div>
+              <div class="mock__body">
+                <div class="mock__nav"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+                <div class="mock__main">
+                  <div class="mock__kpis">
+                    <div class="mock__kpi"><span></span><strong>$48.2k</strong><em>+12%</em></div>
+                    <div class="mock__kpi"><span></span><strong>1,284</strong><em>+8%</em></div>
+                    <div class="mock__kpi"><span></span><strong>4.1%</strong><em>+0.6</em></div>
+                  </div>
+                  <div class="mock__chart"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+                  <div class="mock__rows"><span></span><span></span><span></span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </template>
+  <template data-block-template="hero-split" data-name="Hero split" data-category="Hero" data-description="Two-column hero: announcement pill, display headline with a gradient phrase, lead, two calls to action and a trust row, beside a product mock with floating stat cards. Stacks on small screens." data-css="blocks.css,components/button.css,components/feedback.css">
+    <section data-block="hero-split" class="hero hero--split" aria-labelledby="hero-split-title">
+      <div class="container hero__inner">
+        <div class="hero__content">
+          <a class="announce" href="/changelog"><span class="announce__tag">New</span> AI assistants for every template <svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <h1 class="hero__title" id="hero-split-title">Build accessible products <span class="text-gradient">in days, not months</span></h1>
+          <p class="hero__lead">Production-ready pages, components and dashboards in plain HTML, CSS and JavaScript. No build step, no lock-in, WCAG 2.2 AA from the first commit.</p>
+          <div class="hero__actions">
+            <a class="btn btn--lg" href="/signup">Start free trial <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+            <a class="btn btn--lg btn--secondary" href="/demo"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 3 14 9-14 9z"/></svg> Watch demo</a>
+          </div>
+          <div class="hero__meta">
+            <ul class="avatar-stack" role="list">
+              <li><span class="avatar avatar--soft" aria-hidden="true">PR</span></li>
+              <li><span class="avatar avatar--soft" aria-hidden="true">MO</span></li>
+              <li><span class="avatar avatar--soft" aria-hidden="true">AK</span></li>
+            </ul>
+            <span class="stars"><svg class="icon icon--sm icon--filled" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="icon icon--sm icon--filled" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="icon icon--sm icon--filled" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="icon icon--sm icon--filled" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="icon icon--sm icon--filled" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg></span>
+            <span>Rated 4.9/5 by 2,000+ teams</span>
+          </div>
+        </div>
+        <div class="hero__media">
+          <div class="hero__stage">
+            <div class="mock" role="img" aria-label="Acme dashboard showing revenue, orders and a rising monthly chart">
+              <div class="mock__bar"><span></span><span></span><span></span><span class="mock__url"></span></div>
+              <div class="mock__body">
+                <div class="mock__nav"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+                <div class="mock__main">
+                  <div class="mock__kpis">
+                    <div class="mock__kpi"><span></span><strong>$48.2k</strong><em>+12%</em></div>
+                    <div class="mock__kpi"><span></span><strong>1,284</strong><em>+8%</em></div>
+                    <div class="mock__kpi"><span></span><strong>4.1%</strong><em>+0.6</em></div>
+                  </div>
+                  <div class="mock__chart"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+                  <div class="mock__rows"><span></span><span></span><span></span></div>
+                </div>
+              </div>
+            </div>
+            <p class="float-card float-card--top" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m23 6-9.5 9.5-5-5L1 18"/><path d="M17 6h6v6"/></svg> <strong>+24%</strong> conversion</p>
+            <p class="float-card" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg> WCAG 2.2 AA passed</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </template>
+  <template data-block-template="logo-cloud" data-name="Logo cloud" data-category="Social proof" data-description="A row of customer logos with a short heading. Logos are icon-and-wordmark pairs that wrap on small screens." data-css="blocks.css">
+    <section data-block="logo-cloud" class="section section--tight" aria-labelledby="logos-title">
+      <div class="container logo-cloud">
+        <h2 class="logo-cloud__title" id="logos-title">Trusted by product teams at</h2>
+        <ul class="logo-cloud__list" role="list">
+          <li class="logo-cloud__item"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 2 7l10 5 10-5z"/><path d="m2 17 10 5 10-5M2 12l10 5 10-5"/></svg> Northwind</li>
+          <li class="logo-cloud__item"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2 3 14h9l-1 8 10-12h-9z"/></svg> Voltage</li>
+          <li class="logo-cloud__item"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg> Contoso</li>
+          <li class="logo-cloud__item"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg> Fabrikam</li>
+          <li class="logo-cloud__item"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Bastion</li>
+          <li class="logo-cloud__item"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8zM5 2l.6 1.4L7 4l-1.4.6L5 6l-.6-1.4L3 4l1.4-.6z"/></svg> Lumen</li>
+        </ul>
+      </div>
+    </section>
+  </template>
+  <template data-block-template="stats-band" data-name="Stats band" data-category="Social proof" data-description="Dark band with a short statement and four large figures. Uses the inverse theme, which stays readable in light and dark mode." data-css="blocks.css">
+    <section data-block="stats-band" class="section section--inverse" aria-labelledby="stats-title">
+      <div class="container">
+        <div class="block-header">
+          <p class="eyebrow">By the numbers</p>
+          <h2 class="block-header__title" id="stats-title">Trusted in production by teams of every size</h2>
+        </div>
+        <dl class="stats">
+          <div class="stats__item"><dt class="stats__label">Products launched</dt><dd class="stats__value">1,200+</dd></div>
+          <div class="stats__item"><dt class="stats__label">Average Lighthouse score</dt><dd class="stats__value">98</dd></div>
+          <div class="stats__item"><dt class="stats__label">Smaller than a typical UI kit</dt><dd class="stats__value">10×</dd></div>
+          <div class="stats__item"><dt class="stats__label">Runtime dependencies</dt><dd class="stats__value">0</dd></div>
+        </dl>
+      </div>
+    </section>
+  </template>
+  <template data-block-template="testimonials" data-name="Testimonials" data-category="Social proof" data-description="Masonry wall of customer quotes with one featured quote on the brand gradient. One column on phones, up to three on desktop." data-css="blocks.css,components/feedback.css">
+    <section data-block="testimonials" class="section section--tint" aria-labelledby="quotes-title">
+      <div class="container">
+        <div class="block-header block-header--center">
+          <p class="eyebrow">Customers</p>
+          <h2 class="block-header__title" id="quotes-title">Loved by teams who care about quality</h2>
+        </div>
+        <div class="quote-wall">
+          <figure class="quote-card quote-card--featured">
+            <blockquote><p>“We replaced a 400 KB UI kit with these templates and our Lighthouse scores went green overnight.”</p></blockquote>
+            <figcaption class="quote-card__author">
+              <span class="avatar avatar--soft" aria-hidden="true">PR</span>
+              <span><span class="quote-card__name">Priya Raman</span> <span class="text-muted">Frontend Lead, Northwind</span></span>
+            </figcaption>
+          </figure>
+          <figure class="quote-card">
+            <blockquote><p>“Porting the dashboard into our Razor Pages app took an afternoon.”</p></blockquote>
+            <figcaption class="quote-card__author">
+              <span class="avatar avatar--soft" aria-hidden="true">MO</span>
+              <span><span class="quote-card__name">Mateo Ortiz</span> <span class="text-muted">.NET Architect, Contoso</span></span>
+            </figcaption>
+          </figure>
+          <figure class="quote-card">
+            <blockquote><p>“Our accessibility audit came back clean for the first time. Screen reader users noticed the difference.”</p></blockquote>
+            <figcaption class="quote-card__author">
+              <span class="avatar avatar--soft" aria-hidden="true">AK</span>
+              <span><span class="quote-card__name">Amara Kone</span> <span class="text-muted">Product Designer, Fabrikam</span></span>
+            </figcaption>
+          </figure>
+          <figure class="quote-card">
+            <blockquote><p>“The page builder is how our marketing team ships landing pages now. Developers just review the HTML.”</p></blockquote>
+            <figcaption class="quote-card__author">
+              <span class="avatar avatar--soft" aria-hidden="true">LF</span>
+              <span><span class="quote-card__name">Lena Fischer</span> <span class="text-muted">Growth Engineer, Voltage</span></span>
+            </figcaption>
+          </figure>
+          <figure class="quote-card">
+            <blockquote><p>“Finally, AI chat components that respect the CSP and stream properly.”</p></blockquote>
+            <figcaption class="quote-card__author">
+              <span class="avatar avatar--soft" aria-hidden="true">SO</span>
+              <span><span class="quote-card__name">Sam Okafor</span> <span class="text-muted">CTO, Lumen</span></span>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+  </template>
+  <template data-block-template="feature-bento" data-name="Feature bento" data-category="Features" data-description="Bento grid of features in mixed sizes (wide, tall and standard cells) with small visuals: a token swatch row, an accessibility score meter, a code peek and framework chips. Collapses to one or two columns." data-css="blocks.css">
+    <section data-block="feature-bento" class="section" aria-labelledby="bento-title">
+      <div class="container">
+        <div class="block-header block-header--center">
+          <p class="eyebrow">Features</p>
+          <h2 class="block-header__title" id="bento-title">Everything you need to ship, <span class="text-gradient">nothing you don’t</span></h2>
+          <p class="block-header__lead">Every block follows W3C standards and MDN best practices, so it drops into any stack.</p>
+        </div>
+        <ul class="bento" role="list">
+          <li class="bento__item bento__item--wide bento__item--feature">
+            <span class="block-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 2 7l10 5 10-5z"/><path d="m2 17 10 5 10-5M2 12l10 5 10-5"/></svg></span>
+            <h3 class="bento__title">Design tokens drive everything</h3>
+            <p class="bento__text">Change one brand colour and every button, chart and focus ring follows, with contrast checked in light and dark mode.</p>
+            <div class="bento__visual swatch-row" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
+          </li>
+          <li class="bento__item bento__item--tall">
+            <span class="block-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="4.5" r="1.5"/><path d="M5 8.5 12 10l7-1.5M12 10v4.5M12 14.5 9 21M12 14.5l3 6.5"/></svg></span>
+            <h3 class="bento__title">Accessible by default</h3>
+            <p class="bento__text">Keyboard support, visible focus and screen-reader text are built in, not bolted on.</p>
+            <div class="bento__visual stack stack--xs">
+              <div class="meter"><span>Lighthouse accessibility: 98</span><span class="meter__track" aria-hidden="true"><span class="meter__fill meter__fill--98"></span></span></div>
+              <div class="meter"><span>Keyboard coverage: 90%</span><span class="meter__track" aria-hidden="true"><span class="meter__fill meter__fill--90"></span></span></div>
+              <div class="meter"><span>Contrast pairs passing: 100%</span><span class="meter__track" aria-hidden="true"><span class="meter__fill"></span></span></div>
+            </div>
+          </li>
+          <li class="bento__item">
+            <span class="block-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2 3 14h9l-1 8 10-12h-9z"/></svg></span>
+            <h3 class="bento__title">Zero dependencies</h3>
+            <p class="bento__text">Nothing to install, nothing to audit. Pages load in milliseconds.</p>
+          </li>
+          <li class="bento__item">
+            <span class="block-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
+            <h3 class="bento__title">Strict CSP</h3>
+            <p class="bento__text">No inline scripts, styles or handlers. XSS-safe rendering everywhere.</p>
+          </li>
+          <li class="bento__item bento__item--half">
+            <span class="block-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m16 18 6-6-6-6M8 6l-6 6 6 6"/></svg></span>
+            <h3 class="bento__title">Copy, paste, ship</h3>
+            <p class="bento__text">Every block is one section of semantic HTML.</p>
+            <pre class="bento__visual code-peek" aria-hidden="true"><span class="tok-tag">&lt;section</span> <span class="tok-attr">class</span>="hero"<span class="tok-tag">&gt;</span>
+      <span class="tok-tag">&lt;h1&gt;</span>Hello<span class="tok-tag">&lt;/h1&gt;</span>
+    <span class="tok-tag">&lt;/section&gt;</span></pre>
+          </li>
+          <li class="bento__item bento__item--half">
+            <span class="block-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span>
+            <h3 class="bento__title">Works in any framework</h3>
+            <p class="bento__text">Guides for each stack, and the markup ports one to one.</p>
+            <ul class="bento__visual chip-row" role="list">
+              <li>React</li><li>Next.js</li><li>Vue</li><li>Svelte</li><li>ASP.NET</li><li>Django</li><li>Laravel</li><li>Rails</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </section>
+  </template>
+  <template data-block-template="feature-grid" data-name="Feature grid" data-category="Features" data-description="Three-column grid of features, each with an icon, title and one sentence. Columns adapt to the available width." data-css="blocks.css">
+    <section data-block="feature-grid" class="section section--tint" aria-labelledby="grid-title">
+      <div class="container">
+        <div class="block-header block-header--split">
+          <div class="stack stack--xs">
+            <p class="eyebrow">Why teams switch</p>
+            <h2 class="block-header__title" id="grid-title">Built on standards that outlast frameworks</h2>
+          </div>
+          <p class="block-header__lead">Plain HTML, CSS and JavaScript keep working for decades. Everything here is designed to be read, copied and owned.</p>
+        </div>
+        <ul class="grid-auto list-reset" role="list">
+          <li class="stack stack--xs">
+            <span class="block-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2 3 14h9l-1 8 10-12h-9z"/></svg></span>
+            <h3>Fast everywhere</h3>
+            <p class="text-muted">No render-blocking scripts, lazy-loaded media and a tiny footprint for slow networks.</p>
+          </li>
+          <li class="stack stack--xs">
+            <span class="block-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="4.5" r="1.5"/><path d="M5 8.5 12 10l7-1.5M12 10v4.5M12 14.5 9 21M12 14.5l3 6.5"/></svg></span>
+            <h3>Accessible</h3>
+            <p class="text-muted">Semantic landmarks, full keyboard support and visible focus on every control.</p>
+          </li>
+          <li class="stack stack--xs">
+            <span class="block-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 2 7l10 5 10-5z"/><path d="m2 17 10 5 10-5M2 12l10 5 10-5"/></svg></span>
+            <h3>Design tokens</h3>
+            <p class="text-muted">Re-theme everything from one file of CSS custom properties.</p>
+          </li>
+          <li class="stack stack--xs">
+            <span class="block-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
+            <h3>Secure</h3>
+            <p class="text-muted">Runs under a strict Content-Security-Policy with XSS-safe rendering.</p>
+          </li>
+          <li class="stack stack--xs">
+            <span class="block-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m16 18 6-6-6-6M8 6l-6 6 6 6"/></svg></span>
+            <h3>Framework agnostic</h3>
+            <p class="text-muted">Port to ASP.NET Core, React, Vue, Django or Laravel in minutes.</p>
+          </li>
+          <li class="stack stack--xs">
+            <span class="block-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8zM5 2l.6 1.4L7 4l-1.4.6L5 6l-.6-1.4L3 4l1.4-.6z"/></svg></span>
+            <h3>AI ready</h3>
+            <p class="text-muted">Chat panels and agent workspaces that stream from your own model.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+  </template>
+  <template data-block-template="feature-rows" data-name="Feature rows" data-category="Features" data-description="Alternating rows of copy and media: a heading, paragraph, checklist and link beside a framed product visual. Rows swap sides on wide screens and stack on small ones." data-css="blocks.css,components/button.css">
+    <section data-block="feature-rows" class="section" aria-labelledby="rows-title">
+      <div class="container">
+        <div class="block-header">
+          <p class="eyebrow">How it works</p>
+          <h2 class="block-header__title" id="rows-title">From idea to production in one afternoon</h2>
+        </div>
+        <div class="feature-rows">
+          <article class="feature-row">
+            <div class="feature-row__content">
+              <h3 class="feature-row__title">Compose pages from blocks</h3>
+              <p class="text-muted">Pick a layout, drop in sections and reorder them in the page builder. Export clean HTML that passes the W3C validator.</p>
+              <ul class="checklist" role="list">
+                <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> 19 responsive blocks</li>
+                <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Eight page layouts</li>
+                <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Download or copy the code</li>
+              </ul>
+              <a class="btn btn--secondary" href="/builder">Open the builder <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+            </div>
+            <div class="feature-row__media">
+              <div class="mock" role="img" aria-label="Acme dashboard showing revenue, orders and a rising monthly chart">
+              <div class="mock__bar"><span></span><span></span><span></span><span class="mock__url"></span></div>
+              <div class="mock__body">
+                <div class="mock__nav"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+                <div class="mock__main">
+                  <div class="mock__kpis">
+                    <div class="mock__kpi"><span></span><strong>$48.2k</strong><em>+12%</em></div>
+                    <div class="mock__kpi"><span></span><strong>1,284</strong><em>+8%</em></div>
+                    <div class="mock__kpi"><span></span><strong>4.1%</strong><em>+0.6</em></div>
+                  </div>
+                  <div class="mock__chart"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+                  <div class="mock__rows"><span></span><span></span><span></span></div>
+                </div>
+              </div>
+            </div>
+            </div>
+          </article>
+          <article class="feature-row feature-row--reverse">
+            <div class="feature-row__content">
+              <h3 class="feature-row__title">Connect real data</h3>
+              <p class="text-muted">Charts and data grids read JSON from your API. Point every source at your backend with one setting.</p>
+              <ul class="checklist" role="list">
+                <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Accessible SVG charts</li>
+                <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Search, filter, sort and export</li>
+                <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Streaming AI chat</li>
+              </ul>
+              <a class="btn btn--secondary" href="/docs/data">Read the data guide <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+            </div>
+            <div class="feature-row__media">
+              <div class="stack stack--xs">
+                <p class="float-card"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg> GET /api/sales → 12 rows</p>
+                <p class="float-card"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20V10M18 20V4M6 20v-4"/></svg> Revenue chart updated</p>
+                <p class="float-card"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="8" width="18" height="12" rx="3"/><path d="M12 8V4M8 2h8M9 13v2M15 13v2"/></svg> “Revenue rose 12% in October.”</p>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </template>
+  <template data-block-template="steps" data-name="Steps" data-category="Features" data-description="Numbered three-step process with dashed connectors, for onboarding, &quot;how it works&quot; or checkout explanations." data-css="blocks.css">
+    <section data-block="steps" class="section" aria-labelledby="steps-title">
+      <div class="container">
+        <div class="block-header block-header--center">
+          <p class="eyebrow">Get started</p>
+          <h2 class="block-header__title" id="steps-title">Live in three steps</h2>
+        </div>
+        <ol class="steps">
+          <li class="steps__item">
+            <h3 class="steps__title">Pick a template</h3>
+            <p class="text-muted">Start from a website, dashboard, shop or AI app, or compose a page from blocks.</p>
+          </li>
+          <li class="steps__item">
+            <h3 class="steps__title">Make it yours</h3>
+            <p class="text-muted">Choose a brand colour in the theme panel and copy the generated CSS.</p>
+          </li>
+          <li class="steps__item">
+            <h3 class="steps__title">Ship it</h3>
+            <p class="text-muted">Deploy the static files anywhere, or port them to your framework.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+  </template>
+  <template data-block-template="category-tiles" data-name="Category tiles" data-category="Commerce" data-description="Grid of shop categories with icons and product counts; each tile is one stretched link." data-css="blocks.css">
+    <section data-block="category-tiles" class="section section--tight" aria-labelledby="categories-title">
+      <div class="container">
+        <div class="block-header block-header--split">
+          <h2 class="block-header__title" id="categories-title">Shop by category</h2>
+        </div>
+        <ul class="tiles" role="list">
+          <li class="tile">
+            <span class="tile__icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg></span>
+            <a class="tile__link" href="/shop?category=audio">Audio</a>
+            <span class="tile__count">24 products</span>
+          </li>
+          <li class="tile">
+            <span class="tile__icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span>
+            <a class="tile__link" href="/shop?category=wearables">Wearables</a>
+            <span class="tile__count">12 products</span>
+          </li>
+          <li class="tile">
+            <span class="tile__icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 8 12 3 3 8v8l9 5 9-5z"/><path d="m3 8 9 5 9-5M12 13v8"/></svg></span>
+            <a class="tile__link" href="/shop?category=bags">Bags</a>
+            <span class="tile__count">18 products</span>
+          </li>
+          <li class="tile">
+            <span class="tile__icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg></span>
+            <a class="tile__link" href="/shop?category=home">Home</a>
+            <span class="tile__count">31 products</span>
+          </li>
+          <li class="tile">
+            <span class="tile__icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span>
+            <a class="tile__link" href="/shop?category=sport">Sport</a>
+            <span class="tile__count">15 products</span>
+          </li>
+          <li class="tile">
+            <span class="tile__icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></span>
+            <a class="tile__link" href="/shop?category=photography">Photography</a>
+            <span class="tile__count">9 products</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+  </template>
+  <template data-block-template="perks" data-name="Perks" data-category="Commerce" data-description="Strip of service promises (shipping, returns, warranty, support) with icons, for store fronts and checkout pages." data-css="blocks.css">
+    <section data-block="perks" class="section section--tight section--tint" aria-label="Store benefits">
+      <div class="container">
+        <ul class="perks" role="list">
+          <li><span class="block-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M1 3h15v13H1zM16 8h4l3 3v5h-7z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></span><span><strong>Free shipping</strong> <span class="text-muted text-sm">On orders over $50</span></span></li>
+          <li><span class="block-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M23 4v6h-6M1 20v-6h6"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg></span><span><strong>30-day returns</strong> <span class="text-muted text-sm">No questions asked</span></span></li>
+          <li><span class="block-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span><span><strong>2-year warranty</strong> <span class="text-muted text-sm">On all electronics</span></span></li>
+          <li><span class="block-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span><span><strong>Real support</strong> <span class="text-muted text-sm">Humans, seven days a week</span></span></li>
+        </ul>
+      </div>
+    </section>
+  </template>
+  <template data-block-template="pricing" data-name="Pricing" data-category="Commerce" data-description="Three pricing plans with a monthly/yearly toggle (CSS only, via :has()), a highlighted plan and feature checklists. Browsers without :has() show monthly prices and no toggle." data-css="blocks.css,components/button.css,components/form.css,components/feedback.css">
+    <section data-block="pricing" class="section pricing" id="pricing" aria-labelledby="pricing-title">
+      <div class="container">
+        <div class="block-header block-header--center">
+          <p class="eyebrow">Pricing</p>
+          <h2 class="block-header__title" id="pricing-title">Simple pricing that grows with you</h2>
+          <p class="block-header__lead">Start free. Upgrade when your team does. Cancel anytime.</p>
+        </div>
+        <div class="pricing__toggle">
+          <fieldset class="fieldset">
+            <legend class="visually-hidden">Billing period</legend>
+            <div class="segmented">
+              <label class="segmented__option"><input type="radio" name="billing" value="monthly" checked><span class="segmented__label">Monthly</span></label>
+              <label class="segmented__option"><input type="radio" name="billing" value="yearly"><span class="segmented__label">Yearly <span class="pricing__save">−20%</span></span></label>
+            </div>
+          </fieldset>
+        </div>
+        <ul class="plans" role="list">
+          <li class="plan">
+            <div class="plan__head">
+              <h3 class="plan__name">Starter</h3>
+              <p class="plan__price plan__price--monthly"><span class="plan__amount">$0</span> <span class="text-muted">per month</span></p>
+              <p class="plan__price plan__price--yearly"><span class="plan__amount">$0</span> <span class="text-muted">per month, billed yearly</span></p>
+              <p class="text-muted">For side projects and prototypes.</p>
+            </div>
+            <ul class="checklist" role="list">
+                <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> 3 projects</li>
+                <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> All components</li>
+                <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Community support</li>
+            </ul>
+            <a class="btn btn--secondary btn--block" href="/signup">Start for free</a>
+          </li>
+          <li class="plan plan--featured">
+            <div class="plan__head">
+              <h3 class="plan__name">Team <span class="badge badge--primary">Most popular</span></h3>
+              <p class="plan__price plan__price--monthly"><span class="plan__amount">$29</span> <span class="text-muted">per month</span></p>
+              <p class="plan__price plan__price--yearly"><span class="plan__amount">$23</span> <span class="text-muted">per month, billed yearly</span></p>
+              <p class="text-muted">For growing product teams.</p>
+            </div>
+            <ul class="checklist" role="list">
+                <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Unlimited projects</li>
+                <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Page builder</li>
+                <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Priority email support</li>
+                <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Accessibility reports</li>
+            </ul>
+            <a class="btn btn--block" href="/signup">Start 14-day trial</a>
+          </li>
+          <li class="plan">
+            <div class="plan__head">
+              <h3 class="plan__name">Enterprise</h3>
+              <p class="plan__price"><span class="plan__amount">Custom</span></p>
+              <p class="text-muted">For organisations with compliance needs.</p>
+            </div>
+            <ul class="checklist" role="list">
+                <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> SSO and audit logs</li>
+                <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Dedicated success manager</li>
+                <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> VPAT and security review</li>
+            </ul>
+            <a class="btn btn--secondary btn--block" href="/signup">Contact sales</a>
+          </li>
+        </ul>
+      </div>
+    </section>
+  </template>
+  <template data-block-template="promo-banner" data-name="Promo banner" data-category="Commerce" data-description="Store hero: a dark promotional banner with eyebrow, headline, text, two buttons and a product image. Stays dark in both themes." data-css="blocks.css,components/button.css">
+    <section data-block="promo-banner" class="section section--tight" aria-labelledby="promo-title">
+      <div class="container">
+        <div class="promo">
+          <div class="promo__content">
+            <p class="eyebrow">Autumn collection</p>
+            <h1 class="promo__title" id="promo-title">Sound that moves with you</h1>
+            <p class="promo__text">Studio wireless headphones with 40-hour battery life. Now 20% off for a limited time.</p>
+            <div class="hero__actions">
+              <a class="btn btn--lg" href="/shop/headphones">Shop now <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+              <a class="btn btn--lg btn--secondary" href="/shop">Browse all</a>
+            </div>
+          </div>
+          <div class="promo__media">
+            <img src="../assets/images/product-headphones.svg" alt="Studio wireless headphones in indigo" width="480" height="360" fetchpriority="high">
+          </div>
+        </div>
+      </div>
+    </section>
+  </template>
+  <template data-block-template="blog-posts" data-name="Blog posts" data-category="Content" data-description="Latest articles: one featured post with a large image beside a list of compact posts. Each post is a single stretched link." data-css="blocks.css">
+    <section data-block="blog-posts" class="section" aria-labelledby="posts-title">
+      <div class="container">
+        <div class="block-header block-header--split">
+          <div class="stack stack--xs">
+            <p class="eyebrow">Blog</p>
+            <h2 class="block-header__title" id="posts-title">Latest from the team</h2>
+          </div>
+          <p><a class="btn btn--secondary" href="/blog">All articles <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></p>
+        </div>
+        <ul class="post-grid" role="list">
+          <li class="post">
+            <div class="post__media"><img src="../assets/images/blog-accessibility.svg" alt="" width="800" height="450" loading="lazy"></div>
+            <div class="stack stack--xs">
+              <p class="post__meta"><time datetime="2026-10-02">2 Oct 2026</time> · Accessibility</p>
+              <h3 class="post__title"><a href="/blog/accessibility">A practical guide to WCAG 2.2 for product teams</a></h3>
+            </div>
+          </li>
+          <li class="post post--row">
+            <div class="post__media"><img src="../assets/images/blog-design-tokens.svg" alt="" width="320" height="240" loading="lazy"></div>
+            <div class="stack stack--xs">
+              <p class="post__meta"><time datetime="2026-09-18">18 Sep 2026</time> · Design systems</p>
+              <h3 class="post__title"><a href="/blog/design-tokens">Design tokens that survive a rebrand</a></h3>
+            </div>
+          </li>
+          <li class="post post--row">
+            <div class="post__media"><img src="../assets/images/blog-ai-ux.svg" alt="" width="320" height="240" loading="lazy"></div>
+            <div class="stack stack--xs">
+              <p class="post__meta"><time datetime="2026-09-04">4 Sep 2026</time> · AI</p>
+              <h3 class="post__title"><a href="/blog/ai-ux">Designing chat interfaces for AI agents</a></h3>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+  </template>
+  <template data-block-template="faq" data-name="FAQ" data-category="Content" data-description="Two-column FAQ: a sticky introduction with a help card on the left and an exclusive accordion on the right. Works without JavaScript." data-css="blocks.css,components/accordion.css,components/button.css">
+    <section data-block="faq" class="section" aria-labelledby="faq-title">
+      <div class="container faq-split">
+        <div class="faq-split__intro">
+          <p class="eyebrow">FAQ</p>
+          <h2 class="block-header__title" id="faq-title">Questions, answered</h2>
+          <p class="text-muted">Everything you need to know about the kit. Can’t find an answer?</p>
+          <div class="help-card">
+            <strong>Talk to a person</strong>
+            <p class="text-muted text-sm">We reply within one business day.</p>
+            <a class="btn btn--secondary btn--sm" href="/contact"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> Contact support</a>
+          </div>
+        </div>
+        <div class="accordion">
+          <details class="accordion__item" name="faq-block" open>
+            <summary class="accordion__summary">Do I need Node.js or a build tool? <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+            <div class="accordion__panel">
+              <p>No. Serve the folder with any static web server and it works. Node.js is only used by the optional validation scripts.</p>
+            </div>
+          </details>
+          <details class="accordion__item" name="faq-block">
+            <summary class="accordion__summary">Which browsers are supported? <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+            <div class="accordion__panel">
+              <p>The last two versions of Chrome, Edge, Firefox and Safari on desktop and mobile. Newer features degrade gracefully.</p>
+            </div>
+          </details>
+          <details class="accordion__item" name="faq-block">
+            <summary class="accordion__summary">Can I use it in a commercial product? <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+            <div class="accordion__panel">
+              <p>Yes. Everything is MIT licensed, including the templates and the page builder output.</p>
+            </div>
+          </details>
+          <details class="accordion__item" name="faq-block">
+            <summary class="accordion__summary">Does it work with React, .NET or Django? <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+            <div class="accordion__panel">
+              <p>Yes. The markup maps one to one to JSX, Razor and Django templates, and the integration guide covers each stack.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+  </template>
+  <template data-block-template="team" data-name="Team" data-category="Content" data-description="Team grid with initials portraits on soft gradients, names and roles." data-css="blocks.css">
+    <section data-block="team" class="section" aria-labelledby="team-title">
+      <div class="container">
+        <div class="block-header">
+          <p class="eyebrow">Our team</p>
+          <h2 class="block-header__title" id="team-title">The people behind the work</h2>
+          <p class="block-header__lead">A small, senior team of designers, engineers and accessibility specialists.</p>
+        </div>
+        <ul class="team" role="list">
+          <li class="team__member">
+            <span class="team__portrait" aria-hidden="true">PR</span>
+            <h3 class="team__name">Priya Raman</h3>
+            <p class="team__role">Founder & CEO</p>
+          </li>
+          <li class="team__member">
+            <span class="team__portrait" aria-hidden="true">MO</span>
+            <h3 class="team__name">Mateo Ortiz</h3>
+            <p class="team__role">Head of Engineering</p>
+          </li>
+          <li class="team__member">
+            <span class="team__portrait" aria-hidden="true">AK</span>
+            <h3 class="team__name">Amara Kone</h3>
+            <p class="team__role">Design Lead</p>
+          </li>
+          <li class="team__member">
+            <span class="team__portrait" aria-hidden="true">LF</span>
+            <h3 class="team__name">Lena Fischer</h3>
+            <p class="team__role">Accessibility Specialist</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+  </template>
+  <template data-block-template="contact" data-name="Contact" data-category="Forms" data-description="Contact section: contact details on one side and a validated enquiry form in a raised card on the other." data-css="blocks.css,components/form.css,components/button.css">
+    <section data-block="contact" class="section" aria-labelledby="contact-title">
+      <div class="container contact-split">
+        <div class="stack">
+          <p class="eyebrow">Contact</p>
+          <h2 class="block-header__title" id="contact-title">Let’s build something together</h2>
+          <p class="text-muted">Tell us about your project and we’ll reply within one business day.</p>
+          <ul class="contact-points" role="list">
+            <li><span class="block-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><path d="m22 6-10 7L2 6"/></svg></span><span><strong>Email</strong><br><a href="mailto:hello@example.com">hello@example.com</a></span></li>
+            <li><span class="block-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span><span><strong>Phone</strong><br><a href="tel:+15550100">+1 555 0100</a></span></li>
+            <li><span class="block-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span><span><strong>Studio</strong><br>12 Market Street, Springfield</span></li>
+          </ul>
+        </div>
+        <form class="contact-form form" action="/contact" method="post" novalidate data-validate data-demo-submit>
+          <p class="text-sm text-muted">All fields are required.</p>
+          <div class="field">
+            <label class="field__label" for="contact-block-name">Name</label>
+            <input class="input" id="contact-block-name" name="name" type="text" autocomplete="name" required aria-describedby="contact-block-name-error">
+            <p class="field__error" id="contact-block-name-error"></p>
+          </div>
+          <div class="field">
+            <label class="field__label" for="contact-block-email">Work email</label>
+            <input class="input" id="contact-block-email" name="email" type="email" autocomplete="email" required aria-describedby="contact-block-email-error">
+            <p class="field__error" id="contact-block-email-error"></p>
+          </div>
+          <div class="field">
+            <label class="field__label" for="contact-block-message">How can we help?</label>
+            <textarea class="textarea" id="contact-block-message" name="message" rows="5" required aria-describedby="contact-block-message-error"></textarea>
+            <p class="field__error" id="contact-block-message-error"></p>
+          </div>
+          <button type="submit" class="btn btn--block"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4z"/></svg> Send message</button>
+          <p class="field__hint" role="status" data-form-status hidden>Thanks! We’ll be in touch shortly.</p>
+        </form>
+      </div>
+    </section>
+  </template>
+  <template data-block-template="cta-banner" data-name="CTA banner" data-category="Call to action" data-description="Rounded call-to-action card on the brand gradient with a headline, supporting text and two buttons. Text colour follows the brand preset, so contrast holds for every theme." data-css="blocks.css,components/button.css">
+    <section data-block="cta-banner" class="section" aria-labelledby="cta-title">
+      <div class="container">
+        <div class="cta-banner">
+          <div>
+            <h2 class="cta-banner__title" id="cta-title">Ready to build something people love to use?</h2>
+            <p class="cta-banner__text">Start free today. No credit card, no build step.</p>
+          </div>
+          <div class="cta-banner__actions">
+            <a class="btn btn--lg btn--on-brand" href="/signup">Get started <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+            <a class="btn btn--lg btn--on-brand-outline" href="/contact">Talk to sales</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </template>
+  <template data-block-template="newsletter" data-name="Newsletter" data-category="Call to action" data-description="Newsletter sign-up card: heading and promise on one side, a labelled email field and button on the other." data-css="blocks.css,components/form.css,components/button.css">
+    <section data-block="newsletter" class="section" aria-labelledby="newsletter-title">
+      <div class="container">
+        <div class="newsletter">
+          <div class="stack stack--xs">
+            <h2 class="block-header__title" id="newsletter-title">Get product updates</h2>
+            <p class="text-muted">One email a month with new blocks and releases. No spam, unsubscribe anytime.</p>
+          </div>
+          <form class="newsletter__form" action="/newsletter" method="post" novalidate data-validate data-demo-submit>
+            <div class="field">
+              <label class="field__label" for="newsletter-email">Email address</label>
+              <input class="input" id="newsletter-email" name="email" type="email" autocomplete="email" required aria-describedby="newsletter-email-error">
+              <p class="field__error" id="newsletter-email-error"></p>
+            </div>
+            <button type="submit" class="btn"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4z"/></svg> Subscribe</button>
+            <p class="field__hint" role="status" data-form-status hidden>Thanks! Check your inbox to confirm.</p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </template>
+  <template data-partial-template="site-header">
+    <header class="site-header">
+      <div class="container site-header__inner">
+        <a class="brand" href="../templates/website/index.html">
+          <span class="brand__mark"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span>
+          Acme Studio
+        </a>
+
+        <button type="button" class="btn btn--ghost btn--icon site-header__toggle" data-disclosure="dismissible" aria-expanded="false" aria-controls="site-menu" hidden>
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+          <span class="visually-hidden">Menu</span>
+        </button>
+
+        <div class="site-header__menu" id="site-menu">
+          <nav class="site-nav" aria-label="Primary">
+            <ul class="site-nav__list">
+              <li><a class="site-nav__link" href="../templates/website/index.html">Home</a></li>
+              <li><a class="site-nav__link" href="../templates/website/about.html">About</a></li>
+              <li><a class="site-nav__link" href="../templates/website/services.html">Services</a></li>
+              <li><a class="site-nav__link" href="../templates/website/blog.html" data-section-prefix="blog">Blog</a></li>
+              <li><a class="site-nav__link" href="../templates/website/contact.html">Contact</a></li>
+            </ul>
+          </nav>
+          <div class="site-header__actions">
+            <button type="button" class="btn btn--ghost btn--icon theme-toggle" data-theme-toggle aria-pressed="false" hidden>
+              <svg class="icon theme-toggle__light" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+              <svg class="icon theme-toggle__dark" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+              <span class="visually-hidden">Dark theme</span>
+            </button>
+            <a class="btn" href="../templates/website/contact.html">Get a quote</a>
+          </div>
+        </div>
+      </div>
+    </header>
+  </template>
+  <template data-partial-template="site-footer">
+    <footer class="site-footer">
+      <div class="container">
+        <div class="site-footer__grid">
+          <div class="site-footer__about stack">
+            <a class="brand" href="../templates/website/index.html">
+              <span class="brand__mark"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span>
+              Acme Studio
+            </a>
+            <p class="text-muted">Strategy, design and engineering for accessible digital products.</p>
+          </div>
+          <nav aria-labelledby="site-footer-company">
+            <h2 class="site-footer__heading" id="site-footer-company">Company</h2>
+            <ul class="site-footer__links">
+              <li><a href="../templates/website/about.html">About us</a></li>
+              <li><a href="../templates/website/services.html">Services</a></li>
+              <li><a href="../templates/website/contact.html">Contact</a></li>
+            </ul>
+          </nav>
+          <nav aria-labelledby="site-footer-resources">
+            <h2 class="site-footer__heading" id="site-footer-resources">Resources</h2>
+            <ul class="site-footer__links">
+              <li><a href="../templates/website/blog.html">Blog</a></li>
+              <li><a href="../templates/website/blog-post.html">Accessibility guide</a></li>
+              <li><a href="../templates/ai/index.html">AI assistant demo</a></li>
+            </ul>
+          </nav>
+          <nav aria-labelledby="site-footer-legal">
+            <h2 class="site-footer__heading" id="site-footer-legal">Legal</h2>
+            <ul class="site-footer__links">
+              <li><a href="../templates/website/about.html#values">Accessibility statement</a></li>
+              <li><a href="../templates/website/contact.html#privacy">Privacy</a></li>
+            </ul>
+          </nav>
+        </div>
+        <div class="site-footer__bottom">
+          <p>© 2026 Acme Studio. MIT licensed template.</p>
+          <p><a href="#main">Back to top</a></p>
+        </div>
+      </div>
+    </footer>
+  </template>
+  <template data-partial-template="shop-header">
+    <header class="site-header">
+      <div class="container site-header__inner">
+        <a class="brand" href="../templates/e-commerce/index.html">
+          <span class="brand__mark"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 8 12 3 3 8v8l9 5 9-5z"/><path d="m3 8 9 5 9-5M12 13v8"/></svg></span>
+          Acme Store
+        </a>
+
+        <button type="button" class="btn btn--ghost btn--icon site-header__toggle" data-disclosure="dismissible" aria-expanded="false" aria-controls="site-menu" hidden>
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+          <span class="visually-hidden">Menu</span>
+        </button>
+
+        <div class="site-header__menu" id="site-menu">
+          <nav class="site-nav" aria-label="Primary">
+            <ul class="site-nav__list">
+              <li><a class="site-nav__link" href="../templates/e-commerce/index.html">Shop all</a></li>
+              <li><a class="site-nav__link" href="../templates/e-commerce/product.html">Featured</a></li>
+              <li><a class="site-nav__link" href="../templates/e-commerce/cart.html">Cart</a></li>
+              <li><a class="site-nav__link" href="../templates/website/about.html">About</a></li>
+            </ul>
+          </nav>
+          <div class="site-header__actions">
+            <button type="button" class="btn btn--ghost btn--icon theme-toggle" data-theme-toggle aria-pressed="false" hidden>
+              <svg class="icon theme-toggle__light" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+              <svg class="icon theme-toggle__dark" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+              <span class="visually-hidden">Dark theme</span>
+            </button>
+            <a class="btn btn--ghost btn--icon" href="../templates/auth/index.html">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              <span class="visually-hidden">Account</span>
+            </a>
+            <a class="btn btn--ghost btn--icon cart-link" href="../templates/e-commerce/cart.html">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 3h3l2.4 12.2a2 2 0 0 0 2 1.6h8.2a2 2 0 0 0 2-1.6L21 7H6"/></svg>
+              <span class="visually-hidden">Cart,</span>
+              <span class="badge badge--count" data-cart-count>0</span>
+              <span class="visually-hidden">items</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </header>
+  </template>
+  <template data-partial-template="shop-footer">
+    <footer class="site-footer">
+      <div class="container">
+        <div class="site-footer__grid">
+          <div class="site-footer__about stack">
+            <a class="brand" href="../templates/e-commerce/index.html">
+              <span class="brand__mark"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 8 12 3 3 8v8l9 5 9-5z"/><path d="m3 8 9 5 9-5M12 13v8"/></svg></span>
+              Acme Store
+            </a>
+            <p class="text-muted">Thoughtfully designed everyday gear.</p>
+          </div>
+          <nav aria-labelledby="shop-footer-shop">
+            <h2 class="site-footer__heading" id="shop-footer-shop">Shop</h2>
+            <ul class="site-footer__links">
+              <li><a href="../templates/e-commerce/index.html">All products</a></li>
+              <li><a href="../templates/e-commerce/product.html">Featured product</a></li>
+              <li><a href="../templates/e-commerce/cart.html">Your cart</a></li>
+            </ul>
+          </nav>
+          <nav aria-labelledby="shop-footer-help">
+            <h2 class="site-footer__heading" id="shop-footer-help">Help</h2>
+            <ul class="site-footer__links">
+              <li><a href="../templates/website/contact.html">Contact support</a></li>
+              <li><a href="../templates/website/blog.html">Guides</a></li>
+            </ul>
+          </nav>
+          <nav aria-labelledby="shop-footer-account">
+            <h2 class="site-footer__heading" id="shop-footer-account">Account</h2>
+            <ul class="site-footer__links">
+              <li><a href="../templates/auth/index.html">Sign in</a></li>
+              <li><a href="../templates/auth/register.html">Create account</a></li>
+            </ul>
+          </nav>
+        </div>
+        <div class="site-footer__bottom">
+          <p>© 2026 Acme Store. MIT licensed template.</p>
+          <p><a href="#main">Back to top</a></p>
+        </div>
+      </div>
+    </footer>
+  </template>
+</body>
+</html>

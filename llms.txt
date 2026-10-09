@@ -6,6 +6,9 @@ Start with CLAUDE.md (rules) and catalog.json (machine-readable index of every c
 
 ## Rules and indexes
 
+- [src/index.html](src/index.html): Documentation website (serve over HTTP; hosted at https://amuqtadir99.github.io/vanilla-responsive-ui/src/)
+- [src/builder/index.html](src/builder/index.html): Page builder that composes blocks and exports HTML or an AI prompt
+
 - [CLAUDE.md](CLAUDE.md): Non-negotiable rules and coding standards for agents working in this repository
 - [catalog.json](catalog.json): Generated index of components (markup/CSS/JS paths, accessibility notes), layouts, templates, partials, data and skills
 - [README.md](README.md): Overview, quick start and template list
@@ -24,6 +27,7 @@ Start with CLAUDE.md (rules) and catalog.json (machine-readable index of every c
 
 ## Source
 
+- [src/blocks/](src/blocks/): 19 page sections (one <section data-block> each) with metadata headers; styles in src/assets/css/blocks.css
 - [src/components/](src/components/): One HTML snippet per component, each with a metadata header (@component, @category, @description, @css, @js, @a11y)
 - [src/layouts/](src/layouts/): Eight complete layout pages and src/layouts/partials/ (headers, footers, sidebars, chat widget, theme panel)
 - [src/templates/](src/templates/): Template families: website, dashboard, e-commerce, ai, landing-page, auth

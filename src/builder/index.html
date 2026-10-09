@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; form-action 'self'; base-uri 'self'; object-src 'none'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>Page builder — vanilla-responsive-ui</title>
+  <meta name="description" content="Compose a responsive, accessible page from ready-made blocks: reorder, edit text, preview at any width and brand colour, then download valid HTML or copy a prompt for your AI agent.">
+  <meta name="color-scheme" content="light dark">
+  <link rel="icon" href="../assets/icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../assets/css/tokens.css">
+  <link rel="stylesheet" href="../assets/css/themes.css">
+  <link rel="stylesheet" href="../assets/css/base.css">
+  <link rel="stylesheet" href="../assets/css/components/button.css">
+  <link rel="stylesheet" href="../assets/css/components/form.css">
+  <link rel="stylesheet" href="../assets/css/components/feedback.css">
+  <link rel="stylesheet" href="../assets/css/components/dialog.css">
+  <link rel="stylesheet" href="../assets/css/components/code.css">
+  <link rel="stylesheet" href="../assets/css/components/tabs.css">
+  <link rel="stylesheet" href="builder.css">
+  <script type="module" src="../assets/js/main.js"></script>
+  <script type="module" src="builder.js"></script>
+</head>
+<body class="builder-body">
+  <a class="skip-link" href="#main">Skip to the page preview</a>
+  <p class="needs-server"><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4M12 17h.01"/></svg> <span>The page builder needs JavaScript modules, which browsers block on files opened from disk. Run <code>python3 -m http.server 8080</code> in the repository folder and open <a href="http://localhost:8080/src/builder/">localhost:8080/src/builder/</a>.</span></p>
+
+  <header class="builder-bar">
+    <h1 class="visually-hidden">Page builder</h1>
+    <a class="builder-bar__brand" href="../index.html">
+      <span class="builder-bar__mark"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 2 7l10 5 10-5z"/><path d="m2 17 10 5 10-5M2 12l10 5 10-5"/></svg></span>
+      <span>Page builder</span>
+    </a>
+    <div class="builder-bar__name">
+      <label class="visually-hidden" for="builder-title">Page title</label>
+      <input class="input builder-bar__title" id="builder-title" name="title" type="text" value="Untitled page" autocomplete="off" data-builder-title>
+    </div>
+
+    <div class="builder-bar__group" role="group" aria-label="History" data-builder-tools hidden>
+      <button type="button" class="btn btn--ghost btn--icon btn--sm" data-builder-undo disabled>
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 14 4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11"/></svg>
+        <span class="visually-hidden">Undo</span>
+      </button>
+      <button type="button" class="btn btn--ghost btn--icon btn--sm" data-builder-redo disabled>
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 14 5-5-5-5"/><path d="M20 9H9.5a5.5 5.5 0 0 0 0 11H13"/></svg>
+        <span class="visually-hidden">Redo</span>
+      </button>
+    </div>
+
+    <fieldset class="fieldset builder-bar__devices" data-builder-tools hidden>
+      <legend class="visually-hidden">Preview width</legend>
+      <div class="segmented">
+        <label class="segmented__option"><input type="radio" name="device" value="desktop" checked><span class="segmented__label"><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg><span class="builder-bar__label">Desktop</span></span></label>
+        <label class="segmented__option"><input type="radio" name="device" value="tablet"><span class="segmented__label"><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M12 18h.01"/></svg><span class="builder-bar__label">Tablet</span></span></label>
+        <label class="segmented__option"><input type="radio" name="device" value="mobile"><span class="segmented__label"><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg><span class="builder-bar__label">Mobile</span></span></label>
+      </div>
+    </fieldset>
+
+    <div class="builder-bar__actions" data-builder-tools hidden>
+      <button type="button" class="btn btn--ghost btn--sm" data-builder-focus aria-pressed="false">
+        <svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3M21 8V5a2 2 0 0 0-2-2h-3M3 16v3a2 2 0 0 0 2 2h3M16 21h3a2 2 0 0 0 2-2v-3"/></svg>
+        <span class="builder-bar__label">Focus preview</span>
+      </button>
+      <button type="button" class="btn btn--sm" commandfor="builder-export" command="show-modal">
+        <svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+        Export
+      </button>
+    </div>
+  </header>
+
+  <div class="builder" data-builder>
+    <aside class="builder-panel builder-panel--library" aria-labelledby="library-title">
+      <div class="tabs builder-tabs" data-tabs>
+        <div class="tabs__list" data-tabs-list data-label="Library" hidden>
+          <button type="button" class="tabs__tab" data-tab="panel-blocks">Blocks</button>
+          <button type="button" class="tabs__tab" data-tab="panel-presets">Presets</button>
+          <button type="button" class="tabs__tab" data-tab="panel-page">Page</button>
+        </div>
+
+        <section class="tabs__panel" id="panel-blocks" aria-labelledby="library-title">
+          <h2 class="tabs__heading builder-panel__title" id="library-title">Blocks</h2>
+          <div class="field">
+            <label class="visually-hidden" for="block-search">Search blocks</label>
+            <input class="input" id="block-search" type="search" placeholder="Search blocks…" autocomplete="off" data-library-search aria-describedby="block-search-status">
+            <p class="text-sm text-muted" id="block-search-status" role="status" data-library-status></p>
+          </div>
+          <div class="builder-library" data-library>
+            <p class="text-muted text-sm">Loading blocks…</p>
+          </div>
+        </section>
+
+        <section class="tabs__panel" id="panel-presets" aria-labelledby="presets-title">
+          <h2 class="tabs__heading builder-panel__title" id="presets-title">Presets</h2>
+          <p class="text-sm text-muted">Start from a ready-made page. You can undo this.</p>
+          <ul class="builder-presets" role="list" data-presets></ul>
+        </section>
+
+        <section class="tabs__panel" id="panel-page" aria-labelledby="page-title">
+          <h2 class="tabs__heading builder-panel__title" id="page-title">Page settings</h2>
+          <form class="form builder-settings" data-page-settings>
+            <div class="field">
+              <label class="field__label" for="page-description">Description</label>
+              <textarea class="textarea" id="page-description" name="description" rows="3">A page built with vanilla-responsive-ui.</textarea>
+            </div>
+            <div class="field">
+              <label class="field__label" for="page-header">Header</label>
+              <select class="select" id="page-header" name="header">
+                <option value="site-header">Site header (Acme Studio)</option>
+                <option value="shop-header">Store header (Acme Store)</option>
+                <option value="">No header</option>
+              </select>
+            </div>
+            <div class="field">
+              <label class="field__label" for="page-footer">Footer</label>
+              <select class="select" id="page-footer" name="footer">
+                <option value="site-footer">Site footer</option>
+                <option value="shop-footer">Store footer</option>
+                <option value="">No footer</option>
+              </select>
+            </div>
+            <div class="field">
+              <label class="field__label" for="page-brand">Brand colour</label>
+              <select class="select" id="page-brand" name="brand">
+                <option value="">Indigo (default)</option>
+                <option value="teal">Teal</option>
+                <option value="violet">Violet</option>
+                <option value="rose">Rose</option>
+                <option value="amber">Amber</option>
+                <option value="slate">Slate</option>
+              </select>
+            </div>
+            <fieldset class="fieldset">
+              <legend class="fieldset__legend">Colour mode</legend>
+              <div class="segmented">
+                <label class="segmented__option"><input type="radio" name="mode" value="" checked><span class="segmented__label">System</span></label>
+                <label class="segmented__option"><input type="radio" name="mode" value="light"><span class="segmented__label">Light</span></label>
+                <label class="segmented__option"><input type="radio" name="mode" value="dark"><span class="segmented__label">Dark</span></label>
+              </div>
+            </fieldset>
+            <div class="field">
+              <label class="field__label" for="page-root">Path to the <code>src</code> folder</label>
+              <p class="field__hint" id="page-root-hint">Prefix for CSS, JS, image and page links in the exported file. Leave empty if you save it in <code>src/</code>; use <code>../</code> for a sub-folder.</p>
+              <input class="input" id="page-root" name="root" type="text" value="" autocomplete="off" spellcheck="false" aria-describedby="page-root-hint">
+            </div>
+          </form>
+        </section>
+      </div>
+    </aside>
+
+    <main class="builder-stage" id="main" tabindex="-1">
+      <h2 class="visually-hidden">Page preview</h2>
+      <div class="builder-stage__frame" data-stage>
+        <iframe class="builder-stage__canvas" src="canvas.html" title="Page preview" data-canvas-frame></iframe>
+      </div>
+      <p class="builder-stage__hint text-sm text-muted" data-builder-tools hidden>Click a section to select it. Double-click text to edit it, then press Enter or click away to save.</p>
+    </main>
+
+    <aside class="builder-panel builder-panel--outline" aria-labelledby="outline-title">
+      <h2 class="builder-panel__title" id="outline-title">Outline</h2>
+      <p class="text-sm text-muted" data-outline-empty>No blocks yet.</p>
+      <ol class="builder-outline" role="list" data-outline aria-describedby="outline-help"></ol>
+      <p class="text-sm text-muted" id="outline-help">Use the arrow buttons, or drag sections, to reorder them.</p>
+
+      <section class="builder-checks" aria-labelledby="checks-title">
+        <h2 class="builder-panel__title" id="checks-title">Page checks</h2>
+        <ul class="builder-checks__list" role="list" data-checks></ul>
+      </section>
+    </aside>
+  </div>
+
+  <dialog class="dialog builder-export" id="builder-export" aria-labelledby="builder-export-title" closedby="any">
+    <div class="dialog__header">
+      <h2 class="dialog__title" id="builder-export-title">Export page</h2>
+      <button type="button" class="btn btn--ghost btn--icon" commandfor="builder-export" command="close">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+        <span class="visually-hidden">Close</span>
+      </button>
+    </div>
+    <div class="dialog__body">
+      <div class="tabs" data-tabs>
+        <div class="tabs__list" data-tabs-list data-label="Export format" hidden>
+          <button type="button" class="tabs__tab" data-tab="export-html">HTML file</button>
+          <button type="button" class="tabs__tab" data-tab="export-ai">AI agent prompt</button>
+          <button type="button" class="tabs__tab" data-tab="export-cli">Outline</button>
+        </div>
+        <section class="tabs__panel" id="export-html" aria-labelledby="export-html-title">
+          <h3 class="tabs__heading" id="export-html-title">HTML file</h3>
+          <p class="text-sm text-muted">A complete, valid page with the stylesheets it needs. Save it inside <code>src/</code> (or set the path on the Page tab).</p>
+          <div class="cluster">
+            <button type="button" class="btn" data-export-download>
+              <svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+              Download .html
+            </button>
+            <button type="button" class="btn btn--secondary" data-copy data-copy-target="#export-html-code" data-copy-success="HTML copied" hidden>
+              <svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              <span data-copy-label>Copy HTML</span>
+            </button>
+          </div>
+          <div class="code-block">
+            <pre tabindex="0" role="region" aria-label="Exported HTML"><code id="export-html-code" data-export-html></code></pre>
+          </div>
+        </section>
+        <section class="tabs__panel" id="export-ai" aria-labelledby="export-ai-title">
+          <h3 class="tabs__heading" id="export-ai-title">AI agent prompt</h3>
+          <p class="text-sm text-muted">Paste into Claude Code or any coding agent working in this repository (or your app) to create the same page.</p>
+          <button type="button" class="btn btn--secondary" data-copy data-copy-target="#export-ai-code" data-copy-success="Prompt copied" hidden>
+            <svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            <span data-copy-label>Copy prompt</span>
+          </button>
+          <div class="code-block">
+            <pre tabindex="0" role="region" aria-label="AI agent prompt"><code id="export-ai-code" data-export-ai></code></pre>
+          </div>
+        </section>
+        <section class="tabs__panel" id="export-cli" aria-labelledby="export-cli-title">
+          <h3 class="tabs__heading" id="export-cli-title">Outline</h3>
+          <p class="text-sm text-muted">The blocks on this page and their source files, as JSON, for scripts and AI agents.</p>
+          <div class="cluster">
+            <button type="button" class="btn btn--secondary" data-copy data-copy-target="#export-json-code" data-copy-success="JSON copied" hidden>
+              <svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              <span data-copy-label>Copy JSON</span>
+            </button>
+          </div>
+          <div class="code-block">
+            <pre tabindex="0" role="region" aria-label="Page outline JSON"><code id="export-json-code" data-export-json></code></pre>
+          </div>
+        </section>
+      </div>
+    </div>
+  </dialog>
+</body>
+</html>

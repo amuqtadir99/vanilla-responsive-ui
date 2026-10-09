@@ -6,7 +6,7 @@
 @js: components/data-grid.js
 @a11y: Sortable headers are buttons with aria-sort; result counts, sorting and paging are announced; action buttons include the row id in their accessible name; the scroll wrapper is a labelled, focusable region. Status is shown as text badges, not colour alone.
 -->
-<div class="data-grid" data-grid data-source="../data/orders.json" data-page-size="5" data-label="orders">
+<div class="data-grid" data-grid data-source="orders" data-page-size="5" data-label="orders">
   <form class="data-grid__toolbar" action="/orders" method="get">
     <div class="field">
       <label class="field__label" for="grid-demo-search">Search orders</label>

@@ -370,3 +370,45 @@ table {
     outline-color: Highlight;
   }
 }
+
+/* ---- Opened from disk notice -------------------------------------------
+   Browsers block ES modules on file:// pages. main.js marks <html data-js>;
+   if that has not happened after a moment, explain how to serve the files.
+   ------------------------------------------------------------------------ */
+.needs-server {
+  position: fixed;
+  inset-inline: var(--spacing-sm);
+  inset-block-end: var(--spacing-sm);
+  z-index: var(--z-toast);
+  display: flex;
+  gap: var(--spacing-2xs);
+  align-items: flex-start;
+  max-width: 44rem;
+  margin: 0 auto;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: var(--border-width) solid var(--color-warning);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-warning-soft);
+  box-shadow: var(--shadow-lg);
+  color: var(--color-text);
+  font-size: var(--font-size-sm);
+  visibility: hidden;
+  animation: vr-needs-server 0s 2.5s forwards;
+}
+
+.needs-server .icon {
+  flex: none;
+  margin-block-start: 0.15em;
+  color: var(--color-warning);
+}
+
+@keyframes vr-needs-server {
+  to {
+    visibility: visible;
+  }
+}
+
+html[data-js] .needs-server {
+  display: none;
+}
+

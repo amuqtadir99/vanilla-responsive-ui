@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; form-action 'self'; base-uri 'self'; object-src 'none'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>Architecture — vanilla-responsive-ui docs</title>
+  <meta name="description" content="Architecture guide for vanilla-responsive-ui.">
+  <meta name="color-scheme" content="light dark">
+  <meta name="generator" content="node .claude/skills/generate-doc.js (do not edit by hand)">
+  <link rel="icon" href="../../assets/icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../../assets/css/tokens.css">
+  <link rel="stylesheet" href="../../assets/css/themes.css">
+  <link rel="stylesheet" href="../../assets/css/base.css">
+  <link rel="stylesheet" href="../../assets/css/layouts.css">
+  <link rel="stylesheet" href="../../assets/css/components/button.css">
+  <link rel="stylesheet" href="../../assets/css/components/form.css">
+  <link rel="stylesheet" href="../../assets/css/components/feedback.css">
+  <link rel="stylesheet" href="../../assets/css/components/tabs.css">
+  <link rel="stylesheet" href="../../assets/css/components/table.css">
+  <link rel="stylesheet" href="../../assets/css/components/code.css">
+  <link rel="stylesheet" href="../../assets/css/components/accordion.css">
+  <link rel="stylesheet" href="../../assets/css/components/card.css">
+  <link rel="stylesheet" href="../../assets/css/components/navigation.css">
+  <link rel="stylesheet" href="../../assets/css/blocks.css">
+  <link rel="stylesheet" href="../../docs/assets/foundations.css">
+  <link rel="stylesheet" href="../../docs/assets/docs.css">
+  <script type="module" src="../../assets/js/main.js"></script>
+  <script type="module" src="../../docs/assets/docs.js"></script>
+</head>
+<body class="docs-body">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <p class="needs-server"><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4M12 17h.01"/></svg> <span>You opened this file from disk, so browsers block its JavaScript (copy buttons, previews, the builder). Run <code>python3 -m http.server 8080</code> in the repository folder and open <a href="http://localhost:8080/src/">localhost:8080/src/</a>, or use the <a href="https://amuqtadir99.github.io/vanilla-responsive-ui/src/">hosted docs</a>.</span></p>
+  <header class="docs-topbar">
+    <div class="docs-topbar__inner">
+      <button type="button" class="btn btn--ghost btn--icon docs-topbar__menu" data-disclosure="dismissible" aria-expanded="false" aria-controls="docs-sidebar" hidden>
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        <span class="visually-hidden">Documentation menu</span>
+      </button>
+      <a class="docs-brand" href="../../index.html">
+        <span class="docs-brand__mark"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 2 7l10 5 10-5z"/><path d="m2 17 10 5 10-5M2 12l10 5 10-5"/></svg></span>
+        <span>vanilla-responsive-ui</span>
+      </a>
+      <nav class="docs-topnav" aria-label="Main">
+        <ul class="docs-topnav__list" role="list">
+          <li><a href="../../docs/getting-started.html">Docs</a></li>
+          <li><a href="../../docs/components/site-footer.html">Components</a></li>
+          <li><a href="../../docs/blocks/hero-centered.html">Blocks</a></li>
+          <li><a href="../../docs/templates/index.html">Templates</a></li>
+          <li><a href="../../builder/index.html">Builder</a></li>
+        </ul>
+      </nav>
+      <div class="docs-topbar__actions">
+        <a class="btn btn--ghost btn--sm" href="https://github.com/amuqtadir99/vanilla-responsive-ui"><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m16 18 6-6-6-6M8 6l-6 6 6 6"/></svg> <span class="docs-topbar__label">GitHub</span></a>
+        <button type="button" class="btn btn--ghost btn--icon theme-toggle" data-theme-toggle aria-pressed="false" hidden>
+          <svg class="icon theme-toggle__light" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="icon theme-toggle__dark" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+          <span class="visually-hidden">Dark theme</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="docs-layout">
+    <nav class="docs-sidebar" id="docs-sidebar" aria-label="Documentation">
+      <div class="docs-search" data-docs-search hidden>
+        <label class="visually-hidden" for="docs-search-input">Search the documentation</label>
+        <svg class="icon icon--sm docs-search__icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/></svg>
+        <input class="input docs-search__input" id="docs-search-input" type="search" placeholder="Search…" autocomplete="off" aria-describedby="docs-search-hint">
+        <kbd class="docs-search__kbd" id="docs-search-hint"><span class="visually-hidden">Press </span>/<span class="visually-hidden"> to search</span></kbd>
+        <p class="docs-search__empty text-sm text-muted" role="status" data-docs-search-status></p>
+      </div>
+      <div class="docs-nav__group" data-docs-group>
+        <p class="docs-nav__title" id="nav-get-started">Get started</p>
+        <ul class="docs-nav__list" role="list" aria-labelledby="nav-get-started">
+          <li><a class="docs-nav__link" href="../../index.html">Introduction</a></li>
+          <li><a class="docs-nav__link" href="../../docs/getting-started.html">Getting started</a></li>
+          <li><a class="docs-nav__link" href="../../builder/index.html">Page builder</a></li>
+          <li><a class="docs-nav__link" href="../../docs/ai-agents.html">Working with AI agents</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav__group" data-docs-group>
+        <p class="docs-nav__title" id="nav-templates">Templates</p>
+        <ul class="docs-nav__list" role="list" aria-labelledby="nav-templates">
+          <li><a class="docs-nav__link" href="../../docs/templates/index.html">All templates</a></li>
+          <li><a class="docs-nav__link" href="../../docs/templates/landing-page-index.html">Landing page</a></li>
+          <li><a class="docs-nav__link" href="../../docs/templates/website-index.html">Website</a></li>
+          <li><a class="docs-nav__link" href="../../docs/templates/dashboard-index.html">Dashboard</a></li>
+          <li><a class="docs-nav__link" href="../../docs/templates/e-commerce-index.html">E-commerce</a></li>
+          <li><a class="docs-nav__link" href="../../docs/templates/ai-index.html">AI apps</a></li>
+          <li><a class="docs-nav__link" href="../../docs/templates/auth-index.html">Authentication</a></li>
+          <li><a class="docs-nav__link" href="../../docs/layouts.html">Layouts</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav__group" data-docs-group>
+        <p class="docs-nav__title" id="nav-blocks">Blocks</p>
+        <ul class="docs-nav__list" role="list" aria-labelledby="nav-blocks">
+          <li><a class="docs-nav__link" href="../../docs/blocks/hero-centered.html">Hero centered</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/hero-split.html">Hero split</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/logo-cloud.html">Logo cloud</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/stats-band.html">Stats band</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/testimonials.html">Testimonials</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/feature-bento.html">Feature bento</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/feature-grid.html">Feature grid</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/feature-rows.html">Feature rows</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/steps.html">Steps</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/category-tiles.html">Category tiles</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/perks.html">Perks</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/pricing.html">Pricing</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/promo-banner.html">Promo banner</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/blog-posts.html">Blog posts</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/faq.html">FAQ</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/team.html">Team</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/contact.html">Contact</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/cta-banner.html">CTA banner</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/newsletter.html">Newsletter</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav__group" data-docs-group>
+        <p class="docs-nav__title" id="nav-components">Components</p>
+        <ul class="docs-nav__list" role="list" aria-labelledby="nav-components">
+          <li><a class="docs-nav__link" href="../../docs/components/site-footer.html">Site footer</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/site-header.html">Site header</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/breadcrumb.html">Breadcrumb</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/pagination.html">Pagination</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/tabs.html">Tabs</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/button.html">Button</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/accordion.html">Accordion</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/card.html">Card</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/form-field.html">Form fields</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/alert.html">Alert and badge</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/toast.html">Toast</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/dialog.html">Dialog</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/chart.html">Charts</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/data-grid.html">Data grid</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/data-table.html">Data table</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/chat.html">AI chat</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/chat-message.html">Chat messages</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/chat-widget.html">Chat widget</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/theme-customizer.html">Theme customizer</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/theme-toggle.html">Theme toggle</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav__group" data-docs-group>
+        <p class="docs-nav__title" id="nav-foundations">Foundations</p>
+        <ul class="docs-nav__list" role="list" aria-labelledby="nav-foundations">
+          <li><a class="docs-nav__link" href="../../docs/foundations/colors.html">Colours</a></li>
+          <li><a class="docs-nav__link" href="../../docs/foundations/typography.html">Typography</a></li>
+          <li><a class="docs-nav__link" href="../../docs/foundations/spacing.html">Spacing and shape</a></li>
+          <li><a class="docs-nav__link" href="../../docs/foundations/icons.html">Icons</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav__group" data-docs-group>
+        <p class="docs-nav__title" id="nav-guides">Guides</p>
+        <ul class="docs-nav__list" role="list" aria-labelledby="nav-guides">
+          <li><a class="docs-nav__link" href="../../docs/guides/theming.html">Theming</a></li>
+          <li><a class="docs-nav__link" href="../../docs/guides/layouts.html">Layouts and pages</a></li>
+          <li><a class="docs-nav__link" href="../../docs/guides/data.html">Data and charts</a></li>
+          <li><a class="docs-nav__link" href="../../docs/guides/ai-chat.html">AI chat</a></li>
+          <li><a class="docs-nav__link" href="../../docs/guides/accessibility.html">Accessibility</a></li>
+          <li><a class="docs-nav__link" href="../../docs/guides/security.html">Security</a></li>
+          <li><a class="docs-nav__link" href="../../docs/guides/integration.html">Framework integration</a></li>
+          <li><a class="docs-nav__link" href="../../docs/guides/architecture.html" aria-current="page">Architecture</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <main class="docs-main" id="main" tabindex="-1">
+      <header class="docs-header">
+        <p class="eyebrow">Guide</p>
+        <h1 class="docs-header__title">Architecture</h1>
+        
+        
+        <div class="docs-header__actions"><a class="btn btn--ghost btn--sm" href="https://github.com/amuqtadir99/vanilla-responsive-ui/blob/main/docs/ARCHITECTURE.md"><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20h9M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4z"/></svg> Edit ARCHITECTURE.md on GitHub</a></div>
+      </header>
+
+      <div class="docs-prose">
+<p>vanilla-responsive-ui is a set of static files. There is no build step, bundler, transpiler or package manager: every file in <code>src/</code> is served to the browser exactly as written. This document explains how those files fit together and why.</p>
+<h2 id="goals-and-constraints">Goals and constraints</h2>
+<div class="table-wrapper" role="region" aria-label="Goal, Consequence" tabindex="0"><table class="table" aria-label="Goal, Consequence"><thead><tr><th scope="col">Goal</th><th scope="col">Consequence</th></tr></thead><tbody><tr><td>Zero external dependencies</td><td>Plain HTML, CSS and ES modules. Utilities live in <code>src/assets/js/core/</code>.</td></tr><tr><td>Portable to any stack</td><td>No templating syntax, no framework conventions. Markup is valid HTML that maps 1:1 to Razor, JSX or Django templates.</td></tr><tr><td>Accessible by default</td><td>Native elements first, ARIA only to fill gaps, progressive enhancement for every interactive control.</td></tr><tr><td>CSP friendly</td><td>No inline scripts, styles or handlers. Pages run under <code>default-src 'self'</code> without <code>'unsafe-inline'</code>.</td></tr><tr><td>Fast on slow networks</td><td>No render-blocking JS, per-page CSS, lazy component loading, lazy images, system fonts.</td></tr></tbody></table></div>
+<h2 id="directory-layout">Directory layout</h2>
+<div class="docs-code">
+  <div class="docs-code__header">
+    <span class="docs-code__label">TEXT</span>
+    <span class="docs-code__actions"><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-target="#code-586" data-copy-success="Code copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy code</span></button></span>
+  </div>
+  <pre tabindex="0" role="region" aria-label="TEXT"><code id="code-586">src/
+├── index.html                 Documentation home (generated by generate-doc.js)
+├── docs/                      Documentation site (generated) + docs/assets/ (hand-written CSS/JS)
+├── builder/                   Page builder: index.html, builder.js, builder.css; canvas.html (generated)
+├── blocks/                    Page sections, one &lt;section data-block&gt; per file
+├── assets/
+│   ├── css/
+│   │   ├── tokens.css         Design tokens (colour, type, spacing, motion, chart palette) + themes
+│   │   ├── themes.css         Brand presets, density and corner presets (data-* on &lt;html&gt;)
+│   │   ├── base.css           Reset, typography, layout primitives, a11y helpers
+│   │   ├── layouts.css        data-layout layouts, app shell, page headers
+│   │   ├── blocks.css         Page sections: heroes, bento, pricing, CTA, …
+│   │   └── components/        button, header, card, accordion, tabs, dialog, form,
+│   │                          feedback, table, navigation, footer, chart, chat, code
+│   ├── js/
+│   │   ├── main.js            Entry point and component registry
+│   │   ├── core/              dom, announce, storage, theme, data, format,
+│   │   │                      markdown, clipboard
+│   │   ├── components/        disclosure, tabs, dialog, form-validation,
+│   │   │                      password-toggle, theme-toggle, theme-customizer,
+│   │   │                      toast, table-sort, data-chart, chart, data-grid,
+│   │   │                      chat, copy
+│   │   └── demo/              chat-mock.js (offline assistant; replace in production)
+│   ├── icons/                 SVG icon library (inlined in markup)
+│   └── images/                Placeholder SVG artwork
+├── components/                Copy-paste snippets + generated gallery (index.html)
+├── layouts/                   Eight layout pages, builder (index.html) and partials/
+├── data/                      Sample JSON: sales, orders, customers, products
+└── templates/
+    ├── website/               home, about, services, blog, article, contact
+    ├── dashboard/             overview, analytics, orders, customers, assistant, settings
+    ├── e-commerce/            listing, product, cart (+ cart-store.js)
+    ├── ai/                    assistant, agent workspace
+    ├── landing-page/          single-page marketing site
+    └── auth/                  sign in, create account, reset password
+catalog.json                   Generated index of everything above (for tools and AI agents)</code></pre>
+</div>
+<h2 id="pages-and-partials">Pages and partials</h2>
+<p>Shared chrome (headers, footers, sidebars, the chat widget, the theme panel and the demo template switcher) is written once in <code>src/layouts/partials/</code> and stamped into every page between <code>&lt;!-- @partial name --&gt;</code> and <code>&lt;!-- @end name --&gt;</code> markers by <code>.claude/skills/pages.js</code>. Pages stay plain static HTML: no runtime includes, no build step to view them. The CI suite runs <code>pages.js sync --check</code>, so a page whose partial is out of date fails. Details in <a href="layouts.html">LAYOUTS.md</a>.</p>
+<h2 id="blocks-documentation-site-and-page-builder">Blocks, documentation site and page builder</h2>
+<ul><li><strong>Blocks</strong> (<code>src/blocks/*.html</code>) are full-width page sections: one <code>&lt;section data-block=&quot;name&quot;&gt;</code> each, with the same metadata header as components (<code>@block</code>, <code>@category</code>, …) and styles in <code>blocks.css</code>. Template pages are composed from blocks and keep the <code>data-block</code> attribute, so the docs can trace every section back to its source.</li><li><strong>Documentation site</strong> (<code>src/index.html</code>, <code>src/docs/</code>) is generated by <code>generate-doc.js</code> with <code>docs-site.js</code>: one page per component, block, template page, guide (<code>docs/*.md</code>) and foundation (tokens, icons), plus a standalone preview page for every component and block. Code is syntax-highlighted at build time, so pages contain only static markup. <code>src/docs/assets/docs.js</code> adds search, preview sizing (real device widths, scaled to fit) and &quot;Show in preview&quot; for template parts.</li><li><strong>Page builder</strong> (<code>src/builder/</code>) composes blocks in a same-origin iframe, <code>canvas.html</code>, which holds every block as an inert <code>&lt;template&gt;</code>. <code>builder.js</code> clones, moves and edits blocks with DOM APIs, keeps undo/redo snapshots, autosaves to localStorage, and exports a complete HTML page, an AI prompt or a JSON outline. It never uses <code>innerHTML</code>; restoring a saved page parses it with <code>DOMParser</code>, which does not run scripts.</li></ul>
+<h2 id="css-architecture">CSS architecture</h2>
+<h3 id="layers-by-file-not-by-layer">Layers by file, not by <code>@layer</code></h3>
+<p>Stylesheets are loaded in a fixed order, which gives a predictable cascade without relying on <code>@layer</code> (browsers that do not understand <code>@layer</code> discard the whole block):</p>
+<ol><li>**<code>tokens.css</code>** – custom properties only. No selectors other than <code>:root</code>.</li><li>**<code>themes.css</code>** – optional presets: token overrides keyed on <code>data-brand</code>, <code>data-density</code> and <code>data-radius</code>.</li><li>**<code>base.css</code>** – element defaults, the <code>.icon</code>, <code>.visually-hidden</code> and <code>.skip-link</code> helpers, and layout primitives (<code>.container</code>, <code>.stack</code>, <code>.cluster</code>, <code>.grid-auto</code>, <code>.section</code>).</li><li>**<code>layouts.css</code>** – page layouts (<code>data-layout</code>) and the app shell.</li><li>**<code>components/*.css</code>** – one file per component family. Each page links only the files it uses.</li><li>**<code>blocks.css</code>** – page sections (heroes, feature grids, pricing, CTA …), loaded after the components so block modifiers win.</li><li><strong>Template CSS</strong> (<code>website.css</code>, <code>dashboard.css</code>, …) – page layout only.</li></ol>
+<h3 id="design-tokens">Design tokens</h3>
+<p>Every colour, size, radius, shadow and duration is a custom property in <code>tokens.css</code>. Components never contain literal colours (enforced by <code>tests/checks/css.mjs</code>). To re-theme, override the tokens:</p>
+<div class="docs-code">
+  <div class="docs-code__header">
+    <span class="docs-code__label">CSS</span>
+    <span class="docs-code__actions"><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-target="#code-587" data-copy-success="Code copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy code</span></button></span>
+  </div>
+  <pre tabindex="0" role="region" aria-label="CSS"><code id="code-587"><span class="tok-comment">/* brand.css, loaded after tokens.css */</span>
+<span class="tok-selector">:root </span><span class="tok-punct">{</span>
+  <span class="tok-property">--color-primary</span><span class="tok-punct">:</span> <span class="tok-number">#0f766e</span><span class="tok-punct">;</span>
+  <span class="tok-property">--color-primary-hover</span><span class="tok-punct">:</span> <span class="tok-number">#115e59</span><span class="tok-punct">;</span>
+  <span class="tok-property">--color-primary-soft</span><span class="tok-punct">:</span> <span class="tok-number">#ccfbf1</span><span class="tok-punct">;</span>
+  <span class="tok-property">--radius-md</span><span class="tok-punct">:</span> <span class="tok-number">0.25rem</span><span class="tok-punct">;</span>
+  <span class="tok-property">--font-main</span><span class="tok-punct">:</span> <span class="tok-string">&quot;Inter&quot;</span>, system-ui, sans-serif<span class="tok-punct">;</span>
+<span class="tok-punct">}</span></code></pre>
+</div>
+<p><code>tests/checks/contrast.mjs</code> re-checks every foreground/background token pair in both themes, so a brand override that breaks WCAG contrast fails the test suite.</p>
+<h3 id="theming">Theming</h3>
+<ul><li>Light is the default (<code>:root</code>).</li><li>Dark applies automatically via <code>prefers-color-scheme: dark</code> unless the user explicitly chose light.</li><li><code>core/theme.js</code> stores an explicit choice and sets <code>&lt;html data-theme=&quot;light|dark&quot;&gt;</code>; <code>main.js</code> calls <code>initTheme()</code> before anything else. The same module applies brand presets and generates contrast-safe palettes from any custom colour (see <a href="theming.html">THEMING.md</a>).</li><li>The system-dark and explicit-dark token blocks must stay identical; the CSS suite enforces this.</li></ul>
+<h3 id="responsive-strategy">Responsive strategy</h3>
+<ul><li><strong>Mobile first.</strong> Base styles target small screens; <code>min-width</code> media queries add columns. Breakpoints are in <code>em</code> so they follow the user's font size: <code>48em</code> (header), <code>60em</code> (hero/gallery), <code>64em</code> (dashboard).</li><li><strong>Intrinsic grids.</strong> <code>repeat(auto-fit, minmax(min(X, 100%), 1fr))</code> creates responsive grids without media queries and never overflows.</li><li><strong>Container queries.</strong> Cards are size containers (<code>container: card / inline-size</code>), so a card switches to a horizontal layout based on its own width wherever it is placed. Browsers without support keep the stacked layout.</li><li><strong>Fluid type.</strong> <code>clamp(min, rem + vw, max)</code> scales smoothly while still responding to browser zoom.</li><li><strong>Reflow.</strong> Every page is verified to have no horizontal scrolling at 320 CSS px (WCAG 1.4.10) by the browser tests.</li></ul>
+<h3 id="naming">Naming</h3>
+<p>BEM-style classes: <code>.card</code>, <code>.card__title</code>, <code>.card--highlight</code>. State is expressed through attributes rather than classes wherever an attribute exists: <code>[aria-expanded]</code>, <code>[aria-selected]</code>, <code>[aria-current]</code>, <code>[aria-invalid]</code>, <code>[data-state]</code>, <code>[hidden]</code>, <code>[open]</code>.</p>
+<h2 id="javascript-architecture">JavaScript architecture</h2>
+<h3 id="entry-point-and-lazy-loading">Entry point and lazy loading</h3>
+<p>Pages include one module:</p>
+<div class="docs-code">
+  <div class="docs-code__header">
+    <span class="docs-code__label">HTML</span>
+    <span class="docs-code__actions"><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-target="#code-588" data-copy-success="Code copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy code</span></button></span>
+  </div>
+  <pre tabindex="0" role="region" aria-label="HTML"><code id="code-588"><span class="tok-tag">&lt;script</span> <span class="tok-attr">type</span><span class="tok-punct">=</span><span class="tok-string">&quot;module&quot;</span> <span class="tok-attr">src</span><span class="tok-punct">=</span><span class="tok-string">&quot;../../assets/js/main.js&quot;</span><span class="tok-tag">&gt;</span><span class="tok-tag">&lt;/script</span><span class="tok-tag">&gt;</span></code></pre>
+</div>
+<p>Module scripts are deferred, so they never block rendering. <code>main.js</code> holds a registry of <code>[selector, loader]</code> pairs and dynamically imports only the components whose markup is on the page:</p>
+<div class="docs-code">
+  <div class="docs-code__header">
+    <span class="docs-code__label">JS</span>
+    <span class="docs-code__actions"><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-target="#code-589" data-copy-success="Code copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy code</span></button></span>
+  </div>
+  <pre tabindex="0" role="region" aria-label="JS"><code id="code-589"><span class="tok-keyword">const</span> registry = [
+  [<span class="tok-string">'[data-tabs]'</span>, () =&gt; <span class="tok-keyword">import</span>(<span class="tok-string">'./components/tabs.js'</span>)],
+  <span class="tok-comment">// …</span>
+];</code></pre>
+</div>
+<p>Call <code>initAll(container)</code> from <code>main.js</code> after inserting new markup (for example after a client-side navigation).</p>
+<h3 id="component-contract">Component contract</h3>
+<p>Every module in <code>src/assets/js/components/</code> follows the same shape:</p>
+<div class="docs-code">
+  <div class="docs-code__header">
+    <span class="docs-code__label">JS</span>
+    <span class="docs-code__actions"><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-target="#code-590" data-copy-success="Code copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy code</span></button></span>
+  </div>
+  <pre tabindex="0" role="region" aria-label="JS"><code id="code-590"><span class="tok-keyword">import</span> { qsa, on, claim } <span class="tok-keyword">from</span> <span class="tok-string">'../core/dom.js'</span>;
+
+<span class="tok-keyword">export</span> <span class="tok-keyword">function</span> <span class="tok-function">init</span>(root = document) {
+  <span class="tok-keyword">for</span> (<span class="tok-keyword">const</span> el <span class="tok-keyword">of</span> <span class="tok-function">qsa</span>(<span class="tok-string">'[data-thing]'</span>, root)) {
+    <span class="tok-keyword">if</span> (!<span class="tok-function">claim</span>(el, <span class="tok-string">'thing'</span>)) <span class="tok-keyword">continue</span>; <span class="tok-comment">// never bind twice</span>
+    <span class="tok-comment">// enhance el…</span>
+  }
+}</code></pre>
+</div>
+<ul><li><code>init(root)</code> is idempotent (<code>claim()</code> marks initialised elements), so frameworks can call it on every render or route change.</li><li>Configuration comes from <code>data-*</code> attributes; state is written to ARIA attributes and <code>data-state</code>.</li><li>No globals: everything is module-scoped and exported explicitly.</li><li><code>window</code>/<code>document</code> are only touched inside functions, so modules can be imported during server-side rendering.</li></ul>
+<h3 id="core-utilities">Core utilities</h3>
+<div class="table-wrapper" role="region" aria-label="Module, Exports, Purpose" tabindex="0"><table class="table" aria-label="Module, Exports, Purpose"><thead><tr><th scope="col">Module</th><th scope="col">Exports</th><th scope="col">Purpose</th></tr></thead><tbody><tr><td><code>core/dom.js</code></td><td><code>qs</code>, <code>qsa</code>, <code>on</code>, <code>createElement</code>, <code>uniqueId</code>, <code>ensureId</code>, <code>claim</code></td><td>Query helpers, XSS-safe element creation (text via <code>textContent</code>, refuses <code>on*</code> attributes), idempotent init.</td></tr><tr><td><code>core/announce.js</code></td><td><code>announce(message, politeness)</code></td><td>Screen-reader announcements through a shared visually hidden live region.</td></tr><tr><td><code>core/storage.js</code></td><td><code>getItem</code>, <code>setItem</code>, <code>removeItem</code></td><td><code>localStorage</code> that never throws (private mode, quota, sandboxed iframes).</td></tr><tr><td><code>core/theme.js</code></td><td><code>initTheme</code>, <code>getSettings</code>, <code>applySettings</code>, <code>getMode</code>, <code>setMode</code>, <code>generateBrand</code>, <code>toCss</code>, <code>contrast</code>, <code>mix</code></td><td>Mode, presets, custom brand colours (applied through the CSSOM), contrast maths.</td></tr><tr><td><code>core/data.js</code></td><td><code>loadData</code>, <code>resolveSource</code>, <code>getPath</code>, <code>setDataBase</code>, <code>getDataBase</code></td><td>Resolves <code>data-source</code> names, URLs and inline JSON; caches responses; <code>vr:datachange</code>.</td></tr><tr><td><code>core/format.js</code></td><td><code>formatValue</code>, <code>percentChange</code></td><td><code>Intl</code>-based number, currency, percent and date formatting.</td></tr><tr><td><code>core/markdown.js</code></td><td><code>renderMarkdown</code>, <code>renderInline</code>, <code>toPlainText</code></td><td>Safe Markdown subset to DOM nodes (no <code>innerHTML</code>) for chat replies.</td></tr><tr><td><code>core/clipboard.js</code></td><td><code>copyText</code></td><td>Clipboard API with a selection fallback.</td></tr></tbody></table></div>
+<h3 id="components">Components</h3>
+<div class="table-wrapper" role="region" aria-label="Module, Markup hook, Behaviour" tabindex="0"><table class="table" aria-label="Module, Markup hook, Behaviour"><thead><tr><th scope="col">Module</th><th scope="col">Markup hook</th><th scope="col">Behaviour</th></tr></thead><tbody><tr><td><code>disclosure.js</code></td><td><code>[data-disclosure]</code></td><td>Show/hide region (mobile menu, sidebar); Escape to close; optional light dismiss.</td></tr><tr><td><code>tabs.js</code></td><td><code>[data-tabs]</code></td><td>APG tabs with automatic activation, roving tabindex, arrow/Home/End keys.</td></tr><tr><td><code>dialog.js</code></td><td><code>button[commandfor]</code>, <code>dialog[closedby]</code></td><td>Polyfills Invoker Commands and <code>closedby=&quot;any&quot;</code> for native <code>&lt;dialog&gt;</code> (also drawers).</td></tr><tr><td><code>form-validation.js</code></td><td><code>form[data-validate]</code></td><td>Constraint Validation API with inline errors, <code>aria-invalid</code>, focus to first error.</td></tr><tr><td><code>password-toggle.js</code></td><td><code>[data-password-toggle]</code></td><td>Show/hide password with <code>aria-pressed</code>; always resubmits as <code>type=&quot;password&quot;</code>.</td></tr><tr><td><code>theme-toggle.js</code></td><td><code>[data-theme-toggle]</code></td><td>Light/dark toggle backed by <code>core/theme.js</code>.</td></tr><tr><td><code>theme-customizer.js</code></td><td><code>[data-theme-customizer]</code></td><td>Mode, brand, custom colour, density and radius controls; live contrast report; Copy CSS.</td></tr><tr><td><code>toast.js</code></td><td><code>[data-toast]</code>, <code>showToast()</code></td><td>Polite live-region notifications that pause on hover/focus.</td></tr><tr><td><code>table-sort.js</code></td><td><code>table[data-sortable]</code></td><td>Sortable columns with <code>aria-sort</code> and announcements.</td></tr><tr><td><code>data-chart.js</code></td><td><code>table[data-chart]</code></td><td>Draws proportional bars behind table values via the CSSOM.</td></tr><tr><td><code>chart.js</code></td><td><code>[data-viz]</code></td><td>Responsive SVG line, area, bar, hbar, donut and sparkline charts with keyboard exploration, legend toggles, summary and data table.</td></tr><tr><td><code>data-grid.js</code></td><td><code>[data-grid]</code></td><td>Search, filters, sorting, pagination, CSV export and row actions over JSON data.</td></tr><tr><td><code>chat.js</code></td><td><code>[data-chat]</code>, <code>[data-chat-widget]</code></td><td>Streaming chat (NDJSON, SSE, text or custom transports) with tools, charts, sources and suggestions.</td></tr><tr><td><code>copy.js</code></td><td><code>[data-copy]</code></td><td>Copy-to-clipboard buttons (text, or the text of a target element) with announcements.</td></tr></tbody></table></div>
+<p><code>demo/chat-mock.js</code> is not a component: it is the offline assistant the chat falls back to when no endpoint or transport is configured.</p>
+<p>Template-specific behaviour lives next to the template (<code>dashboard.js</code>, <code>shop.js</code>, <code>cart-store.js</code>, <code>ai.js</code>) and imports from the shared modules.</p>
+<h2 id="progressive-enhancement">Progressive enhancement</h2>
+<p>Every page is fully usable without JavaScript:</p>
+<div class="table-wrapper" role="region" aria-label="Feature, Without JS, With JS" tabindex="0"><table class="table" aria-label="Feature, Without JS, With JS"><thead><tr><th scope="col">Feature</th><th scope="col">Without JS</th><th scope="col">With JS</th></tr></thead><tbody><tr><td>Mobile menu</td><td>Menu always visible, wraps below the brand; toggle is <code>hidden</code></td><td>Collapses behind a disclosure button</td></tr><tr><td>Accordion</td><td>Native <code>&lt;details&gt;</code> (no JS at all)</td><td>—</td></tr><tr><td>Tabs</td><td>All panels shown in order, each with its heading; tab list <code>hidden</code></td><td>ARIA tabs</td></tr><tr><td>Dialog</td><td>Opens natively in browsers with Invoker Commands</td><td>Polyfilled elsewhere</td></tr><tr><td>Forms</td><td>Native browser validation; server must validate</td><td>Inline accessible errors</td></tr><tr><td>Filters (shop)</td><td>Submits a GET request with the selected filters</td><td>Instant client-side filtering</td></tr><tr><td>Table chart</td><td>Plain data table</td><td>Bars drawn behind values</td></tr><tr><td>Theme</td><td>Follows the OS setting (or server-rendered <code>data-*</code> presets)</td><td>User-selectable, persisted; theme panel</td></tr><tr><td>Charts</td><td>Fallback paragraph with the key figure</td><td>Interactive SVG chart, summary and data table</td></tr><tr><td>Data grid</td><td>Server-rendered first page; toolbar submits as GET</td><td>Instant search, filters, sorting, pagination, CSV</td></tr><tr><td>Chat</td><td>Composer posts to the form <code>action</code></td><td>Streaming replies in place</td></tr><tr><td>Cart</td><td>Links to product pages</td><td>Persistent cart with quantities and promo codes</td></tr></tbody></table></div>
+<p>The one known trade-off: a user who explicitly chose the opposite of their OS theme may see a brief flash before <code>core/theme.js</code> applies it, because an inline <code>&lt;head&gt;</code> script would violate the CSP. Set <code>data-theme</code> on <code>&lt;html&gt;</code> server-side (from a cookie) to avoid it.</p>
+<h2 id="performance-budget">Performance budget</h2>
+<ul><li>The entire design system (all tokens, themes, layouts, base and component CSS) is about 87 KB uncompressed, comments included (~17 KB gzipped); each page links only the files it uses.</li><li>All shared JavaScript is about 128 KB uncompressed with full JSDoc (~36 KB gzipped), but <code>main.js</code> imports a component only when its markup is on the page, so a typical page loads a fraction of it. Charts, grids and chat cost nothing on pages that do not use them.</li><li>No web fonts (system font stack), no icon fonts (inline SVG).</li><li>Images carry <code>width</code>/<code>height</code> (no layout shift), <code>loading=&quot;lazy&quot;</code> below the fold and <code>fetchpriority=&quot;high&quot;</code> for the hero.</li><li>Components read layout before writing it and never animate layout properties; motion respects <code>prefers-reduced-motion</code>.</li></ul>
+<h2 id="browser-support">Browser support</h2>
+<p>The last two versions of Chrome, Edge, Firefox and Safari (desktop and mobile). Newer features are used as enhancements:</p>
+<div class="table-wrapper" role="region" aria-label="Feature, Fallback" tabindex="0"><table class="table" aria-label="Feature, Fallback"><thead><tr><th scope="col">Feature</th><th scope="col">Fallback</th></tr></thead><tbody><tr><td>Container queries</td><td>Stacked card layout</td></tr><tr><td>Invoker Commands (<code>commandfor</code>)</td><td><code>dialog.js</code> polyfill</td></tr><tr><td><code>closedby=&quot;any&quot;</code></td><td><code>dialog.js</code> polyfill</td></tr><tr><td>Exclusive <code>&lt;details name&gt;</code></td><td>Independent accordion items</td></tr><tr><td><code>text-wrap: balance / pretty</code></td><td>Normal wrapping</td></tr><tr><td><code>:has()</code></td><td>Body scroll not locked behind dialogs; card focus ring falls back to link focus</td></tr><tr><td><code>dvh</code> units</td><td>Preceding <code>vh</code> declaration</td></tr></tbody></table></div>
+<h2 id="testing">Testing</h2>
+<div class="table-wrapper" role="region" aria-label="Command, What it covers" tabindex="0"><table class="table" aria-label="Command, What it covers"><thead><tr><th scope="col">Command</th><th scope="col">What it covers</th></tr></thead><tbody><tr><td><code>bash .claude/skills/validate-w3c.sh</code></td><td>Nu HTML Checker on all HTML, snippets, CSS and SVG; HTML/CSS/JS standards</td></tr><tr><td><code>bash .claude/skills/audit-a11y.sh</code></td><td>Static accessibility audit, token contrast, browser keyboard tests</td></tr><tr><td><code>node tests/run-all.mjs</code></td><td>All static suites: HTML, CSS, JS, contrast (every preset), unit tests, documentation and partial sync</td></tr><tr><td><code>node tests/browser/smoke.mjs</code></td><td>Playwright: console/CSP errors, reflow, keyboard, focus, no-JS baseline</td></tr></tbody></table></div>
+<p>The test suite itself has no dependencies; Playwright is optional and only used if already installed.</p>
+      </div>
+    </main>
+    <aside class="docs-toc" aria-labelledby="toc-title">
+      <h2 class="docs-toc__title" id="toc-title">On this page</h2>
+      <ul class="docs-toc__list" role="list">
+        <li><a href="#goals-and-constraints">Goals and constraints</a></li>
+        <li><a href="#directory-layout">Directory layout</a></li>
+        <li><a href="#pages-and-partials">Pages and partials</a></li>
+        <li><a href="#blocks-documentation-site-and-page-builder">Blocks, documentation site and page builder</a></li>
+        <li><a href="#css-architecture">CSS architecture</a></li>
+        <li><a href="#javascript-architecture">JavaScript architecture</a></li>
+        <li><a href="#progressive-enhancement">Progressive enhancement</a></li>
+        <li><a href="#performance-budget">Performance budget</a></li>
+        <li><a href="#browser-support">Browser support</a></li>
+        <li><a href="#testing">Testing</a></li>
+      </ul>
+    </aside>
+  </div>
+
+  <footer class="docs-footer">
+    <p>MIT licensed · Built with plain HTML, CSS and JavaScript · <a href="https://github.com/amuqtadir99/vanilla-responsive-ui">Source on GitHub</a> · Generated by <code>node .claude/skills/generate-doc.js</code></p>
+  </footer>
+</body>
+</html>

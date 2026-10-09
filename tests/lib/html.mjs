@@ -179,14 +179,19 @@ function isForeign(parent, tag) {
 
 /* ---- Tree helpers ------------------------------------------------------ */
 
-/** Depth-first list of all elements. */
+/**
+ * Depth-first list of all elements. The contents of <template> are inert
+ * document fragments (not part of the page), so they are skipped; the
+ * markup they hold is validated in its own source file (src/blocks/,
+ * src/layouts/partials/).
+ */
 export function elements(node) {
   const out = [];
   const walk = (n) => {
     for (const child of n.children) {
       if (child.type === 'element') {
         out.push(child);
-        walk(child);
+        if (child.tag !== 'template') walk(child);
       }
     }
   };

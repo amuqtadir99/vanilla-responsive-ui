@@ -1,0 +1,21 @@
+/* ==========================================================================
+   Standalone preview pages in src/docs/preview/, shown in docs iframes.
+   ========================================================================== */
+
+.preview-body {
+  min-height: 0;
+  background-color: var(--color-bg);
+}
+
+/* Components get breathing room; blocks are full-width sections already. */
+.preview-body--component .preview-main {
+  display: grid;
+  gap: var(--spacing-md);
+  padding: clamp(1rem, 0.5rem + 2vw, 2.5rem);
+}
+
+/* Site headers in a preview should not stick to the iframe edge. */
+.preview-body .site-header,
+.preview-body .shop-header {
+  position: static;
+}

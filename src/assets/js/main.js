@@ -14,6 +14,9 @@ import { initTheme } from './core/theme.js';
 // Apply stored colour mode, brand, density and radius before anything else.
 initTheme();
 
+// Modules are running: hide the "opened from disk" notice (base.css).
+document.documentElement.dataset.js = '';
+
 const registry = [
   ['[data-theme-toggle]', () => import('./components/theme-toggle.js')],
   ['[data-disclosure]', () => import('./components/disclosure.js')],

@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; form-action 'self'; base-uri 'self'; object-src 'none'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>Security — vanilla-responsive-ui docs</title>
+  <meta name="description" content="Security guide for vanilla-responsive-ui.">
+  <meta name="color-scheme" content="light dark">
+  <meta name="generator" content="node .claude/skills/generate-doc.js (do not edit by hand)">
+  <link rel="icon" href="../../assets/icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../../assets/css/tokens.css">
+  <link rel="stylesheet" href="../../assets/css/themes.css">
+  <link rel="stylesheet" href="../../assets/css/base.css">
+  <link rel="stylesheet" href="../../assets/css/layouts.css">
+  <link rel="stylesheet" href="../../assets/css/components/button.css">
+  <link rel="stylesheet" href="../../assets/css/components/form.css">
+  <link rel="stylesheet" href="../../assets/css/components/feedback.css">
+  <link rel="stylesheet" href="../../assets/css/components/tabs.css">
+  <link rel="stylesheet" href="../../assets/css/components/table.css">
+  <link rel="stylesheet" href="../../assets/css/components/code.css">
+  <link rel="stylesheet" href="../../assets/css/components/accordion.css">
+  <link rel="stylesheet" href="../../assets/css/components/card.css">
+  <link rel="stylesheet" href="../../assets/css/components/navigation.css">
+  <link rel="stylesheet" href="../../assets/css/blocks.css">
+  <link rel="stylesheet" href="../../docs/assets/foundations.css">
+  <link rel="stylesheet" href="../../docs/assets/docs.css">
+  <script type="module" src="../../assets/js/main.js"></script>
+  <script type="module" src="../../docs/assets/docs.js"></script>
+</head>
+<body class="docs-body">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <p class="needs-server"><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4M12 17h.01"/></svg> <span>You opened this file from disk, so browsers block its JavaScript (copy buttons, previews, the builder). Run <code>python3 -m http.server 8080</code> in the repository folder and open <a href="http://localhost:8080/src/">localhost:8080/src/</a>, or use the <a href="https://amuqtadir99.github.io/vanilla-responsive-ui/src/">hosted docs</a>.</span></p>
+  <header class="docs-topbar">
+    <div class="docs-topbar__inner">
+      <button type="button" class="btn btn--ghost btn--icon docs-topbar__menu" data-disclosure="dismissible" aria-expanded="false" aria-controls="docs-sidebar" hidden>
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        <span class="visually-hidden">Documentation menu</span>
+      </button>
+      <a class="docs-brand" href="../../index.html">
+        <span class="docs-brand__mark"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 2 7l10 5 10-5z"/><path d="m2 17 10 5 10-5M2 12l10 5 10-5"/></svg></span>
+        <span>vanilla-responsive-ui</span>
+      </a>
+      <nav class="docs-topnav" aria-label="Main">
+        <ul class="docs-topnav__list" role="list">
+          <li><a href="../../docs/getting-started.html">Docs</a></li>
+          <li><a href="../../docs/components/site-footer.html">Components</a></li>
+          <li><a href="../../docs/blocks/hero-centered.html">Blocks</a></li>
+          <li><a href="../../docs/templates/index.html">Templates</a></li>
+          <li><a href="../../builder/index.html">Builder</a></li>
+        </ul>
+      </nav>
+      <div class="docs-topbar__actions">
+        <a class="btn btn--ghost btn--sm" href="https://github.com/amuqtadir99/vanilla-responsive-ui"><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m16 18 6-6-6-6M8 6l-6 6 6 6"/></svg> <span class="docs-topbar__label">GitHub</span></a>
+        <button type="button" class="btn btn--ghost btn--icon theme-toggle" data-theme-toggle aria-pressed="false" hidden>
+          <svg class="icon theme-toggle__light" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="icon theme-toggle__dark" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+          <span class="visually-hidden">Dark theme</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="docs-layout">
+    <nav class="docs-sidebar" id="docs-sidebar" aria-label="Documentation">
+      <div class="docs-search" data-docs-search hidden>
+        <label class="visually-hidden" for="docs-search-input">Search the documentation</label>
+        <svg class="icon icon--sm docs-search__icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/></svg>
+        <input class="input docs-search__input" id="docs-search-input" type="search" placeholder="Search…" autocomplete="off" aria-describedby="docs-search-hint">
+        <kbd class="docs-search__kbd" id="docs-search-hint"><span class="visually-hidden">Press </span>/<span class="visually-hidden"> to search</span></kbd>
+        <p class="docs-search__empty text-sm text-muted" role="status" data-docs-search-status></p>
+      </div>
+      <div class="docs-nav__group" data-docs-group>
+        <p class="docs-nav__title" id="nav-get-started">Get started</p>
+        <ul class="docs-nav__list" role="list" aria-labelledby="nav-get-started">
+          <li><a class="docs-nav__link" href="../../index.html">Introduction</a></li>
+          <li><a class="docs-nav__link" href="../../docs/getting-started.html">Getting started</a></li>
+          <li><a class="docs-nav__link" href="../../builder/index.html">Page builder</a></li>
+          <li><a class="docs-nav__link" href="../../docs/ai-agents.html">Working with AI agents</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav__group" data-docs-group>
+        <p class="docs-nav__title" id="nav-templates">Templates</p>
+        <ul class="docs-nav__list" role="list" aria-labelledby="nav-templates">
+          <li><a class="docs-nav__link" href="../../docs/templates/index.html">All templates</a></li>
+          <li><a class="docs-nav__link" href="../../docs/templates/landing-page-index.html">Landing page</a></li>
+          <li><a class="docs-nav__link" href="../../docs/templates/website-index.html">Website</a></li>
+          <li><a class="docs-nav__link" href="../../docs/templates/dashboard-index.html">Dashboard</a></li>
+          <li><a class="docs-nav__link" href="../../docs/templates/e-commerce-index.html">E-commerce</a></li>
+          <li><a class="docs-nav__link" href="../../docs/templates/ai-index.html">AI apps</a></li>
+          <li><a class="docs-nav__link" href="../../docs/templates/auth-index.html">Authentication</a></li>
+          <li><a class="docs-nav__link" href="../../docs/layouts.html">Layouts</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav__group" data-docs-group>
+        <p class="docs-nav__title" id="nav-blocks">Blocks</p>
+        <ul class="docs-nav__list" role="list" aria-labelledby="nav-blocks">
+          <li><a class="docs-nav__link" href="../../docs/blocks/hero-centered.html">Hero centered</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/hero-split.html">Hero split</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/logo-cloud.html">Logo cloud</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/stats-band.html">Stats band</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/testimonials.html">Testimonials</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/feature-bento.html">Feature bento</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/feature-grid.html">Feature grid</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/feature-rows.html">Feature rows</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/steps.html">Steps</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/category-tiles.html">Category tiles</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/perks.html">Perks</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/pricing.html">Pricing</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/promo-banner.html">Promo banner</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/blog-posts.html">Blog posts</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/faq.html">FAQ</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/team.html">Team</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/contact.html">Contact</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/cta-banner.html">CTA banner</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/newsletter.html">Newsletter</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav__group" data-docs-group>
+        <p class="docs-nav__title" id="nav-components">Components</p>
+        <ul class="docs-nav__list" role="list" aria-labelledby="nav-components">
+          <li><a class="docs-nav__link" href="../../docs/components/site-footer.html">Site footer</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/site-header.html">Site header</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/breadcrumb.html">Breadcrumb</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/pagination.html">Pagination</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/tabs.html">Tabs</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/button.html">Button</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/accordion.html">Accordion</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/card.html">Card</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/form-field.html">Form fields</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/alert.html">Alert and badge</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/toast.html">Toast</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/dialog.html">Dialog</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/chart.html">Charts</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/data-grid.html">Data grid</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/data-table.html">Data table</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/chat.html">AI chat</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/chat-message.html">Chat messages</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/chat-widget.html">Chat widget</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/theme-customizer.html">Theme customizer</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/theme-toggle.html">Theme toggle</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav__group" data-docs-group>
+        <p class="docs-nav__title" id="nav-foundations">Foundations</p>
+        <ul class="docs-nav__list" role="list" aria-labelledby="nav-foundations">
+          <li><a class="docs-nav__link" href="../../docs/foundations/colors.html">Colours</a></li>
+          <li><a class="docs-nav__link" href="../../docs/foundations/typography.html">Typography</a></li>
+          <li><a class="docs-nav__link" href="../../docs/foundations/spacing.html">Spacing and shape</a></li>
+          <li><a class="docs-nav__link" href="../../docs/foundations/icons.html">Icons</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav__group" data-docs-group>
+        <p class="docs-nav__title" id="nav-guides">Guides</p>
+        <ul class="docs-nav__list" role="list" aria-labelledby="nav-guides">
+          <li><a class="docs-nav__link" href="../../docs/guides/theming.html">Theming</a></li>
+          <li><a class="docs-nav__link" href="../../docs/guides/layouts.html">Layouts and pages</a></li>
+          <li><a class="docs-nav__link" href="../../docs/guides/data.html">Data and charts</a></li>
+          <li><a class="docs-nav__link" href="../../docs/guides/ai-chat.html">AI chat</a></li>
+          <li><a class="docs-nav__link" href="../../docs/guides/accessibility.html">Accessibility</a></li>
+          <li><a class="docs-nav__link" href="../../docs/guides/security.html" aria-current="page">Security</a></li>
+          <li><a class="docs-nav__link" href="../../docs/guides/integration.html">Framework integration</a></li>
+          <li><a class="docs-nav__link" href="../../docs/guides/architecture.html">Architecture</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <main class="docs-main" id="main" tabindex="-1">
+      <header class="docs-header">
+        <p class="eyebrow">Guide</p>
+        <h1 class="docs-header__title">Security</h1>
+        
+        
+        <div class="docs-header__actions"><a class="btn btn--ghost btn--sm" href="https://github.com/amuqtadir99/vanilla-responsive-ui/blob/main/docs/SECURITY.md"><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20h9M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4z"/></svg> Edit SECURITY.md on GitHub</a></div>
+      </header>
+
+      <div class="docs-prose">
+<p>The templates are designed to run under a strict Content Security Policy and to make cross-site scripting (XSS) difficult to introduce by accident. This document describes those controls and what you must still do on the server.</p>
+<h2 id="reporting-a-vulnerability">Reporting a vulnerability</h2>
+<p>Please do not open a public issue for security problems. Use <a href="https://github.com/amuqtadir99/vanilla-responsive-ui/security/advisories/new">GitHub private vulnerability reporting</a> for this repository. You will get a response within 7 days.</p>
+<h2 id="supply-chain">Supply chain</h2>
+<p>There are no runtime or build dependencies: no npm packages, no CDNs, no web fonts, no third-party scripts. Everything that runs in the browser is in this repository and can be reviewed line by line. The test suite rejects external scripts, stylesheets, <code>@import</code> chains and bare module imports.</p>
+<p>The only external tools are optional and used for validation, never shipped: the Nu HTML Checker (<code>vnu.jar</code>) and Playwright.</p>
+<h2 id="content-security-policy">Content Security Policy</h2>
+<p>Every template declares this policy in a <code>&lt;meta&gt;</code> tag:</p>
+<div class="docs-code">
+  <div class="docs-code__header">
+    <span class="docs-code__label">TEXT</span>
+    <span class="docs-code__actions"><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-target="#code-558" data-copy-success="Code copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy code</span></button></span>
+  </div>
+  <pre tabindex="0" role="region" aria-label="TEXT"><code id="code-558">default-src 'self';
+script-src 'self';
+style-src 'self';
+img-src 'self' data:;
+font-src 'self';
+connect-src 'self';
+form-action 'self';
+base-uri 'self';
+object-src 'none'</code></pre>
+</div>
+<p>No <code>'unsafe-inline'</code> and no <code>'unsafe-eval'</code>. The templates comply because:</p>
+<ul><li>There are **no inline <code>&lt;script&gt;</code> blocks<strong> and </strong>no <code>on*=</code> attributes**; behaviour lives in external ES modules using <code>addEventListener</code>.</li><li>There are **no <code>style</code> attributes<strong> and </strong>no <code>&lt;style&gt;</code> blocks**; dynamic values are set through the CSSOM (<code>element.style.setProperty</code>), which CSP allows, or through classes and data attributes.</li><li><code>data-*</code> attributes carry configuration instead of inline code.</li></ul>
+<p>The browser tests fail on any CSP violation reported by the page.</p>
+<h3 id="in-production-send-csp-as-an-http-header">In production, send CSP as an HTTP header</h3>
+<p>A <code>&lt;meta&gt;</code> CSP cannot set <code>frame-ancestors</code>, <code>report-uri</code>/<code>report-to</code> or <code>sandbox</code>. Send the policy from your server and add clickjacking and reporting directives:</p>
+<div class="docs-code">
+  <div class="docs-code__header">
+    <span class="docs-code__label">TEXT</span>
+    <span class="docs-code__actions"><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-target="#code-559" data-copy-success="Code copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy code</span></button></span>
+  </div>
+  <pre tabindex="0" role="region" aria-label="TEXT"><code id="code-559">Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; form-action 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; upgrade-insecure-requests
+X-Content-Type-Options: nosniff
+Referrer-Policy: strict-origin-when-cross-origin
+Permissions-Policy: camera=(), microphone=(), geolocation=()
+Strict-Transport-Security: max-age=63072000; includeSubDomains; preload</code></pre>
+</div>
+<p>Framework examples are in <a href="integration.html#security-headers">INTEGRATION_GUIDE.md</a>. If your framework injects inline scripts (for example hydration data), use per-request nonces (<code>script-src 'self' 'nonce-…'</code>) rather than <code>'unsafe-inline'</code>.</p>
+<h2 id="xss-prevention-in-javascript">XSS prevention in JavaScript</h2>
+<ul><li>**Text is inserted with <code>textContent</code>**, never <code>innerHTML</code>. <code>core/dom.js</code> provides <code>createElement(tag, { text, attrs, children })</code>, which assigns text safely and throws if asked to set an <code>on*</code> attribute.</li><li>Toasts, form errors, announcements and the cart counter all write user- or data-derived strings through <code>textContent</code>.</li><li>Existing DOM nodes are moved (<code>append</code>) rather than serialised and re-parsed (for example when sorting tables).</li><li><code>innerHTML</code>, <code>outerHTML</code>, <code>insertAdjacentHTML</code>, <code>document.write</code>, <code>eval</code>, <code>new Function</code> and <code>setAttribute('style' | 'on…')</code> are rejected by <code>tests/checks/js.mjs</code>.</li></ul>
+<h3 id="page-builder-and-documentation">Page builder and documentation</h3>
+<ul><li>The builder clones blocks from inert <code>&lt;template&gt;</code> elements and moves DOM nodes; saved pages are restored with <code>DOMParser</code> (no script execution) and stripped of runtime attributes before export.</li><li>Exported pages carry the same strict CSP meta tag as the templates.</li><li>Documentation code is highlighted at build time, so docs pages need no runtime HTML parsing.</li></ul>
+<h3 id="model-output-and-remote-data">Model output and remote data</h3>
+<ul><li><strong>Chat replies</strong> are untrusted. <code>core/markdown.js</code> renders a small Markdown subset by building DOM nodes; any HTML in a reply is displayed as text. Links are limited to <code>http(s):</code> and <code>mailto:</code> and external links get <code>rel=&quot;noopener noreferrer&quot;</code>. Code blocks are text inside <code>&lt;pre&gt;&lt;code&gt;</code>.</li><li><strong>Data sources</strong> (charts, grids, the analyst) are treated as data only: values are formatted and written with <code>textContent</code>; SVG is built with <code>createElementNS</code>. <code>setDataBase()</code> accepts only relative and <code>http(s)</code> URLs. Inline data uses <code>&lt;script type=&quot;application/json&quot;&gt;</code>, which is never executed.</li><li><strong>CSV export</strong> prefixes cells that start with <code>=</code>, <code>+</code>, <code>-</code>, <code>@</code>, tab or carriage return with <code>'</code>, so spreadsheets do not evaluate them as formulas.</li><li>**<code>connect-src</code>** is <code>'self'</code> in the templates. Add only the API origins you actually call; never widen it to <code>*</code>.</li></ul>
+<p>If you genuinely need to render HTML from a string, parse it with the <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTML_Sanitizer_API">Sanitizer API</a> (<code>element.setHTML()</code>) where available, or a reviewed sanitiser on the server, and adopt <a href="https://developer.mozilla.org/en-US/docs/Web/API/Trusted_Types_API">Trusted Types</a> (<code>require-trusted-types-for 'script'</code>).</p>
+<h2 id="forms">Forms</h2>
+<p>Client-side validation is a usability feature, <strong>not a security control</strong>. The server must:</p>
+<ul><li>Re-validate and normalise every field.</li><li>Protect state-changing requests against CSRF (anti-forgery token in a hidden input, <code>SameSite</code> cookies). See the framework snippets in the integration guide.</li><li>Rate-limit authentication endpoints and use generic error messages (&quot;Email or password is incorrect&quot;).</li><li>Store passwords with a slow, salted hash (Argon2id, scrypt or bcrypt).</li></ul>
+<p>The auth templates support password managers and secure input: correct <code>autocomplete</code> tokens (<code>username</code>, <code>current-password</code>, <code>new-password</code>), paste allowed, <code>spellcheck=&quot;false&quot;</code> on email, and the show/hide toggle always switches the field back to <code>type=&quot;password&quot;</code> before submitting.</p>
+<p>Demo forms use <code>data-demo-submit</code> to intercept successful submissions. <strong>Remove that attribute</strong> before connecting a form to a real endpoint.</p>
+<h2 id="storage">Storage</h2>
+<p><code>localStorage</code> holds only non-sensitive preferences (theme, data source base URL) and demo data (the e-commerce cart, saved AI conversations). The theme is mirrored in a <code>vr_theme</code> cookie (<code>SameSite=Lax</code>) so servers can render it; treat it as untrusted input and accept only <code>light</code> or <code>dark</code>. Never put tokens, personal data or secrets in web storage; use <code>HttpOnly</code>, <code>Secure</code>, <code>SameSite</code> cookies for sessions. Values read back from storage are validated before use (<code>cart-store.js</code> drops malformed cart items; <code>core/theme.js</code> accepts only known presets and <code>#rrggbb</code> colours).</p>
+<p>Saved chat history (<code>data-chat-storage</code>) stays in the visitor's browser. Don't enable it where conversations may contain personal or confidential data; store history server-side, per authenticated user, instead.</p>
+<h2 id="ai-endpoints">AI endpoints</h2>
+<p>The chat components never hold API keys. Your backend endpoint should:</p>
+<ul><li>Keep the model API key on the server and authenticate the caller.</li><li>Rate-limit and cap message length and history size.</li><li>Treat user messages and retrieved content as untrusted input to tools (prompt injection): give tools the least privilege they need and confirm destructive actions with the user.</li><li>Return only what the UI needs; tool outputs shown in the chat are visible to the user.</li></ul>
+<h2 id="links">Links</h2>
+<ul><li>External links opened in a new tab must use <code>rel=&quot;noopener noreferrer&quot;</code> (enforced by the HTML suite).</li><li><code>javascript:</code> URLs and <code>href=&quot;#&quot;</code> are rejected.</li></ul>
+<h2 id="checklist-for-contributors">Checklist for contributors</h2>
+<ul><li>[ ] No new external resource, package, CDN or font.</li><li>[ ] No inline script, style or event handler.</li><li>[ ] Dynamic text uses <code>textContent</code> / <code>createElement</code> (including chat and data).</li><li>[ ] Forms post to <code>'self'</code>, include CSRF protection in integrations, and do not rely on client-side validation.</li><li>[ ] <code>node tests/run-all.mjs</code> and <code>node tests/browser/smoke.mjs</code> pass (no CSP violations).</li></ul>
+      </div>
+    </main>
+    <aside class="docs-toc" aria-labelledby="toc-title">
+      <h2 class="docs-toc__title" id="toc-title">On this page</h2>
+      <ul class="docs-toc__list" role="list">
+        <li><a href="#reporting-a-vulnerability">Reporting a vulnerability</a></li>
+        <li><a href="#supply-chain">Supply chain</a></li>
+        <li><a href="#content-security-policy">Content Security Policy</a></li>
+        <li><a href="#xss-prevention-in-javascript">XSS prevention in JavaScript</a></li>
+        <li><a href="#forms">Forms</a></li>
+        <li><a href="#storage">Storage</a></li>
+        <li><a href="#ai-endpoints">AI endpoints</a></li>
+        <li><a href="#links">Links</a></li>
+        <li><a href="#checklist-for-contributors">Checklist for contributors</a></li>
+      </ul>
+    </aside>
+  </div>
+
+  <footer class="docs-footer">
+    <p>MIT licensed · Built with plain HTML, CSS and JavaScript · <a href="https://github.com/amuqtadir99/vanilla-responsive-ui">Source on GitHub</a> · Generated by <code>node .claude/skills/generate-doc.js</code></p>
+  </footer>
+</body>
+</html>

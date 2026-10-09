@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; form-action 'self'; base-uri 'self'; object-src 'none'">
+  <title>Theme customizer preview — vanilla-responsive-ui</title>
+  <meta name="description" content="Live preview of the Theme customizer component.">
+  <meta name="color-scheme" content="light dark">
+  <meta name="vr-data-base" content="../../../data/">
+  <meta name="generator" content="node .claude/skills/generate-doc.js (do not edit by hand)">
+  <link rel="icon" href="../../../assets/icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../../../assets/css/tokens.css">
+  <link rel="stylesheet" href="../../../assets/css/themes.css">
+  <link rel="stylesheet" href="../../../assets/css/base.css">
+  <link rel="stylesheet" href="../../../assets/css/layouts.css">
+  <link rel="stylesheet" href="../../../assets/css/components/accordion.css">
+  <link rel="stylesheet" href="../../../assets/css/components/button.css">
+  <link rel="stylesheet" href="../../../assets/css/components/card.css">
+  <link rel="stylesheet" href="../../../assets/css/components/chart.css">
+  <link rel="stylesheet" href="../../../assets/css/components/chat.css">
+  <link rel="stylesheet" href="../../../assets/css/components/code.css">
+  <link rel="stylesheet" href="../../../assets/css/components/dialog.css">
+  <link rel="stylesheet" href="../../../assets/css/components/feedback.css">
+  <link rel="stylesheet" href="../../../assets/css/components/footer.css">
+  <link rel="stylesheet" href="../../../assets/css/components/form.css">
+  <link rel="stylesheet" href="../../../assets/css/components/header.css">
+  <link rel="stylesheet" href="../../../assets/css/components/navigation.css">
+  <link rel="stylesheet" href="../../../assets/css/components/table.css">
+  <link rel="stylesheet" href="../../../assets/css/components/tabs.css">
+  <link rel="stylesheet" href="../../../assets/css/blocks.css">
+  <link rel="stylesheet" href="../../../docs/assets/preview.css">
+  <script type="module" src="../../../assets/js/main.js"></script>
+</head>
+<body class="preview-body preview-body--component">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <main id="main" tabindex="-1" class="preview-main">
+    <h1 class="visually-hidden">Theme customizer preview</h1>
+    <button type="button" class="btn btn--secondary" commandfor="demo-theme-panel" command="show-modal" data-theme-panel-trigger hidden>
+      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></svg> Customize theme
+    </button>
+
+    <dialog class="dialog drawer" id="demo-theme-panel" aria-labelledby="demo-theme-panel-title" closedby="any">
+      <div class="dialog__header">
+        <h2 class="dialog__title" id="demo-theme-panel-title">Customize theme</h2>
+        <button type="button" class="btn btn--ghost btn--icon" commandfor="demo-theme-panel" command="close">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+          <span class="visually-hidden">Close theme panel</span>
+        </button>
+      </div>
+      <form class="dialog__body form" data-theme-customizer>
+        <fieldset class="fieldset">
+          <legend class="fieldset__legend">Mode</legend>
+          <div class="segmented">
+            <label class="segmented__option"><input type="radio" name="mode" value="system"><span class="segmented__label">System</span></label>
+            <label class="segmented__option"><input type="radio" name="mode" value="light"><span class="segmented__label"><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg> Light</span></label>
+            <label class="segmented__option"><input type="radio" name="mode" value="dark"><span class="segmented__label"><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg> Dark</span></label>
+          </div>
+        </fieldset>
+
+        <fieldset class="fieldset">
+          <legend class="fieldset__legend">Brand colour</legend>
+          <div class="swatches">
+            <label class="swatch"><input type="radio" name="brand" value="indigo"><span class="swatch__chip swatch__chip--indigo"></span> Indigo</label>
+            <label class="swatch"><input type="radio" name="brand" value="teal"><span class="swatch__chip swatch__chip--teal"></span> Teal</label>
+            <label class="swatch"><input type="radio" name="brand" value="violet"><span class="swatch__chip swatch__chip--violet"></span> Violet</label>
+            <label class="swatch"><input type="radio" name="brand" value="rose"><span class="swatch__chip swatch__chip--rose"></span> Rose</label>
+            <label class="swatch"><input type="radio" name="brand" value="amber"><span class="swatch__chip swatch__chip--amber"></span> Amber</label>
+            <label class="swatch"><input type="radio" name="brand" value="slate"><span class="swatch__chip swatch__chip--slate"></span> Slate</label>
+          </div>
+        </fieldset>
+
+        <div class="field">
+          <label class="field__label" for="demo-theme-custom-color">Or pick any brand colour</label>
+          <p class="field__hint" id="demo-theme-custom-hint">Shades are adjusted automatically to keep text readable in both themes.</p>
+          <input class="color-input" id="demo-theme-custom-color" name="custom" type="color" value="#2a4fcf" aria-describedby="demo-theme-custom-hint">
+        </div>
+
+        <p class="text-sm text-muted" role="status" data-theme-contrast></p>
+
+        <fieldset class="fieldset">
+          <legend class="fieldset__legend">Density</legend>
+          <div class="segmented">
+            <label class="segmented__option"><input type="radio" name="density" value="compact"><span class="segmented__label">Compact</span></label>
+            <label class="segmented__option"><input type="radio" name="density" value="default"><span class="segmented__label">Default</span></label>
+            <label class="segmented__option"><input type="radio" name="density" value="comfortable"><span class="segmented__label">Comfortable</span></label>
+          </div>
+        </fieldset>
+
+        <fieldset class="fieldset">
+          <legend class="fieldset__legend">Corners</legend>
+          <div class="segmented">
+            <label class="segmented__option"><input type="radio" name="radius" value="sharp"><span class="segmented__label">Sharp</span></label>
+            <label class="segmented__option"><input type="radio" name="radius" value="default"><span class="segmented__label">Default</span></label>
+            <label class="segmented__option"><input type="radio" name="radius" value="round"><span class="segmented__label">Round</span></label>
+          </div>
+        </fieldset>
+
+        <div class="field">
+          <label class="field__label" for="demo-theme-css-output">CSS for your project</label>
+          <textarea class="textarea textarea--code" id="demo-theme-css-output" readonly rows="8" data-theme-output></textarea>
+        </div>
+
+        <div class="form-actions">
+          <button type="button" class="btn btn--sm" data-copy data-copy-target="#demo-theme-css-output" hidden><span data-copy-label>Copy CSS</span></button>
+          <button type="button" class="btn btn--sm btn--ghost" data-theme-reset>Reset to defaults</button>
+        </div>
+      </form>
+    </dialog>
+  </main>
+</body>
+</html>

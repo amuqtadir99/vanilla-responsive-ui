@@ -1,0 +1,30 @@
+<!--
+@block: Steps
+@category: Features
+@description: Numbered three-step process with dashed connectors, for onboarding, "how it works" or checkout explanations.
+@css: blocks.css
+@js: none
+@a11y: An ordered list, so the step numbers are announced; the visual numbers come from a CSS counter.
+-->
+<section data-block="steps" class="section" aria-labelledby="steps-title">
+  <div class="container">
+    <div class="block-header block-header--center">
+      <p class="eyebrow">Get started</p>
+      <h2 class="block-header__title" id="steps-title">Live in three steps</h2>
+    </div>
+    <ol class="steps">
+      <li class="steps__item">
+        <h3 class="steps__title">Pick a template</h3>
+        <p class="text-muted">Start from a website, dashboard, shop or AI app, or compose a page from blocks.</p>
+      </li>
+      <li class="steps__item">
+        <h3 class="steps__title">Make it yours</h3>
+        <p class="text-muted">Choose a brand colour in the theme panel and copy the generated CSS.</p>
+      </li>
+      <li class="steps__item">
+        <h3 class="steps__title">Ship it</h3>
+        <p class="text-muted">Deploy the static files anywhere, or port them to your framework.</p>
+      </li>
+    </ol>
+  </div>
+</section>

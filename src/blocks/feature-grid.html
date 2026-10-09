@@ -1,0 +1,51 @@
+<!--
+@block: Feature grid
+@category: Features
+@description: Three-column grid of features, each with an icon, title and one sentence. Columns adapt to the available width.
+@css: blocks.css
+@js: none
+@a11y: A list of features; each title is an h3 and icons are decorative.
+-->
+<section data-block="feature-grid" class="section section--tint" aria-labelledby="grid-title">
+  <div class="container">
+    <div class="block-header block-header--split">
+      <div class="stack stack--xs">
+        <p class="eyebrow">Why teams switch</p>
+        <h2 class="block-header__title" id="grid-title">Built on standards that outlast frameworks</h2>
+      </div>
+      <p class="block-header__lead">Plain HTML, CSS and JavaScript keep working for decades. Everything here is designed to be read, copied and owned.</p>
+    </div>
+    <ul class="grid-auto list-reset" role="list">
+      <li class="stack stack--xs">
+        <span class="block-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2 3 14h9l-1 8 10-12h-9z"/></svg></span>
+        <h3>Fast everywhere</h3>
+        <p class="text-muted">No render-blocking scripts, lazy-loaded media and a tiny footprint for slow networks.</p>
+      </li>
+      <li class="stack stack--xs">
+        <span class="block-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="4.5" r="1.5"/><path d="M5 8.5 12 10l7-1.5M12 10v4.5M12 14.5 9 21M12 14.5l3 6.5"/></svg></span>
+        <h3>Accessible</h3>
+        <p class="text-muted">Semantic landmarks, full keyboard support and visible focus on every control.</p>
+      </li>
+      <li class="stack stack--xs">
+        <span class="block-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 2 7l10 5 10-5z"/><path d="m2 17 10 5 10-5M2 12l10 5 10-5"/></svg></span>
+        <h3>Design tokens</h3>
+        <p class="text-muted">Re-theme everything from one file of CSS custom properties.</p>
+      </li>
+      <li class="stack stack--xs">
+        <span class="block-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
+        <h3>Secure</h3>
+        <p class="text-muted">Runs under a strict Content-Security-Policy with XSS-safe rendering.</p>
+      </li>
+      <li class="stack stack--xs">
+        <span class="block-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m16 18 6-6-6-6M8 6l-6 6 6 6"/></svg></span>
+        <h3>Framework agnostic</h3>
+        <p class="text-muted">Port to ASP.NET Core, React, Vue, Django or Laravel in minutes.</p>
+      </li>
+      <li class="stack stack--xs">
+        <span class="block-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8zM5 2l.6 1.4L7 4l-1.4.6L5 6l-.6-1.4L3 4l1.4-.6z"/></svg></span>
+        <h3>AI ready</h3>
+        <p class="text-muted">Chat panels and agent workspaces that stream from your own model.</p>
+      </li>
+    </ul>
+  </div>
+</section>

@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; form-action 'self'; base-uri 'self'; object-src 'none'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>Data, charts and data grids — vanilla-responsive-ui docs</title>
+  <meta name="description" content="Data and charts guide for vanilla-responsive-ui.">
+  <meta name="color-scheme" content="light dark">
+  <meta name="generator" content="node .claude/skills/generate-doc.js (do not edit by hand)">
+  <link rel="icon" href="../../assets/icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../../assets/css/tokens.css">
+  <link rel="stylesheet" href="../../assets/css/themes.css">
+  <link rel="stylesheet" href="../../assets/css/base.css">
+  <link rel="stylesheet" href="../../assets/css/layouts.css">
+  <link rel="stylesheet" href="../../assets/css/components/button.css">
+  <link rel="stylesheet" href="../../assets/css/components/form.css">
+  <link rel="stylesheet" href="../../assets/css/components/feedback.css">
+  <link rel="stylesheet" href="../../assets/css/components/tabs.css">
+  <link rel="stylesheet" href="../../assets/css/components/table.css">
+  <link rel="stylesheet" href="../../assets/css/components/code.css">
+  <link rel="stylesheet" href="../../assets/css/components/accordion.css">
+  <link rel="stylesheet" href="../../assets/css/components/card.css">
+  <link rel="stylesheet" href="../../assets/css/components/navigation.css">
+  <link rel="stylesheet" href="../../assets/css/blocks.css">
+  <link rel="stylesheet" href="../../docs/assets/foundations.css">
+  <link rel="stylesheet" href="../../docs/assets/docs.css">
+  <script type="module" src="../../assets/js/main.js"></script>
+  <script type="module" src="../../docs/assets/docs.js"></script>
+</head>
+<body class="docs-body">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <p class="needs-server"><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4M12 17h.01"/></svg> <span>You opened this file from disk, so browsers block its JavaScript (copy buttons, previews, the builder). Run <code>python3 -m http.server 8080</code> in the repository folder and open <a href="http://localhost:8080/src/">localhost:8080/src/</a>, or use the <a href="https://amuqtadir99.github.io/vanilla-responsive-ui/src/">hosted docs</a>.</span></p>
+  <header class="docs-topbar">
+    <div class="docs-topbar__inner">
+      <button type="button" class="btn btn--ghost btn--icon docs-topbar__menu" data-disclosure="dismissible" aria-expanded="false" aria-controls="docs-sidebar" hidden>
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        <span class="visually-hidden">Documentation menu</span>
+      </button>
+      <a class="docs-brand" href="../../index.html">
+        <span class="docs-brand__mark"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 2 7l10 5 10-5z"/><path d="m2 17 10 5 10-5M2 12l10 5 10-5"/></svg></span>
+        <span>vanilla-responsive-ui</span>
+      </a>
+      <nav class="docs-topnav" aria-label="Main">
+        <ul class="docs-topnav__list" role="list">
+          <li><a href="../../docs/getting-started.html">Docs</a></li>
+          <li><a href="../../docs/components/site-footer.html">Components</a></li>
+          <li><a href="../../docs/blocks/hero-centered.html">Blocks</a></li>
+          <li><a href="../../docs/templates/index.html">Templates</a></li>
+          <li><a href="../../builder/index.html">Builder</a></li>
+        </ul>
+      </nav>
+      <div class="docs-topbar__actions">
+        <a class="btn btn--ghost btn--sm" href="https://github.com/amuqtadir99/vanilla-responsive-ui"><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m16 18 6-6-6-6M8 6l-6 6 6 6"/></svg> <span class="docs-topbar__label">GitHub</span></a>
+        <button type="button" class="btn btn--ghost btn--icon theme-toggle" data-theme-toggle aria-pressed="false" hidden>
+          <svg class="icon theme-toggle__light" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="icon theme-toggle__dark" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+          <span class="visually-hidden">Dark theme</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="docs-layout">
+    <nav class="docs-sidebar" id="docs-sidebar" aria-label="Documentation">
+      <div class="docs-search" data-docs-search hidden>
+        <label class="visually-hidden" for="docs-search-input">Search the documentation</label>
+        <svg class="icon icon--sm docs-search__icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/></svg>
+        <input class="input docs-search__input" id="docs-search-input" type="search" placeholder="Search…" autocomplete="off" aria-describedby="docs-search-hint">
+        <kbd class="docs-search__kbd" id="docs-search-hint"><span class="visually-hidden">Press </span>/<span class="visually-hidden"> to search</span></kbd>
+        <p class="docs-search__empty text-sm text-muted" role="status" data-docs-search-status></p>
+      </div>
+      <div class="docs-nav__group" data-docs-group>
+        <p class="docs-nav__title" id="nav-get-started">Get started</p>
+        <ul class="docs-nav__list" role="list" aria-labelledby="nav-get-started">
+          <li><a class="docs-nav__link" href="../../index.html">Introduction</a></li>
+          <li><a class="docs-nav__link" href="../../docs/getting-started.html">Getting started</a></li>
+          <li><a class="docs-nav__link" href="../../builder/index.html">Page builder</a></li>
+          <li><a class="docs-nav__link" href="../../docs/ai-agents.html">Working with AI agents</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav__group" data-docs-group>
+        <p class="docs-nav__title" id="nav-templates">Templates</p>
+        <ul class="docs-nav__list" role="list" aria-labelledby="nav-templates">
+          <li><a class="docs-nav__link" href="../../docs/templates/index.html">All templates</a></li>
+          <li><a class="docs-nav__link" href="../../docs/templates/landing-page-index.html">Landing page</a></li>
+          <li><a class="docs-nav__link" href="../../docs/templates/website-index.html">Website</a></li>
+          <li><a class="docs-nav__link" href="../../docs/templates/dashboard-index.html">Dashboard</a></li>
+          <li><a class="docs-nav__link" href="../../docs/templates/e-commerce-index.html">E-commerce</a></li>
+          <li><a class="docs-nav__link" href="../../docs/templates/ai-index.html">AI apps</a></li>
+          <li><a class="docs-nav__link" href="../../docs/templates/auth-index.html">Authentication</a></li>
+          <li><a class="docs-nav__link" href="../../docs/layouts.html">Layouts</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav__group" data-docs-group>
+        <p class="docs-nav__title" id="nav-blocks">Blocks</p>
+        <ul class="docs-nav__list" role="list" aria-labelledby="nav-blocks">
+          <li><a class="docs-nav__link" href="../../docs/blocks/hero-centered.html">Hero centered</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/hero-split.html">Hero split</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/logo-cloud.html">Logo cloud</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/stats-band.html">Stats band</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/testimonials.html">Testimonials</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/feature-bento.html">Feature bento</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/feature-grid.html">Feature grid</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/feature-rows.html">Feature rows</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/steps.html">Steps</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/category-tiles.html">Category tiles</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/perks.html">Perks</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/pricing.html">Pricing</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/promo-banner.html">Promo banner</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/blog-posts.html">Blog posts</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/faq.html">FAQ</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/team.html">Team</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/contact.html">Contact</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/cta-banner.html">CTA banner</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/newsletter.html">Newsletter</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav__group" data-docs-group>
+        <p class="docs-nav__title" id="nav-components">Components</p>
+        <ul class="docs-nav__list" role="list" aria-labelledby="nav-components">
+          <li><a class="docs-nav__link" href="../../docs/components/site-footer.html">Site footer</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/site-header.html">Site header</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/breadcrumb.html">Breadcrumb</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/pagination.html">Pagination</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/tabs.html">Tabs</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/button.html">Button</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/accordion.html">Accordion</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/card.html">Card</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/form-field.html">Form fields</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/alert.html">Alert and badge</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/toast.html">Toast</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/dialog.html">Dialog</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/chart.html">Charts</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/data-grid.html">Data grid</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/data-table.html">Data table</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/chat.html">AI chat</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/chat-message.html">Chat messages</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/chat-widget.html">Chat widget</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/theme-customizer.html">Theme customizer</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/theme-toggle.html">Theme toggle</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav__group" data-docs-group>
+        <p class="docs-nav__title" id="nav-foundations">Foundations</p>
+        <ul class="docs-nav__list" role="list" aria-labelledby="nav-foundations">
+          <li><a class="docs-nav__link" href="../../docs/foundations/colors.html">Colours</a></li>
+          <li><a class="docs-nav__link" href="../../docs/foundations/typography.html">Typography</a></li>
+          <li><a class="docs-nav__link" href="../../docs/foundations/spacing.html">Spacing and shape</a></li>
+          <li><a class="docs-nav__link" href="../../docs/foundations/icons.html">Icons</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav__group" data-docs-group>
+        <p class="docs-nav__title" id="nav-guides">Guides</p>
+        <ul class="docs-nav__list" role="list" aria-labelledby="nav-guides">
+          <li><a class="docs-nav__link" href="../../docs/guides/theming.html">Theming</a></li>
+          <li><a class="docs-nav__link" href="../../docs/guides/layouts.html">Layouts and pages</a></li>
+          <li><a class="docs-nav__link" href="../../docs/guides/data.html" aria-current="page">Data and charts</a></li>
+          <li><a class="docs-nav__link" href="../../docs/guides/ai-chat.html">AI chat</a></li>
+          <li><a class="docs-nav__link" href="../../docs/guides/accessibility.html">Accessibility</a></li>
+          <li><a class="docs-nav__link" href="../../docs/guides/security.html">Security</a></li>
+          <li><a class="docs-nav__link" href="../../docs/guides/integration.html">Framework integration</a></li>
+          <li><a class="docs-nav__link" href="../../docs/guides/architecture.html">Architecture</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <main class="docs-main" id="main" tabindex="-1">
+      <header class="docs-header">
+        <p class="eyebrow">Guide</p>
+        <h1 class="docs-header__title">Data, charts and data grids</h1>
+        
+        
+        <div class="docs-header__actions"><a class="btn btn--ghost btn--sm" href="https://github.com/amuqtadir99/vanilla-responsive-ui/blob/main/docs/DATA.md"><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20h9M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4z"/></svg> Edit DATA.md on GitHub</a></div>
+      </header>
+
+      <div class="docs-prose">
+<p>Charts, data grids and the AI analyst read <strong>JSON</strong>. Out of the box they use the sample files in [<code>src/data/</code>](../src/data/); point them at your own API with one attribute, one setting, or one function call.</p>
+<div class="table-wrapper" role="region" aria-label="File, Shape, Used by" tabindex="0"><table class="table" aria-label="File, Shape, Used by"><thead><tr><th scope="col">File</th><th scope="col">Shape</th><th scope="col">Used by</th></tr></thead><tbody><tr><td><code>sales.json</code></td><td>Object with <code>monthly</code>, <code>daily</code>, <code>channels</code>, <code>regions</code>, <code>categories</code>, <code>devices</code>, <code>segments</code> arrays</td><td>Dashboard charts, analyst</td></tr><tr><td><code>orders.json</code></td><td>Array of orders: <code>id, customer, email, date, status, items, products, total, channel, country</code></td><td>Order grids, support and analyst assistants</td></tr><tr><td><code>customers.json</code></td><td>Array of customers: <code>id, name, email, segment, orders, spent, country, joined, lastOrder</code></td><td>Customer grid, analyst</td></tr><tr><td><code>products.json</code></td><td>Array of products: <code>id, name, category, price, compareAt, rating, reviews, image, badge, stock</code></td><td>Reference data for the shop</td></tr></tbody></table></div>
+<h2 id="choosing-a-data-source">Choosing a data source</h2>
+<p><code>data-source</code> on a chart or grid accepts:</p>
+<div class="table-wrapper" role="region" aria-label="Value, Loads" tabindex="0"><table class="table" aria-label="Value, Loads"><thead><tr><th scope="col">Value</th><th scope="col">Loads</th></tr></thead><tbody><tr><td><code>sales</code></td><td><code>&lt;base&gt;sales.json</code>, where <code>&lt;base&gt;</code> comes from <code>&lt;meta name=&quot;vr-data-base&quot; content=&quot;../../data/&quot;&gt;</code></td></tr><tr><td><code>../../data/sales.json</code></td><td>that URL</td></tr><tr><td><code>https://api.example.com/v1/sales</code></td><td>that URL (allow the host in your CSP <code>connect-src</code>)</td></tr><tr><td><code>#sales-data</code></td><td>inline JSON in <code>&lt;script type=&quot;application/json&quot; id=&quot;sales-data&quot;&gt;</code></td></tr></tbody></table></div>
+<p><code>data-path=&quot;monthly&quot;</code> picks a nested array (dotted paths such as <code>report.items</code> work too). Responses are cached per URL.</p>
+<p><strong>Switch every named source at once:</strong> Dashboard → Settings → Data sources lets you enter a base URL (for example <code>https://api.example.com/v1/</code>), test the connection and save it for this browser. In code:</p>
+<div class="docs-code">
+  <div class="docs-code__header">
+    <span class="docs-code__label">JS</span>
+    <span class="docs-code__actions"><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-target="#code-544" data-copy-success="Code copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy code</span></button></span>
+  </div>
+  <pre tabindex="0" role="region" aria-label="JS"><code id="code-544"><span class="tok-keyword">import</span> { setDataBase } <span class="tok-keyword">from</span> <span class="tok-string">'./assets/js/core/data.js'</span>;
+<span class="tok-function">setDataBase</span>(<span class="tok-string">'https://api.example.com/v1/'</span>); <span class="tok-comment">// every chart and grid reloads</span>
+<span class="tok-function">setDataBase</span>(<span class="tok-string">''</span>);                            <span class="tok-comment">// back to the page default</span></code></pre>
+</div>
+<p>Your endpoints must return the same shapes as the sample files, send <code>Content-Type: application/json</code>, and allow your origin (CORS) when they live on another host.</p>
+<h2 id="charts">Charts</h2>
+<p>SVG charts drawn by [<code>components/chart.js</code>](../src/assets/js/components/chart.js): <code>line</code>, <code>area</code>, <code>bar</code> (grouped, or <code>data-stacked</code>), <code>hbar</code>, <code>donut</code> and <code>sparkline</code>.</p>
+<div class="docs-code">
+  <div class="docs-code__header">
+    <span class="docs-code__label">HTML</span>
+    <span class="docs-code__actions"><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-target="#code-545" data-copy-success="Code copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy code</span></button></span>
+  </div>
+  <pre tabindex="0" role="region" aria-label="HTML"><code id="code-545"><span class="tok-tag">&lt;figure</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;chart&quot;</span> <span class="tok-attr">data-viz</span><span class="tok-punct">=</span><span class="tok-string">&quot;area&quot;</span> <span class="tok-attr">data-source</span><span class="tok-punct">=</span><span class="tok-string">&quot;sales&quot;</span> <span class="tok-attr">data-path</span><span class="tok-punct">=</span><span class="tok-string">&quot;monthly&quot;</span>
+        <span class="tok-attr">data-x</span><span class="tok-punct">=</span><span class="tok-string">&quot;month&quot;</span> <span class="tok-attr">data-x-format</span><span class="tok-punct">=</span><span class="tok-string">&quot;short-month&quot;</span>
+        <span class="tok-attr">data-series</span><span class="tok-punct">=</span><span class="tok-string">&quot;revenue:Revenue,target:Target&quot;</span> <span class="tok-attr">data-format</span><span class="tok-punct">=</span><span class="tok-string">&quot;currency-compact&quot;</span><span class="tok-tag">&gt;</span>
+  <span class="tok-tag">&lt;figcaption</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;chart__caption&quot;</span><span class="tok-tag">&gt;</span>
+    <span class="tok-tag">&lt;span</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;chart__title&quot;</span><span class="tok-tag">&gt;</span>Revenue vs target<span class="tok-tag">&lt;/span</span><span class="tok-tag">&gt;</span>
+    <span class="tok-tag">&lt;span</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;chart__subtitle&quot;</span><span class="tok-tag">&gt;</span>Last 12 months<span class="tok-tag">&lt;/span</span><span class="tok-tag">&gt;</span>
+  <span class="tok-tag">&lt;/figcaption</span><span class="tok-tag">&gt;</span>
+  <span class="tok-tag">&lt;p</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;chart__fallback&quot;</span><span class="tok-tag">&gt;</span>Revenue reached $48,290 in October 2026.<span class="tok-tag">&lt;/p</span><span class="tok-tag">&gt;</span>
+<span class="tok-tag">&lt;/figure</span><span class="tok-tag">&gt;</span></code></pre>
+</div>
+<div class="table-wrapper" role="region" aria-label="Attribute, Meaning" tabindex="0"><table class="table" aria-label="Attribute, Meaning"><thead><tr><th scope="col">Attribute</th><th scope="col">Meaning</th></tr></thead><tbody><tr><td><code>data-viz</code></td><td>Chart type</td></tr><tr><td><code>data-x</code></td><td>Key for the category or x value (default <code>label</code>)</td></tr><tr><td><code>data-x-format</code></td><td><code>text</code>, <code>month</code>, <code>short-month</code>, <code>date</code>, <code>date-short</code>, …</td></tr><tr><td><code>data-series</code></td><td><code>key:Label[:colour]</code>, comma-separated; colour 1–6 picks <code>--chart-N</code></td></tr><tr><td><code>data-format</code></td><td><code>number</code>, <code>integer</code>, <code>compact</code>, <code>currency</code>, <code>currency-compact</code>, <code>percent</code></td></tr><tr><td><code>data-height</code></td><td>Plot height in pixels (default 260)</td></tr><tr><td><code>data-limit</code></td><td>Show only the last N rows (the analytics range picker uses this)</td></tr><tr><td><code>data-stacked</code></td><td>Stack bar series</td></tr><tr><td><code>data-currency</code></td><td>ISO currency code (default USD)</td></tr></tbody></table></div>
+<p>What you get automatically:</p>
+<ul><li><strong>Responsive SVG</strong> that redraws when its container resizes.</li><li><strong>Tooltips</strong> on hover, and <strong>keyboard exploration</strong>: focus the chart and use the arrow keys, Home and End; each point is announced.</li><li><strong>Legend buttons</strong> to show and hide series (<code>aria-pressed</code>).</li><li><strong>A text summary</strong> (highest, lowest, latest, change) for screen readers.</li><li><strong>A data table</strong> in a &quot;Show data table&quot; disclosure.</li><li><strong>Theme-aware colours</strong> from <code>--chart-1</code> … <code>--chart-6</code>, verified at 3:1 against card backgrounds in light and dark mode.</li><li><strong>No-JS fallback</strong>: the <code>.chart__fallback</code> paragraph is shown until the chart renders.</li></ul>
+<p>Render from data you already have:</p>
+<div class="docs-code">
+  <div class="docs-code__header">
+    <span class="docs-code__label">JS</span>
+    <span class="docs-code__actions"><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-target="#code-546" data-copy-success="Code copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy code</span></button></span>
+  </div>
+  <pre tabindex="0" role="region" aria-label="JS"><code id="code-546"><span class="tok-keyword">import</span> { renderChart, refresh } <span class="tok-keyword">from</span> <span class="tok-string">'./assets/js/components/chart.js'</span>;
+
+<span class="tok-function">renderChart</span>(document.<span class="tok-function">querySelector</span>(<span class="tok-string">'#revenue-chart'</span>), rows); <span class="tok-comment">// your rows</span>
+figure.dataset.limit = <span class="tok-string">'6'</span>;
+<span class="tok-function">refresh</span>(figure);                                             <span class="tok-comment">// reload data-source</span></code></pre>
+</div>
+<h2 id="data-grids">Data grids</h2>
+<p>[<code>components/data-grid.js</code>](../src/assets/js/components/data-grid.js) turns a table into a searchable, filterable, sortable, paginated grid:</p>
+<div class="docs-code">
+  <div class="docs-code__header">
+    <span class="docs-code__label">HTML</span>
+    <span class="docs-code__actions"><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-target="#code-547" data-copy-success="Code copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy code</span></button></span>
+  </div>
+  <pre tabindex="0" role="region" aria-label="HTML"><code id="code-547"><span class="tok-tag">&lt;div</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;data-grid&quot;</span> <span class="tok-attr">data-grid</span> <span class="tok-attr">data-source</span><span class="tok-punct">=</span><span class="tok-string">&quot;orders&quot;</span> <span class="tok-attr">data-page-size</span><span class="tok-punct">=</span><span class="tok-string">&quot;10&quot;</span> <span class="tok-attr">data-label</span><span class="tok-punct">=</span><span class="tok-string">&quot;orders&quot;</span><span class="tok-tag">&gt;</span>
+  <span class="tok-tag">&lt;form</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;data-grid__toolbar&quot;</span> <span class="tok-attr">action</span><span class="tok-punct">=</span><span class="tok-string">&quot;orders.html&quot;</span> <span class="tok-attr">method</span><span class="tok-punct">=</span><span class="tok-string">&quot;get&quot;</span><span class="tok-tag">&gt;</span>
+    <span class="tok-tag">&lt;input</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;input&quot;</span> <span class="tok-attr">type</span><span class="tok-punct">=</span><span class="tok-string">&quot;search&quot;</span> <span class="tok-attr">name</span><span class="tok-punct">=</span><span class="tok-string">&quot;q&quot;</span> <span class="tok-attr">data-grid-search</span> <span class="tok-attr">aria-label</span><span class="tok-punct">=</span><span class="tok-string">&quot;Search orders&quot;</span><span class="tok-tag">&gt;</span>
+    <span class="tok-tag">&lt;select</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;select&quot;</span> <span class="tok-attr">name</span><span class="tok-punct">=</span><span class="tok-string">&quot;status&quot;</span> <span class="tok-attr">data-grid-filter</span><span class="tok-punct">=</span><span class="tok-string">&quot;status&quot;</span> <span class="tok-attr">aria-label</span><span class="tok-punct">=</span><span class="tok-string">&quot;Status&quot;</span><span class="tok-tag">&gt;</span>…<span class="tok-tag">&lt;/select</span><span class="tok-tag">&gt;</span>
+    <span class="tok-tag">&lt;button</span> <span class="tok-attr">type</span><span class="tok-punct">=</span><span class="tok-string">&quot;button&quot;</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;btn btn--secondary&quot;</span> <span class="tok-attr">data-grid-export</span> <span class="tok-attr">hidden</span><span class="tok-tag">&gt;</span>Export CSV<span class="tok-tag">&lt;/button</span><span class="tok-tag">&gt;</span>
+  <span class="tok-tag">&lt;/form</span><span class="tok-tag">&gt;</span>
+  <span class="tok-tag">&lt;div</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;table-wrapper&quot;</span> <span class="tok-attr">role</span><span class="tok-punct">=</span><span class="tok-string">&quot;region&quot;</span> <span class="tok-attr">aria-labelledby</span><span class="tok-punct">=</span><span class="tok-string">&quot;orders-caption&quot;</span> <span class="tok-attr">tabindex</span><span class="tok-punct">=</span><span class="tok-string">&quot;0&quot;</span><span class="tok-tag">&gt;</span>
+    <span class="tok-tag">&lt;table</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;table&quot;</span><span class="tok-tag">&gt;</span>
+      <span class="tok-tag">&lt;caption</span> <span class="tok-attr">id</span><span class="tok-punct">=</span><span class="tok-string">&quot;orders-caption&quot;</span><span class="tok-tag">&gt;</span>Orders<span class="tok-tag">&lt;/caption</span><span class="tok-tag">&gt;</span>
+      <span class="tok-tag">&lt;thead</span><span class="tok-tag">&gt;</span><span class="tok-tag">&lt;tr</span><span class="tok-tag">&gt;</span>
+        <span class="tok-tag">&lt;th</span> <span class="tok-attr">scope</span><span class="tok-punct">=</span><span class="tok-string">&quot;col&quot;</span> <span class="tok-attr">data-key</span><span class="tok-punct">=</span><span class="tok-string">&quot;id&quot;</span> <span class="tok-attr">data-sort</span><span class="tok-punct">=</span><span class="tok-string">&quot;text&quot;</span><span class="tok-tag">&gt;</span>Order<span class="tok-tag">&lt;/th</span><span class="tok-tag">&gt;</span>
+        <span class="tok-tag">&lt;th</span> <span class="tok-attr">scope</span><span class="tok-punct">=</span><span class="tok-string">&quot;col&quot;</span> <span class="tok-attr">data-key</span><span class="tok-punct">=</span><span class="tok-string">&quot;customer&quot;</span> <span class="tok-attr">data-sort</span><span class="tok-punct">=</span><span class="tok-string">&quot;text&quot;</span> <span class="tok-attr">data-render</span><span class="tok-punct">=</span><span class="tok-string">&quot;person&quot;</span><span class="tok-tag">&gt;</span>Customer<span class="tok-tag">&lt;/th</span><span class="tok-tag">&gt;</span>
+        <span class="tok-tag">&lt;th</span> <span class="tok-attr">scope</span><span class="tok-punct">=</span><span class="tok-string">&quot;col&quot;</span> <span class="tok-attr">data-key</span><span class="tok-punct">=</span><span class="tok-string">&quot;status&quot;</span> <span class="tok-attr">data-render</span><span class="tok-punct">=</span><span class="tok-string">&quot;badge&quot;</span><span class="tok-tag">&gt;</span>Status<span class="tok-tag">&lt;/th</span><span class="tok-tag">&gt;</span>
+        <span class="tok-tag">&lt;th</span> <span class="tok-attr">scope</span><span class="tok-punct">=</span><span class="tok-string">&quot;col&quot;</span> <span class="tok-attr">data-key</span><span class="tok-punct">=</span><span class="tok-string">&quot;total&quot;</span> <span class="tok-attr">data-sort</span><span class="tok-punct">=</span><span class="tok-string">&quot;number&quot;</span> <span class="tok-attr">data-format</span><span class="tok-punct">=</span><span class="tok-string">&quot;currency&quot;</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;num&quot;</span><span class="tok-tag">&gt;</span>Total<span class="tok-tag">&lt;/th</span><span class="tok-tag">&gt;</span>
+        <span class="tok-tag">&lt;th</span> <span class="tok-attr">scope</span><span class="tok-punct">=</span><span class="tok-string">&quot;col&quot;</span> <span class="tok-attr">data-render</span><span class="tok-punct">=</span><span class="tok-string">&quot;action&quot;</span> <span class="tok-attr">data-action</span><span class="tok-punct">=</span><span class="tok-string">&quot;view&quot;</span> <span class="tok-attr">data-action-label</span><span class="tok-punct">=</span><span class="tok-string">&quot;View&quot;</span><span class="tok-tag">&gt;</span><span class="tok-tag">&lt;span</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;visually-hidden&quot;</span><span class="tok-tag">&gt;</span>Actions<span class="tok-tag">&lt;/span</span><span class="tok-tag">&gt;</span><span class="tok-tag">&lt;/th</span><span class="tok-tag">&gt;</span>
+      <span class="tok-tag">&lt;/tr</span><span class="tok-tag">&gt;</span><span class="tok-tag">&lt;/thead</span><span class="tok-tag">&gt;</span>
+      <span class="tok-tag">&lt;tbody</span><span class="tok-tag">&gt;</span><span class="tok-comment">&lt;!-- server-rendered first page for no-JS --&gt;</span><span class="tok-tag">&lt;/tbody</span><span class="tok-tag">&gt;</span>
+    <span class="tok-tag">&lt;/table</span><span class="tok-tag">&gt;</span>
+  <span class="tok-tag">&lt;/div</span><span class="tok-tag">&gt;</span>
+  <span class="tok-tag">&lt;p</span> <span class="tok-attr">data-grid-status</span><span class="tok-tag">&gt;</span><span class="tok-tag">&lt;/p</span><span class="tok-tag">&gt;</span>
+  <span class="tok-tag">&lt;nav</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;pagination&quot;</span> <span class="tok-attr">aria-label</span><span class="tok-punct">=</span><span class="tok-string">&quot;Order pages&quot;</span> <span class="tok-attr">data-grid-pagination</span><span class="tok-tag">&gt;</span><span class="tok-tag">&lt;/nav</span><span class="tok-tag">&gt;</span>
+<span class="tok-tag">&lt;/div</span><span class="tok-tag">&gt;</span></code></pre>
+</div>
+<ul><li>Column options: <code>data-key</code>, <code>data-format</code>, <code>data-sort</code> (<code>text</code>, <code>number</code>, <code>date</code>), <code>data-render</code> (<code>badge</code>, <code>person</code>, <code>action</code>).</li><li>Row actions dispatch a <code>grid:action</code> event with <code>{ action, row }</code>; the dashboard uses it to open the order details dialog.</li><li>Search reads <code>?q=</code> from the URL, so the top-bar search works across pages. Without JavaScript the toolbar submits as a normal GET form.</li><li>CSV export escapes formulas (<code>=</code>, <code>+</code>, <code>-</code>, <code>@</code>) to prevent spreadsheet injection.</li><li>Dispatch <code>grid:refresh</code> on the grid to reload its data.</li></ul>
+<h2 id="inline-data-and-server-rendering">Inline data and server rendering</h2>
+<p>For pages rendered by a server, embed the data instead of fetching it:</p>
+<div class="docs-code">
+  <div class="docs-code__header">
+    <span class="docs-code__label">HTML</span>
+    <span class="docs-code__actions"><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-target="#code-548" data-copy-success="Code copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy code</span></button></span>
+  </div>
+  <pre tabindex="0" role="region" aria-label="HTML"><code id="code-548"><span class="tok-tag">&lt;script</span> <span class="tok-attr">type</span><span class="tok-punct">=</span><span class="tok-string">&quot;application/json&quot;</span> <span class="tok-attr">id</span><span class="tok-punct">=</span><span class="tok-string">&quot;sales-data&quot;</span><span class="tok-tag">&gt;</span>{&quot;monthly&quot;: […]}<span class="tok-tag">&lt;/script</span><span class="tok-tag">&gt;</span>
+<span class="tok-tag">&lt;figure</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;chart&quot;</span> <span class="tok-attr">data-viz</span><span class="tok-punct">=</span><span class="tok-string">&quot;line&quot;</span> <span class="tok-attr">data-source</span><span class="tok-punct">=</span><span class="tok-string">&quot;#sales-data&quot;</span> <span class="tok-attr">data-path</span><span class="tok-punct">=</span><span class="tok-string">&quot;monthly&quot;</span> <span class="tok-attr">…</span><span class="tok-tag">&gt;</span></code></pre>
+</div>
+<p>JSON data blocks are not executed, so they are allowed under the strict CSP. Escape <code>&lt;/</code> in your serializer (for example with Razor's <code>Json.Serialize</code> or Django's <code>json_script</code>).</p>
+<h2 id="ai-analyst">AI analyst</h2>
+<p>The dashboard's <a href="../../templates/dashboard/assistant.html">AI assistant</a> answers questions from the same JSON and draws charts in its replies. To connect a real model, see <a href="ai-chat.html">AI-CHAT.md</a>; the <code>chart</code> stream event takes the same options as <code>data-viz</code> charts.</p>
+      </div>
+    </main>
+    <aside class="docs-toc" aria-labelledby="toc-title">
+      <h2 class="docs-toc__title" id="toc-title">On this page</h2>
+      <ul class="docs-toc__list" role="list">
+        <li><a href="#choosing-a-data-source">Choosing a data source</a></li>
+        <li><a href="#charts">Charts</a></li>
+        <li><a href="#data-grids">Data grids</a></li>
+        <li><a href="#inline-data-and-server-rendering">Inline data and server rendering</a></li>
+        <li><a href="#ai-analyst">AI analyst</a></li>
+      </ul>
+    </aside>
+  </div>
+
+  <footer class="docs-footer">
+    <p>MIT licensed · Built with plain HTML, CSS and JavaScript · <a href="https://github.com/amuqtadir99/vanilla-responsive-ui">Source on GitHub</a> · Generated by <code>node .claude/skills/generate-doc.js</code></p>
+  </footer>
+</body>
+</html>

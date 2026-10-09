@@ -26,6 +26,7 @@
   <link rel="stylesheet" href="../../assets/css/components/accordion.css">
   <link rel="stylesheet" href="../../assets/css/components/code.css">
   <link rel="stylesheet" href="../../assets/css/components/chat.css">
+  <link rel="stylesheet" href="../../assets/css/blocks.css">
   <link rel="stylesheet" href="./website.css">
   <script type="module" src="../../assets/js/main.js"></script>
 </head>
@@ -36,7 +37,7 @@
   <!-- Demo navigation between templates. Remove this partial in production. -->
   <nav class="demo-bar" aria-label="Template gallery">
     <div class="container demo-bar__inner">
-      <a class="demo-bar__home" href="../../index.html">vanilla-responsive-ui</a>
+      <a class="demo-bar__home" href="../../index.html">vanilla-responsive-ui <span class="visually-hidden">documentation</span></a>
       <ul class="demo-bar__list">
         <li><a href="../../templates/landing-page/index.html" data-section>Landing</a></li>
         <li><a href="../../templates/website/index.html" data-section aria-current="true">Website</a></li>
@@ -44,8 +45,8 @@
         <li><a href="../../templates/e-commerce/index.html" data-section>Shop</a></li>
         <li><a href="../../templates/ai/index.html" data-section>AI assistant</a></li>
         <li><a href="../../templates/auth/index.html" data-section>Auth</a></li>
-        <li><a href="../../components/index.html" data-section>Components</a></li>
-        <li><a href="../../layouts/index.html" data-section>Layouts</a></li>
+        <li><a href="../../docs/templates/index.html">Docs</a></li>
+        <li><a href="../../builder/index.html" data-section>Builder</a></li>
       </ul>
       <div class="demo-bar__actions">
         <button type="button" class="btn btn--ghost btn--sm" commandfor="theme-panel" command="show-modal" data-theme-panel-trigger hidden>
@@ -54,6 +55,7 @@
       </div>
     </div>
   </nav>
+  <p class="needs-server"><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4M12 17h.01"/></svg> <span>This page was opened from disk, so the browser blocks its JavaScript (menus, charts, chat, theme). Run <code>python3 -m http.server 8080</code> in the repository folder and open <a href="http://localhost:8080/src/">localhost:8080/src/</a>.</span></p>
   <!-- @end template-switcher -->
   <!-- @partial site-header -->
   <header class="site-header">
@@ -121,6 +123,21 @@
       </div>
     </section>
 
+    <section data-block="stats-band" class="section section--inverse" aria-labelledby="stats-title">
+      <div class="container">
+        <div class="block-header">
+          <p class="eyebrow">By the numbers</p>
+          <h2 class="block-header__title" id="stats-title">Ten years, one standard: products everyone can use</h2>
+        </div>
+        <dl class="stats">
+          <div class="stats__item"><dt class="stats__label">Products launched</dt><dd class="stats__value">120+</dd></div>
+          <div class="stats__item"><dt class="stats__label">Average Lighthouse score</dt><dd class="stats__value">98</dd></div>
+          <div class="stats__item"><dt class="stats__label">Countries we work in</dt><dd class="stats__value">14</dd></div>
+          <div class="stats__item"><dt class="stats__label">Client satisfaction</dt><dd class="stats__value">4.9/5</dd></div>
+        </dl>
+      </div>
+    </section>
+
     <section class="section section--alt" id="values" aria-labelledby="values-title">
       <div class="container">
         <header class="section__header">
@@ -134,55 +151,60 @@
       </div>
     </section>
 
-    <section class="section" aria-labelledby="team-title">
+    <section data-block="team" class="section" aria-labelledby="team-title">
       <div class="container">
-        <header class="section__header">
-          <h2 id="team-title">The team</h2>
-        </header>
-        <ul class="grid-auto grid-auto--sm list-reset" role="list">
-          <li class="card card--flat team-card">
-            <div class="card__body">
-              <span class="avatar avatar--lg avatar--soft" aria-hidden="true">AK</span>
-              <h3 class="card__title">Amara Kone</h3>
-              <p class="card__text">Design director</p>
-            </div>
-          </li>
-          <li class="card card--flat team-card">
-            <div class="card__body">
-              <span class="avatar avatar--lg avatar--soft" aria-hidden="true">KT</span>
-              <h3 class="card__title">Kenji Tanaka</h3>
-              <p class="card__text">Engineering lead</p>
-            </div>
-          </li>
-          <li class="card card--flat team-card">
-            <div class="card__body">
-              <span class="avatar avatar--lg avatar--soft" aria-hidden="true">FH</span>
-              <h3 class="card__title">Fatima Hassan</h3>
-              <p class="card__text">Accessibility specialist</p>
-            </div>
-          </li>
-          <li class="card card--flat team-card">
-            <div class="card__body">
-              <span class="avatar avatar--lg avatar--soft" aria-hidden="true">LM</span>
-              <h3 class="card__title">Lucas Martin</h3>
-              <p class="card__text">AI product engineer</p>
-            </div>
-          </li>
-          <li class="card card--flat team-card">
-            <div class="card__body">
-              <span class="avatar avatar--lg avatar--soft" aria-hidden="true">ZA</span>
-              <h3 class="card__title">Zara Ahmed</h3>
-              <p class="card__text">Researcher</p>
-            </div>
-          </li>
-          <li class="card card--flat team-card">
-            <div class="card__body">
-              <span class="avatar avatar--lg avatar--soft" aria-hidden="true">DF</span>
-              <h3 class="card__title">Diego Fernández</h3>
-              <p class="card__text">Full-stack developer</p>
-            </div>
-          </li>
+        <div class="block-header">
+          <p class="eyebrow">Our team</p>
+          <h2 class="block-header__title" id="team-title">The team</h2>
+          <p class="block-header__lead">Twelve designers, engineers and researchers across three time zones. Here are a few of us.</p>
+        </div>
+        <ul class="team" role="list">
+        <li class="team__member">
+          <span class="team__portrait" aria-hidden="true">AK</span>
+          <h3 class="team__name">Amara Kone</h3>
+          <p class="team__role">Design director</p>
+        </li>
+        <li class="team__member">
+          <span class="team__portrait" aria-hidden="true">KT</span>
+          <h3 class="team__name">Kenji Tanaka</h3>
+          <p class="team__role">Engineering lead</p>
+        </li>
+        <li class="team__member">
+          <span class="team__portrait" aria-hidden="true">FH</span>
+          <h3 class="team__name">Fatima Hassan</h3>
+          <p class="team__role">Accessibility specialist</p>
+        </li>
+        <li class="team__member">
+          <span class="team__portrait" aria-hidden="true">LM</span>
+          <h3 class="team__name">Lucas Martin</h3>
+          <p class="team__role">AI product engineer</p>
+        </li>
+        <li class="team__member">
+          <span class="team__portrait" aria-hidden="true">ZA</span>
+          <h3 class="team__name">Zara Ahmed</h3>
+          <p class="team__role">Researcher</p>
+        </li>
+        <li class="team__member">
+          <span class="team__portrait" aria-hidden="true">DF</span>
+          <h3 class="team__name">Diego Fernández</h3>
+          <p class="team__role">Full-stack developer</p>
+        </li>
         </ul>
+      </div>
+    </section>
+
+    <section data-block="cta-banner" class="section" aria-labelledby="cta-title">
+      <div class="container">
+        <div class="cta-banner">
+          <div>
+            <h2 class="cta-banner__title" id="cta-title">Want to work with us?</h2>
+            <p class="cta-banner__text">We’re hiring designers and engineers who care about craft.</p>
+          </div>
+          <div class="cta-banner__actions">
+            <a class="btn btn--lg btn--on-brand" href="contact.html">Get in touch <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+            <a class="btn btn--lg btn--on-brand-outline" href="services.html">See our services</a>
+          </div>
+        </div>
       </div>
     </section>
   </main>

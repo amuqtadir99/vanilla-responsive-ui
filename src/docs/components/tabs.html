@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; form-action 'self'; base-uri 'self'; object-src 'none'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>Tabs component — vanilla-responsive-ui docs</title>
+  <meta name="description" content="WAI-ARIA tabs with automatic activation. Without JavaScript every panel is shown in sequence with its own heading.">
+  <meta name="color-scheme" content="light dark">
+  <meta name="generator" content="node .claude/skills/generate-doc.js (do not edit by hand)">
+  <link rel="icon" href="../../assets/icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../../assets/css/tokens.css">
+  <link rel="stylesheet" href="../../assets/css/themes.css">
+  <link rel="stylesheet" href="../../assets/css/base.css">
+  <link rel="stylesheet" href="../../assets/css/layouts.css">
+  <link rel="stylesheet" href="../../assets/css/components/button.css">
+  <link rel="stylesheet" href="../../assets/css/components/form.css">
+  <link rel="stylesheet" href="../../assets/css/components/feedback.css">
+  <link rel="stylesheet" href="../../assets/css/components/tabs.css">
+  <link rel="stylesheet" href="../../assets/css/components/table.css">
+  <link rel="stylesheet" href="../../assets/css/components/code.css">
+  <link rel="stylesheet" href="../../assets/css/components/accordion.css">
+  <link rel="stylesheet" href="../../assets/css/components/card.css">
+  <link rel="stylesheet" href="../../assets/css/components/navigation.css">
+  <link rel="stylesheet" href="../../assets/css/blocks.css">
+  <link rel="stylesheet" href="../../docs/assets/foundations.css">
+  <link rel="stylesheet" href="../../docs/assets/docs.css">
+  <script type="module" src="../../assets/js/main.js"></script>
+  <script type="module" src="../../docs/assets/docs.js"></script>
+</head>
+<body class="docs-body">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <p class="needs-server"><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4M12 17h.01"/></svg> <span>You opened this file from disk, so browsers block its JavaScript (copy buttons, previews, the builder). Run <code>python3 -m http.server 8080</code> in the repository folder and open <a href="http://localhost:8080/src/">localhost:8080/src/</a>, or use the <a href="https://amuqtadir99.github.io/vanilla-responsive-ui/src/">hosted docs</a>.</span></p>
+  <header class="docs-topbar">
+    <div class="docs-topbar__inner">
+      <button type="button" class="btn btn--ghost btn--icon docs-topbar__menu" data-disclosure="dismissible" aria-expanded="false" aria-controls="docs-sidebar" hidden>
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        <span class="visually-hidden">Documentation menu</span>
+      </button>
+      <a class="docs-brand" href="../../index.html">
+        <span class="docs-brand__mark"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 2 7l10 5 10-5z"/><path d="m2 17 10 5 10-5M2 12l10 5 10-5"/></svg></span>
+        <span>vanilla-responsive-ui</span>
+      </a>
+      <nav class="docs-topnav" aria-label="Main">
+        <ul class="docs-topnav__list" role="list">
+          <li><a href="../../docs/getting-started.html">Docs</a></li>
+          <li><a href="../../docs/components/site-footer.html" aria-current="true">Components</a></li>
+          <li><a href="../../docs/blocks/hero-centered.html">Blocks</a></li>
+          <li><a href="../../docs/templates/index.html">Templates</a></li>
+          <li><a href="../../builder/index.html">Builder</a></li>
+        </ul>
+      </nav>
+      <div class="docs-topbar__actions">
+        <a class="btn btn--ghost btn--sm" href="https://github.com/amuqtadir99/vanilla-responsive-ui"><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m16 18 6-6-6-6M8 6l-6 6 6 6"/></svg> <span class="docs-topbar__label">GitHub</span></a>
+        <button type="button" class="btn btn--ghost btn--icon theme-toggle" data-theme-toggle aria-pressed="false" hidden>
+          <svg class="icon theme-toggle__light" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="icon theme-toggle__dark" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+          <span class="visually-hidden">Dark theme</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="docs-layout">
+    <nav class="docs-sidebar" id="docs-sidebar" aria-label="Documentation">
+      <div class="docs-search" data-docs-search hidden>
+        <label class="visually-hidden" for="docs-search-input">Search the documentation</label>
+        <svg class="icon icon--sm docs-search__icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/></svg>
+        <input class="input docs-search__input" id="docs-search-input" type="search" placeholder="Search…" autocomplete="off" aria-describedby="docs-search-hint">
+        <kbd class="docs-search__kbd" id="docs-search-hint"><span class="visually-hidden">Press </span>/<span class="visually-hidden"> to search</span></kbd>
+        <p class="docs-search__empty text-sm text-muted" role="status" data-docs-search-status></p>
+      </div>
+      <div class="docs-nav__group" data-docs-group>
+        <p class="docs-nav__title" id="nav-get-started">Get started</p>
+        <ul class="docs-nav__list" role="list" aria-labelledby="nav-get-started">
+          <li><a class="docs-nav__link" href="../../index.html">Introduction</a></li>
+          <li><a class="docs-nav__link" href="../../docs/getting-started.html">Getting started</a></li>
+          <li><a class="docs-nav__link" href="../../builder/index.html">Page builder</a></li>
+          <li><a class="docs-nav__link" href="../../docs/ai-agents.html">Working with AI agents</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav__group" data-docs-group>
+        <p class="docs-nav__title" id="nav-templates">Templates</p>
+        <ul class="docs-nav__list" role="list" aria-labelledby="nav-templates">
+          <li><a class="docs-nav__link" href="../../docs/templates/index.html">All templates</a></li>
+          <li><a class="docs-nav__link" href="../../docs/templates/landing-page-index.html">Landing page</a></li>
+          <li><a class="docs-nav__link" href="../../docs/templates/website-index.html">Website</a></li>
+          <li><a class="docs-nav__link" href="../../docs/templates/dashboard-index.html">Dashboard</a></li>
+          <li><a class="docs-nav__link" href="../../docs/templates/e-commerce-index.html">E-commerce</a></li>
+          <li><a class="docs-nav__link" href="../../docs/templates/ai-index.html">AI apps</a></li>
+          <li><a class="docs-nav__link" href="../../docs/templates/auth-index.html">Authentication</a></li>
+          <li><a class="docs-nav__link" href="../../docs/layouts.html">Layouts</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav__group" data-docs-group>
+        <p class="docs-nav__title" id="nav-blocks">Blocks</p>
+        <ul class="docs-nav__list" role="list" aria-labelledby="nav-blocks">
+          <li><a class="docs-nav__link" href="../../docs/blocks/hero-centered.html">Hero centered</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/hero-split.html">Hero split</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/logo-cloud.html">Logo cloud</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/stats-band.html">Stats band</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/testimonials.html">Testimonials</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/feature-bento.html">Feature bento</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/feature-grid.html">Feature grid</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/feature-rows.html">Feature rows</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/steps.html">Steps</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/category-tiles.html">Category tiles</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/perks.html">Perks</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/pricing.html">Pricing</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/promo-banner.html">Promo banner</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/blog-posts.html">Blog posts</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/faq.html">FAQ</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/team.html">Team</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/contact.html">Contact</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/cta-banner.html">CTA banner</a></li>
+          <li><a class="docs-nav__link" href="../../docs/blocks/newsletter.html">Newsletter</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav__group" data-docs-group>
+        <p class="docs-nav__title" id="nav-components">Components</p>
+        <ul class="docs-nav__list" role="list" aria-labelledby="nav-components">
+          <li><a class="docs-nav__link" href="../../docs/components/site-footer.html">Site footer</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/site-header.html">Site header</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/breadcrumb.html">Breadcrumb</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/pagination.html">Pagination</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/tabs.html" aria-current="page">Tabs</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/button.html">Button</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/accordion.html">Accordion</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/card.html">Card</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/form-field.html">Form fields</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/alert.html">Alert and badge</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/toast.html">Toast</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/dialog.html">Dialog</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/chart.html">Charts</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/data-grid.html">Data grid</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/data-table.html">Data table</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/chat.html">AI chat</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/chat-message.html">Chat messages</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/chat-widget.html">Chat widget</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/theme-customizer.html">Theme customizer</a></li>
+          <li><a class="docs-nav__link" href="../../docs/components/theme-toggle.html">Theme toggle</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav__group" data-docs-group>
+        <p class="docs-nav__title" id="nav-foundations">Foundations</p>
+        <ul class="docs-nav__list" role="list" aria-labelledby="nav-foundations">
+          <li><a class="docs-nav__link" href="../../docs/foundations/colors.html">Colours</a></li>
+          <li><a class="docs-nav__link" href="../../docs/foundations/typography.html">Typography</a></li>
+          <li><a class="docs-nav__link" href="../../docs/foundations/spacing.html">Spacing and shape</a></li>
+          <li><a class="docs-nav__link" href="../../docs/foundations/icons.html">Icons</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav__group" data-docs-group>
+        <p class="docs-nav__title" id="nav-guides">Guides</p>
+        <ul class="docs-nav__list" role="list" aria-labelledby="nav-guides">
+          <li><a class="docs-nav__link" href="../../docs/guides/theming.html">Theming</a></li>
+          <li><a class="docs-nav__link" href="../../docs/guides/layouts.html">Layouts and pages</a></li>
+          <li><a class="docs-nav__link" href="../../docs/guides/data.html">Data and charts</a></li>
+          <li><a class="docs-nav__link" href="../../docs/guides/ai-chat.html">AI chat</a></li>
+          <li><a class="docs-nav__link" href="../../docs/guides/accessibility.html">Accessibility</a></li>
+          <li><a class="docs-nav__link" href="../../docs/guides/security.html">Security</a></li>
+          <li><a class="docs-nav__link" href="../../docs/guides/integration.html">Framework integration</a></li>
+          <li><a class="docs-nav__link" href="../../docs/guides/architecture.html">Architecture</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <main class="docs-main" id="main" tabindex="-1">
+      <header class="docs-header">
+        <p class="eyebrow">Component · Navigation</p>
+        <h1 class="docs-header__title">Tabs</h1>
+        <p class="docs-header__lead">WAI-ARIA tabs with automatic activation. Without JavaScript every panel is shown in sequence with its own heading.</p>
+        <ul class="docs-meta" role="list">
+          <li><span class="badge">Navigation</span></li>
+          <li><span class="badge badge--primary">HTML + CSS + JS</span></li>
+          <li><span class="path-chip">src/components/tabs.html</span></li>
+        </ul>
+        <div class="docs-header__actions"><button type="button" class="btn btn--sm" data-copy data-copy-text="Component: Tabs (vanilla-responsive-ui)&#10;Markup: src/components/tabs.html&#10;CSS: src/assets/css/tokens.css, src/assets/css/themes.css, src/assets/css/base.css, src/assets/css/components/tabs.css&#10;JS: src/assets/js/components/tabs.js (auto-initialised by src/assets/js/main.js)&#10;Docs: src/docs/components/tabs.html&#10;Accessibility: Roles (tablist, tab, tabpanel), aria-selected, aria-controls and roving tabindex are applied by the script. Arrow keys move between tabs, Home/End jump to the ends; only the active tab is in the Tab order.&#10;Rules: CLAUDE.md (no dependencies, no inline scripts/styles, WCAG 2.2 AA)" data-copy-success="Reference copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8zM5 2l.6 1.4L7 4l-1.4.6L5 6l-.6-1.4L3 4l1.4-.6z"/></svg> <span data-copy-label>Copy path for AI</span></button>
+          <button type="button" class="btn btn--sm btn--secondary" data-copy data-copy-text="&lt;div class=&quot;tabs&quot; data-tabs&gt;&#10;  &lt;div class=&quot;tabs__list&quot; data-tabs-list data-label=&quot;Account settings&quot; hidden&gt;&#10;    &lt;button type=&quot;button&quot; class=&quot;tabs__tab&quot; data-tab=&quot;tab-panel-profile&quot;&gt;Profile&lt;/button&gt;&#10;    &lt;button type=&quot;button&quot; class=&quot;tabs__tab&quot; data-tab=&quot;tab-panel-billing&quot;&gt;Billing&lt;/button&gt;&#10;    &lt;button type=&quot;button&quot; class=&quot;tabs__tab&quot; data-tab=&quot;tab-panel-team&quot;&gt;Team&lt;/button&gt;&#10;  &lt;/div&gt;&#10;  &lt;section class=&quot;tabs__panel&quot; id=&quot;tab-panel-profile&quot; aria-labelledby=&quot;tab-panel-profile-heading&quot;&gt;&#10;    &lt;h3 class=&quot;tabs__heading&quot; id=&quot;tab-panel-profile-heading&quot;&gt;Profile&lt;/h3&gt;&#10;    &lt;p&gt;Update your name, photo and contact details.&lt;/p&gt;&#10;  &lt;/section&gt;&#10;  &lt;section class=&quot;tabs__panel&quot; id=&quot;tab-panel-billing&quot; aria-labelledby=&quot;tab-panel-billing-heading&quot;&gt;&#10;    &lt;h3 class=&quot;tabs__heading&quot; id=&quot;tab-panel-billing-heading&quot;&gt;Billing&lt;/h3&gt;&#10;    &lt;p&gt;Manage your plan, payment method and invoices.&lt;/p&gt;&#10;  &lt;/section&gt;&#10;  &lt;section class=&quot;tabs__panel&quot; id=&quot;tab-panel-team&quot; aria-labelledby=&quot;tab-panel-team-heading&quot;&gt;&#10;    &lt;h3 class=&quot;tabs__heading&quot; id=&quot;tab-panel-team-heading&quot;&gt;Team&lt;/h3&gt;&#10;    &lt;p&gt;Invite teammates and manage roles.&lt;/p&gt;&#10;  &lt;/section&gt;&#10;&lt;/div&gt;" data-copy-success="Markup copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy HTML</span></button>
+          </div>
+      </header>
+
+      <section class="docs-section" aria-labelledby="preview">
+        <h2 class="docs-section__title" id="preview">Preview</h2>
+        <div class="docs-preview" data-docs-preview data-mode="component" data-device="desktop">
+  <div class="docs-preview__bar">
+    <fieldset class="fieldset docs-device" data-docs-device hidden>
+      <legend class="visually-hidden">Preview width</legend>
+      <div class="segmented">
+        <label class="segmented__option"><input type="radio" name="device-42" value="desktop" checked><span class="segmented__label"><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg> Desktop</span></label>
+        <label class="segmented__option"><input type="radio" name="device-42" value="tablet"><span class="segmented__label"><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M12 18h.01"/></svg> Tablet</span></label>
+        <label class="segmented__option"><input type="radio" name="device-42" value="mobile"><span class="segmented__label"><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg> Mobile</span></label>
+      </div>
+    </fieldset>
+    <a class="btn btn--ghost btn--sm" href="../preview/components/tabs.html" target="_blank" rel="noopener noreferrer"><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14 21 3"/></svg> Open in new tab<span class="visually-hidden"> (Tabs preview)</span></a>
+  </div>
+  <div class="docs-preview__stage" data-docs-stage>
+    <iframe class="docs-preview__frame" src="../preview/components/tabs.html" title="Tabs preview" loading="lazy" data-docs-frame></iframe>
+  </div>
+</div>
+      </section>
+
+      <section class="docs-section" aria-labelledby="code">
+        <h2 class="docs-section__title" id="code">Code</h2>
+        <div class="tabs docs-tabs" data-tabs>
+    <div class="tabs__list" data-tabs-list data-label="Tabs source" hidden>
+      <button type="button" class="tabs__tab" data-tab="tabs-43-0">HTML</button>
+      <button type="button" class="tabs__tab" data-tab="tabs-43-1">tabs.css</button>
+      <button type="button" class="tabs__tab" data-tab="tabs-43-2">tabs.js</button>
+    </div>
+    <section class="tabs__panel" id="tabs-43-0" aria-labelledby="tabs-43-0-h">
+      <h3 class="tabs__heading" id="tabs-43-0-h">HTML</h3>
+      <div class="docs-code">
+  <div class="docs-code__header">
+    <span class="docs-code__label"><span class="docs-code__path">src/components/tabs.html</span></span>
+    <span class="docs-code__actions"><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-text="src/components/tabs.html" data-copy-success="Path copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg> <span data-copy-label>Copy path</span></button><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-target="#code-39" data-copy-success="Code copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy code</span></button></span>
+  </div>
+  <pre tabindex="0" role="region" aria-label="src/components/tabs.html"><code id="code-39"><span class="tok-tag">&lt;div</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;tabs&quot;</span> <span class="tok-attr">data-tabs</span><span class="tok-tag">&gt;</span>
+  <span class="tok-tag">&lt;div</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;tabs__list&quot;</span> <span class="tok-attr">data-tabs-list</span> <span class="tok-attr">data-label</span><span class="tok-punct">=</span><span class="tok-string">&quot;Account settings&quot;</span> <span class="tok-attr">hidden</span><span class="tok-tag">&gt;</span>
+    <span class="tok-tag">&lt;button</span> <span class="tok-attr">type</span><span class="tok-punct">=</span><span class="tok-string">&quot;button&quot;</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;tabs__tab&quot;</span> <span class="tok-attr">data-tab</span><span class="tok-punct">=</span><span class="tok-string">&quot;tab-panel-profile&quot;</span><span class="tok-tag">&gt;</span>Profile<span class="tok-tag">&lt;/button</span><span class="tok-tag">&gt;</span>
+    <span class="tok-tag">&lt;button</span> <span class="tok-attr">type</span><span class="tok-punct">=</span><span class="tok-string">&quot;button&quot;</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;tabs__tab&quot;</span> <span class="tok-attr">data-tab</span><span class="tok-punct">=</span><span class="tok-string">&quot;tab-panel-billing&quot;</span><span class="tok-tag">&gt;</span>Billing<span class="tok-tag">&lt;/button</span><span class="tok-tag">&gt;</span>
+    <span class="tok-tag">&lt;button</span> <span class="tok-attr">type</span><span class="tok-punct">=</span><span class="tok-string">&quot;button&quot;</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;tabs__tab&quot;</span> <span class="tok-attr">data-tab</span><span class="tok-punct">=</span><span class="tok-string">&quot;tab-panel-team&quot;</span><span class="tok-tag">&gt;</span>Team<span class="tok-tag">&lt;/button</span><span class="tok-tag">&gt;</span>
+  <span class="tok-tag">&lt;/div</span><span class="tok-tag">&gt;</span>
+  <span class="tok-tag">&lt;section</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;tabs__panel&quot;</span> <span class="tok-attr">id</span><span class="tok-punct">=</span><span class="tok-string">&quot;tab-panel-profile&quot;</span> <span class="tok-attr">aria-labelledby</span><span class="tok-punct">=</span><span class="tok-string">&quot;tab-panel-profile-heading&quot;</span><span class="tok-tag">&gt;</span>
+    <span class="tok-tag">&lt;h3</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;tabs__heading&quot;</span> <span class="tok-attr">id</span><span class="tok-punct">=</span><span class="tok-string">&quot;tab-panel-profile-heading&quot;</span><span class="tok-tag">&gt;</span>Profile<span class="tok-tag">&lt;/h3</span><span class="tok-tag">&gt;</span>
+    <span class="tok-tag">&lt;p</span><span class="tok-tag">&gt;</span>Update your name, photo and contact details.<span class="tok-tag">&lt;/p</span><span class="tok-tag">&gt;</span>
+  <span class="tok-tag">&lt;/section</span><span class="tok-tag">&gt;</span>
+  <span class="tok-tag">&lt;section</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;tabs__panel&quot;</span> <span class="tok-attr">id</span><span class="tok-punct">=</span><span class="tok-string">&quot;tab-panel-billing&quot;</span> <span class="tok-attr">aria-labelledby</span><span class="tok-punct">=</span><span class="tok-string">&quot;tab-panel-billing-heading&quot;</span><span class="tok-tag">&gt;</span>
+    <span class="tok-tag">&lt;h3</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;tabs__heading&quot;</span> <span class="tok-attr">id</span><span class="tok-punct">=</span><span class="tok-string">&quot;tab-panel-billing-heading&quot;</span><span class="tok-tag">&gt;</span>Billing<span class="tok-tag">&lt;/h3</span><span class="tok-tag">&gt;</span>
+    <span class="tok-tag">&lt;p</span><span class="tok-tag">&gt;</span>Manage your plan, payment method and invoices.<span class="tok-tag">&lt;/p</span><span class="tok-tag">&gt;</span>
+  <span class="tok-tag">&lt;/section</span><span class="tok-tag">&gt;</span>
+  <span class="tok-tag">&lt;section</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;tabs__panel&quot;</span> <span class="tok-attr">id</span><span class="tok-punct">=</span><span class="tok-string">&quot;tab-panel-team&quot;</span> <span class="tok-attr">aria-labelledby</span><span class="tok-punct">=</span><span class="tok-string">&quot;tab-panel-team-heading&quot;</span><span class="tok-tag">&gt;</span>
+    <span class="tok-tag">&lt;h3</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-string">&quot;tabs__heading&quot;</span> <span class="tok-attr">id</span><span class="tok-punct">=</span><span class="tok-string">&quot;tab-panel-team-heading&quot;</span><span class="tok-tag">&gt;</span>Team<span class="tok-tag">&lt;/h3</span><span class="tok-tag">&gt;</span>
+    <span class="tok-tag">&lt;p</span><span class="tok-tag">&gt;</span>Invite teammates and manage roles.<span class="tok-tag">&lt;/p</span><span class="tok-tag">&gt;</span>
+  <span class="tok-tag">&lt;/section</span><span class="tok-tag">&gt;</span>
+<span class="tok-tag">&lt;/div</span><span class="tok-tag">&gt;</span></code></pre>
+</div>
+    </section>
+    <section class="tabs__panel" id="tabs-43-1" aria-labelledby="tabs-43-1-h">
+      <h3 class="tabs__heading" id="tabs-43-1-h">tabs.css</h3>
+      <div class="docs-code">
+  <div class="docs-code__header">
+    <span class="docs-code__label"><span class="docs-code__path">src/assets/css/components/tabs.css</span></span>
+    <span class="docs-code__actions"><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-text="src/assets/css/components/tabs.css" data-copy-success="Path copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg> <span data-copy-label>Copy path</span></button><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-target="#code-40" data-copy-success="Code copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy code</span></button></span>
+  </div>
+  <pre tabindex="0" role="region" aria-label="src/assets/css/components/tabs.css"><code id="code-40"><span class="tok-comment">/* ==========================================================================
+   Tabs
+   Without JS every panel is shown with its own heading. tabs.js adds the
+   WAI-ARIA tab roles, reveals the tab list and adds .tabs--enhanced.
+   ========================================================================== */</span>
+
+<span class="tok-selector">.tabs__list </span><span class="tok-punct">{</span>
+  <span class="tok-property">position</span><span class="tok-punct">:</span> relative<span class="tok-punct">;</span>
+  <span class="tok-property">display</span><span class="tok-punct">:</span> flex<span class="tok-punct">;</span>
+  <span class="tok-property">gap</span><span class="tok-punct">:</span> var(<span class="tok-variable">--spacing-3xs</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">overflow-x</span><span class="tok-punct">:</span> auto<span class="tok-punct">;</span>
+  <span class="tok-property">border-block-end</span><span class="tok-punct">:</span> var(<span class="tok-variable">--border-width</span>) solid var(<span class="tok-variable">--color-border</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">scrollbar-width</span><span class="tok-punct">:</span> thin<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.tabs__tab </span><span class="tok-punct">{</span>
+  <span class="tok-property">position</span><span class="tok-punct">:</span> relative<span class="tok-punct">;</span>
+  <span class="tok-property">min-height</span><span class="tok-punct">:</span> var(<span class="tok-variable">--target-size</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">padding</span><span class="tok-punct">:</span> var(<span class="tok-variable">--spacing-2xs</span>) var(<span class="tok-variable">--spacing-sm</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">border</span><span class="tok-punct">:</span> <span class="tok-number">0</span><span class="tok-punct">;</span>
+  <span class="tok-property">border-radius</span><span class="tok-punct">:</span> var(<span class="tok-variable">--radius-md</span>) var(<span class="tok-variable">--radius-md</span>) <span class="tok-number">0</span> <span class="tok-number">0</span><span class="tok-punct">;</span>
+  <span class="tok-property">background</span><span class="tok-punct">:</span> none<span class="tok-punct">;</span>
+  <span class="tok-property">color</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-text-muted</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">font-weight</span><span class="tok-punct">:</span> var(<span class="tok-variable">--font-weight-semibold</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">white-space</span><span class="tok-punct">:</span> nowrap<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.tabs__tab:hover </span><span class="tok-punct">{</span>
+  <span class="tok-property">color</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-text</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">background-color</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-surface</span>)<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.tabs__tab:focus-visible </span><span class="tok-punct">{</span>
+  <span class="tok-property">outline-offset</span><span class="tok-punct">:</span> calc(var(<span class="tok-variable">--focus-ring-width</span>) * <span class="tok-number">-1</span>)<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.tabs__tab[aria-selected=&quot;true&quot;] </span><span class="tok-punct">{</span>
+  <span class="tok-property">color</span><span class="tok-punct">:</span> var(<span class="tok-variable">--color-primary</span>)<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.tabs__tab[aria-selected=&quot;true&quot;]::after </span><span class="tok-punct">{</span>
+  <span class="tok-property">content</span><span class="tok-punct">:</span> <span class="tok-string">&quot;&quot;</span><span class="tok-punct">;</span>
+  <span class="tok-property">position</span><span class="tok-punct">:</span> absolute<span class="tok-punct">;</span>
+  <span class="tok-property">inset-inline</span><span class="tok-punct">:</span> <span class="tok-number">0</span><span class="tok-punct">;</span>
+  <span class="tok-property">inset-block-end</span><span class="tok-punct">:</span> <span class="tok-number">-1px</span><span class="tok-punct">;</span>
+  <span class="tok-property">height</span><span class="tok-punct">:</span> <span class="tok-number">3px</span><span class="tok-punct">;</span>
+  <span class="tok-property">border-radius</span><span class="tok-punct">:</span> <span class="tok-number">3px</span> <span class="tok-number">3px</span> <span class="tok-number">0</span> <span class="tok-number">0</span><span class="tok-punct">;</span>
+  <span class="tok-property">background-color</span><span class="tok-punct">:</span> currentColor<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.tabs__panel </span><span class="tok-punct">{</span>
+  <span class="tok-property">padding-block</span><span class="tok-punct">:</span> var(<span class="tok-variable">--spacing-md</span>)<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.tabs:not(.tabs--enhanced) .tabs__panel + .tabs__panel </span><span class="tok-punct">{</span>
+  <span class="tok-property">border-block-start</span><span class="tok-punct">:</span> var(<span class="tok-variable">--border-width</span>) solid var(<span class="tok-variable">--color-border</span>)<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.tabs__heading </span><span class="tok-punct">{</span>
+  <span class="tok-property">margin-block-end</span><span class="tok-punct">:</span> var(<span class="tok-variable">--spacing-xs</span>)<span class="tok-punct">;</span>
+  <span class="tok-property">font-size</span><span class="tok-punct">:</span> var(<span class="tok-variable">--font-size-lg</span>)<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-selector">.tabs--enhanced .tabs__heading </span><span class="tok-punct">{</span>
+  <span class="tok-property">position</span><span class="tok-punct">:</span> absolute<span class="tok-punct">;</span>
+  <span class="tok-property">width</span><span class="tok-punct">:</span> <span class="tok-number">1px</span><span class="tok-punct">;</span>
+  <span class="tok-property">height</span><span class="tok-punct">:</span> <span class="tok-number">1px</span><span class="tok-punct">;</span>
+  <span class="tok-property">overflow</span><span class="tok-punct">:</span> hidden<span class="tok-punct">;</span>
+  <span class="tok-property">clip-path</span><span class="tok-punct">:</span> inset(<span class="tok-number">50</span>%)<span class="tok-punct">;</span>
+  <span class="tok-property">white-space</span><span class="tok-punct">:</span> nowrap<span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-keyword">@media</span> (forced-colors: active) <span class="tok-punct">{</span>
+  <span class="tok-selector">.tabs__tab[aria-selected=&quot;true&quot;]::after </span><span class="tok-punct">{</span>
+    <span class="tok-property">background-color</span><span class="tok-punct">:</span> Highlight<span class="tok-punct">;</span>
+  <span class="tok-punct">}</span>
+<span class="tok-punct">}</span></code></pre>
+</div>
+    </section>
+    <section class="tabs__panel" id="tabs-43-2" aria-labelledby="tabs-43-2-h">
+      <h3 class="tabs__heading" id="tabs-43-2-h">tabs.js</h3>
+      <div class="docs-code">
+  <div class="docs-code__header">
+    <span class="docs-code__label"><span class="docs-code__path">src/assets/js/components/tabs.js</span></span>
+    <span class="docs-code__actions"><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-text="src/assets/js/components/tabs.js" data-copy-success="Path copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg> <span data-copy-label>Copy path</span></button><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-target="#code-41" data-copy-success="Code copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy code</span></button></span>
+  </div>
+  <pre tabindex="0" role="region" aria-label="src/assets/js/components/tabs.js"><code id="code-41"><span class="tok-comment">/**
+ * Tabs — WAI-ARIA APG &quot;Tabs with Automatic Activation&quot;.
+ *
+ * Markup (no ARIA roles needed in the HTML; they are added here so the
+ * no-JS version stays a plain, valid list of sections):
+ *
+ *   &lt;div class=&quot;tabs&quot; data-tabs&gt;
+ *     &lt;div class=&quot;tabs__list&quot; data-tabs-list data-label=&quot;Account settings&quot; hidden&gt;
+ *       &lt;button type=&quot;button&quot; class=&quot;tabs__tab&quot; data-tab=&quot;panel-profile&quot;&gt;Profile&lt;/button&gt;
+ *       &lt;button type=&quot;button&quot; class=&quot;tabs__tab&quot; data-tab=&quot;panel-billing&quot;&gt;Billing&lt;/button&gt;
+ *     &lt;/div&gt;
+ *     &lt;section class=&quot;tabs__panel&quot; id=&quot;panel-profile&quot; aria-labelledby=&quot;panel-profile-h&quot;&gt;
+ *       &lt;h3 class=&quot;tabs__heading&quot; id=&quot;panel-profile-h&quot;&gt;Profile&lt;/h3&gt; …
+ *     &lt;/section&gt;
+ *     …
+ *   &lt;/div&gt;
+ *
+ * Keyboard: Left/Right (Up/Down when vertical) move between tabs, Home/End
+ * jump to the first/last tab. Only the active tab is in the tab order.
+ *
+ * @module components/tabs
+ */</span>
+<span class="tok-keyword">import</span> { qs, qsa, on, claim, ensureId } <span class="tok-keyword">from</span> <span class="tok-string">'../core/dom.js'</span>;
+
+<span class="tok-comment">/**
+ * @param {ParentNode} [root=document]
+ */</span>
+<span class="tok-keyword">export</span> <span class="tok-keyword">function</span> <span class="tok-function">init</span>(root = document) {
+  <span class="tok-keyword">for</span> (<span class="tok-keyword">const</span> container <span class="tok-keyword">of</span> <span class="tok-function">qsa</span>(<span class="tok-string">'[data-tabs]'</span>, root)) {
+    <span class="tok-keyword">if</span> (!<span class="tok-function">claim</span>(container, <span class="tok-string">'tabs'</span>)) <span class="tok-keyword">continue</span>;
+
+    <span class="tok-keyword">const</span> list = <span class="tok-function">qs</span>(<span class="tok-string">'[data-tabs-list]'</span>, container);
+    <span class="tok-keyword">if</span> (!list) <span class="tok-keyword">continue</span>;
+
+    <span class="tok-keyword">const</span> tabs = <span class="tok-function">qsa</span>(<span class="tok-string">'[data-tab]'</span>, list).<span class="tok-function">filter</span>((tab) =&gt;
+      document.<span class="tok-function">getElementById</span>(tab.dataset.tab || <span class="tok-string">''</span>)
+    );
+    <span class="tok-keyword">if</span> (tabs.length === <span class="tok-number">0</span>) <span class="tok-keyword">continue</span>;
+
+    <span class="tok-keyword">const</span> vertical = list.<span class="tok-function">getAttribute</span>(<span class="tok-string">'aria-orientation'</span>) === <span class="tok-string">'vertical'</span>;
+
+    list.<span class="tok-function">setAttribute</span>(<span class="tok-string">'role'</span>, <span class="tok-string">'tablist'</span>);
+    <span class="tok-keyword">if</span> (list.dataset.label) list.<span class="tok-function">setAttribute</span>(<span class="tok-string">'aria-label'</span>, list.dataset.label);
+
+    <span class="tok-keyword">for</span> (<span class="tok-keyword">const</span> tab <span class="tok-keyword">of</span> tabs) {
+      <span class="tok-keyword">const</span> panel = document.<span class="tok-function">getElementById</span>(tab.dataset.tab);
+      <span class="tok-function">ensureId</span>(tab, <span class="tok-string">'tab'</span>);
+      tab.<span class="tok-function">setAttribute</span>(<span class="tok-string">'role'</span>, <span class="tok-string">'tab'</span>);
+      tab.<span class="tok-function">setAttribute</span>(<span class="tok-string">'aria-controls'</span>, panel.id);
+      panel.<span class="tok-function">setAttribute</span>(<span class="tok-string">'role'</span>, <span class="tok-string">'tabpanel'</span>);
+      panel.<span class="tok-function">setAttribute</span>(<span class="tok-string">'aria-labelledby'</span>, tab.id);
+      panel.tabIndex = <span class="tok-number">0</span>;
+    }
+
+    <span class="tok-keyword">const</span> select = (nextTab, { focus = <span class="tok-keyword">false</span> } = {}) =&gt; {
+      <span class="tok-keyword">for</span> (<span class="tok-keyword">const</span> tab <span class="tok-keyword">of</span> tabs) {
+        <span class="tok-keyword">const</span> selected = tab === nextTab;
+        tab.<span class="tok-function">setAttribute</span>(<span class="tok-string">'aria-selected'</span>, <span class="tok-function">String</span>(selected));
+        tab.tabIndex = selected ? <span class="tok-number">0</span> : -<span class="tok-number">1</span>;
+        document.<span class="tok-function">getElementById</span>(tab.dataset.tab).hidden = !selected;
+      }
+      <span class="tok-keyword">if</span> (focus) nextTab.<span class="tok-function">focus</span>();
+    };
+
+    <span class="tok-keyword">const</span> initial =
+      tabs.<span class="tok-function">find</span>((tab) =&gt; tab.<span class="tok-function">getAttribute</span>(<span class="tok-string">'aria-selected'</span>) === <span class="tok-string">'true'</span>) ||
+      tabs.<span class="tok-function">find</span>((tab) =&gt; location.hash === <span class="tok-string">`#${tab.dataset.tab}`</span>) ||
+      tabs[<span class="tok-number">0</span>];
+    <span class="tok-function">select</span>(initial);
+
+    <span class="tok-function">on</span>(list, <span class="tok-string">'click'</span>, (event) =&gt; {
+      <span class="tok-keyword">const</span> tab = <span class="tok-comment">/** @type {Element} */</span> (event.target).<span class="tok-function">closest</span>(<span class="tok-string">'[role=&quot;tab&quot;]'</span>);
+      <span class="tok-keyword">if</span> (tab &amp;&amp; tabs.<span class="tok-function">includes</span>(tab)) <span class="tok-function">select</span>(tab);
+    });
+
+    <span class="tok-function">on</span>(list, <span class="tok-string">'keydown'</span>, (event) =&gt; {
+      <span class="tok-keyword">const</span> current = tabs.<span class="tok-function">indexOf</span>(<span class="tok-comment">/** @type {HTMLElement} */</span> (document.activeElement));
+      <span class="tok-keyword">if</span> (current === -<span class="tok-number">1</span>) <span class="tok-keyword">return</span>;
+
+      <span class="tok-keyword">const</span> prevKey = vertical ? <span class="tok-string">'ArrowUp'</span> : <span class="tok-string">'ArrowLeft'</span>;
+      <span class="tok-keyword">const</span> nextKey = vertical ? <span class="tok-string">'ArrowDown'</span> : <span class="tok-string">'ArrowRight'</span>;
+      <span class="tok-keyword">let</span> next = <span class="tok-keyword">null</span>;
+
+      <span class="tok-keyword">if</span> (event.key === prevKey) next = tabs[(current - <span class="tok-number">1</span> + tabs.length) % tabs.length];
+      <span class="tok-keyword">else</span> <span class="tok-keyword">if</span> (event.key === nextKey) next = tabs[(current + <span class="tok-number">1</span>) % tabs.length];
+      <span class="tok-keyword">else</span> <span class="tok-keyword">if</span> (event.key === <span class="tok-string">'Home'</span>) next = tabs[<span class="tok-number">0</span>];
+      <span class="tok-keyword">else</span> <span class="tok-keyword">if</span> (event.key === <span class="tok-string">'End'</span>) next = tabs[tabs.length - <span class="tok-number">1</span>];
+
+      <span class="tok-keyword">if</span> (next) {
+        event.<span class="tok-function">preventDefault</span>();
+        <span class="tok-function">select</span>(next, { focus: <span class="tok-keyword">true</span> });
+      }
+    });
+
+    list.hidden = <span class="tok-keyword">false</span>;
+    container.classList.<span class="tok-function">add</span>(<span class="tok-string">'tabs--enhanced'</span>);
+  }
+}</code></pre>
+</div>
+    </section>
+  </div>
+      </section>
+
+      <section class="docs-section" aria-labelledby="files">
+        <h2 class="docs-section__title" id="files">Files</h2>
+        <p class="text-muted">Everything this component needs. Paste these paths into a prompt so an AI agent works with the real files.</p>
+        <ul class="docs-files" role="list">
+          <li><span class="path-chip">src/components/tabs.html</span> <span class="text-muted text-sm">markup</span> <button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-text="src/components/tabs.html" data-copy-success="Path copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy</span><span class="visually-hidden"> src/components/tabs.html</span></button></li>
+          <li><span class="path-chip">src/assets/css/tokens.css</span> <span class="text-muted text-sm">required by everything</span> <button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-text="src/assets/css/tokens.css" data-copy-success="Path copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy</span><span class="visually-hidden"> src/assets/css/tokens.css</span></button></li>
+          <li><span class="path-chip">src/assets/css/themes.css</span> <span class="text-muted text-sm">required by everything</span> <button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-text="src/assets/css/themes.css" data-copy-success="Path copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy</span><span class="visually-hidden"> src/assets/css/themes.css</span></button></li>
+          <li><span class="path-chip">src/assets/css/base.css</span> <span class="text-muted text-sm">required by everything</span> <button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-text="src/assets/css/base.css" data-copy-success="Path copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy</span><span class="visually-hidden"> src/assets/css/base.css</span></button></li>
+          <li><span class="path-chip">src/assets/css/components/tabs.css</span> <span class="text-muted text-sm">styles</span> <button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-text="src/assets/css/components/tabs.css" data-copy-success="Path copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy</span><span class="visually-hidden"> src/assets/css/components/tabs.css</span></button></li>
+          <li><span class="path-chip">src/assets/js/components/tabs.js</span> <span class="text-muted text-sm">behaviour (loaded by main.js)</span> <button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-text="src/assets/js/components/tabs.js" data-copy-success="Path copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy</span><span class="visually-hidden"> src/assets/js/components/tabs.js</span></button></li>
+        </ul>
+      </section>
+
+      <section class="docs-section" aria-labelledby="accessibility">
+        <h2 class="docs-section__title" id="accessibility">Accessibility</h2>
+        <div class="docs-callout"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="4.5" r="1.5"/><path d="M5 8.5 12 10l7-1.5M12 10v4.5M12 14.5 9 21M12 14.5l3 6.5"/></svg><p>Roles (tablist, tab, tabpanel), aria-selected, aria-controls and roving tabindex are applied by the script. Arrow keys move between tabs, Home/End jump to the ends; only the active tab is in the Tab order.</p></div>
+      </section>
+
+      <section class="docs-section" aria-labelledby="usage">
+        <h2 class="docs-section__title" id="usage">Use it in your stack</h2>
+        <div class="tabs docs-tabs" data-tabs>
+    <div class="tabs__list" data-tabs-list data-label="Frameworks" hidden>
+      <button type="button" class="tabs__tab" data-tab="tabs-46-0">HTML page</button>
+      <button type="button" class="tabs__tab" data-tab="tabs-46-1">React / Next.js</button>
+      <button type="button" class="tabs__tab" data-tab="tabs-46-2">ASP.NET Core</button>
+      <button type="button" class="tabs__tab" data-tab="tabs-46-3">Django / Jinja2</button>
+    </div>
+    <section class="tabs__panel" id="tabs-46-0" aria-labelledby="tabs-46-0-h">
+      <h3 class="tabs__heading" id="tabs-46-0-h">HTML page</h3>
+      <p>Add the stylesheets and the module entry point to <code>&lt;head&gt;</code> once, then paste the markup anywhere in <code>&lt;body&gt;</code>. Paths assume <code>src/</code> is your web root.</p>
+<div class="docs-code">
+  <div class="docs-code__header">
+    <span class="docs-code__label">In &lt;head&gt;</span>
+    <span class="docs-code__actions"><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-target="#code-44" data-copy-success="Code copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy code</span></button></span>
+  </div>
+  <pre tabindex="0" role="region" aria-label="In &lt;head&gt;"><code id="code-44"><span class="tok-tag">&lt;link</span> <span class="tok-attr">rel</span><span class="tok-punct">=</span><span class="tok-string">&quot;stylesheet&quot;</span> <span class="tok-attr">href</span><span class="tok-punct">=</span><span class="tok-string">&quot;/assets/css/tokens.css&quot;</span><span class="tok-tag">&gt;</span>
+<span class="tok-tag">&lt;link</span> <span class="tok-attr">rel</span><span class="tok-punct">=</span><span class="tok-string">&quot;stylesheet&quot;</span> <span class="tok-attr">href</span><span class="tok-punct">=</span><span class="tok-string">&quot;/assets/css/themes.css&quot;</span><span class="tok-tag">&gt;</span>
+<span class="tok-tag">&lt;link</span> <span class="tok-attr">rel</span><span class="tok-punct">=</span><span class="tok-string">&quot;stylesheet&quot;</span> <span class="tok-attr">href</span><span class="tok-punct">=</span><span class="tok-string">&quot;/assets/css/base.css&quot;</span><span class="tok-tag">&gt;</span>
+<span class="tok-tag">&lt;link</span> <span class="tok-attr">rel</span><span class="tok-punct">=</span><span class="tok-string">&quot;stylesheet&quot;</span> <span class="tok-attr">href</span><span class="tok-punct">=</span><span class="tok-string">&quot;/assets/css/components/tabs.css&quot;</span><span class="tok-tag">&gt;</span>
+<span class="tok-tag">&lt;script</span> <span class="tok-attr">type</span><span class="tok-punct">=</span><span class="tok-string">&quot;module&quot;</span> <span class="tok-attr">src</span><span class="tok-punct">=</span><span class="tok-string">&quot;/assets/js/main.js&quot;</span><span class="tok-tag">&gt;</span><span class="tok-tag">&lt;/script</span><span class="tok-tag">&gt;</span></code></pre>
+</div>
+    </section>
+    <section class="tabs__panel" id="tabs-46-1" aria-labelledby="tabs-46-1-h">
+      <h3 class="tabs__heading" id="tabs-46-1-h">React / Next.js</h3>
+      <p>Copy <code>src/assets/</code> to <code>ui/</code>, convert the markup to JSX (<code>class</code> → <code>className</code>, <code>for</code> → <code>htmlFor</code>) and call <code>init()</code> after render.</p>
+<div class="docs-code">
+  <div class="docs-code__header">
+    <span class="docs-code__label">JSX</span>
+    <span class="docs-code__actions"><button type="button" class="btn btn--ghost btn--sm" data-copy data-copy-target="#code-45" data-copy-success="Code copied" hidden><svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span data-copy-label>Copy code</span></button></span>
+  </div>
+  <pre tabindex="0" role="region" aria-label="JSX"><code id="code-45"><span class="tok-string">'use client'</span>;
+<span class="tok-keyword">import</span> { useEffect, useRef } <span class="tok-keyword">from</span> <span class="tok-string">'react'</span>;
+<span class="tok-keyword">import</span> <span class="tok-string">'@/ui/css/components/tabs.css'</span>;
+
+<span class="tok-keyword">export</span> <span class="tok-keyword">function</span> <span class="tok-function">Tabs</span>() {
+  <span class="tok-keyword">const</span> ref = <span class="tok-function">useRef</span>(<span class="tok-keyword">null</span>);
+  <span class="tok-function">useEffect</span>(() =&gt; {
+    <span class="tok-keyword">import</span>(<span class="tok-string">'@/ui/js/components/tabs.js'</span>).<span class="tok-function">then</span>((m) =&gt; m.<span class="tok-function">init</span>(ref.current));
+  }, []);
+  <span class="tok-keyword">return</span> &lt;div ref={ref}&gt;{<span class="tok-comment">/* paste the markup, converted to JSX */</span>}&lt;/div&gt;;
+}</code></pre>
+</div>
+    </section>
+    <section class="tabs__panel" id="tabs-46-2" aria-labelledby="tabs-46-2-h">
+      <h3 class="tabs__heading" id="tabs-46-2-h">ASP.NET Core</h3>
+      <p>Save the markup as <code>Pages/Shared/Components/_Tabs.cshtml</code> (escape a literal <code>@</code> as <code>@@</code>), render it with <code>&lt;partial name="Components/_Tabs" /&gt;</code>, and reference the stylesheets in <code>_Layout.cshtml</code>.</p>
+    </section>
+    <section class="tabs__panel" id="tabs-46-3" aria-labelledby="tabs-46-3-h">
+      <h3 class="tabs__heading" id="tabs-46-3-h">Django / Jinja2</h3>
+      <p>Save the markup as <code>templates/components/tabs.html</code> and use <code>{% include "components/tabs.html" %}</code>. Load the stylesheets in your base template.</p>
+    </section>
+  </div>
+      </section>
+
+      <nav class="docs-pager" aria-label="Previous and next">
+        <a class="docs-pager__link" href="pagination.html" rel="prev"><span class="text-sm text-muted">Previous</span> <span>Pagination</span></a>
+        <a class="docs-pager__link docs-pager__link--next" href="button.html" rel="next"><span class="text-sm text-muted">Next</span> <span>Button</span></a>
+      </nav>
+    </main>
+    <aside class="docs-toc" aria-labelledby="toc-title">
+      <h2 class="docs-toc__title" id="toc-title">On this page</h2>
+      <ul class="docs-toc__list" role="list">
+        <li><a href="#preview">Preview</a></li>
+        <li><a href="#code">Code</a></li>
+        <li><a href="#files">Files</a></li>
+        <li><a href="#accessibility">Accessibility</a></li>
+        <li><a href="#usage">Use it in your stack</a></li>
+      </ul>
+    </aside>
+  </div>
+
+  <footer class="docs-footer">
+    <p>MIT licensed · Built with plain HTML, CSS and JavaScript · <a href="https://github.com/amuqtadir99/vanilla-responsive-ui">Source on GitHub</a> · Generated by <code>node .claude/skills/generate-doc.js</code></p>
+  </footer>
+</body>
+</html>
